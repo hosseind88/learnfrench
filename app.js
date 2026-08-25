@@ -1883,6 +1883,125 @@ function applyImportedSnapshot(parsed) {
   updateContentCounts();
 }
 
+// ==========================================================================
+// 10. PWA ENGINE & FIRST-TIME INSTALL PROMPT
+// ==========================================================================
+let deferredInstallPrompt = null;
+
+function setupPwaEngine() {
+  // 1. Register Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then((reg) => {
+          console.log('PWA ServiceWorker registered with scope:', reg.scope);
+        })
+        .catch((err) => {
+          console.warn('PWA ServiceWorker registration failed:', err);
+        });
+    });
+  }
+
+  const installModal = document.getElementById('pwaInstallModalOverlay');
+  const installBtn = document.getElementById('pwaInstallActionBtn');
+  const dismissBtn = document.getElementById('pwaInstallDismissBtn');
+  const closeBtn = document.getElementById('pwaInstallCloseBtn');
+  const sidebarBtn = document.getElementById('sidebarInstallPwaBtn');
+  const iosInstruct = document.getElementById('pwaIosInstructions');
+
+  const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (window.navigator.standalone === true);
+
+  if (isStandalone) {
+    if (sidebarBtn) sidebarBtn.style.display = 'none';
+    return;
+  }
+
+  if (isIos && iosInstruct) {
+    iosInstruct.style.display = 'block';
+    if (installBtn) installBtn.style.display = 'none';
+  }
+
+  function showInstallModal() {
+    if (installModal) {
+      installModal.style.display = 'flex';
+    }
+  }
+
+  function hideInstallModal() {
+    if (installModal) {
+      installModal.style.display = 'none';
+    }
+    sessionStorage.setItem('ff_pwa_dismissed', 'true');
+  }
+
+  if (closeBtn) closeBtn.onclick = hideInstallModal;
+  if (dismissBtn) dismissBtn.onclick = hideInstallModal;
+  if (installModal) {
+    installModal.onclick = (e) => {
+      if (e.target === installModal) hideInstallModal();
+    };
+  }
+
+  if (sidebarBtn) {
+    sidebarBtn.onclick = () => {
+      showInstallModal();
+    };
+  }
+
+  if (installBtn) {
+    installBtn.onclick = async () => {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        const choiceResult = await deferredInstallPrompt.userChoice;
+        if (choiceResult.outcome === 'accepted') {
+          localStorage.setItem('ff_pwa_installed', 'true');
+          showToast('🎉 در حال نصب اپلیکیشن...');
+          triggerConfetti();
+        }
+        deferredInstallPrompt = null;
+      } else {
+        showToast('برای نصب، از منوی مرورگر (سه نقطه) گزینه Install یا Add to Home screen را بزنید.');
+      }
+      hideInstallModal();
+    };
+  }
+
+  // Capture beforeinstallprompt (Android / Chrome / Edge)
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+
+    const alreadyInstalled = localStorage.getItem('ff_pwa_installed') === 'true';
+    const dismissedThisSession = sessionStorage.getItem('ff_pwa_dismissed') === 'true';
+
+    // Show popup on first open (with smooth 1.8s delay)
+    if (!alreadyInstalled && !dismissedThisSession && !isStandalone) {
+      setTimeout(() => {
+        showInstallModal();
+      }, 1800);
+    }
+  });
+
+  // If on iOS or browsers without beforeinstallprompt, trigger first-time guide once
+  const firstVisitSeen = localStorage.getItem('ff_first_visit_prompt_seen');
+  if (!firstVisitSeen && !isStandalone && isIos) {
+    localStorage.setItem('ff_first_visit_prompt_seen', 'true');
+    setTimeout(() => {
+      showInstallModal();
+    }, 2000);
+  }
+
+  // App Installed Celebration
+  window.addEventListener('appinstalled', () => {
+    localStorage.setItem('ff_pwa_installed', 'true');
+    if (sidebarBtn) sidebarBtn.style.display = 'none';
+    hideInstallModal();
+    showToast('🎉 FrançaisFacile با موفقیت روی دستگاه شما نصب شد!');
+    triggerConfetti();
+  });
+}
+
 function initApp() {
   document.body.className = state.theme === 'dark' ? 'theme-dark' : 'theme-light';
   restoreUiFromState();
@@ -2192,6 +2311,9 @@ function initApp() {
 
   // Setup Global Search
   setupGlobalSearch();
+
+  // Setup PWA Installation & ServiceWorker
+  setupPwaEngine();
 
   const restoredView = state.currentView && state.currentView !== 'dashboard' ? state.currentView : 'dashboard';
   if (restoredView === 'dashboard') {

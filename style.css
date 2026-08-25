@@ -246,6 +246,20 @@ a {
   text-decoration: none;
 }
 
+.app-brand-logo-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform var(--transition-fast);
+}
+
+.app-brand-logo-img:hover {
+  transform: scale(1.08);
+}
+
 .french-flag-badge {
   display: flex;
   width: 32px;
@@ -3597,6 +3611,254 @@ body.theme-dark .nav-item.active {
   }
 }
 
+/* ==========================================================================
+   PWA Install Modal & Sidebar Badge
+   ========================================================================== */
+.sidebar-pwa-install-card {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.09) 0%, rgba(225, 29, 72, 0.08) 100%), var(--bg-surface);
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  width: 100%;
+  text-align: right;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  margin-top: -6px;
+}
+
+.sidebar-pwa-install-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--french-blue);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.18);
+}
+
+.pwa-card-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.pwa-mini-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pwa-card-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.pwa-card-title {
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+}
+
+.pwa-card-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.pwa-card-arrow {
+  font-family: var(--font-fr);
+  color: var(--french-blue);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform var(--transition-fast);
+}
+
+.sidebar-pwa-install-card:hover .pwa-card-arrow {
+  transform: translateX(-3px);
+}
+
+/* PWA Install Modal Dialog */
+.pwa-install-dialog {
+  max-width: 460px;
+  width: 92%;
+  padding: 32px 28px 26px;
+  text-align: center;
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+}
+
+.pwa-install-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pwa-install-icon-wrapper {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  margin-bottom: 14px;
+}
+
+.pwa-dialog-logo {
+  width: 84px;
+  height: 84px;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.pwa-install-glow-ring {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.4) 0%, rgba(225, 29, 72, 0.2) 60%, transparent 80%);
+  border-radius: 28px;
+  filter: blur(8px);
+  z-index: 1;
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+
+.pwa-tag-pill {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  background: var(--french-blue-light);
+  color: var(--french-blue);
+  border-radius: var(--radius-full);
+  margin-bottom: 10px;
+}
+
+.pwa-install-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.pwa-install-subtitle {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  max-width: 380px;
+}
+
+/* Features List */
+.pwa-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 22px;
+  text-align: right;
+}
+
+.pwa-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.pwa-feat-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pwa-feat-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pwa-feat-text strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pwa-feat-text span {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* iOS Safari Guide */
+.pwa-ios-instructions {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(37, 99, 235, 0.08));
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.ios-instruct-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #b45309;
+  margin-bottom: 8px;
+}
+
+.ios-steps-list {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  padding-right: 18px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  line-height: 1.5;
+}
+
+.ios-steps-list svg {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--french-blue);
+}
+
+/* PWA Actions Row */
+.pwa-actions-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pwa-confirm-btn {
+  flex: 1.4;
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.pwa-dismiss-btn {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 0.88rem;
+}
+
 /* Ultra-compact Phones (<= 340px) */
 @media (max-width: 340px) {
   .stats-overview-grid {
@@ -3611,5 +3873,8 @@ body.theme-dark .nav-item.active {
   }
   .fc-action-btn .sub-label {
     display: none;
+  }
+  .pwa-actions-row {
+    flex-direction: column;
   }
 }

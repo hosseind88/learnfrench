@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="50%" stop-color="#172554"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="flagBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="flagRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle inner border ring -->
+  <rect x="8" y="8" width="496" height="496" rx="104" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="3"/>
+
+  <!-- French Flag Ribbon Arch / Top Badge -->
+  <g transform="translate(196, 48)">
+    <rect x="0" y="0" width="40" height="20" rx="4" fill="url(#flagBlue)"/>
+    <rect x="40" y="0" width="40" height="20" fill="#ffffff"/>
+    <rect x="80" y="0" width="40" height="20" rx="4" fill="url(#flagRed)"/>
+  </g>
+
+  <!-- Glowing background light circle -->
+  <circle cx="256" cy="260" r="140" fill="rgba(37,99,235,0.18)" filter="url(#glow)"/>
+
+  <!-- Stylized Eiffel Tower & Learning Symbol -->
+  <!-- Tower Spire -->
+  <line x1="256" y1="90" x2="256" y2="150" stroke="#f8fafc" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="256" cy="85" r="7" fill="url(#goldGrad)"/>
+
+  <!-- Tower Dome/Top Section -->
+  <path d="M246 150 L266 150 L262 195 L250 195 Z" fill="#ffffff"/>
+  
+  <!-- First Platform -->
+  <rect x="236" y="195" width="40" height="8" rx="3" fill="url(#goldGrad)"/>
+
+  <!-- Middle Section Legs -->
+  <path d="M244 203 L234 290 L278 290 L268 203 Z" fill="none" stroke="#ffffff" stroke-width="7" stroke-linejoin="round"/>
+  <!-- Middle Crossbeams -->
+  <line x1="240" y1="235" x2="272" y2="235" stroke="#94a3b8" stroke-width="3"/>
+  <line x1="237" y1="265" x2="275" y2="265" stroke="#94a3b8" stroke-width="3"/>
+  <line x1="243" y1="205" x2="274" y2="285" stroke="#64748b" stroke-width="2.5"/>
+  <line x1="269" y1="205" x2="238" y2="285" stroke="#64748b" stroke-width="2.5"/>
+
+  <!-- Main Platform -->
+  <rect x="216" y="290" width="80" height="12" rx="4" fill="url(#goldGrad)"/>
+
+  <!-- Base Legs (Lower Section) -->
+  <path d="M228 302 L185 415 L215 415 L236 345 Q256 360 276 345 L297 415 L327 415 L284 302 Z" fill="#ffffff"/>
+
+  <!-- Arch under Eiffel Tower -->
+  <path d="M210 415 Q256 340 302 415" fill="none" stroke="url(#goldGrad)" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Open Book of Knowledge at bottom -->
+  <g transform="translate(166, 395)">
+    <!-- Left page -->
+    <path d="M90 25 C60 10 20 12 0 24 L0 58 C20 46 60 44 90 58 Z" fill="url(#flagBlue)"/>
+    <!-- Right page -->
+    <path d="M90 25 C120 10 160 12 180 24 L180 58 C160 46 120 44 90 58 Z" fill="url(#flagRed)"/>
+    <!-- Center spine & pages edge -->
+    <path d="M90 25 L90 58" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+    <path d="M8 26 C28 16 62 16 86 26" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none"/>
+    <path d="M172 26 C152 16 118 16 94 26" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Learning Star sparkles -->
+  <path d="M140 180 L145 195 L160 200 L145 205 L140 220 L135 205 L120 200 L135 195 Z" fill="url(#goldGrad)"/>
+  <path d="M375 160 L378 170 L388 173 L378 176 L375 186 L372 176 L362 173 L372 170 Z" fill="url(#goldGrad)"/>
+</svg>

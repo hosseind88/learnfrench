@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>FrançaisFacile • آموزش فرانسه سطح A1</title>
   
+  <!-- PWA & Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FrançaisFacile">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
   <!-- Google Fonts: Vazirmatn for Persian & Plus Jakarta Sans / Outfit for French -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,11 +37,7 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
         <div class="logo-wrapper">
-          <div class="french-flag-badge">
-            <span class="flag-stripe blue"></span>
-            <span class="flag-stripe white"></span>
-            <span class="flag-stripe red"></span>
-          </div>
+          <img src="icon.svg" alt="FrançaisFacile Logo" class="app-brand-logo-img">
           <div class="logo-text">
             <div class="app-title">Français<span class="highlight">Facile</span></div>
             <div class="app-subtitle">آموزش زبان فرانسه • سطح A1</div>
@@ -153,6 +161,18 @@
           در فرانسوی تقریباً تمام کلماتی که به <b dir="ltr">"-tion"</b> ختم می‌شوند مؤنث هستند! (مثل <i>présentation</i>, <i>réunion</i>)
         </p>
       </div>
+
+      <!-- Sidebar PWA Install Trigger -->
+      <button class="sidebar-pwa-install-card" id="sidebarInstallPwaBtn">
+        <div class="pwa-card-icon-wrap">
+          <img src="icon.svg" alt="App Icon" class="pwa-mini-icon">
+        </div>
+        <div class="pwa-card-info">
+          <span class="pwa-card-title">نصب نسخه اپلیکیشن</span>
+          <span class="pwa-card-sub">دسترسی آفلاین و فوق‌سریع</span>
+        </div>
+        <span class="pwa-card-arrow">➔</span>
+      </button>
     </aside>
 
     <!-- Main Content Views Container -->
@@ -1026,6 +1046,68 @@
       <div class="result-actions-row">
         <button class="btn btn-primary" id="quizResultRetryBtn">تکرار مجدد آزمون</button>
         <button class="btn btn-secondary" id="quizResultDoneBtn">بازگشت به منوی آزمون‌ها</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL 4: PWA INSTALL PROMPT MODAL -->
+  <!-- ============================================================== -->
+  <div class="modal-overlay" id="pwaInstallModalOverlay" style="display: none;">
+    <div class="modal-dialog pwa-install-dialog">
+      <button class="modal-close-btn" id="pwaInstallCloseBtn" aria-label="بستن">&times;</button>
+      
+      <div class="pwa-install-header">
+        <div class="pwa-install-icon-wrapper">
+          <img src="icon.svg" alt="App Logo" class="pwa-dialog-logo">
+          <div class="pwa-install-glow-ring"></div>
+        </div>
+        <div class="pwa-tag-pill">نسخه وب‌اپلیکیشن پیشرو (PWA)</div>
+        <h2 class="pwa-install-title">نصب اپلیکیشن FrançaisFacile</h2>
+        <p class="pwa-install-subtitle">بدون نیاز به دانلود از اپ‌استور یا گوگل‌پلی؛ اپ را مستقیماً روی گوشی یا کامپیوتر خود نصب کنید.</p>
+      </div>
+
+      <div class="pwa-features-list">
+        <div class="pwa-feature-item">
+          <span class="pwa-feat-icon">⚡</span>
+          <div class="pwa-feat-text">
+            <strong>اجرای سریع و بدون فیلتر</strong>
+            <span>دسترسی آنی با آیکون اختصاصی روی صفحه اصلی گوشی یا دسکتاپ</span>
+          </div>
+        </div>
+        <div class="pwa-feature-item">
+          <span class="pwa-feat-icon">📴</span>
+          <div class="pwa-feat-text">
+            <strong>کارکرد ۱۰۰٪ آفلاین</strong>
+            <span>مرور فلش‌کارت‌ها، جملات و کوئیزها حتی در سفر و حالت هواپیما</span>
+          </div>
+        </div>
+        <div class="pwa-feature-item">
+          <span class="pwa-feat-icon">💾</span>
+          <div class="pwa-feat-text">
+            <strong>ذخیره دائمی با موتور ۳ لایه</strong>
+            <span>پایداری کامل اطلاعات با فایل خصوصی OPFS و پایگاه‌داده ساختاریافته</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- iOS Safari specific instructions (shown conditionally) -->
+      <div class="pwa-ios-instructions" id="pwaIosInstructions" style="display: none;">
+        <div class="ios-instruct-badge">راهنمای نصب در آیفون / آیپد (Safari):</div>
+        <ol class="ios-steps-list">
+          <li>دکمه اشتراک‌گذاری <strong>Share</strong> (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>) در نوار پایین مرورگر سافاری را لمس کنید.</li>
+          <li>از منوی باز شده گزینه <strong>Add to Home Screen</strong> (افزودن به صفحه اصلی) را انتخاب کنید.</li>
+        </ol>
+      </div>
+
+      <div class="pwa-actions-row">
+        <button class="btn btn-primary btn-lg pwa-confirm-btn" id="pwaInstallActionBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>نصب مستقیم اپلیکیشن</span>
+        </button>
+        <button class="btn btn-secondary pwa-dismiss-btn" id="pwaInstallDismissBtn">
+          <span>شاید بعداً</span>
+        </button>
       </div>
     </div>
   </div>
