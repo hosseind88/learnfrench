@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FrançaisFacile • آموزش فرانسه سطح A1</title>
+  
+  <!-- Google Fonts: Vazirmatn for Persian & Plus Jakarta Sans / Outfit for French -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Canvas Confetti for celebrations -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="theme-light">
+  <!-- Top Navigation & Status Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <button class="menu-toggle-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        <div class="logo-wrapper">
+          <div class="french-flag-badge">
+            <span class="flag-stripe blue"></span>
+            <span class="flag-stripe white"></span>
+            <span class="flag-stripe red"></span>
+          </div>
+          <div class="logo-text">
+            <div class="app-title">Français<span class="highlight">Facile</span></div>
+            <div class="app-subtitle">آموزش زبان فرانسه • سطح A1</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Global Search Bar Trigger -->
+      <div class="header-search-trigger" id="globalSearchTrigger" title="جستجوی سریع کلمات (Ctrl+K)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span>جستجوی واژگان یا عبارات...</span>
+        <kbd class="shortcut-key">⌘K</kbd>
+      </div>
+
+      <!-- User Progress & Stats Bar -->
+      <div class="header-stats">
+        <!-- Daily Streak -->
+        <div class="stat-pill streak-pill" title="روزهای متوالی مطالعه">
+          <span class="stat-icon fire-icon">🔥</span>
+          <span class="stat-value" id="headerStreak">1</span>
+          <span class="stat-label">روز</span>
+        </div>
+
+        <!-- XP Points -->
+        <div class="stat-pill xp-pill" title="امتیاز تجربه (XP)">
+          <span class="stat-icon xp-icon">⚡</span>
+          <span class="stat-value" id="headerXP">0</span>
+          <span class="stat-label">XP</span>
+        </div>
+
+        <!-- Audio Speed Setting Dropdown/Toggle -->
+        <button class="icon-btn" id="audioSpeedBtn" title="سرعت تلفظ صوتی (فعلی: 1.0x)">
+          <span class="speed-indicator" id="speedIndicatorText">1.0x</span>
+        </button>
+
+        <!-- Dark / Light Mode Toggle -->
+        <button class="icon-btn" id="themeToggleBtn" title="تغییر حالت شب و روز">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation for Desktop & Mobile Overlay -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header mobile-only">
+        <div class="sidebar-title">منوی دسترسی</div>
+        <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group-title">بخش‌های آموزشی</div>
+        
+        <button class="nav-item active" data-view="dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>داشبورد و مسیر یادگیری</span>
+        </button>
+
+        <button class="nav-item" data-view="vocab">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>واژه‌نامه و لغات</span>
+          <span class="nav-badge" id="sidebarVocabCount">167</span>
+        </button>
+
+        <button class="nav-item" data-view="flashcards">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M12 4v16"></path><circle cx="7" cy="12" r="2"></circle><circle cx="17" cy="12" r="2"></circle></svg>
+          <span>فلش‌کارت‌های تعاملی</span>
+        </button>
+
+        <button class="nav-item" data-view="quiz">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 6 12 12 16 14"></polygon><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01"></path></svg>
+          <span>آزمون و تمرین هوشمند</span>
+          <span class="nav-badge highlight">۵ نوع تمرین</span>
+        </button>
+
+        <button class="nav-item" data-view="sentences">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          <span>جملات کاربردی A1</span>
+          <span class="nav-badge" id="sidebarSentencesCount">97</span>
+        </button>
+
+        <button class="nav-item" data-view="grammar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          <span>قواعد و نکات گرامری</span>
+        </button>
+
+        <button class="nav-item" data-view="matchgame">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>بازی تطبیق سریع</span>
+          <span class="nav-badge game-badge">بازی</span>
+        </button>
+
+        <button class="nav-item" data-view="importer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"></path><path d="M5 12h14"></path><rect x="3" y="3" width="18" height="18" rx="4"></rect></svg>
+          <span>افزودن جمله با AI</span>
+          <span class="nav-badge highlight">جدید</span>
+        </button>
+
+        <div class="nav-group-title">مدیریت و گزارش</div>
+
+        <button class="nav-item" data-view="progress">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          <span>آمار و گزارش پیشرفت</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Mini Card: Daily Tip -->
+      <div class="sidebar-tip-card">
+        <div class="tip-header">
+          <span class="tip-icon">💡</span>
+          <span class="tip-title">نکته طلایی A1</span>
+        </div>
+        <p class="tip-body" id="sidebarTipText">
+          در فرانسوی تقریباً تمام کلماتی که به <b dir="ltr">"-tion"</b> ختم می‌شوند مؤنث هستند! (مثل <i>présentation</i>, <i>réunion</i>)
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Content Views Container -->
+    <main class="app-main">
+
+      <!-- ============================================================== -->
+      <!-- VIEW 1: DASHBOARD (Tableau de bord) -->
+      <!-- ============================================================== -->
+      <section id="view-dashboard" class="app-view active">
+        <!-- Hero Banner -->
+        <div class="dashboard-hero">
+          <div class="hero-content">
+            <div class="hero-tag">🎉 Bienvenue • خوش آمدید</div>
+            <h1 class="hero-title">یادگیری تعاملی فرانسوی <span class="gradient-text">سطح A1</span></h1>
+            <p class="hero-desc">با واژگان ضروری، جملات پرکاربرد اداری، روزمره و نکات گرامری زبان شیرین فرانسه را روان بیاموزید.</p>
+            
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="dashStartDailyBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>شروع تمرین روزانه (Quiz)</span>
+              </button>
+              <button class="btn btn-secondary" id="dashFlashcardsBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M12 4v16"></path></svg>
+                <span>مرور فلش‌کارت‌ها</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-stats-card">
+            <div class="stats-card-title">خلاصه پیشرفت شما</div>
+            <div class="circle-progress-container">
+              <div class="circle-progress" id="dashOverallCircle">
+                <div class="circle-inner">
+                  <span class="circle-percent" id="dashOverallPercent">0%</span>
+                  <span class="circle-label">تسلط بر A1</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mini-metrics-grid">
+              <div class="metric-box">
+                <span class="metric-num" id="dashMasteredCount">0</span>
+                <span class="metric-label">لغات مسلط شده</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-num" id="dashQuizzesTaken">0</span>
+                <span class="metric-label">آزمون‌های تکمیل شده</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-num" id="dashSavedCount">0</span>
+                <span class="metric-label">نشان‌شده‌ها</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Overview Cards Grid -->
+        <div class="section-title-wrapper">
+          <h2 class="section-title">دسته‌بندی‌های آموزشی سطح A1</h2>
+          <span class="section-subtitle">همه محتوا همراه با تلفظ صوتی با کیفیت بومی</span>
+        </div>
+
+        <div class="categories-grid">
+          <!-- Verbs Card -->
+          <div class="category-card" data-cat="verbs">
+            <div class="cat-icon-wrapper cat-verbs">
+              <span>🏃‍♂️</span>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name-fr">Verbes essentiels</div>
+              <div class="cat-name-fa">فعل‌های اصلی و کاربردی</div>
+              <div class="cat-count-pill" id="catCountVerbs">32 فعل</div>
+            </div>
+            <div class="cat-progress-bar">
+              <div class="cat-progress-fill" id="catProgVerbs" style="width: 0%"></div>
+            </div>
+            <button class="cat-enter-btn" data-cat="verbs">مطالعه فعل‌ها &larr;</button>
+          </div>
+
+          <!-- Nouns Card -->
+          <div class="category-card" data-cat="nouns">
+            <div class="cat-icon-wrapper cat-nouns">
+              <span>🏢</span>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name-fr">Noms & Genres</div>
+              <div class="cat-name-fa">اسم‌ها، اداره، پوشاک، غذا</div>
+              <div class="cat-count-pill" id="catCountNouns">62 اسم</div>
+            </div>
+            <div class="cat-progress-bar">
+              <div class="cat-progress-fill" id="catProgNouns" style="width: 0%"></div>
+            </div>
+            <button class="cat-enter-btn" data-cat="nouns">مطالعه اسم‌ها &larr;</button>
+          </div>
+
+          <!-- Adjectives Card -->
+          <div class="category-card" data-cat="adjectives">
+            <div class="cat-icon-wrapper cat-adj">
+              <span>🎨</span>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name-fr">Adjectifs & Couleurs</div>
+              <div class="cat-name-fa">صفت‌ها، رنگ‌ها و تطابق جنسیت</div>
+              <div class="cat-count-pill" id="catCountAdjectives">36 صفت</div>
+            </div>
+            <div class="cat-progress-bar">
+              <div class="cat-progress-fill" id="catProgAdj" style="width: 0%"></div>
+            </div>
+            <button class="cat-enter-btn" data-cat="adjectives">مطالعه صفت‌ها &larr;</button>
+          </div>
+
+          <!-- Expressions Card -->
+          <div class="category-card" data-cat="expressions">
+            <div class="cat-icon-wrapper cat-expr">
+              <span>💬</span>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name-fr">Expressions & Idiomes</div>
+              <div class="cat-name-fa">اصطلاحات و ترکیبات روزمره</div>
+              <div class="cat-count-pill" id="catCountExpr">28 اصطلاح</div>
+            </div>
+            <div class="cat-progress-bar">
+              <div class="cat-progress-fill" id="catProgExpr" style="width: 0%"></div>
+            </div>
+            <button class="cat-enter-btn" data-cat="expressions">مطالعه اصطلاحات &larr;</button>
+          </div>
+
+          <!-- Sentences Card -->
+          <div class="category-card" data-cat="sentences">
+            <div class="cat-icon-wrapper cat-sentences">
+              <span>🗣️</span>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name-fr">Phrases & Dialogues</div>
+              <div class="cat-name-fa">جملات محیط کار، کافه، خرید</div>
+              <div class="cat-count-pill" id="catCountSentences">97 جمله</div>
+            </div>
+            <div class="cat-progress-bar">
+              <div class="cat-progress-fill" id="catProgSentences" style="width: 0%"></div>
+            </div>
+            <button class="cat-enter-btn" data-cat="sentences">مرور جملات &larr;</button>
+          </div>
+
+          <!-- Grammar Card -->
+          <div class="category-card" data-cat="grammar">
+            <div class="cat-icon-wrapper cat-grammar">
+              <span>📐</span>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name-fr">Règles de Grammaire</div>
+              <div class="cat-name-fa">قواعد کلیدی: au, aux, en, metter/porter</div>
+              <div class="cat-count-pill">7 قاعده مهم</div>
+            </div>
+            <div class="cat-progress-bar">
+              <div class="cat-progress-fill" id="catProgGrammar" style="width: 0%"></div>
+            </div>
+            <button class="cat-enter-btn" data-cat="grammar">مشاهده قواعد &larr;</button>
+          </div>
+        </div>
+
+        <!-- Quick Activity / Daily Word of the Day -->
+        <div class="dashboard-bottom-grid">
+          <div class="card word-of-day-card">
+            <div class="card-header-styled">
+              <span class="badge-tag">✨ کلمه پیشنهادی امروز</span>
+              <button class="icon-btn-sm" id="wotdAudioBtn" title="پخش تلفظ">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+              </button>
+            </div>
+            <div class="wotd-content" id="wotdContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <div class="card quick-actions-card">
+            <div class="card-header-styled">
+              <span class="badge-tag">🎯 چالش‌های سریع</span>
+            </div>
+            <div class="quick-modes-list">
+              <div class="quick-mode-item" id="quickModeListening">
+                <div class="qm-icon">🎧</div>
+                <div class="qm-info">
+                  <div class="qm-title">تمرین شنیداری (Écoute)</div>
+                  <div class="qm-sub">تلفظ فرانسوی را گوش دهید و گزینه درست را انتخاب کنید</div>
+                </div>
+                <button class="btn btn-sm btn-outline">شروع</button>
+              </div>
+
+              <div class="quick-mode-item" id="quickModeGender">
+                <div class="qm-icon">⚧️</div>
+                <div class="qm-info">
+                  <div class="qm-title">آزمون مذکر / مؤنث (Le vs La)</div>
+                  <div class="qm-sub">تسلط کامل بر جنسیت اسامی فرانسوی</div>
+                </div>
+                <button class="btn btn-sm btn-outline">شروع</button>
+              </div>
+
+              <div class="quick-mode-item" id="quickModeMatch">
+                <div class="qm-icon">⚡</div>
+                <div class="qm-info">
+                  <div class="qm-title">مسابقه کلمات سرعتی (Speed Match)</div>
+                  <div class="qm-sub">تطبیق فوری کلمات فرانسوی و فارسی قبل از اتمام زمان</div>
+                </div>
+                <button class="btn btn-sm btn-outline">شروع</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW 2: VOCABULARY & LEXICON (Vocabulaire) -->
+      <!-- ============================================================== -->
+      <section id="view-vocab" class="app-view">
+        <div class="view-header-row">
+          <div>
+            <h1 class="view-main-title">واژه‌نامه جامع سطح A1</h1>
+            <p class="view-main-desc">تمام واژگان، افعال، صفات و اصطلاحات همراه با مثال، تلفظ صوتی و ترجمه فارسی</p>
+          </div>
+          <div class="vocab-stats-pills">
+            <span class="pill-info" id="vocabFilteredCount">نمایش 167 مورد</span>
+          </div>
+        </div>
+
+        <!-- Controls: Filters, Categories & Search -->
+        <div class="vocab-controls-panel">
+          <!-- Main Category Tabs -->
+          <div class="category-tabs-scrollable" id="vocabCategoryTabs">
+            <button class="tab-chip active" data-cat="all">همه واژه‌ها</button>
+            <button class="tab-chip" data-cat="verbs">فعل‌ها (Verbes)</button>
+            <button class="tab-chip" data-cat="nouns">اسم‌ها (Noms)</button>
+            <button class="tab-chip" data-cat="adjectives">صفت‌ها (Adjectifs)</button>
+            <button class="tab-chip" data-cat="adverbs">قیدها (Adverbes)</button>
+            <button class="tab-chip" data-cat="prepositions">حروف اضافه (Prépositions)</button>
+            <button class="tab-chip" data-cat="numbers">اعداد (Nombres)</button>
+            <button class="tab-chip" data-cat="expressions">اصطلاحات (Expressions)</button>
+            <button class="tab-chip" data-cat="custom">اضافه‌شده با AI</button>
+            <button class="tab-chip" data-cat="saved">نشان‌شده‌ها ⭐</button>
+            <button class="tab-chip" data-cat="mastered">مسلط شده ✅</button>
+          </div>
+
+          <!-- Search & Sub-filters Bar -->
+          <div class="vocab-search-filter-bar">
+            <div class="search-input-wrapper">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="vocabSearchInput" placeholder="جستجو به فرانسوی یا فارسی (مثلاً aimer یا کتاب)...">
+              <button class="clear-search-btn" id="vocabClearSearch" style="display: none;">&times;</button>
+            </div>
+
+            <!-- Gender Filter (Active for nouns) -->
+            <div class="filter-dropdown-wrapper" id="genderFilterWrapper">
+              <select id="vocabGenderFilter" class="custom-select">
+                <option value="all">همه جنسیت‌ها</option>
+                <option value="masculine">مذکر (Masculin / Le)</option>
+                <option value="feminine">مؤنث (Féminin / La)</option>
+                <option value="plural">جمع (Pluriel / Les)</option>
+                <option value="common">مشترک (Commun)</option>
+              </select>
+            </div>
+
+            <!-- View Layout Toggle: Grid / Table -->
+            <div class="layout-toggle-group">
+              <button class="layout-btn active" id="vocabViewGridBtn" title="نمایش کارتی">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
+              <button class="layout-btn" id="vocabViewListBtn" title="نمایش لیستی فشرده">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Word Cards Grid / Container -->
+        <div class="vocab-cards-grid" id="vocabCardsGrid">
+          <!-- Word cards will be rendered dynamically -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state-card" id="vocabEmptyState" style="display: none;">
+          <div class="empty-icon">🔍</div>
+          <div class="empty-title">موردی یافت نشد</div>
+          <p class="empty-desc">هیچ واژه‌ای با فیلترها یا عبارت جستجوی فعلی مطابقت ندارد.</p>
+          <button class="btn btn-secondary" id="vocabResetFiltersBtn">پاک کردن فیلترها</button>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW 3: FLASHCARDS (Cartes Mémoire) -->
+      <!-- ============================================================== -->
+      <section id="view-flashcards" class="app-view">
+        <div class="flashcards-top-bar">
+          <div>
+            <h1 class="view-main-title">فلش‌کارت‌های تعاملی</h1>
+            <p class="view-main-desc">با سیستم تکرار هوشمند، لغات را به حافظه بلندمدت بسپارید</p>
+          </div>
+
+          <div class="flashcard-settings-row">
+            <!-- Category Selector for Flashcards -->
+            <select id="flashcardCatSelect" class="custom-select">
+              <option value="all">تمام دسته‌ها (همه لغات)</option>
+              <option value="verbs">فعل‌ها (Verbes)</option>
+              <option value="nouns">اسم‌ها (Noms)</option>
+              <option value="adjectives">صفت‌ها (Adjectifs)</option>
+              <option value="expressions">اصطلاحات (Expressions)</option>
+              <option value="numbers">اعداد (Nombres)</option>
+              <option value="custom">اضافه‌شده با AI</option>
+              <option value="saved">فقط نشان‌شده‌ها ⭐</option>
+              <option value="unmastered">فقط لغات یاد نگرفته</option>
+            </select>
+
+            <!-- Mode: French->Persian or Persian->French -->
+            <button class="btn btn-outline btn-sm" id="flashcardFlipDirectionBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+              <span id="flashcardDirectionLabel">فرانسوی ➔ فارسی</span>
+            </button>
+
+            <!-- Shuffle Button -->
+            <button class="icon-btn-sm" id="flashcardShuffleBtn" title="بر زدن کارت‌ها">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Flashcard Progress Bar -->
+        <div class="flashcard-progress-wrapper">
+          <div class="flashcard-progress-labels">
+            <span id="flashcardCounter">کارت 1 از 167</span>
+            <span id="flashcardMasteryRatio">۰ یاد گرفته شده</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="flashcardProgressFill" style="width: 1%"></div>
+          </div>
+        </div>
+
+        <!-- 3D Flashcard Stage -->
+        <div class="flashcard-stage-container">
+          <div class="flashcard-card" id="mainFlashcard">
+            <div class="flashcard-inner" id="flashcardInner">
+              <!-- FRONT FACE -->
+              <div class="flashcard-face flashcard-front">
+                <div class="card-corner-tag" id="fcFrontCategory">Verbe</div>
+                <button class="fc-audio-btn" id="fcFrontAudioBtn" title="پخش تلفظ">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                </button>
+                <div class="fc-main-text" id="fcFrontText" dir="ltr">aimer</div>
+                <div class="fc-article-hint" id="fcFrontHint">فعل (verb)</div>
+                <div class="fc-flip-hint">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21h5v-5"></path></svg>
+                  <span>کلیک کنید یا Space را بزنید تا معنی را ببینید</span>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="flashcard-face flashcard-back">
+                <div class="card-corner-tag" id="fcBackCategory">معنی و مثال</div>
+                <div class="fc-translation-text" id="fcBackTranslation">دوست داشتن</div>
+                
+                <div class="fc-example-box" id="fcBackExampleBox">
+                  <div class="fc-example-label">مثال در جمله:</div>
+                  <div class="fc-example-fr" id="fcBackExampleFr" dir="ltr">J’aime lire des livres le soir.</div>
+                  <div class="fc-example-fa" id="fcBackExampleFa">من دوست دارم شب‌ها کتاب بخوانم.</div>
+                </div>
+
+                <div class="fc-details-tag" id="fcBackDetails"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flashcard Interaction Buttons -->
+        <div class="flashcard-actions-bar">
+          <button class="fc-action-btn btn-again" id="fcBtnAgain" title="کلید 1 یا پیکان چپ">
+            <span class="btn-emoji">🔄</span>
+            <div class="btn-text">
+              <span class="main-label">نیاز به مرور</span>
+              <span class="sub-label">À revoir</span>
+            </div>
+          </button>
+
+          <button class="fc-action-btn btn-flip" id="fcBtnFlip" title="کلید Space">
+            <span class="btn-emoji">↩️</span>
+            <div class="btn-text">
+              <span class="main-label">برگرداندن کارت</span>
+              <span class="sub-label">Tourner</span>
+            </div>
+          </button>
+
+          <button class="fc-action-btn btn-know" id="fcBtnKnow" title="کلید 2 یا پیکان راست">
+            <span class="btn-emoji">✅</span>
+            <div class="btn-text">
+              <span class="main-label">کاملاً بلدم (+10 XP)</span>
+              <span class="sub-label">Je le sais</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Keyboard Shortcut Helper -->
+        <div class="keyboard-hints-row">
+          <span>میانبرهای کیبورد:</span>
+          <kbd>Space</kbd> برگرداندن کارت &bull;
+          <kbd>&larr;</kbd> مرور مجدد &bull;
+          <kbd>&rarr;</kbd> بلدم &bull;
+          <kbd>S</kbd> پخش صوت
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW 4: QUIZ ARENA (Quiz & Pratique) -->
+      <!-- ============================================================== -->
+      <section id="view-quiz" class="app-view">
+        <!-- Quiz Type Selector (When not actively in a quiz) -->
+        <div id="quizSelectionScreen">
+          <div class="view-header-row">
+            <div>
+              <h1 class="view-main-title">آزمون و تمرین‌های هوشمند</h1>
+              <p class="view-main-desc">روش مورد نظرتان را برای سنجش آموخته‌ها انتخاب کنید و XP کسب نمایید</p>
+            </div>
+          </div>
+
+          <div class="quiz-modes-grid">
+            <!-- Mode 1: Vocab Multiple Choice -->
+            <div class="quiz-mode-card" data-quiz-type="mcq">
+              <div class="qm-card-badge">محبوب‌ترین</div>
+              <div class="qm-card-icon">⚡</div>
+              <h3 class="qm-card-title">تست چهار گزینه‌ای واژگان</h3>
+              <p class="qm-card-desc">ترجمه کلمات فرانسوی به فارسی و برعکس را با گزینه‌های هوشمند به چالش بکشید.</p>
+              <div class="qm-card-meta">
+                <span>⏱️ ۱۰ سؤال</span>
+                <span>⭐ +50 XP</span>
+              </div>
+              <button class="btn btn-primary start-quiz-btn" data-quiz-type="mcq">شروع آزمون واژگان &larr;</button>
+            </div>
+
+            <!-- Mode 2: Listening & Dictation -->
+            <div class="quiz-mode-card" data-quiz-type="listening">
+              <div class="qm-card-badge audio-badge">تقویت شنیداری</div>
+              <div class="qm-card-icon">🎧</div>
+              <h3 class="qm-card-title">آزمون شنیداری (Écoute)</h3>
+              <p class="qm-card-desc">به تلفظ صوتی گوینده بومی گوش دهید و عبارت صحیح فرانسوی را پیدا کنید.</p>
+              <div class="qm-card-meta">
+                <span>⏱️ ۱۰ سؤال</span>
+                <span>⭐ +60 XP</span>
+              </div>
+              <button class="btn btn-primary start-quiz-btn" data-quiz-type="listening">شروع آزمون شنیداری &larr;</button>
+            </div>
+
+            <!-- Mode 3: Gender Detective -->
+            <div class="quiz-mode-card" data-quiz-type="gender">
+              <div class="qm-card-badge gender-badge">ویژه فرانسوی</div>
+              <div class="qm-card-icon">⚧️</div>
+              <h3 class="qm-card-title">تشخیص جنسیت (Le / La / Un / Une)</h3>
+              <p class="qm-card-desc">آیا این اسم مذکر است یا مؤنث؟ مهارت در تشخیص جنسیت اسامی سطح A1.</p>
+              <div class="qm-card-meta">
+                <span>⏱️ ۱۰ سؤال</span>
+                <span>⭐ +50 XP</span>
+              </div>
+              <button class="btn btn-primary start-quiz-btn" data-quiz-type="gender">شروع آزمون جنسیت &larr;</button>
+            </div>
+
+            <!-- Mode 4: Sentence Builder -->
+            <div class="quiz-mode-card" data-quiz-type="scramble">
+              <div class="qm-card-badge sentence-badge">جمله‌سازی</div>
+              <div class="qm-card-icon">🧩</div>
+              <h3 class="qm-card-title">ساخت جمله با کلمات درهم</h3>
+              <p class="qm-card-desc">کلمات نامرتب را با کلیک کنار هم بچینید تا جمله فرانسوی دقیق با معنی فارسی ساخته شود.</p>
+              <div class="qm-card-meta">
+                <span>⏱️ ۸ سؤال</span>
+                <span>⭐ +70 XP</span>
+              </div>
+              <button class="btn btn-primary start-quiz-btn" data-quiz-type="scramble">شروع جمله‌سازی &larr;</button>
+            </div>
+
+            <!-- Mode 5: Grammar Master -->
+            <div class="quiz-mode-card" data-quiz-type="grammar">
+              <div class="qm-card-badge grammar-badge">قواعد و ترکیب‌ها</div>
+              <div class="qm-card-icon">📐</div>
+              <h3 class="qm-card-title">تست گرامر (au, aux, en, mettre)</h3>
+              <p class="qm-card-desc">تطابق صفت‌ها، حروف اضافه و کاربرد افعال را در تست‌های گرامری بسنجید.</p>
+              <div class="qm-card-meta">
+                <span>⏱️ ۷ سؤال</span>
+                <span>⭐ +60 XP</span>
+              </div>
+              <button class="btn btn-primary start-quiz-btn" data-quiz-type="grammar">شروع آزمون گرامر &larr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Quiz Play Arena -->
+        <div id="activeQuizPlayScreen" style="display: none;">
+          <!-- Top Quiz Header -->
+          <div class="quiz-active-header">
+            <button class="icon-btn-sm" id="quizExitBtn" title="خروج از آزمون">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            
+            <div class="quiz-progress-bar-wrapper">
+              <div class="quiz-progress-fill" id="quizActiveProgressFill" style="width: 10%"></div>
+            </div>
+
+            <div class="quiz-score-pill">
+              <span class="fire-icon">🔥</span>
+              <span id="quizStreakCount">0</span>
+              <span>کمبو</span>
+            </div>
+          </div>
+
+          <!-- Question Body Container -->
+          <div class="quiz-question-container" id="quizQuestionContainer">
+            <!-- Dynamic question rendered here -->
+          </div>
+
+          <!-- Bottom feedback and next button bar -->
+          <div class="quiz-bottom-feedback" id="quizFeedbackBar" style="display: none;">
+            <div class="feedback-content" id="quizFeedbackContent">
+              <!-- Success or error message -->
+            </div>
+            <button class="btn btn-primary" id="quizNextQuestionBtn">سؤال بعدی &larr;</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW 5: SENTENCE LIBRARY & CONTEXTS (Phrases) -->
+      <!-- ============================================================== -->
+      <section id="view-sentences" class="app-view">
+        <div class="view-header-row">
+          <div>
+            <h1 class="view-main-title">جملات کاربردی فرانسوی در بستر واقعیت</h1>
+            <p class="view-main-desc">جملات واقعی کتاب Communication essentielle A1 به‌همراه ترجمه‌های استاد؛ روی هر جمله برای شنیدن صوت کلیک کنید</p>
+          </div>
+          <div class="sentence-controls-row">
+            <button class="btn btn-outline btn-sm" id="toggleHideTranslationsBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <span id="hideTransText">مخفی‌سازی ترجمه برای تست</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sentence Topic Tabs -->
+        <div class="sentence-topic-tabs" id="sentenceTopicTabs">
+          <button class="tab-chip active" data-topic="all">همه جملات</button>
+          <button class="tab-chip" data-topic="identity">هویت و شغل</button>
+          <button class="tab-chip" data-topic="family">خانواده</button>
+          <button class="tab-chip" data-topic="time">زمان و روزها</button>
+          <button class="tab-chip" data-topic="housing">خانه و شهر</button>
+          <button class="tab-chip" data-topic="university">دانشگاه</button>
+          <button class="tab-chip" data-topic="routine">روزمره</button>
+          <button class="tab-chip" data-topic="work">محیط کار</button>
+          <button class="tab-chip" data-topic="clothing">لباس و رنگ</button>
+          <button class="tab-chip" data-topic="food">غذا و آشپزی</button>
+          <button class="tab-chip" data-topic="health">سلامت</button>
+          <button class="tab-chip" data-topic="transport">حمل‌ونقل</button>
+          <button class="tab-chip" data-topic="travel">سفر و هتل</button>
+          <button class="tab-chip" data-topic="leisure">ورزش و هوا</button>
+          <button class="tab-chip" data-topic="culture">فرهنگ و هنر</button>
+        </div>
+
+        <!-- Sentence Search Bar -->
+        <div class="sentence-search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="sentenceSearchInput" placeholder="جستجوی جمله به فرانسوی یا فارسی (مثلاً réunion یا قهوه)...">
+        </div>
+
+        <!-- Sentence List Grid -->
+        <div class="sentences-list-container" id="sentencesListContainer">
+          <!-- Sentences rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW 6: GRAMMAR LAB (Grammaire A1) -->
+      <!-- ============================================================== -->
+      <section id="view-grammar" class="app-view">
+        <div class="view-header-row">
+          <div>
+            <h1 class="view-main-title">آزمایشگاه گرامر و قواعد سطح A1</h1>
+            <p class="view-main-desc">توضیح ساده و کاربردی الگوهای دستوری با مثال‌های زنده و ابزار تعاملی تطابق صفات</p>
+          </div>
+        </div>
+
+        <!-- Interactive Adjective Agreement Playground -->
+        <div class="card grammar-tool-card">
+          <div class="grammar-tool-header">
+            <span class="tool-badge">🧪 ابزار تعاملی</span>
+            <h3 class="tool-title">تطابق صفت‌های مذکر و مؤنث (Adjective Agreement)</h3>
+            <p class="tool-desc">رنگ یا صفت را انتخاب کنید و فوراً تغییر شکل آن از مذکر به مؤنث را مشاهده نمایید:</p>
+          </div>
+
+          <div class="adj-interactive-playground">
+            <div class="adj-buttons-carousel" id="adjToolButtons">
+              <!-- Dynamic buttons for colors and adjectives -->
+            </div>
+
+            <div class="adj-comparison-display" id="adjComparisonDisplay">
+              <!-- Comparison rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Grammar Rules List -->
+        <div class="grammar-rules-list" id="grammarRulesList">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW 7: SPEED MATCH GAME (Jeu d'association) -->
+      <!-- ============================================================== -->
+      <section id="view-matchgame" class="app-view">
+        <div class="match-game-header">
+          <div>
+            <h1 class="view-main-title">بازی تطبیق سریع کلمات (Speed Match)</h1>
+            <p class="view-main-desc">کلمات فرانسوی و معادل‌های فارسی آنها را جفت کنید و رکورد زمانی ثبت نمایید!</p>
+          </div>
+
+          <div class="game-stats-bar">
+            <div class="game-stat-pill">
+              <span class="label">زمان:</span>
+              <span class="value" id="gameTimerText">00:00</span>
+            </div>
+            <div class="game-stat-pill">
+              <span class="label">حرکات:</span>
+              <span class="value" id="gameMovesText">0</span>
+            </div>
+            <div class="game-stat-pill highlight">
+              <span class="label">بهترین رکورد:</span>
+              <span class="value" id="gameBestRecord">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Selector for Game -->
+        <div class="game-controls-bar">
+          <select id="gameCatSelect" class="custom-select">
+            <option value="all">همه دسته‌ها (کلمات تصادفی)</option>
+            <option value="verbs">فعل‌ها (Verbes)</option>
+            <option value="nouns">اسم‌ها (Noms)</option>
+            <option value="adjectives">صفت‌ها و رنگ‌ها</option>
+            <option value="food">غذا و میوه‌ها</option>
+            <option value="clothing">پوشاک و متریال</option>
+          </select>
+
+          <button class="btn btn-primary" id="gameRestartBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            <span>شروع مجدد بازی</span>
+          </button>
+        </div>
+
+        <!-- 12 Tiles Game Board -->
+        <div class="game-board-grid" id="gameBoardGrid">
+          <!-- Tiles rendered dynamically -->
+        </div>
+      </section>
+
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW: AI SENTENCE IMPORTER -->
+      <!-- ============================================================== -->
+      <section id="view-importer" class="app-view">
+        <div class="view-header-row">
+          <div>
+            <h1 class="view-main-title">افزودن جمله از کتاب یا هر منبع</h1>
+            <p class="view-main-desc">جمله فرانسوی را بچسبانید؛ هوش مصنوعی ترجمه فارسی، لغات، جنسیت اسم‌ها و باکس‌های واژگان را می‌سازد</p>
+          </div>
+        </div>
+
+        <div class="card importer-card">
+          <label class="importer-label" for="importerInput">جمله یا پاراگراف فرانسوی</label>
+          <textarea id="importerInput" class="importer-textarea" dir="ltr" placeholder="مثال: Je voudrais une baguette bien cuite, s’il vous plaît."></textarea>
+
+          <div class="importer-settings-row">
+            <div class="importer-field">
+              <label for="openRouterKeyInput">کلید OpenRouter</label>
+              <input type="password" id="openRouterKeyInput" placeholder="sk-or-v1-..." autocomplete="off">
+            </div>
+            <div class="importer-field">
+              <label for="openRouterModelSelect">مدل</label>
+              <select id="openRouterModelSelect" class="custom-select">
+                <option value="openai/gpt-4o-mini">GPT-4o Mini (سریع و ارزان)</option>
+                <option value="google/gemini-2.0-flash-001">Gemini 2.0 Flash</option>
+                <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="importer-actions">
+            <button class="btn btn-primary" id="importerAnalyzeBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
+              <span>تحلیل جمله با AI</span>
+            </button>
+            <span class="importer-status" id="importerStatus"></span>
+          </div>
+        </div>
+
+        <div id="importerPreview" class="importer-preview" style="display: none;">
+          <div class="card importer-sentence-preview">
+            <div class="badge-tag">جمله آماده‌شده</div>
+            <div class="importer-fr" id="importerPreviewFr" dir="ltr"></div>
+            <div class="importer-fa" id="importerPreviewFa"></div>
+          </div>
+          <h3 class="card-section-title">باکس‌های واژگان پیشنهادی</h3>
+          <p class="view-main-desc">مواردی که می‌خواهید به واژه‌نامه اضافه شوند را تیک بزنید</p>
+          <div class="vocab-cards-grid" id="importerVocabGrid"></div>
+          <div class="importer-actions" style="margin-top: 16px;">
+            <button class="btn btn-primary" id="importerSaveBtn">افزودن موارد انتخاب‌شده به اپ</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW 8: PROGRESS & STATS (Progrès) -->
+      <!-- ============================================================== -->
+      <section id="view-progress" class="app-view">
+        <div class="view-header-row">
+          <div>
+            <h1 class="view-main-title">کارنامه و آمار جامع یادگیری شما</h1>
+            <p class="view-main-desc">بررسی جزئیات آماری، دسته‌بندی‌های نیازمند مرور و سوابق فعالیت‌ها</p>
+          </div>
+          <div>
+            <button class="btn btn-outline btn-sm" id="exportProgressBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>پشتیبان‌گیری از پیشرفت</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Big Stat Cards -->
+        <div class="stats-overview-grid">
+          <div class="card stat-big-card">
+            <div class="sbc-icon xp-color">⚡</div>
+            <div class="sbc-value" id="statsTotalXP">0</div>
+            <div class="sbc-label">مجموع امتیاز XP کسب‌شده</div>
+          </div>
+
+          <div class="card stat-big-card">
+            <div class="sbc-icon streak-color">🔥</div>
+            <div class="sbc-value" id="statsCurrentStreak">1</div>
+            <div class="sbc-label">روز پیاپی تمرین (Streak)</div>
+          </div>
+
+          <div class="card stat-big-card">
+            <div class="sbc-icon master-color">🏆</div>
+            <div class="sbc-value" id="statsMasteredVocab">0 / 167</div>
+            <div class="sbc-label">کلمات به حافظه سپرده شده</div>
+          </div>
+
+          <div class="card stat-big-card">
+            <div class="sbc-icon accuracy-color">🎯</div>
+            <div class="sbc-value" id="statsQuizAccuracy">0%</div>
+            <div class="sbc-label">میانگین دقت در آزمون‌ها</div>
+          </div>
+        </div>
+
+        <!-- Mastery by Category Breakdown -->
+        <div class="card progress-detail-card">
+          <h3 class="card-section-title">میزان تسلط به تفکیک دسته‌بندی‌ها</h3>
+          <div class="category-breakdown-list" id="categoryBreakdownList">
+            <!-- Dynamic Category Progress Bars -->
+          </div>
+        </div>
+
+        <!-- Reset Progress Section -->
+        <div class="card reset-data-card">
+          <div class="reset-info">
+            <h4>تنظیم مجدد اطلاعات یادگیری</h4>
+            <p>در صورتی که مایلید تمام امتیازات و لغات نشان‌شده از ابتدا تنظیم شوند، روی این دکمه کلیک کنید.</p>
+          </div>
+          <button class="btn btn-danger btn-sm" id="resetProgressBtn">ریست کردن پیشرفت</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav">
+    <button class="mobile-nav-item active" data-view="dashboard">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      <span>داشبورد</span>
+    </button>
+    <button class="mobile-nav-item" data-view="vocab">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      <span>واژگان</span>
+    </button>
+    <button class="mobile-nav-item" data-view="flashcards">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M12 4v16"></path></svg>
+      <span>فلش‌کارت</span>
+    </button>
+    <button class="mobile-nav-item" data-view="quiz">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 6 12 12 16 14"></polygon></svg>
+      <span>آزمون</span>
+    </button>
+    <button class="mobile-nav-item" data-view="sentences">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+      <span>جملات</span>
+    </button>
+  </nav>
+
+  <!-- ============================================================== -->
+  <!-- MODAL 1: WORD INSPECTOR MODAL -->
+  <!-- ============================================================== -->
+  <div class="modal-overlay" id="wordModalOverlay" style="display: none;">
+    <div class="modal-dialog word-modal-dialog">
+      <button class="modal-close-btn" id="wordModalCloseBtn">&times;</button>
+      <div id="wordModalContent">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL 2: QUICK SEARCH MODAL (Cmd+K) -->
+  <!-- ============================================================== -->
+  <div class="modal-overlay" id="searchModalOverlay" style="display: none;">
+    <div class="modal-dialog search-modal-dialog">
+      <div class="search-modal-header">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="globalSearchInput" placeholder="جستجوی سریع در تمام لغات، افعال، صفات و جملات...">
+        <button class="modal-close-btn-inline" id="searchModalCloseBtn">&times;</button>
+      </div>
+      <div class="search-modal-results" id="globalSearchResults">
+        <!-- Results rendered dynamically -->
+      </div>
+      <div class="search-modal-footer">
+        <span>برای انتخاب کلیک کنید یا با <kbd>Esc</kbd> ببندید</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL 3: QUIZ RESULT MODAL -->
+  <!-- ============================================================== -->
+  <div class="modal-overlay" id="quizResultModalOverlay" style="display: none;">
+    <div class="modal-dialog result-modal-dialog">
+      <div class="result-celebration-header">
+        <div class="result-trophy-emoji">🏆</div>
+        <h2 class="result-title" id="quizResultTitle">عالی بود! آزمون به پایان رسید</h2>
+        <p class="result-subtitle" id="quizResultSubtitle">شما به خوبی به سؤالات پاسخ دادید</p>
+      </div>
+
+      <div class="result-stats-row">
+        <div class="result-stat-box">
+          <span class="rs-val" id="quizResultScore">8/10</span>
+          <span class="rs-label">پاسخ‌های صحیح</span>
+        </div>
+        <div class="result-stat-box highlight">
+          <span class="rs-val" id="quizResultXP">+50 XP</span>
+          <span class="rs-label">امتیاز کسب‌شده</span>
+        </div>
+        <div class="result-stat-box">
+          <span class="rs-val" id="quizResultAccuracy">80%</span>
+          <span class="rs-label">دقت پاسخ‌گویی</span>
+        </div>
+      </div>
+
+      <div class="result-actions-row">
+        <button class="btn btn-primary" id="quizResultRetryBtn">تکرار مجدد آزمون</button>
+        <button class="btn btn-secondary" id="quizResultDoneBtn">بازگشت به منوی آزمون‌ها</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Load App Data and Logic Scripts -->
+  <script src="secrets.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
