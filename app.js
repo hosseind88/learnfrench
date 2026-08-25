@@ -5,27 +5,31 @@
 // Global Application State
 const state = {
   currentView: 'dashboard',
-  theme: localStorage.getItem('ff_theme') || 'light',
-  audioSpeed: parseFloat(localStorage.getItem('ff_audio_speed')) || 1.0,
-  xp: parseInt(localStorage.getItem('ff_xp')) || 0,
-  streak: parseInt(localStorage.getItem('ff_streak')) || 1,
-  lastActiveDate: localStorage.getItem('ff_last_active') || new Date().toDateString(),
-  masteredIds: new Set(JSON.parse(localStorage.getItem('ff_mastered_ids') || '[]')),
-  savedIds: new Set(JSON.parse(localStorage.getItem('ff_saved_ids') || '[]')),
-  quizzesCompleted: parseInt(localStorage.getItem('ff_quizzes_count')) || 0,
-  quizAccuracyHistory: JSON.parse(localStorage.getItem('ff_accuracy_hist') || '[]'),
-  bestMatchRecord: parseInt(localStorage.getItem('ff_best_match')) || 0,
-  
-  // Active Flashcards State
+  theme: 'light',
+  audioSpeed: 1.0,
+  xp: 0,
+  streak: 1,
+  lastActiveDate: new Date().toDateString(),
+  masteredIds: new Set(),
+  savedIds: new Set(),
+  quizzesCompleted: 0,
+  quizAccuracyHistory: [],
+  bestMatchRecord: 0,
+  openRouterKey: '',
+  openRouterModel: 'openai/gpt-4o-mini',
+  custom: { vocab: [], sentences: [] },
+  activityDates: [],
+  quizLog: [],
+  lastQuizType: 'mcq',
+
   flashcards: {
     deck: [],
     currentIndex: 0,
     isFlipped: false,
-    direction: 'fr-fa', // 'fr-fa' or 'fa-fr'
+    direction: 'fr-fa',
     category: 'all'
   },
 
-  // Active Quiz State
   quiz: {
     type: 'mcq',
     questions: [],
@@ -36,7 +40,6 @@ const state = {
     scramblePicked: []
   },
 
-  // Speed Match Game State
   game: {
     tiles: [],
     selectedTile: null,
@@ -47,7 +50,6 @@ const state = {
     category: 'all'
   },
 
-  // Vocab View State
   vocab: {
     category: 'all',
     gender: 'all',
@@ -55,13 +57,14 @@ const state = {
     viewMode: 'grid'
   },
 
-  // Sentence View State
   sentences: {
     topic: 'all',
     searchQuery: '',
     hideTranslations: false
   }
 };
+
+window.FFGetCustom = () => state.custom;
 
 // ==========================================================================
 // Sound Effects & Web Speech API Synthesis
@@ -217,19 +220,27 @@ if ('speechSynthesis' in window) {
 // ==========================================================================
 // State Storage Helpers
 // ==========================================================================
-function saveState() {
-  localStorage.setItem('ff_theme', state.theme);
-  localStorage.setItem('ff_audio_speed', state.audioSpeed);
-  localStorage.setItem('ff_xp', state.xp);
-  localStorage.setItem('ff_streak', state.streak);
-  localStorage.setItem('ff_last_active', state.lastActiveDate);
-  localStorage.setItem('ff_mastered_ids', JSON.stringify(Array.from(state.masteredIds)));
-  localStorage.setItem('ff_saved_ids', JSON.stringify(Array.from(state.savedIds)));
-  localStorage.setItem('ff_quizzes_count', state.quizzesCompleted);
-  localStorage.setItem('ff_accuracy_hist', JSON.stringify(state.quizAccuracyHistory));
-  localStorage.setItem('ff_best_match', state.bestMatchRecord);
+function todayISO() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
 
+function markActivity() {
+  const day = todayISO();
+  if (!state.activityDates.includes(day)) {
+    state.activityDates.push(day);
+    if (state.activityDates.length > 120) {
+      state.activityDates = state.activityDates.slice(-120);
+    }
+  }
+}
+
+function saveState() {
+  markActivity();
   updateHeaderStats();
+  if (window.FFStorage) {
+    window.FFStorage.scheduleSave(window.FFStorage.buildSnapshot(state));
+  }
 }
 
 function addXP(amount, reason = '') {
@@ -319,7 +330,7 @@ function switchView(viewName) {
   // Specific view initializer triggers
   if (viewName === 'dashboard') renderDashboard();
   if (viewName === 'vocab') renderVocabGrid();
-  if (viewName === 'flashcards') setupFlashcards();
+  if (viewName === 'flashcards') setupFlashcards({ reset: false });
   if (viewName === 'quiz') resetQuizView();
   if (viewName === 'sentences') renderSentences();
   if (viewName === 'grammar') renderGrammarLab();
@@ -328,6 +339,7 @@ function switchView(viewName) {
   if (viewName === 'importer') setupImporterView();
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  saveState();
 }
 
 // ==========================================================================
@@ -564,7 +576,7 @@ function renderVocabGrid() {
 // ==========================================================================
 // 3. FLASHCARDS ENGINE
 // ==========================================================================
-function setupFlashcards() {
+function setupFlashcards({ reset = true } = {}) {
   const allVocab = getAllVocabItems();
   let deck = [...allVocab];
 
@@ -584,8 +596,11 @@ function setupFlashcards() {
     showToast('دسته‌بندی انتخابی کارتی نداشت، تمام لغات لود شدند.');
   }
 
+  const resumeIndex = Math.max(0, Number(state.flashcards.currentIndex) || 0);
   state.flashcards.deck = deck;
-  state.flashcards.currentIndex = 0;
+  state.flashcards.currentIndex = reset
+    ? 0
+    : Math.min(resumeIndex, Math.max(0, deck.length - 1));
   state.flashcards.isFlipped = false;
 
   renderCurrentFlashcard();
@@ -665,20 +680,19 @@ function nextFlashcard(knowsIt) {
     addXP(10);
     sfx.playCorrect();
   } else {
-    // If again, re-insert later in deck
     deck.push(currentItem);
     sfx.playWrong();
   }
 
-  saveState();
-
   if (state.flashcards.currentIndex < deck.length - 1) {
     state.flashcards.currentIndex++;
+    saveState();
     renderCurrentFlashcard();
   } else {
+    saveState();
     showToast('🎉 تمام کارت‌های این دسته مرور شدند!');
     triggerConfetti();
-    setupFlashcards();
+    setupFlashcards({ reset: true });
   }
 }
 
@@ -689,6 +703,7 @@ function shuffleFlashcardDeck() {
     [deck[i], deck[j]] = [deck[j], deck[i]];
   }
   state.flashcards.currentIndex = 0;
+  saveState();
   renderCurrentFlashcard();
   showToast('کارت‌ها بر زده شدند 🔀');
 }
@@ -703,6 +718,8 @@ function resetQuizView() {
 
 function startQuiz(type) {
   state.quiz.type = type;
+  state.lastQuizType = type;
+  saveState();
   state.quiz.currentIndex = 0;
   state.quiz.score = 0;
   state.quiz.streak = 0;
@@ -1013,6 +1030,14 @@ function finishQuiz() {
   const score = state.quiz.score;
   const accuracy = Math.round((score / total) * 100);
   state.quizAccuracyHistory.push(accuracy);
+  state.quizLog.push({
+    date: new Date().toISOString(),
+    type: state.quiz.type,
+    score,
+    total,
+    accuracy
+  });
+  if (state.quizLog.length > 50) state.quizLog = state.quizLog.slice(-50);
 
   const bonusXP = 40 + (score * 5);
   addXP(bonusXP);
@@ -1372,6 +1397,70 @@ function renderProgressStats() {
       </div>
     `;
   }).join('');
+
+  renderActivityCalendar();
+  renderQuizLog();
+}
+
+const QUIZ_TYPE_LABELS = {
+  mcq: 'چندگزینه‌ای',
+  listening: 'شنیداری',
+  gender: 'جنسیت اسم',
+  scramble: 'مرتب‌سازی حروف',
+  grammar: 'دستور زبان'
+};
+
+function renderActivityCalendar() {
+  const calendar = document.getElementById('activityCalendar');
+  if (!calendar) return;
+
+  const active = new Set(state.activityDates || []);
+  const today = todayISO();
+  const days = [];
+  for (let i = 13; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    days.push({
+      iso,
+      label: d.toLocaleDateString('fa-IR', { day: 'numeric' }),
+      weekday: d.toLocaleDateString('fa-IR', { weekday: 'short' }),
+      active: active.has(iso),
+      today: iso === today
+    });
+  }
+
+  calendar.innerHTML = days.map(day => `
+    <div class="activity-day${day.active ? ' active' : ''}${day.today ? ' today' : ''}" title="${day.iso}">
+      <span class="activity-weekday">${day.weekday}</span>
+      <span class="activity-num">${day.label}</span>
+    </div>
+  `).join('');
+}
+
+function renderQuizLog() {
+  const list = document.getElementById('quizLogList');
+  if (!list) return;
+  const log = (state.quizLog || []).slice().reverse().slice(0, 8);
+  if (!log.length) {
+    list.innerHTML = '<div class="quiz-log-empty">هنوز آزمونی ثبت نشده است.</div>';
+    return;
+  }
+  list.innerHTML = log.map(entry => {
+    const when = entry.date
+      ? new Date(entry.date).toLocaleDateString('fa-IR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+      : '—';
+    const type = QUIZ_TYPE_LABELS[entry.type] || entry.type || 'آزمون';
+    return `
+      <div class="quiz-log-row">
+        <div>
+          <div class="quiz-log-type">${type}</div>
+          <div class="quiz-log-date">${when}</div>
+        </div>
+        <div class="quiz-log-score">${entry.score}/${entry.total} • ${entry.accuracy}%</div>
+      </div>
+    `;
+  }).join('');
 }
 
 // ==========================================================================
@@ -1545,19 +1634,17 @@ function updateContentCounts() {
 }
 
 function getCustomData() {
-  try {
-    return JSON.parse(localStorage.getItem('ff_custom_data') || '{"vocab":[],"sentences":[]}');
-  } catch (e) {
-    return { vocab: [], sentences: [] };
-  }
+  if (!state.custom) state.custom = { vocab: [], sentences: [] };
+  return state.custom;
 }
 
 function saveCustomData(data) {
-  localStorage.setItem('ff_custom_data', JSON.stringify(data));
+  state.custom = data;
+  saveState();
 }
 
 function getOpenRouterKey() {
-  return localStorage.getItem('ff_openrouter_key') || window.FF_OPENROUTER_KEY || '';
+  return state.openRouterKey || window.FF_OPENROUTER_KEY || '';
 }
 
 function setupImporterView() {
@@ -1588,7 +1675,9 @@ async function analyzeImportedSentence() {
     return;
   }
 
-  localStorage.setItem('ff_openrouter_key', key);
+  state.openRouterKey = key;
+  state.openRouterModel = model;
+  saveState();
   btn.disabled = true;
   status.textContent = 'در حال تحلیل جمله...';
   preview.style.display = 'none';
@@ -1738,15 +1827,70 @@ function saveImportedItems() {
   showToast('جمله و لغات انتخاب‌شده به اپ اضافه شد');
 }
 
-function initApp() {
-  // Theme check
+function restoreUiFromState() {
   document.body.className = state.theme === 'dark' ? 'theme-dark' : 'theme-light';
 
-  if (!localStorage.getItem('ff_openrouter_key') && window.FF_OPENROUTER_KEY) {
-    localStorage.setItem('ff_openrouter_key', window.FF_OPENROUTER_KEY);
+  const speedText = document.getElementById('speedIndicatorText');
+  if (speedText) speedText.textContent = `${state.audioSpeed}x`;
+  const speedBtn = document.getElementById('audioSpeedBtn');
+  if (speedBtn) speedBtn.title = `سرعت تلفظ صوتی (فعلی: ${state.audioSpeed}x)`;
+
+  const flashCat = document.getElementById('flashcardCatSelect');
+  if (flashCat) flashCat.value = state.flashcards.category;
+  const dirLabel = document.getElementById('flashcardDirectionLabel');
+  if (dirLabel) {
+    dirLabel.textContent = state.flashcards.direction === 'fr-fa' ? 'فرانسوی ➔ فارسی' : 'فارسی ➔ فرانسوی';
   }
 
-  // Update streak
+  document.querySelectorAll('#vocabCategoryTabs .tab-chip').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.cat === state.vocab.category);
+  });
+  const genderSelect = document.getElementById('vocabGenderFilter');
+  if (genderSelect) genderSelect.value = state.vocab.gender;
+  const gridBtn = document.getElementById('vocabViewGridBtn');
+  const listBtn = document.getElementById('vocabViewListBtn');
+  if (gridBtn && listBtn) {
+    gridBtn.classList.toggle('active', state.vocab.viewMode !== 'list');
+    listBtn.classList.toggle('active', state.vocab.viewMode === 'list');
+  }
+
+  document.querySelectorAll('#sentenceTopicTabs .tab-chip').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.topic === state.sentences.topic);
+  });
+  const hideTrans = document.getElementById('hideTransText');
+  if (hideTrans) {
+    hideTrans.textContent = state.sentences.hideTranslations ? 'نمایش مجدد ترجمه‌ها' : 'مخفی‌سازی ترجمه برای تست';
+  }
+
+  const gameCat = document.getElementById('gameCatSelect');
+  if (gameCat) gameCat.value = state.game.category;
+
+  const keyInput = document.getElementById('openRouterKeyInput');
+  if (keyInput) keyInput.value = state.openRouterKey || '';
+  const modelSelect = document.getElementById('openRouterModelSelect');
+  if (modelSelect && state.openRouterModel) modelSelect.value = state.openRouterModel;
+
+  updateHeaderStats();
+}
+
+function applyImportedSnapshot(parsed) {
+  if (window.FFStorage) {
+    window.FFStorage.applyToState(parsed, state);
+  }
+  if (!state.custom) state.custom = { vocab: [], sentences: [] };
+  document.body.className = state.theme === 'dark' ? 'theme-dark' : 'theme-light';
+  updateHeaderStats();
+  updateContentCounts();
+}
+
+function initApp() {
+  document.body.className = state.theme === 'dark' ? 'theme-dark' : 'theme-light';
+  restoreUiFromState();
+
+  if (!state.openRouterKey && window.FF_OPENROUTER_KEY) {
+    state.openRouterKey = window.FF_OPENROUTER_KEY;
+  }
+
   updateStreak();
   updateHeaderStats();
   updateContentCounts();
@@ -1828,6 +1972,7 @@ function initApp() {
       document.querySelectorAll('#vocabCategoryTabs .tab-chip').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       state.vocab.category = tab.dataset.cat;
+      saveState();
       renderVocabGrid();
     };
   });
@@ -1849,6 +1994,7 @@ function initApp() {
 
   document.getElementById('vocabGenderFilter').onchange = (e) => {
     state.vocab.gender = e.target.value;
+    saveState();
     renderVocabGrid();
   };
 
@@ -1859,6 +2005,7 @@ function initApp() {
     vocabSearch.value = '';
     document.getElementById('vocabGenderFilter').value = 'all';
     document.querySelectorAll('#vocabCategoryTabs .tab-chip').forEach(t => t.classList.toggle('active', t.dataset.cat === 'all'));
+    saveState();
     renderVocabGrid();
   };
 
@@ -1869,12 +2016,14 @@ function initApp() {
     gridBtn.classList.add('active');
     listBtn.classList.remove('active');
     state.vocab.viewMode = 'grid';
+    saveState();
     renderVocabGrid();
   };
   listBtn.onclick = () => {
     listBtn.classList.add('active');
     gridBtn.classList.remove('active');
     state.vocab.viewMode = 'list';
+    saveState();
     renderVocabGrid();
   };
 
@@ -1886,7 +2035,8 @@ function initApp() {
 
   document.getElementById('flashcardCatSelect').onchange = (e) => {
     state.flashcards.category = e.target.value;
-    setupFlashcards();
+    setupFlashcards({ reset: true });
+    saveState();
   };
 
   document.getElementById('flashcardShuffleBtn').onclick = shuffleFlashcardDeck;
@@ -1894,6 +2044,7 @@ function initApp() {
   document.getElementById('flashcardFlipDirectionBtn').onclick = () => {
     state.flashcards.direction = state.flashcards.direction === 'fr-fa' ? 'fa-fr' : 'fr-fa';
     document.getElementById('flashcardDirectionLabel').textContent = state.flashcards.direction === 'fr-fa' ? 'فرانسوی ➔ فارسی' : 'فارسی ➔ فرانسوی';
+    saveState();
     renderCurrentFlashcard();
   };
 
@@ -1939,6 +2090,7 @@ function initApp() {
       document.querySelectorAll('#sentenceTopicTabs .tab-chip').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       state.sentences.topic = tab.dataset.topic;
+      saveState();
       renderSentences();
     };
   });
@@ -1951,6 +2103,7 @@ function initApp() {
   document.getElementById('toggleHideTranslationsBtn').onclick = () => {
     state.sentences.hideTranslations = !state.sentences.hideTranslations;
     document.getElementById('hideTransText').textContent = state.sentences.hideTranslations ? 'نمایش مجدد ترجمه‌ها' : 'مخفی‌سازی ترجمه برای تست';
+    saveState();
     renderSentences();
   };
 
@@ -1958,6 +2111,7 @@ function initApp() {
   document.getElementById('gameRestartBtn').onclick = startMatchGame;
   document.getElementById('gameCatSelect').onchange = (e) => {
     state.game.category = e.target.value;
+    saveState();
     startMatchGame();
   };
 
@@ -1968,34 +2122,58 @@ function initApp() {
   if (saveImportedBtn) saveImportedBtn.onclick = saveImportedItems;
   if (keyInput) {
     keyInput.value = getOpenRouterKey();
-    keyInput.onchange = () => localStorage.setItem('ff_openrouter_key', keyInput.value.trim());
+    keyInput.onchange = () => {
+      state.openRouterKey = keyInput.value.trim();
+      saveState();
+    };
+  }
+
+  const modelSelect = document.getElementById('openRouterModelSelect');
+  if (modelSelect) {
+    modelSelect.value = state.openRouterModel || modelSelect.value;
+    modelSelect.onchange = () => {
+      state.openRouterModel = modelSelect.value;
+      saveState();
+    };
   }
 
   // Export / Reset Progress
   document.getElementById('exportProgressBtn').onclick = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
+    const snapshot = window.FFStorage.buildSnapshot(state);
+    const safe = { ...snapshot, openRouterKey: snapshot.openRouterKey ? '[saved locally]' : '' };
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(safe, null, 2));
     const dlAnchor = document.createElement('a');
-    dlAnchor.setAttribute("href", dataStr);
-    dlAnchor.setAttribute("download", `francais_progress_${new Date().toISOString().slice(0,10)}.json`);
+    dlAnchor.setAttribute('href', dataStr);
+    dlAnchor.setAttribute('download', `francais_progress_${todayISO()}.json`);
     dlAnchor.click();
     showToast('فایل پشتیبان دانلود شد');
   };
 
-  document.getElementById('resetProgressBtn').onclick = () => {
+  const importBtn = document.getElementById('importProgressBtn');
+  const importFile = document.getElementById('importProgressFile');
+  if (importBtn && importFile) {
+    importBtn.onclick = () => importFile.click();
+    importFile.onchange = async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      try {
+        const parsed = JSON.parse(await file.text());
+        if (parsed.openRouterKey === '[saved locally]') delete parsed.openRouterKey;
+        applyImportedSnapshot(parsed);
+        await window.FFStorage.flush(state);
+        restoreUiFromState();
+        switchView('progress');
+        showToast('پشتیبان با موفقیت بازیابی شد');
+      } catch (err) {
+        showToast('فایل پشتیبان معتبر نیست');
+      }
+      importFile.value = '';
+    };
+  }
+
+  document.getElementById('resetProgressBtn').onclick = async () => {
     if (confirm('آیا مطمئن هستید که می‌خواهید تمام پیشرفت، امتیازات و لغات نشان‌شده را ریست کنید؟')) {
-      localStorage.removeItem('ff_xp');
-      localStorage.removeItem('ff_streak');
-      localStorage.removeItem('ff_mastered_ids');
-      localStorage.removeItem('ff_saved_ids');
-      localStorage.removeItem('ff_quizzes_count');
-      localStorage.removeItem('ff_accuracy_hist');
-      localStorage.removeItem('ff_best_match');
-      state.xp = 0;
-      state.streak = 1;
-      state.masteredIds = new Set();
-      state.savedIds = new Set();
-      state.quizzesCompleted = 0;
-      state.quizAccuracyHistory = [];
+      await window.FFStorage.clearLearning(state);
       saveState();
       switchView('dashboard');
       showToast('اطلاعات با موفقیت ریست شد.');
@@ -2015,9 +2193,31 @@ function initApp() {
   // Setup Global Search
   setupGlobalSearch();
 
-  // Initial View Render
-  renderDashboard();
+  const restoredView = state.currentView && state.currentView !== 'dashboard' ? state.currentView : 'dashboard';
+  if (restoredView === 'dashboard') {
+    renderDashboard();
+  } else {
+    switchView(restoredView);
+  }
 }
 
-// Kickoff on DOM loaded
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener('DOMContentLoaded', async () => {
+  if (window.FFStorage) {
+    await window.FFStorage.hydrate(state);
+  }
+  initApp();
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && window.FFStorage) {
+    window.FFStorage.flush(state);
+  }
+});
+
+window.addEventListener('pagehide', () => {
+  if (window.FFStorage) window.FFStorage.flush(state);
+});
+
+window.addEventListener('beforeunload', () => {
+  if (window.FFStorage) window.FFStorage.flush(state);
+});

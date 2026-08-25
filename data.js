@@ -4822,6 +4822,13 @@ const APP_DATA = {
   ]
 };
 
+function getAppCustomData() {
+  if (typeof window.FFGetCustom === 'function') {
+    return window.FFGetCustom();
+  }
+  return { vocab: [], sentences: [] };
+}
+
 function getAllVocabItems() {
   const labels = {
     verbs: { fa: 'فعل‌ها', fr: 'Verbes' },
@@ -4845,7 +4852,7 @@ function getAllVocabItems() {
       });
     });
   });
-  const extra = JSON.parse(localStorage.getItem('ff_custom_data') || '{"vocab":[],"sentences":[]}');
+  const extra = getAppCustomData();
   (extra.vocab || []).forEach((item) => {
     const meta = labels[item.categoryKey] || labels.expressions;
     items.push({
@@ -4859,6 +4866,6 @@ function getAllVocabItems() {
 }
 
 function getAllSentences() {
-  const extra = JSON.parse(localStorage.getItem('ff_custom_data') || '{"vocab":[],"sentences":[]}');
+  const extra = getAppCustomData();
   return [...APP_DATA.sentences, ...(extra.sentences || [])];
 }

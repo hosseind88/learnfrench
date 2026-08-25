@@ -65,6 +65,11 @@
           <span class="speed-indicator" id="speedIndicatorText">1.0x</span>
         </button>
 
+        <div class="stat-pill storage-pill" id="storageStatusPill" data-engine="memory" title="وضعیت ذخیره‌سازی">
+          <span class="storage-dot" aria-hidden="true"></span>
+          <span class="stat-value" id="storageStatusText">…</span>
+        </div>
+
         <!-- Dark / Light Mode Toggle -->
         <button class="icon-btn" id="themeToggleBtn" title="تغییر حالت شب و روز">
           <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -802,8 +807,6 @@
         </div>
       </section>
 
-      </section>
-
       <!-- ============================================================== -->
       <!-- VIEW: AI SENTENCE IMPORTER -->
       <!-- ============================================================== -->
@@ -867,11 +870,16 @@
             <h1 class="view-main-title">کارنامه و آمار جامع یادگیری شما</h1>
             <p class="view-main-desc">بررسی جزئیات آماری، دسته‌بندی‌های نیازمند مرور و سوابق فعالیت‌ها</p>
           </div>
-          <div>
+          <div class="progress-actions">
             <button class="btn btn-outline btn-sm" id="exportProgressBtn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
               <span>پشتیبان‌گیری از پیشرفت</span>
             </button>
+            <button class="btn btn-outline btn-sm" id="importProgressBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <span>بازیابی پشتیبان</span>
+            </button>
+            <input type="file" id="importProgressFile" accept="application/json,.json" hidden>
           </div>
         </div>
 
@@ -900,6 +908,17 @@
             <div class="sbc-value" id="statsQuizAccuracy">0%</div>
             <div class="sbc-label">میانگین دقت در آزمون‌ها</div>
           </div>
+        </div>
+
+        <div class="card progress-detail-card">
+          <h3 class="card-section-title">فعالیت ۱۴ روز اخیر</h3>
+          <p class="storage-hint" id="storageHint">پیشرفت روی فایل خصوصی مرورگر ذخیره می‌شود.</p>
+          <div class="activity-calendar" id="activityCalendar"></div>
+        </div>
+
+        <div class="card progress-detail-card">
+          <h3 class="card-section-title">آزمون‌های اخیر</h3>
+          <div class="quiz-log-list" id="quizLogList"></div>
         </div>
 
         <!-- Mastery by Category Breakdown -->
@@ -1017,6 +1036,7 @@
   <!-- Load App Data and Logic Scripts -->
   <script src="secrets.js"></script>
   <script src="data.js"></script>
+  <script src="storage.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
