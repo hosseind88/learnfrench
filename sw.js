@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v3';
+const CACHE_NAME = 'francais-facile-v4';
 
 const CORE_ASSETS = [
   './',
@@ -16,6 +16,9 @@ const CORE_ASSETS = [
   './favicon-32x32.png',
   './favicon-16x16.png',
   'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js',
+  'https://cdn.jsdelivr.net/npm/marked/marked.min.js',
   'https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap'
 ];
 
@@ -49,8 +52,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Bypass API calls and dynamic AI image generation
-  if (url.hostname.includes('openrouter.ai') || url.hostname.includes('pollinations.ai') || event.request.method !== 'GET') {
+  // Bypass API calls, dynamic AI image generation and remote audio streaming
+  if (url.hostname.includes('openrouter.ai') || url.hostname.includes('pollinations.ai') || url.hostname.includes('arvanstorage.ir') || event.request.method !== 'GET') {
     return;
   }
 

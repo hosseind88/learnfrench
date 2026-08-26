@@ -15,7 +15,7 @@ const IDB_STORE_NAME = 'snapshots';
 const IDB_SNAPSHOT_KEY = 'latest';
 
 const VALID_VIEWS = new Set([
-  'dashboard', 'vocab', 'flashcards', 'quiz', 'sentences',
+  'dashboard', 'book', 'vocab', 'flashcards', 'quiz', 'sentences',
   'grammar', 'matchgame', 'progress', 'importer'
 ]);
 
@@ -158,6 +158,8 @@ function readLegacyLocalStorage() {
     openRouterModel: 'openai/gpt-4o-mini',
     custom,
     aiVisuals: JSON.parse(localStorage.getItem('ff_ai_visuals') || '{}'),
+    book: { currentPage: 1, currentTrack: 1, zoom: 1.0, sideDockTab: 'ai' },
+    aiPageExplanations: {},
     activityDates: [],
     quizLog: []
   };
@@ -274,6 +276,10 @@ function applySnapshotToState(snapshot, state) {
     : emptyCustom();
   if (!Array.isArray(state.custom.sentences)) state.custom.sentences = [];
   state.aiVisuals = snapshot.aiVisuals && typeof snapshot.aiVisuals === 'object' ? snapshot.aiVisuals : {};
+  state.book = snapshot.book || { currentPage: 1, currentTrack: 1, zoom: 1.0, sideDockTab: 'ai' };
+  state.aiPageExplanations = snapshot.aiPageExplanations && typeof snapshot.aiPageExplanations === 'object'
+    ? snapshot.aiPageExplanations
+    : {};
   state.activityDates = Array.isArray(snapshot.activityDates) ? snapshot.activityDates : [];
   state.quizLog = Array.isArray(snapshot.quizLog) ? snapshot.quizLog.slice(-50) : [];
 }
@@ -377,6 +383,8 @@ window.FFStorage.buildSnapshot = function buildSnapshot(state) {
     openRouterModel: state.openRouterModel || 'openai/gpt-4o-mini',
     custom: state.custom || emptyCustom(),
     aiVisuals: state.aiVisuals || {},
+    book: state.book || { currentPage: 1, currentTrack: 1, zoom: 1.0, sideDockTab: 'ai' },
+    aiPageExplanations: state.aiPageExplanations || {},
     activityDates: state.activityDates || [],
     quizLog: state.quizLog || []
   };

@@ -19,6 +19,17 @@ const state = {
   openRouterModel: 'openai/gpt-4o-mini',
   custom: { vocab: [], sentences: [] },
   aiVisuals: {},
+  book: {
+    currentPage: 1,
+    totalPages: 153,
+    zoom: 1.0,
+    fitWidth: true,
+    currentTrack: 1,
+    isPlaying: false,
+    trackSpeed: 1.0,
+    sideDockTab: 'ai'
+  },
+  aiPageExplanations: {},
   activityDates: [],
   quizLog: [],
   lastQuizType: 'mcq',
@@ -335,6 +346,7 @@ function switchView(viewName) {
 
   // Specific view initializer triggers
   if (viewName === 'dashboard') renderDashboard();
+  if (viewName === 'book') initBookView();
   if (viewName === 'vocab') renderVocabGrid();
   if (viewName === 'flashcards') initFlashcardsView();
   if (viewName === 'quiz') resetQuizView();
@@ -3031,7 +3043,678 @@ function applyImportedSnapshot(parsed) {
 }
 
 // ==========================================================================
-// 10. PWA ENGINE & FIRST-TIME INSTALL PROMPT
+// 10. LIVRE & AUDIO ENGINE (PDF Book Viewer, AI Vision Teacher, Audio Player)
+// ==========================================================================
+const ARVAN_AUDIO_BASE = 'https://france.s3.ir-thr-at1.arvanstorage.ir/Communication_essentielle_du_franc%CC%A7ais_A1_Audio%2F';
+const TOTAL_AUDIO_TRACKS = 233;
+
+let bookPdfDoc = null;
+let isPdfRendering = false;
+let pendingPdfPage = null;
+let bookAudio = null;
+let bookAudioDuration = 0;
+
+const BOOK_LESSON_PAGES = [
+  { page: 1, label: 'جلد کتاب (Couverture)' },
+  { page: 4, label: 'فهرست مطالب (Sommaire)' },
+  { page: 6, label: 'Leçon 1: هویت، اعداد، ملیت و شغل' },
+  { page: 10, label: 'Leçon 2: خانواده و توصیف افراد' },
+  { page: 14, label: 'Leçon 3: روزها، ماه‌ها، ساعت و میز غذا' },
+  { page: 18, label: 'Leçon 4: شهر، آدرس و خانه' },
+  { page: 22, label: 'Leçon 5: تأسیسات خانه و تعمیرات' },
+  { page: 26, label: 'Leçon 6: ساختمان، همسایه و حیوانات' },
+  { page: 30, label: 'Leçon 7: دانشگاه و درس' },
+  { page: 34, label: 'Leçon 8: برنامه روزانه' },
+  { page: 38, label: 'Leçon 9: محیط کار و اداره' },
+  { page: 42, label: 'Leçon 10: رنگ‌ها، لباس و جنس' },
+  { page: 46, label: 'Leçon 11: میوه، سبزی و رستوران' },
+  { page: 50, label: 'Leçon 12: نانوایی و آشپزی' },
+  { page: 54, label: 'Leçon 13: بدن و بیماری' },
+  { page: 58, label: 'Leçon 14: داروخانه و درمان' },
+  { page: 62, label: 'Leçon 15: حمل‌ونقل شهری' },
+  { page: 66, label: 'Leçon 16: قطار و رانندگی' },
+  { page: 70, label: 'Leçon 17: فرودگاه و مدارک سفر' },
+  { page: 74, label: 'Leçon 18: هتل و رزرو اتاق' },
+  { page: 78, label: 'Leçon 19: اوقات فراغت، آب‌وهوا و ورزش' },
+  { page: 82, label: 'Leçon 20: فرهنگ، سینما، موزه و خرید' },
+  { page: 86, label: 'Corrigés & Transcriptions (پاسخ‌نامه و متن فایل‌های صوتی)' }
+];
+
+function initBookView() {
+  if (!state.book) {
+    state.book = {
+      currentPage: 1,
+      totalPages: 153,
+      zoom: 1.0,
+      fitWidth: true,
+      currentTrack: 1,
+      isPlaying: false,
+      trackSpeed: 1.0,
+      sideDockTab: 'ai'
+    };
+  }
+
+  populateLessonJumpSelect();
+  renderAudioTracksList();
+  setupBookAudio();
+  setupBookSideDock();
+  loadBookPdf();
+}
+
+function populateLessonJumpSelect() {
+  const select = document.getElementById('pdfLessonJumpSelect');
+  if (!select || select.options.length > 1) return;
+
+  BOOK_LESSON_PAGES.forEach(item => {
+    const opt = document.createElement('option');
+    opt.value = item.page;
+    opt.textContent = `صفحه ${item.page}: ${item.label}`;
+    select.appendChild(opt);
+  });
+}
+
+async function loadBookPdf() {
+  if (bookPdfDoc) {
+    renderBookPage(state.book.currentPage || 1);
+    return;
+  }
+
+  const overlay = document.getElementById('pdfLoadingOverlay');
+  const loadingText = document.getElementById('pdfLoadingText');
+  if (overlay) overlay.style.display = 'flex';
+  if (loadingText) loadingText.textContent = 'در حال بارگذاری کتاب فرانسوی...';
+
+  try {
+    if (typeof pdfjsLib === 'undefined') {
+      throw new Error('کتابخانه PDF.js بارگذاری نشد');
+    }
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    const pdfPath = 'Communication essentielle du français A1.pdf';
+    const loadingTask = pdfjsLib.getDocument(pdfPath);
+    bookPdfDoc = await loadingTask.promise;
+    finishPdfLoading();
+  } catch (err1) {
+    console.warn('PDF relative load failed, trying encoded URI...', err1);
+    try {
+      const encoded = encodeURI('Communication essentielle du français A1.pdf');
+      const loadingTask2 = pdfjsLib.getDocument(encoded);
+      bookPdfDoc = await loadingTask2.promise;
+      finishPdfLoading();
+    } catch (err2) {
+      console.error('All PDF load attempts failed:', err2);
+      if (overlay) {
+        overlay.innerHTML = `
+          <div style="text-align: center; padding: 24px; color: var(--danger);">
+            <div style="font-size: 2.2rem; margin-bottom: 10px;">⚠️</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 6px;">خطا در بارگذاری فایل کتاب PDF</div>
+            <div style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 14px;">فایل Communication essentielle du français A1.pdf در دسترس نیست.</div>
+            <button class="btn btn-primary btn-sm" id="retryPdfBtn">تلاش مجدد</button>
+          </div>
+        `;
+        const retryBtn = document.getElementById('retryPdfBtn');
+        if (retryBtn) retryBtn.onclick = () => loadBookPdf();
+      }
+    }
+  }
+}
+
+function finishPdfLoading() {
+  if (!bookPdfDoc) return;
+  state.book.totalPages = bookPdfDoc.numPages;
+  const totalEl = document.getElementById('pdfTotalPages');
+  if (totalEl) totalEl.textContent = bookPdfDoc.numPages;
+
+  const pageInput = document.getElementById('pdfPageInput');
+  if (pageInput) pageInput.max = bookPdfDoc.numPages;
+
+  const overlay = document.getElementById('pdfLoadingOverlay');
+  if (overlay) overlay.style.display = 'none';
+
+  renderBookPage(state.book.currentPage || 1);
+}
+
+async function renderBookPage(pageNum) {
+  if (!bookPdfDoc) return;
+  pageNum = Math.max(1, Math.min(pageNum, bookPdfDoc.numPages));
+  state.book.currentPage = pageNum;
+  saveState();
+
+  const pageInput = document.getElementById('pdfPageInput');
+  if (pageInput) pageInput.value = pageNum;
+
+  const prevBtn = document.getElementById('pdfPrevPageBtn');
+  const nextBtn = document.getElementById('pdfNextPageBtn');
+  if (prevBtn) prevBtn.disabled = pageNum <= 1;
+  if (nextBtn) nextBtn.disabled = pageNum >= bookPdfDoc.numPages;
+
+  const zoomText = document.getElementById('pdfZoomLevel');
+  if (zoomText) zoomText.textContent = `${Math.round((state.book.zoom || 1.0) * 100)}%`;
+
+  if (isPdfRendering) {
+    pendingPdfPage = pageNum;
+    return;
+  }
+  isPdfRendering = true;
+
+  try {
+    const page = await bookPdfDoc.getPage(pageNum);
+    const canvas = document.getElementById('pdfRenderCanvas');
+    if (!canvas) {
+      isPdfRendering = false;
+      return;
+    }
+    const ctx = canvas.getContext('2d');
+
+    const viewportWrapper = document.getElementById('bookPdfViewport');
+    const containerWidth = viewportWrapper ? (viewportWrapper.clientWidth - 48) : 800;
+
+    let scale = state.book.zoom || 1.0;
+    if (state.book.fitWidth && containerWidth > 320) {
+      const baseViewport = page.getViewport({ scale: 1.0 });
+      scale = containerWidth / baseViewport.width;
+      state.book.zoom = scale;
+      if (zoomText) zoomText.textContent = `${Math.round(scale * 100)}%`;
+    }
+
+    const dpr = window.devicePixelRatio || 1;
+    const viewport = page.getViewport({ scale: scale * dpr });
+
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    canvas.style.width = `${Math.floor(viewport.width / dpr)}px`;
+    canvas.style.height = `${Math.floor(viewport.height / dpr)}px`;
+
+    const renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+
+    await page.render(renderContext).promise;
+    isPdfRendering = false;
+
+    if (pendingPdfPage !== null) {
+      const nextP = pendingPdfPage;
+      pendingPdfPage = null;
+      renderBookPage(nextP);
+    }
+  } catch (err) {
+    console.error('Error during PDF rendering:', err);
+    isPdfRendering = false;
+  }
+
+  updateBookAiDockForPage(pageNum);
+}
+
+function changeBookPage(deltaOrNum) {
+  if (!bookPdfDoc) return;
+  let target;
+  if (typeof deltaOrNum === 'number') {
+    target = deltaOrNum;
+  } else {
+    target = (state.book.currentPage || 1) + (deltaOrNum === 'next' ? 1 : -1);
+  }
+  renderBookPage(target);
+}
+
+function zoomBookPdf(direction) {
+  state.book.fitWidth = false;
+  const current = state.book.zoom || 1.0;
+  let next = direction === 'in' ? current + 0.15 : current - 0.15;
+  next = Math.max(0.5, Math.min(next, 3.0));
+  state.book.zoom = next;
+  renderBookPage(state.book.currentPage || 1);
+}
+
+function fitBookPdfWidth() {
+  state.book.fitWidth = true;
+  renderBookPage(state.book.currentPage || 1);
+}
+
+function updateBookAiDockForPage(pageNum) {
+  const heading = document.getElementById('dockAiHeading');
+  const emptyBox = document.getElementById('dockAiEmpty');
+  const bodyBox = document.getElementById('dockAiBody');
+
+  if (heading) heading.textContent = `تحلیل و تدریس صفحه ${pageNum}`;
+
+  const cached = state.aiPageExplanations ? state.aiPageExplanations[pageNum] : null;
+
+  if (cached) {
+    if (emptyBox) emptyBox.style.display = 'none';
+    if (bodyBox) {
+      bodyBox.style.display = 'block';
+      bodyBox.innerHTML = typeof marked !== 'undefined' ? marked.parse(cached) : cached;
+    }
+  } else {
+    if (emptyBox) emptyBox.style.display = 'flex';
+    if (bodyBox) {
+      bodyBox.style.display = 'none';
+      bodyBox.innerHTML = '';
+    }
+  }
+}
+
+async function explainCurrentBookPageWithAi({ forceRefresh = false } = {}) {
+  const pageNum = state.book.currentPage || 1;
+  const emptyBox = document.getElementById('dockAiEmpty');
+  const bodyBox = document.getElementById('dockAiBody');
+
+  if (!forceRefresh && state.aiPageExplanations && state.aiPageExplanations[pageNum]) {
+    updateBookAiDockForPage(pageNum);
+    switchBookDockTab('ai');
+    return;
+  }
+
+  // Switch to AI tab
+  switchBookDockTab('ai');
+
+  const key = await ensureOpenRouterKey();
+  const model = state.openRouterModel || 'openai/gpt-4o-mini';
+
+  if (emptyBox) {
+    emptyBox.style.display = 'flex';
+    emptyBox.innerHTML = `
+      <div class="fc-ai-spinner" style="width: 32px; height: 32px; border-width: 3px;"></div>
+      <h4 style="margin-top: 14px;">در حال تحلیل تصویر صفحه ${pageNum} و تدریس هوشمند با AI...</h4>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">لطفاً چند لحظه صبر کنید تا درس‌نامه، مکالمات، گرامر و پاسخ تمرینات آماده شود.</p>
+    `;
+  }
+  if (bodyBox) bodyBox.style.display = 'none';
+
+  try {
+    const canvas = document.getElementById('pdfRenderCanvas');
+    if (!canvas) throw new Error('صفحه کتاب هنوز رندر نشده است');
+
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.88);
+
+    const systemPrompt = `You are a master French professor and native pedagogical tutor explaining the textbook "Communication essentielle du français A1" for Persian (Farsi) native speakers.
+Analyze the provided high-resolution book page image in detail.
+
+Generate a comprehensive, clear, beautifully structured study guide in Persian (Farsi) using clean Markdown:
+1. 🎯 **موضوع و هدف درس (Sujet & Objectif):** خلاصه عنوان، درس و هدف آموزشی این صفحه.
+2. 💬 **داستان مکالمات و ترجمه روان (Dialogues & Traduction):** اگر مکالمه یا متنی در صفحه است، متن فرانسوی را آورده و ترجمه سلیس و دقیق فارسی آن را همراه با نکات تلفظی یا فرهنگی توضیح دهید.
+3. 📐 **نکات و قواعد گرامری (Grammaire & Règles):** قواعد دستوری مطرح شده در صفحه (صرف افعال، حروف اضافه، مذکر/مؤنث، ساختار جملات) را با مثال‌های شفاف شرح دهید.
+4. 📚 **واژگان و اصطلاحات کلیدی (Vocabulaire Essentiel):** جدول یا لیست واژگان مهم صفحه همراه با ترجمه فارسی و جنسیت (le/la).
+5. ✏️ **حل و توضیح تمرینات (Exercices & Solutions):** اگر تمرینی در صفحه وجود دارد، نحوه حل و پاسخ درست آن را توضیح دهید.
+
+Rules:
+- Write in warm, encouraging, fluent Persian.
+- Format with clear Markdown headings (###), bullet points, and clean tables or blockquotes.`;
+
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      {
+        role: 'user',
+        content: [
+          { type: 'text', text: `لطفاً صفحه ${pageNum} از کتاب Communication essentielle du français A1 را با جزئیات کامل برای من تدریس و تشریح کنید.` },
+          { type: 'image_url', image_url: { url: dataUrl } }
+        ]
+      }
+    ];
+
+    let response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': window.location.origin || 'http://localhost',
+        'X-Title': 'FrancaisFacile'
+      },
+      body: JSON.stringify({
+        model,
+        temperature: 0.3,
+        messages
+      })
+    });
+
+    let payload = await response.json();
+    if (!response.ok) {
+      throw new Error(payload.error?.message || 'خطا در ارتباط با هوش مصنوعی');
+    }
+
+    const explanation = payload.choices?.[0]?.message?.content || '';
+    if (!state.aiPageExplanations) state.aiPageExplanations = {};
+    state.aiPageExplanations[pageNum] = explanation;
+    saveState();
+
+    updateBookAiDockForPage(pageNum);
+    showToast(`تدریس صفحه ${pageNum} با موفقیت آماده شد ✨`);
+  } catch (err) {
+    console.error('AI Page Analysis failed:', err);
+    updateBookAiDockForPage(pageNum);
+    if (err.message !== 'کلید OpenRouter تنظیم نشد') {
+      showToast(err.message || 'خطا در تحلیل صفحه با AI');
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Book Audio Engine & Playlist
+// ---------------------------------------------------------------------------
+function setupBookAudio() {
+  if (!bookAudio) {
+    bookAudio = new Audio();
+    bookAudio.preload = 'metadata';
+
+    bookAudio.addEventListener('timeupdate', () => {
+      if (!bookAudioDuration && bookAudio.duration) {
+        bookAudioDuration = bookAudio.duration;
+      }
+      const cur = bookAudio.currentTime || 0;
+      const dur = bookAudio.duration || bookAudioDuration || 0;
+
+      const curEl = document.getElementById('playerCurrentTime');
+      const totalEl = document.getElementById('playerTotalTime');
+      const seek = document.getElementById('playerSeekSlider');
+
+      if (curEl) curEl.textContent = formatAudioTime(cur);
+      if (totalEl) totalEl.textContent = formatAudioTime(dur);
+      if (seek && dur > 0) {
+        seek.value = (cur / dur) * 100;
+      }
+    });
+
+    bookAudio.addEventListener('play', () => {
+      state.book.isPlaying = true;
+      updatePlayPauseButtonUi(true);
+      updateActiveTrackInList(state.book.currentTrack);
+    });
+
+    bookAudio.addEventListener('pause', () => {
+      state.book.isPlaying = false;
+      updatePlayPauseButtonUi(false);
+    });
+
+    bookAudio.addEventListener('ended', () => {
+      state.book.isPlaying = false;
+      updatePlayPauseButtonUi(false);
+      // Auto play next track
+      if (state.book.currentTrack < TOTAL_AUDIO_TRACKS) {
+        playAudioTrack(state.book.currentTrack + 1, true);
+      }
+    });
+
+    bookAudio.addEventListener('error', (e) => {
+      console.warn('Audio playback error, trying local fallback...', e);
+      const track = state.book.currentTrack;
+      if (!bookAudio.src.includes('/audio/')) {
+        bookAudio.src = `./audio/piste${track}.mp3`;
+        bookAudio.play().catch(() => {});
+      } else {
+        showToast(`خطا در پخش فایل صوتی piste ${track}`);
+      }
+    });
+  }
+}
+
+function formatAudioTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return '00:00';
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+function updatePlayPauseButtonUi(isPlaying) {
+  const playIcon = document.querySelector('#playerPlayPauseBtn .play-icon');
+  const pauseIcon = document.querySelector('#playerPlayPauseBtn .pause-icon');
+  if (playIcon) playIcon.style.display = isPlaying ? 'none' : 'block';
+  if (pauseIcon) pauseIcon.style.display = isPlaying ? 'block' : 'none';
+
+  const subEl = document.getElementById('currentTrackSub');
+  if (subEl) {
+    subEl.textContent = isPlaying ? 'در حال پخش...' : 'متوقف شد';
+  }
+}
+
+function renderAudioTracksList(filterQuery = '') {
+  const list = document.getElementById('audioTracksList');
+  if (!list) return;
+
+  const q = (filterQuery || '').trim().toLowerCase();
+  const current = state.book.currentTrack || 1;
+
+  let tracks = [];
+  for (let i = 1; i <= TOTAL_AUDIO_TRACKS; i++) {
+    const name = `piste ${i}`;
+    const file = `piste${i}.mp3`;
+    if (!q || name.includes(q) || String(i) === q || file.includes(q)) {
+      tracks.push(i);
+    }
+  }
+
+  const countEl = document.getElementById('dockAudioCount');
+  if (countEl) countEl.textContent = tracks.length;
+
+  if (tracks.length === 0) {
+    list.innerHTML = `<div style="text-align:center;padding:30px;color:var(--text-muted);font-size:0.85rem;">هیچ تراک صوتی با این شماره یافت نشد.</div>`;
+    return;
+  }
+
+  list.innerHTML = tracks.map(num => {
+    const isActive = num === current;
+    const isPlaying = isActive && state.book.isPlaying;
+    return `
+      <div class="audio-track-item ${isActive ? 'is-active' : ''} ${isPlaying ? 'is-playing' : ''}" data-track="${num}">
+        <div class="track-num-badge">#${num}</div>
+        <div class="track-info-col">
+          <div class="track-title" dir="ltr">piste${num}.mp3</div>
+          <div class="track-desc">فایل صوتی شماره ${num} کتاب A1</div>
+        </div>
+        <button class="track-play-btn" data-track="${num}" title="پخش این فایل">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </button>
+      </div>
+    `;
+  }).join('');
+
+  list.querySelectorAll('.audio-track-item').forEach(item => {
+    item.onclick = () => {
+      const num = parseInt(item.dataset.track, 10);
+      playAudioTrack(num, true);
+    };
+  });
+}
+
+function updateActiveTrackInList(trackNum) {
+  document.querySelectorAll('.audio-track-item').forEach(item => {
+    const num = parseInt(item.dataset.track, 10);
+    const isActive = num === trackNum;
+    item.classList.toggle('is-active', isActive);
+    item.classList.toggle('is-playing', isActive && state.book.isPlaying);
+  });
+}
+
+function playAudioTrack(trackNum, autoPlay = true) {
+  trackNum = Math.max(1, Math.min(trackNum, TOTAL_AUDIO_TRACKS));
+  state.book.currentTrack = trackNum;
+  saveState();
+
+  setupBookAudio();
+
+  const titleEl = document.getElementById('currentTrackName');
+  if (titleEl) titleEl.textContent = `piste${trackNum}.mp3`;
+
+  const audioUrl = `${ARVAN_AUDIO_BASE}piste${trackNum}.mp3`;
+  bookAudio.src = audioUrl;
+  bookAudio.playbackRate = state.book.trackSpeed || 1.0;
+
+  updateActiveTrackInList(trackNum);
+
+  if (autoPlay) {
+    bookAudio.play().then(() => {
+      updatePlayPauseButtonUi(true);
+    }).catch(err => {
+      console.warn('AutoPlay blocked or failed, trying fallback...', err);
+    });
+  }
+}
+
+function toggleAudioPlayPause() {
+  setupBookAudio();
+  if (!bookAudio.src || bookAudio.src.endsWith('/')) {
+    playAudioTrack(state.book.currentTrack || 1, true);
+    return;
+  }
+
+  if (bookAudio.paused) {
+    bookAudio.play().catch(() => {});
+  } else {
+    bookAudio.pause();
+  }
+}
+
+function seekAudioTrack(percent) {
+  if (!bookAudio || !bookAudio.duration) return;
+  bookAudio.currentTime = (percent / 100) * bookAudio.duration;
+}
+
+function skipAudioSeconds(delta) {
+  if (!bookAudio) return;
+  bookAudio.currentTime = Math.max(0, Math.min(bookAudio.currentTime + delta, bookAudio.duration || 9999));
+}
+
+function cycleAudioSpeed() {
+  const speeds = [0.8, 1.0, 1.2, 1.5];
+  const cur = state.book.trackSpeed || 1.0;
+  const idx = (speeds.indexOf(cur) + 1) % speeds.length;
+  const next = speeds[idx];
+  state.book.trackSpeed = next;
+  saveState();
+
+  if (bookAudio) bookAudio.playbackRate = next;
+
+  const badge = document.getElementById('playerSpeedBadge');
+  const label = document.getElementById('playerSpeedLabel');
+  if (badge) badge.textContent = `${next}x`;
+  if (label) label.textContent = `${next}x`;
+  showToast(`سرعت پخش صوت: ${next}x`);
+}
+
+function switchBookDockTab(tabName) {
+  state.book.sideDockTab = tabName;
+  saveState();
+
+  document.querySelectorAll('.dock-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.dock === tabName);
+  });
+  document.querySelectorAll('.dock-pane').forEach(p => {
+    p.classList.toggle('active', p.id === (tabName === 'ai' ? 'dockPaneAi' : 'dockPaneAudio'));
+  });
+}
+
+function setupBookSideDock() {
+  document.querySelectorAll('.dock-tab').forEach(t => {
+    t.onclick = () => switchBookDockTab(t.dataset.dock);
+  });
+}
+
+function setupBookEventListeners() {
+  const prevBtn = document.getElementById('pdfPrevPageBtn');
+  const nextBtn = document.getElementById('pdfNextPageBtn');
+  const pageInput = document.getElementById('pdfPageInput');
+  const lessonSelect = document.getElementById('pdfLessonJumpSelect');
+  const zoomInBtn = document.getElementById('pdfZoomInBtn');
+  const zoomOutBtn = document.getElementById('pdfZoomOutBtn');
+  const fitWidthBtn = document.getElementById('pdfFitWidthBtn');
+  const analyzeBtn = document.getElementById('bookAiAnalyzePageBtn');
+  const dockAnalyzeBtn = document.getElementById('dockAiAnalyzeBtn');
+  const refreshAiBtn = document.getElementById('dockAiRefreshBtn');
+  const copyAiBtn = document.getElementById('dockAiCopyBtn');
+  const toggleAudioPanelBtn = document.getElementById('toggleBookAudioPanelBtn');
+
+  if (prevBtn) prevBtn.onclick = () => changeBookPage('prev');
+  if (nextBtn) nextBtn.onclick = () => changeBookPage('next');
+  if (pageInput) {
+    pageInput.onchange = () => {
+      const p = parseInt(pageInput.value, 10);
+      if (!isNaN(p)) changeBookPage(p);
+    };
+  }
+  if (lessonSelect) {
+    lessonSelect.onchange = () => {
+      const p = parseInt(lessonSelect.value, 10);
+      if (!isNaN(p)) {
+        changeBookPage(p);
+        lessonSelect.value = '';
+      }
+    };
+  }
+  if (zoomInBtn) zoomInBtn.onclick = () => zoomBookPdf('in');
+  if (zoomOutBtn) zoomOutBtn.onclick = () => zoomBookPdf('out');
+  if (fitWidthBtn) fitWidthBtn.onclick = fitBookPdfWidth;
+
+  if (analyzeBtn) analyzeBtn.onclick = () => explainCurrentBookPageWithAi();
+  if (dockAnalyzeBtn) dockAnalyzeBtn.onclick = () => explainCurrentBookPageWithAi();
+  if (refreshAiBtn) refreshAiBtn.onclick = () => explainCurrentBookPageWithAi({ forceRefresh: true });
+
+  if (copyAiBtn) {
+    copyAiBtn.onclick = () => {
+      const pageNum = state.book.currentPage || 1;
+      const text = state.aiPageExplanations ? state.aiPageExplanations[pageNum] : '';
+      if (text) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('متن تدریس کپی شد 📋');
+        }).catch(() => {
+          showToast('کپی انجام نشد');
+        });
+      }
+    };
+  }
+
+  if (toggleAudioPanelBtn) {
+    toggleAudioPanelBtn.onclick = () => {
+      switchBookDockTab('audio');
+    };
+  }
+
+  // Audio Player Controls
+  const playPauseBtn = document.getElementById('playerPlayPauseBtn');
+  const prevTrackBtn = document.getElementById('playerPrevTrackBtn');
+  const nextTrackBtn = document.getElementById('playerNextTrackBtn');
+  const rewind5Btn = document.getElementById('playerRewind5Btn');
+  const forward5Btn = document.getElementById('playerForward5Btn');
+  const speedBtn = document.getElementById('playerSpeedCycleBtn');
+  const seekSlider = document.getElementById('playerSeekSlider');
+  const audioSearch = document.getElementById('audioTrackSearchInput');
+
+  if (playPauseBtn) playPauseBtn.onclick = toggleAudioPlayPause;
+  if (prevTrackBtn) prevTrackBtn.onclick = () => playAudioTrack((state.book.currentTrack || 1) - 1, true);
+  if (nextTrackBtn) nextTrackBtn.onclick = () => playAudioTrack((state.book.currentTrack || 1) + 1, true);
+  if (rewind5Btn) rewind5Btn.onclick = () => skipAudioSeconds(-5);
+  if (forward5Btn) forward5Btn.onclick = () => skipAudioSeconds(5);
+  if (speedBtn) speedBtn.onclick = cycleAudioSpeed;
+  if (seekSlider) {
+    seekSlider.oninput = () => seekAudioTrack(parseFloat(seekSlider.value));
+  }
+  if (audioSearch) {
+    audioSearch.oninput = () => renderAudioTracksList(audioSearch.value);
+  }
+
+  // Window resize handler for PDF fit width
+  window.addEventListener('resize', () => {
+    if (state.currentView === 'book' && state.book.fitWidth) {
+      renderBookPage(state.book.currentPage || 1);
+    }
+  });
+
+  // Keyboard navigation for PDF reader (Left/Right arrow)
+  window.addEventListener('keydown', (e) => {
+    if (state.currentView !== 'book') return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      changeBookPage('next');
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      changeBookPage('prev');
+    }
+  });
+}
+
+// ==========================================================================
+// 11. PWA ENGINE & FIRST-TIME INSTALL PROMPT
 // ==========================================================================
 let deferredInstallPrompt = null;
 
@@ -3204,6 +3887,10 @@ function initApp() {
     state.flashcards.screen = 'browser';
     switchView('flashcards');
   };
+  const dashBookBtn = document.getElementById('dashBookBtn');
+  if (dashBookBtn) {
+    dashBookBtn.onclick = () => switchView('book');
+  }
 
   // Dashboard Category Cards
   document.querySelectorAll('.cat-enter-btn, .category-card').forEach(el => {
@@ -3499,6 +4186,9 @@ function initApp() {
 
   // Setup Global Search
   setupGlobalSearch();
+
+  // Setup Book & Audio Player Listeners
+  setupBookEventListeners();
 
   // Setup PWA Installation & ServiceWorker
   setupPwaEngine();

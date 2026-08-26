@@ -4449,3 +4449,551 @@ body.theme-dark .nav-item.active {
   justify-content: center;
 }
 
+/* ==========================================================================
+   Book View (Livre & Audio - PDF Reader, Vision AI Dock, Audio Playlist)
+   ========================================================================== */
+.book-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.book-workspace-layout {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* PDF Viewer Pane */
+.book-pdf-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.book-pdf-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+}
+
+.pdf-nav-group,
+.pdf-zoom-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdf-page-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.pdf-page-input {
+  width: 54px;
+  height: 32px;
+  text-align: center;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+}
+
+.pdf-lesson-select {
+  max-width: 260px;
+  font-size: 0.82rem;
+  padding: 6px 12px;
+  height: 34px;
+}
+
+.pdf-zoom-level {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 44px;
+  text-align: center;
+}
+
+/* PDF Canvas Viewport */
+.book-pdf-viewport {
+  position: relative;
+  background: #1e293b;
+  border-radius: var(--radius-xl);
+  overflow: auto;
+  min-height: 650px;
+  max-height: calc(100vh - 170px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 12px;
+  box-shadow: var(--shadow-lg);
+}
+
+.pdf-loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  border-radius: var(--radius-xl);
+}
+
+.pdf-loading-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.pdf-canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+}
+
+#pdfRenderCanvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* Side Dock (AI Teacher + Audio Playlist) */
+.book-side-dock {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 170px);
+  min-height: 650px;
+  overflow: hidden;
+}
+
+.book-dock-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+}
+
+.dock-tab {
+  flex: 1;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.dock-tab:hover {
+  color: var(--text-primary);
+}
+
+.dock-tab.active {
+  background: var(--bg-surface);
+  color: var(--french-blue);
+  border-bottom-color: var(--french-blue);
+}
+
+.dock-pane {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.dock-pane.active {
+  display: flex;
+}
+
+/* Dock Pane: AI Explanation */
+.dock-ai-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dock-ai-heading {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 4px;
+}
+
+.dock-ai-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.dock-ai-content {
+  flex: 1;
+  padding: 18px;
+  overflow-y: auto;
+}
+
+.dock-ai-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 16px;
+  color: var(--text-secondary);
+}
+
+.dock-ai-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.dock-ai-empty h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.dock-ai-empty p {
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  max-width: 320px;
+}
+
+/* Markdown styling inside AI dock */
+.markdown-rendered {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4 {
+  color: var(--french-blue);
+  margin: 16px 0 8px;
+  font-weight: 800;
+}
+
+.markdown-rendered h3 {
+  font-size: 1.05rem;
+  border-bottom: 1px dashed var(--border-subtle);
+  padding-bottom: 4px;
+}
+
+.markdown-rendered ul,
+.markdown-rendered ol {
+  padding-right: 20px;
+  margin: 8px 0 12px;
+}
+
+.markdown-rendered li {
+  margin-bottom: 6px;
+}
+
+.markdown-rendered p {
+  margin-bottom: 10px;
+}
+
+.markdown-rendered strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.markdown-rendered blockquote {
+  background: var(--bg-secondary);
+  border-right: 4px solid var(--french-blue);
+  padding: 10px 14px;
+  margin: 12px 0;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+}
+
+.markdown-rendered table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.84rem;
+}
+
+.markdown-rendered th,
+.markdown-rendered td {
+  border: 1px solid var(--border-subtle);
+  padding: 8px 10px;
+  text-align: right;
+}
+
+.markdown-rendered th {
+  background: var(--bg-secondary);
+  font-weight: 700;
+}
+
+/* Dock Pane: Audio Playlist & Player */
+.book-audio-player-card {
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(139, 92, 246, 0.1));
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.player-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.player-track-name {
+  font-family: var(--font-fr);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--french-blue);
+  direction: ltr;
+  text-align: right;
+}
+
+.player-track-sub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.player-speed-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: var(--french-blue-light);
+  color: var(--french-blue);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.player-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.player-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: monospace;
+  min-width: 38px;
+}
+
+.player-seek-slider {
+  flex: 1;
+  height: 6px;
+  -webkit-appearance: none;
+  background: var(--border-medium);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.player-seek-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--french-blue);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+}
+
+.player-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.player-ctrl-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.player-ctrl-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transform: scale(1.06);
+}
+
+.player-ctrl-btn.main-play-btn {
+  width: 46px;
+  height: 46px;
+  background: var(--french-blue);
+  color: #ffffff;
+  border-color: var(--french-blue);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.player-ctrl-btn.main-play-btn:hover {
+  background: var(--french-blue-dark);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+/* Audio Search & Tracks List */
+.dock-audio-search-wrap {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.audio-search-input {
+  width: 100%;
+  height: 36px;
+  font-size: 0.84rem;
+}
+
+.audio-tracks-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.audio-track-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.audio-track-item:hover {
+  background: var(--bg-surface);
+  border-color: var(--border-subtle);
+  transform: translateX(-3px);
+}
+
+.audio-track-item.is-active {
+  background: var(--french-blue-light);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+.audio-track-item.is-playing .track-title {
+  color: var(--french-blue);
+  font-weight: 800;
+}
+
+.track-num-badge {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 36px;
+}
+
+.track-info-col {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+}
+
+.track-title {
+  font-family: var(--font-fr);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.track-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.track-play-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.audio-track-item:hover .track-play-btn,
+.audio-track-item.is-active .track-play-btn {
+  background: var(--french-blue);
+  color: #ffffff;
+}
+
+/* Responsive Book Layout */
+@media (max-width: 1024px) {
+  .book-workspace-layout {
+    grid-template-columns: 1fr;
+  }
+  .book-side-dock {
+    height: auto;
+    min-height: 480px;
+  }
+  .book-pdf-viewport {
+    max-height: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .book-pdf-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pdf-nav-group,
+  .pdf-jump-group,
+  .pdf-zoom-group {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .pdf-lesson-select {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
