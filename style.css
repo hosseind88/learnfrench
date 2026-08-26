@@ -1480,7 +1480,7 @@ body.theme-dark .nav-item.active {
 .anki-deck-table-head,
 .anki-deck-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 72px 88px 64px;
+  grid-template-columns: minmax(0, 1fr) 64px 72px 64px 56px;
   gap: 8px;
   align-items: center;
   padding: 12px 18px;
@@ -1558,8 +1558,15 @@ body.theme-dark .nav-item.active {
   text-align: center;
 }
 
-.anki-col-known,
-.anki-count-known {
+.anki-col-learning,
+.anki-count-learning {
+  color: #c2410c;
+  font-weight: 800;
+  text-align: center;
+}
+
+.anki-col-due,
+.anki-count-due {
   color: #059669;
   font-weight: 800;
   text-align: center;
@@ -3408,8 +3415,12 @@ body.theme-dark .nav-item.active {
   }
   .anki-deck-table-head,
   .anki-deck-row {
-    grid-template-columns: minmax(0, 1fr) 52px 64px 48px;
+    grid-template-columns: minmax(0, 1fr) 42px 54px 44px 38px;
     padding: 10px 12px;
+    gap: 6px;
+  }
+  .anki-deck-table-head {
+    font-size: 0.68rem;
   }
   .anki-deck-title {
     font-size: 0.88rem;

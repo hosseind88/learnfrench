@@ -29,7 +29,10 @@ const state = {
     direction: 'fr-fa',
     category: 'all',
     deckId: null,
-    screen: 'browser'
+    screen: 'browser',
+    reviews: {},
+    sessionDone: 0,
+    sessionTotal: 0
   },
 
   quiz: {
@@ -554,10 +557,10 @@ function renderVocabGrid() {
       e.stopPropagation();
       const id = btn.dataset.id;
       if (state.masteredIds.has(id)) {
-        state.masteredIds.delete(id);
+        setManualFlashcardMastery(id, false);
         showToast('از لیست لغات مسلط شده حذف شد');
       } else {
-        state.masteredIds.add(id);
+        setManualFlashcardMastery(id, true);
         addXP(10, 'برای تسلط بر لغت');
         sfx.playCorrect();
       }
@@ -578,6 +581,463 @@ function renderVocabGrid() {
 // ==========================================================================
 // 3. FLASHCARDS ENGINE (Anki-style decks by lesson)
 // ==========================================================================
+const ANKI_MINUTE_MS = 60 * 1000;
+const ANKI_DAY_MS = 24 * 60 * 60 * 1000;
+const ANKI_DEFAULTS = {
+  learningStepsMinutes: [1, 10],
+  relearningStepsMinutes: [10],
+  graduatingIntervalDays: 1,
+  easyIntervalDays: 4,
+  minimumIntervalDays: 1,
+  startingEase: 2.5,
+  minimumEase: 1.3,
+  hardInterval: 1.2,
+  easyBonus: 1.3,
+  intervalModifier: 1,
+  newInterval: 0,
+  maxIntervalDays: 36500,
+  learnAheadMinutes: 20
+};
+
+function ensureFlashcardReviewMap() {
+  if (!state.flashcards.reviews || typeof state.flashcards.reviews !== 'object' || Array.isArray(state.flashcards.reviews)) {
+    state.flashcards.reviews = {};
+  }
+  return state.flashcards.reviews;
+}
+
+function localDateISO(date = new Date()) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
+function localDayStart(date = new Date()) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
+function dateFromLocalISO(iso) {
+  if (!iso || typeof iso !== 'string') return localDayStart();
+  const [year, month, day] = iso.split('-').map(Number);
+  if (!year || !month || !day) return localDayStart();
+  return new Date(year, month - 1, day);
+}
+
+function addDaysISO(days, from = new Date()) {
+  const d = localDayStart(from);
+  d.setDate(d.getDate() + Math.max(0, Math.round(days)));
+  return localDateISO(d);
+}
+
+function daysUntilLocalISO(iso, from = new Date()) {
+  return Math.round((dateFromLocalISO(iso).getTime() - localDayStart(from).getTime()) / ANKI_DAY_MS);
+}
+
+function addMinutesISO(minutes, from = new Date()) {
+  return new Date(from.getTime() + Math.max(0, minutes) * ANKI_MINUTE_MS).toISOString();
+}
+
+function clampEase(ease) {
+  const value = Number(ease) || ANKI_DEFAULTS.startingEase;
+  return Math.max(ANKI_DEFAULTS.minimumEase, Number(value.toFixed(2)));
+}
+
+function normalizeFlashcardReview(raw) {
+  if (!raw || typeof raw !== 'object') return null;
+  const validStatuses = new Set(['learning', 'relearning', 'review']);
+  const status = validStatuses.has(raw.status) ? raw.status : null;
+  if (!status) return null;
+
+  const review = {
+    status,
+    step: Math.max(0, Number(raw.step) || 0),
+    interval: Math.max(0, Number(raw.interval) || 0),
+    ease: clampEase(raw.ease),
+    reps: Math.max(0, Number(raw.reps) || 0),
+    lapses: Math.max(0, Number(raw.lapses) || 0),
+    lastReviewedAt: raw.lastReviewedAt || null,
+    lastRating: raw.lastRating || null
+  };
+
+  if (status === 'review') {
+    review.interval = Math.max(ANKI_DEFAULTS.minimumIntervalDays, Math.round(review.interval) || ANKI_DEFAULTS.minimumIntervalDays);
+    review.dueDate = raw.dueDate || addDaysISO(review.interval);
+  } else {
+    review.dueAt = raw.dueAt || addMinutesISO(getLearningSteps(status)[review.step] || getLearningSteps(status)[0] || 0);
+  }
+
+  return review;
+}
+
+function getFlashcardReview(id) {
+  const reviews = ensureFlashcardReviewMap();
+  const normalized = normalizeFlashcardReview(reviews[id]);
+  if (!normalized) {
+    delete reviews[id];
+    return null;
+  }
+  reviews[id] = normalized;
+  return normalized;
+}
+
+function getLearningSteps(status) {
+  return status === 'relearning'
+    ? ANKI_DEFAULTS.relearningStepsMinutes
+    : ANKI_DEFAULTS.learningStepsMinutes;
+}
+
+function isLearningStatus(status) {
+  return status === 'learning' || status === 'relearning';
+}
+
+function isLearningDue(review, now = new Date(), lookaheadMinutes = 0) {
+  if (!review || !isLearningStatus(review.status) || !review.dueAt) return false;
+  const dueTime = new Date(review.dueAt).getTime();
+  if (!Number.isFinite(dueTime)) return true;
+  return dueTime <= now.getTime() + lookaheadMinutes * ANKI_MINUTE_MS;
+}
+
+function isReviewDue(review, now = new Date()) {
+  if (!review || review.status !== 'review') return false;
+  return daysUntilLocalISO(review.dueDate, now) <= 0;
+}
+
+function createReviewSchedule(intervalDays, now = new Date(), ease = ANKI_DEFAULTS.startingEase, current = {}) {
+  current = current || {};
+  const interval = Math.min(
+    ANKI_DEFAULTS.maxIntervalDays,
+    Math.max(ANKI_DEFAULTS.minimumIntervalDays, Math.round(intervalDays) || ANKI_DEFAULTS.minimumIntervalDays)
+  );
+  return {
+    status: 'review',
+    interval,
+    ease: clampEase(ease),
+    dueDate: addDaysISO(interval, now),
+    reps: Math.max(0, Number(current.reps) || 0),
+    lapses: Math.max(0, Number(current.lapses) || 0),
+    lastReviewedAt: current.lastReviewedAt || null,
+    lastRating: current.lastRating || null
+  };
+}
+
+function createLearningSchedule(status, step, delayMinutes, now = new Date(), current = {}) {
+  current = current || {};
+  return {
+    status,
+    step: Math.max(0, step),
+    interval: Math.max(0, Number(current.interval) || 0),
+    ease: clampEase(current.ease),
+    dueAt: addMinutesISO(delayMinutes, now),
+    reps: Math.max(0, Number(current.reps) || 0),
+    lapses: Math.max(0, Number(current.lapses) || 0),
+    lastReviewedAt: current.lastReviewedAt || null,
+    lastRating: current.lastRating || null
+  };
+}
+
+function hardLearningDelay(steps) {
+  if (steps.length > 1) return (steps[0] + steps[1]) / 2;
+  const onlyStep = steps[0] || 0;
+  return Math.min(onlyStep * 1.5, onlyStep + 1440);
+}
+
+function constrainReviewInterval(rawInterval, previousInterval = 0) {
+  const rounded = Math.round(rawInterval * ANKI_DEFAULTS.intervalModifier);
+  return Math.min(
+    ANKI_DEFAULTS.maxIntervalDays,
+    Math.max(1, previousInterval + 1, rounded)
+  );
+}
+
+function daysLateForReview(review, now = new Date()) {
+  if (!review || review.status !== 'review') return 0;
+  return Math.max(0, -daysUntilLocalISO(review.dueDate, now));
+}
+
+function scheduleLearningCard(current, rating, now = new Date()) {
+  const status = current?.status === 'relearning' ? 'relearning' : 'learning';
+  const steps = getLearningSteps(status);
+  const step = Math.min(Math.max(0, Number(current?.step) || 0), Math.max(0, steps.length - 1));
+  const carriedInterval = Math.max(ANKI_DEFAULTS.minimumIntervalDays, Math.round(Number(current?.interval) || ANKI_DEFAULTS.minimumIntervalDays));
+
+  if (!steps.length) {
+    return createReviewSchedule(
+      status === 'relearning' ? carriedInterval : ANKI_DEFAULTS.graduatingIntervalDays,
+      now,
+      current?.ease || ANKI_DEFAULTS.startingEase,
+      current
+    );
+  }
+
+  if (rating === 'again') {
+    return createLearningSchedule(status, 0, steps[0], now, current);
+  }
+
+  if (rating === 'hard') {
+    const delay = step === 0 ? hardLearningDelay(steps) : (steps[step] || steps[0]);
+    return createLearningSchedule(status, step, delay, now, current);
+  }
+
+  if (rating === 'easy') {
+    return createReviewSchedule(
+      status === 'relearning' ? carriedInterval : ANKI_DEFAULTS.easyIntervalDays,
+      now,
+      current?.ease || ANKI_DEFAULTS.startingEase,
+      current
+    );
+  }
+
+  const nextStep = step + 1;
+  if (nextStep < steps.length) {
+    return createLearningSchedule(status, nextStep, steps[nextStep], now, current);
+  }
+
+  return createReviewSchedule(
+    status === 'relearning' ? carriedInterval : ANKI_DEFAULTS.graduatingIntervalDays,
+    now,
+    current?.ease || ANKI_DEFAULTS.startingEase,
+    current
+  );
+}
+
+function scheduleReviewCard(current, rating, now = new Date()) {
+  const interval = Math.max(ANKI_DEFAULTS.minimumIntervalDays, Math.round(Number(current.interval) || ANKI_DEFAULTS.minimumIntervalDays));
+  const ease = clampEase(current.ease);
+  const daysLate = daysLateForReview(current, now);
+
+  if (rating === 'again') {
+    const nextEase = clampEase(ease - 0.2);
+    const lapseInterval = Math.max(
+      ANKI_DEFAULTS.minimumIntervalDays,
+      Math.round(interval * ANKI_DEFAULTS.newInterval)
+    );
+
+    if (ANKI_DEFAULTS.relearningStepsMinutes.length) {
+      return createLearningSchedule('relearning', 0, ANKI_DEFAULTS.relearningStepsMinutes[0], now, {
+        ...current,
+        interval: lapseInterval,
+        ease: nextEase,
+        lapses: (Number(current.lapses) || 0) + 1
+      });
+    }
+
+    return createReviewSchedule(lapseInterval, now, nextEase, {
+      ...current,
+      lapses: (Number(current.lapses) || 0) + 1
+    });
+  }
+
+  const hardBase = (interval + Math.floor(daysLate / 4)) * ANKI_DEFAULTS.hardInterval;
+  const hardInterval = constrainReviewInterval(hardBase, interval);
+
+  if (rating === 'hard') {
+    return createReviewSchedule(hardInterval, now, ease - 0.15, current);
+  }
+
+  const goodBase = (interval + Math.floor(daysLate / 2)) * ease;
+  const goodInterval = constrainReviewInterval(goodBase, hardInterval);
+
+  if (rating === 'good') {
+    return createReviewSchedule(goodInterval, now, ease, current);
+  }
+
+  const easyBase = (interval + daysLate) * ease * ANKI_DEFAULTS.easyBonus;
+  const easyInterval = constrainReviewInterval(easyBase, goodInterval);
+  return createReviewSchedule(easyInterval, now, ease + 0.15, current);
+}
+
+function getNextFlashcardSchedule(card, rating, now = new Date()) {
+  const current = getFlashcardReview(card.id);
+  return current?.status === 'review'
+    ? scheduleReviewCard(current, rating, now)
+    : scheduleLearningCard(current, rating, now);
+}
+
+function applyFlashcardRating(card, rating) {
+  const now = new Date();
+  const current = getFlashcardReview(card.id);
+  const next = getNextFlashcardSchedule(card, rating, now);
+  next.reps = (Number(current?.reps) || 0) + 1;
+  next.lastReviewedAt = now.toISOString();
+  next.lastRating = rating;
+  ensureFlashcardReviewMap()[card.id] = next;
+
+  if (next.status === 'review') {
+    state.masteredIds.add(card.id);
+  } else {
+    state.masteredIds.delete(card.id);
+  }
+
+  return next;
+}
+
+function setManualFlashcardMastery(id, mastered) {
+  const reviews = ensureFlashcardReviewMap();
+  if (mastered) {
+    state.masteredIds.add(id);
+    const existing = getFlashcardReview(id);
+    if (existing?.status !== 'review') {
+      const now = new Date();
+      reviews[id] = {
+        ...createReviewSchedule(ANKI_DEFAULTS.easyIntervalDays, now),
+        reps: 1,
+        lastReviewedAt: now.toISOString(),
+        lastRating: 'easy'
+      };
+    }
+    return;
+  }
+
+  state.masteredIds.delete(id);
+  delete reviews[id];
+}
+
+function syncMasteredIdsFromFlashcardReviews() {
+  Object.keys(ensureFlashcardReviewMap()).forEach((id) => {
+    const review = getFlashcardReview(id);
+    if (review?.status === 'review') {
+      state.masteredIds.add(id);
+    } else if (review) {
+      state.masteredIds.delete(id);
+    }
+  });
+}
+
+function migrateMasteredFlashcardsToReviews() {
+  const reviews = ensureFlashcardReviewMap();
+  let changed = false;
+  state.masteredIds.forEach((id) => {
+    if (!reviews[id]) {
+      const now = new Date();
+      reviews[id] = {
+        ...createReviewSchedule(ANKI_DEFAULTS.easyIntervalDays, now),
+        reps: 1,
+        lastReviewedAt: now.toISOString(),
+        lastRating: 'easy',
+        migratedFromMastered: true
+      };
+      changed = true;
+    }
+  });
+  return changed;
+}
+
+function getFlashcardQueueInfo(card, now = new Date(), { includeNew = true, lookaheadMinutes = 0 } = {}) {
+  const review = getFlashcardReview(card.id);
+  if (!review) {
+    return includeNew ? { bucket: 3, dueTime: Number.MAX_SAFE_INTEGER } : null;
+  }
+
+  if (isLearningStatus(review.status)) {
+    if (isLearningDue(review, now, lookaheadMinutes)) {
+      return { bucket: 0, dueTime: new Date(review.dueAt).getTime() || 0 };
+    }
+    return null;
+  }
+
+  if (isReviewDue(review, now)) {
+    return { bucket: 2, dueTime: dateFromLocalISO(review.dueDate).getTime() };
+  }
+
+  return null;
+}
+
+function buildFlashcardStudyQueue(deckId, { includeNew = true, lookaheadMinutes = 0 } = {}) {
+  const now = new Date();
+  const cards = getFlashcardDeck(deckId);
+  let queue = cards
+    .map((card, index) => {
+      const info = getFlashcardQueueInfo(card, now, { includeNew, lookaheadMinutes: 0 });
+      return info ? { card, index, ...info } : null;
+    })
+    .filter(Boolean);
+
+  if (!queue.length && lookaheadMinutes > 0) {
+    queue = cards
+      .map((card, index) => {
+        const info = getFlashcardQueueInfo(card, now, { includeNew: false, lookaheadMinutes });
+        return info ? { card, index, ...info } : null;
+      })
+      .filter(Boolean);
+  }
+
+  return queue
+    .sort((a, b) => a.bucket - b.bucket || a.dueTime - b.dueTime || a.index - b.index)
+    .map(entry => entry.card);
+}
+
+function addDueCardsToActiveQueue() {
+  const deckId = state.flashcards.deckId || 'all-lessons';
+  const activeDeck = state.flashcards.deck || [];
+  const queuedIds = new Set(activeDeck.map(card => card.id));
+  const lookaheadMinutes = activeDeck.length ? 0 : ANKI_DEFAULTS.learnAheadMinutes;
+  const dueCards = buildFlashcardStudyQueue(deckId, { includeNew: false, lookaheadMinutes })
+    .filter(card => !queuedIds.has(card.id));
+
+  if (dueCards.length) {
+    activeDeck.push(...dueCards);
+    state.flashcards.sessionTotal += dueCards.length;
+  }
+}
+
+function getNextDueForDeck(deckId) {
+  const now = new Date();
+  return getFlashcardDeck(deckId)
+    .map((card) => {
+      const review = getFlashcardReview(card.id);
+      if (!review) return null;
+      if (isLearningStatus(review.status) && review.dueAt) return new Date(review.dueAt).getTime();
+      if (review.status === 'review' && review.dueDate) return dateFromLocalISO(review.dueDate).getTime();
+      return null;
+    })
+    .filter(time => Number.isFinite(time) && time > now.getTime())
+    .sort((a, b) => a - b)[0] || null;
+}
+
+function formatAnkiDelay(ms) {
+  const value = Number(ms);
+  if (!Number.isFinite(value) || value <= 0) return 'now';
+  const minutes = Math.max(1, Math.round(value / ANKI_MINUTE_MS));
+  if (minutes < 60) return `${minutes}m`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return `${hours}h`;
+  return `${Math.max(1, Math.round(hours / 24))}d`;
+}
+
+function formatReviewInterval(review, now = new Date()) {
+  if (!review) return '';
+  if (review.dueAt) return formatAnkiDelay(new Date(review.dueAt).getTime() - now.getTime());
+  if (review.dueDate) {
+    const days = Math.max(0, daysUntilLocalISO(review.dueDate, now));
+    return days === 0 ? 'today' : `${days}d`;
+  }
+  return '';
+}
+
+function updateAnswerButtonIntervals(card) {
+  const now = new Date();
+  [
+    ['again', 'fcAgainInterval'],
+    ['hard', 'fcHardInterval'],
+    ['good', 'fcGoodInterval'],
+    ['easy', 'fcEasyInterval']
+  ].forEach(([rating, id]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = formatReviewInterval(getNextFlashcardSchedule(card, rating, now), now);
+  });
+}
+
+function finishFlashcardSession() {
+  const deckId = state.flashcards.deckId || 'all-lessons';
+  const nextDue = getNextDueForDeck(deckId);
+  const message = nextDue
+    ? `مرور فعلی تمام شد؛ کارت بعدی حدود ${formatAnkiDelay(nextDue - Date.now())} دیگر موعد دارد.`
+    : 'کارت‌های موعد این دک تمام شد.';
+  showToast(message);
+  backToFlashcardDecks();
+}
+
 function getLessonMeta(num) {
   const lessons = APP_DATA.lessons || {};
   return lessons[num] || { titleFa: 'درس', topic: 'other' };
@@ -627,9 +1087,28 @@ function getFlashcardDeck(deckId) {
 }
 
 function countDeckStats(cards) {
-  const total = cards.length;
-  const known = cards.filter(card => state.masteredIds.has(card.id)).length;
-  return { total, known, neu: Math.max(0, total - known) };
+  const now = new Date();
+  const stats = {
+    total: cards.length,
+    newCards: 0,
+    learning: 0,
+    due: 0,
+    graduated: 0
+  };
+
+  cards.forEach((card) => {
+    const review = getFlashcardReview(card.id);
+    if (!review) {
+      stats.newCards++;
+    } else if (isLearningStatus(review.status)) {
+      if (isLearningDue(review, now, ANKI_DEFAULTS.learnAheadMinutes)) stats.learning++;
+    } else if (review.status === 'review') {
+      stats.graduated++;
+      if (isReviewDue(review, now)) stats.due++;
+    }
+  });
+
+  return stats;
 }
 
 function deckRowHtml({ id, title, sub, stats, parent = false }) {
@@ -639,8 +1118,9 @@ function deckRowHtml({ id, title, sub, stats, parent = false }) {
         <span class="anki-deck-title">${title}</span>
         <span class="anki-deck-sub">${sub}</span>
       </span>
-      <span class="anki-count-new">${stats.neu}</span>
-      <span class="anki-count-known">${stats.known}</span>
+      <span class="anki-count-new">${stats.newCards}</span>
+      <span class="anki-count-learning">${stats.learning}</span>
+      <span class="anki-count-due">${stats.due}</span>
       <span class="anki-count-total">${stats.total}</span>
     </button>
   `;
@@ -767,9 +1247,9 @@ function backToFlashcardDecks() {
 
 function setupFlashcards({ reset = true } = {}) {
   const deckId = state.flashcards.deckId || 'all-lessons';
-  const deck = getFlashcardDeck(deckId);
+  const sourceDeck = getFlashcardDeck(deckId);
 
-  if (deck.length === 0) {
+  if (sourceDeck.length === 0) {
     showToast('این دک کارتی ندارد.');
     backToFlashcardDecks();
     return;
@@ -777,11 +1257,20 @@ function setupFlashcards({ reset = true } = {}) {
 
   updateStudyHeading(deckId);
 
-  const resumeIndex = Math.max(0, Number(state.flashcards.currentIndex) || 0);
-  state.flashcards.deck = deck;
-  state.flashcards.currentIndex = reset
-    ? 0
-    : Math.min(resumeIndex, Math.max(0, deck.length - 1));
+  const queue = buildFlashcardStudyQueue(deckId, {
+    includeNew: true,
+    lookaheadMinutes: ANKI_DEFAULTS.learnAheadMinutes
+  });
+
+  if (!queue.length) {
+    finishFlashcardSession();
+    return;
+  }
+
+  state.flashcards.deck = queue;
+  state.flashcards.currentIndex = 0;
+  state.flashcards.sessionDone = 0;
+  state.flashcards.sessionTotal = queue.length;
 
   renderCurrentFlashcard();
 }
@@ -797,10 +1286,12 @@ function renderCurrentFlashcard() {
   setFlashcardAnswerVisible(false);
   cardEl.classList.toggle('is-sentence', item.kind === 'sentence');
 
-  document.getElementById('flashcardCounter').textContent = `کارت ${index + 1} از ${deck.length}`;
-  const masteredInDeck = deck.filter(x => state.masteredIds.has(x.id)).length;
-  document.getElementById('flashcardMasteryRatio').textContent = `${masteredInDeck} یاد گرفته شده`;
-  const pct = Math.round(((index + 1) / deck.length) * 100);
+  const sessionTotal = Math.max(state.flashcards.sessionTotal || deck.length, deck.length);
+  const sessionPosition = Math.min(sessionTotal, (state.flashcards.sessionDone || 0) + 1);
+  document.getElementById('flashcardCounter').textContent = `کارت ${sessionPosition} از ${sessionTotal}`;
+  const deckStats = countDeckStats(getFlashcardDeck(state.flashcards.deckId || 'all-lessons'));
+  document.getElementById('flashcardMasteryRatio').textContent = `${deckStats.learning} یادگیری • ${deckStats.due} مرور • ${deckStats.graduated} یادگرفته`;
+  const pct = sessionTotal ? Math.round((sessionPosition / sessionTotal) * 100) : 100;
   document.getElementById('flashcardProgressFill').style.width = `${pct}%`;
 
   const isFrToFa = state.flashcards.direction === 'fr-fa';
@@ -835,6 +1326,8 @@ function renderCurrentFlashcard() {
     e.stopPropagation();
     speakFrench(item.word);
   };
+
+  updateAnswerButtonIntervals(item);
 }
 
 function flipFlashcard() {
@@ -858,11 +1351,10 @@ function rateFlashcard(rating) {
   const currentItem = deck[state.flashcards.currentIndex];
   if (!currentItem) return;
 
+  const nextSchedule = applyFlashcardRating(currentItem, rating);
   if (rating === 'again') {
-    deck.push(currentItem);
     sfx.playWrong();
   } else if (rating === 'easy') {
-    state.masteredIds.add(currentItem.id);
     addXP(10);
     sfx.playCorrect();
   } else if (rating === 'good') {
@@ -873,17 +1365,25 @@ function rateFlashcard(rating) {
     sfx.playCorrect();
   }
 
-  if (state.flashcards.currentIndex < deck.length - 1) {
-    state.flashcards.currentIndex++;
+  deck.splice(state.flashcards.currentIndex, 1);
+  state.flashcards.sessionDone += 1;
+  addDueCardsToActiveQueue();
+
+  if (nextSchedule.status === 'review') {
+    const label = formatReviewInterval(nextSchedule);
+    showToast(`مرور بعدی این کارت: ${label}`);
+  }
+
+  if (deck.length) {
+    state.flashcards.currentIndex = Math.min(state.flashcards.currentIndex, deck.length - 1);
     saveState();
     renderCurrentFlashcard();
     return;
   }
 
   saveState();
-  showToast('🎉 کارت‌های این درس تمام شد');
   triggerConfetti();
-  backToFlashcardDecks();
+  finishFlashcardSession();
 }
 
 function nextFlashcard(knowsIt) {
@@ -1722,9 +2222,9 @@ function openWordModal(item) {
 
   document.getElementById('modalMasterBtn').onclick = () => {
     if (state.masteredIds.has(item.id)) {
-      state.masteredIds.delete(item.id);
+      setManualFlashcardMastery(item.id, false);
     } else {
-      state.masteredIds.add(item.id);
+      setManualFlashcardMastery(item.id, true);
       addXP(10);
     }
     saveState();
@@ -2074,6 +2574,8 @@ function applyImportedSnapshot(parsed) {
     window.FFStorage.applyToState(parsed, state);
   }
   if (!state.custom) state.custom = { vocab: [], sentences: [] };
+  syncMasteredIdsFromFlashcardReviews();
+  migrateMasteredFlashcardsToReviews();
   document.body.className = state.theme === 'dark' ? 'theme-dark' : 'theme-light';
   updateHeaderStats();
   updateContentCounts();
@@ -2527,6 +3029,11 @@ function initApp() {
 
   // Setup PWA Installation & ServiceWorker
   setupPwaEngine();
+
+  syncMasteredIdsFromFlashcardReviews();
+  if (migrateMasteredFlashcardsToReviews()) {
+    saveState();
+  }
 
   const restoredView = state.currentView && state.currentView !== 'dashboard' ? state.currentView : 'dashboard';
   if (restoredView === 'dashboard') {

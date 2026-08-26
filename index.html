@@ -476,7 +476,8 @@
             <div class="anki-deck-table-head">
               <span>دک / درس</span>
               <span class="anki-col-new">جدید</span>
-              <span class="anki-col-known">یادگرفته</span>
+              <span class="anki-col-learning">یادگیری</span>
+              <span class="anki-col-due">مرور</span>
               <span class="anki-col-total">کل</span>
             </div>
             <div id="flashcardDeckList"></div>
@@ -566,28 +567,28 @@
               <span class="btn-emoji">1</span>
               <div class="btn-text">
                 <span class="main-label">دوباره</span>
-                <span class="sub-label">Again</span>
+                <span class="sub-label" id="fcAgainInterval">1m</span>
               </div>
             </button>
             <button class="fc-action-btn btn-hard" id="fcBtnHard" title="کلید 2">
               <span class="btn-emoji">2</span>
               <div class="btn-text">
                 <span class="main-label">سخت</span>
-                <span class="sub-label">Hard</span>
+                <span class="sub-label" id="fcHardInterval">6m</span>
               </div>
             </button>
             <button class="fc-action-btn btn-good" id="fcBtnGood" title="کلید 3">
               <span class="btn-emoji">3</span>
               <div class="btn-text">
                 <span class="main-label">خوب</span>
-                <span class="sub-label">Good</span>
+                <span class="sub-label" id="fcGoodInterval">10m</span>
               </div>
             </button>
             <button class="fc-action-btn btn-easy" id="fcBtnKnow" title="کلید 4">
               <span class="btn-emoji">4</span>
               <div class="btn-text">
                 <span class="main-label">آسان</span>
-                <span class="sub-label">Easy</span>
+                <span class="sub-label" id="fcEasyInterval">4d</span>
               </div>
             </button>
           </div>

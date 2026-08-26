@@ -149,7 +149,7 @@ function readLegacyLocalStorage() {
     quizAccuracyHistory: JSON.parse(localStorage.getItem('ff_accuracy_hist') || '[]'),
     bestMatchRecord: parseInt(localStorage.getItem('ff_best_match') || '0', 10) || 0,
     currentView: 'dashboard',
-    flashcards: { category: 'all', direction: 'fr-fa', currentIndex: 0, deckId: null, screen: 'browser' },
+    flashcards: { category: 'all', direction: 'fr-fa', currentIndex: 0, deckId: null, screen: 'browser', reviews: {} },
     vocab: { category: 'all', gender: 'all', viewMode: 'grid' },
     sentences: { topic: 'all', hideTranslations: false },
     gameCategory: 'all',
@@ -250,6 +250,11 @@ function applySnapshotToState(snapshot, state) {
   state.flashcards.currentIndex = Number(snapshot.flashcards?.currentIndex) || 0;
   state.flashcards.deckId = snapshot.flashcards?.deckId || null;
   state.flashcards.screen = snapshot.flashcards?.screen === 'study' ? 'study' : 'browser';
+  state.flashcards.reviews = snapshot.flashcards?.reviews && typeof snapshot.flashcards.reviews === 'object'
+    ? snapshot.flashcards.reviews
+    : {};
+  state.flashcards.sessionDone = 0;
+  state.flashcards.sessionTotal = 0;
   state.vocab.category = snapshot.vocab?.category || 'all';
   state.vocab.gender = snapshot.vocab?.gender || 'all';
   state.vocab.viewMode = snapshot.vocab?.viewMode || 'grid';
@@ -352,7 +357,8 @@ window.FFStorage.buildSnapshot = function buildSnapshot(state) {
       direction: state.flashcards.direction,
       currentIndex: state.flashcards.currentIndex || 0,
       deckId: state.flashcards.deckId || null,
-      screen: state.flashcards.screen || 'browser'
+      screen: state.flashcards.screen || 'browser',
+      reviews: state.flashcards.reviews || {}
     },
     vocab: {
       category: state.vocab.category,
@@ -545,6 +551,9 @@ window.FFStorage.clearLearning = async function clearLearning(state) {
   state.flashcards.currentIndex = 0;
   state.flashcards.deckId = null;
   state.flashcards.screen = 'browser';
+  state.flashcards.reviews = {};
+  state.flashcards.sessionDone = 0;
+  state.flashcards.sessionTotal = 0;
   await this.flush(state);
 };
 
