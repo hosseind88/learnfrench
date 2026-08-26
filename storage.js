@@ -7,7 +7,7 @@ const FF_LS_SNAPSHOT = 'ff_app_snapshot';
 const FF_LS_LEGACY_KEYS = [
   'ff_theme', 'ff_audio_speed', 'ff_xp', 'ff_streak', 'ff_last_active',
   'ff_mastered_ids', 'ff_saved_ids', 'ff_quizzes_count', 'ff_accuracy_hist',
-  'ff_best_match', 'ff_custom_data', 'ff_openrouter_key'
+  'ff_best_match', 'ff_custom_data', 'ff_openrouter_key', 'ff_ai_visuals'
 ];
 
 const IDB_DB_NAME = 'FrancaisFacileDB';
@@ -157,6 +157,7 @@ function readLegacyLocalStorage() {
     openRouterKey: localStorage.getItem('ff_openrouter_key') || '',
     openRouterModel: 'openai/gpt-4o-mini',
     custom,
+    aiVisuals: JSON.parse(localStorage.getItem('ff_ai_visuals') || '{}'),
     activityDates: [],
     quizLog: []
   };
@@ -272,6 +273,7 @@ function applySnapshotToState(snapshot, state) {
     ? snapshot.custom
     : emptyCustom();
   if (!Array.isArray(state.custom.sentences)) state.custom.sentences = [];
+  state.aiVisuals = snapshot.aiVisuals && typeof snapshot.aiVisuals === 'object' ? snapshot.aiVisuals : {};
   state.activityDates = Array.isArray(snapshot.activityDates) ? snapshot.activityDates : [];
   state.quizLog = Array.isArray(snapshot.quizLog) ? snapshot.quizLog.slice(-50) : [];
 }
@@ -374,6 +376,7 @@ window.FFStorage.buildSnapshot = function buildSnapshot(state) {
     openRouterKey: state.openRouterKey || '',
     openRouterModel: state.openRouterModel || 'openai/gpt-4o-mini',
     custom: state.custom || emptyCustom(),
+    aiVisuals: state.aiVisuals || {},
     activityDates: state.activityDates || [],
     quizLog: state.quizLog || []
   };

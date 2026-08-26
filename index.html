@@ -547,6 +547,9 @@
                   </div>
 
                   <div class="fc-details-tag" id="fcBackDetails"></div>
+
+                  <!-- AI Visual Mnemonic & Image Container -->
+                  <div class="fc-ai-visual-box" id="fcBackAiVisual"></div>
                 </div>
               </div>
             </div>
@@ -1135,6 +1138,66 @@
         <button class="btn btn-secondary pwa-dismiss-btn" id="pwaInstallDismissBtn">
           <span>شاید بعداً</span>
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL 5: OPENROUTER API KEY & MODEL SETTINGS MODAL -->
+  <!-- ============================================================== -->
+  <div class="modal-overlay" id="aiKeyModalOverlay" style="display: none;">
+    <div class="modal-dialog ai-key-dialog">
+      <button class="modal-close-btn" id="aiKeyModalCloseBtn" aria-label="بستن">&times;</button>
+      <div class="ai-key-header">
+        <div class="ai-key-icon-ring">✨</div>
+        <h2 class="result-title" style="margin-top: 8px;">تنظیم هوش مصنوعی (OpenRouter)</h2>
+        <p class="result-subtitle">برای تصویرسازی ذهنی، تولید کدینگ و ساخت عکس فلش‌کارت‌ها، کلید OpenRouter خود را وارد کنید.</p>
+      </div>
+
+      <div class="ai-key-form" style="margin-top: 18px; text-align: right;">
+        <label for="modalOpenRouterKeyInput" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--text-secondary);">کلید API اوپن‌روتر</label>
+        <input type="password" id="modalOpenRouterKeyInput" placeholder="sk-or-v1-..." class="custom-input" style="width: 100%; margin-bottom: 14px;" autocomplete="off" dir="ltr">
+
+        <label for="modalOpenRouterModelSelect" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--text-secondary);">مدل هوش مصنوعی</label>
+        <select id="modalOpenRouterModelSelect" class="custom-select" style="width: 100%; margin-bottom: 16px;">
+          <option value="openai/gpt-4o-mini">GPT-4o Mini (سریع، اقتصادی و دقیق)</option>
+          <option value="google/gemini-2.0-flash-001">Gemini 2.0 Flash</option>
+          <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+          <option value="anthropic/claude-3.5-haiku">Claude 3.5 Haiku</option>
+          <option value="meta-llama/llama-3.3-70b-instruct">Llama 3.3 70B</option>
+        </select>
+
+        <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 18px; line-height: 1.6;">
+          💡 کلید API مستقیماً روی دستگاه شما ذخیره می‌شود و به هیچ سرور واسطی ارسال نمی‌گردد.
+          <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer" style="color: var(--french-blue); text-decoration: underline; font-weight: 600;">دریافت کلید رایگان از OpenRouter ↗</a>
+        </div>
+
+        <div class="result-actions-row">
+          <button class="btn btn-primary" id="modalSaveAiKeyBtn" style="flex: 1;">ذخیره و ادامه تصویرسازی</button>
+          <button class="btn btn-secondary" id="modalCancelAiKeyBtn">انصراف</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL 6: IMAGE LIGHTBOX & PROMPT VIEWER -->
+  <!-- ============================================================== -->
+  <div class="modal-overlay" id="imageLightboxOverlay" style="display: none;">
+    <div class="modal-dialog image-lightbox-dialog">
+      <button class="modal-close-btn" id="lightboxCloseBtn" aria-label="بستن">&times;</button>
+      <div class="lightbox-content">
+        <div class="lightbox-image-wrapper">
+          <img id="lightboxImg" src="" alt="AI generated illustration" class="lightbox-img">
+        </div>
+        <div class="lightbox-info">
+          <div class="lightbox-word-title" id="lightboxWordTitle"></div>
+          <div class="lightbox-mnemonic-box" id="lightboxMnemonicBox"></div>
+          <div class="lightbox-prompt-box">
+            <div class="lightbox-prompt-label">پرامپت انگلیسی تصویرسازی (AI Image Prompt):</div>
+            <div class="lightbox-prompt-text" id="lightboxPromptText" dir="ltr"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

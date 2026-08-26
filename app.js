@@ -18,6 +18,7 @@ const state = {
   openRouterKey: '',
   openRouterModel: 'openai/gpt-4o-mini',
   custom: { vocab: [], sentences: [] },
+  aiVisuals: {},
   activityDates: [],
   quizLog: [],
   lastQuizType: 'mcq',
@@ -470,6 +471,7 @@ function renderVocabGrid() {
   grid.innerHTML = items.map(item => {
     const isSaved = state.savedIds.has(item.id);
     const isMastered = state.masteredIds.has(item.id);
+    const visual = state.aiVisuals ? state.aiVisuals[item.id] : null;
 
     // Gender/Type tag format
     let genderBadgeHtml = '';
@@ -503,6 +505,9 @@ function renderVocabGrid() {
             <button class="vocab-action-icon-btn speak-btn" data-word="${item.word}" title="پخش تلفظ">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
             </button>
+            <button class="vocab-action-icon-btn ai-visual-btn ${visual ? 'has-visual' : ''}" data-id="${item.id}" title="${visual ? 'مشاهده تصویر و کدینگ AI' : 'تصویرسازی ذهنی با AI'}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
+            </button>
             <button class="vocab-action-icon-btn save-btn ${isSaved ? 'is-saved' : ''}" data-id="${item.id}" title="${isSaved ? 'حذف از نشان‌شده‌ها' : 'نشان کردن لغت'}">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </button>
@@ -524,6 +529,17 @@ function renderVocabGrid() {
         ${item.note ? `
           <div class="vocab-note-tag">💡 ${item.note}</div>
         ` : ''}
+
+        ${visual ? `
+          <div class="vocab-ai-visual-snippet" data-id="${item.id}">
+            <div class="vocab-ai-thumb" title="بزرگ‌نمایی">
+              <img src="${visual.imageUrl}" alt="${item.word}" loading="lazy">
+            </div>
+            <div class="vocab-ai-info">
+              <div class="vocab-ai-desc">✨ ${visual.descriptionFa}</div>
+            </div>
+          </div>
+        ` : ''}
       </div>
     `;
   }).join('');
@@ -533,6 +549,45 @@ function renderVocabGrid() {
     btn.onclick = (e) => {
       e.stopPropagation();
       speakFrench(btn.dataset.word);
+    };
+  });
+
+  grid.querySelectorAll('.ai-visual-btn').forEach(btn => {
+    btn.onclick = async (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.id;
+      const item = items.find(x => x.id === id);
+      if (!item) return;
+
+      if (state.aiVisuals && state.aiVisuals[id]) {
+        const v = state.aiVisuals[id];
+        openImageLightbox(v.imageUrl, item.word, v.descriptionFa, v.imagePrompt);
+      } else {
+        btn.innerHTML = `<span style="display:inline-block;width:14px;height:14px;border:2px solid var(--purple);border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;"></span>`;
+        btn.disabled = true;
+        try {
+          await generateAiVisualForItem(item);
+          showToast('تصویرسازی ذهنی آماده شد ✨');
+          renderVocabGrid();
+        } catch (err) {
+          console.error(err);
+          if (err.message !== 'کلید OpenRouter تنظیم نشد') {
+            showToast(err.message || 'خطا در تصویرسازی AI');
+          }
+          renderVocabGrid();
+        }
+      }
+    };
+  });
+
+  grid.querySelectorAll('.vocab-ai-visual-snippet').forEach(el => {
+    el.onclick = (e) => {
+      e.stopPropagation();
+      const id = el.dataset.id;
+      const item = items.find(x => x.id === id);
+      if (!item || !state.aiVisuals || !state.aiVisuals[id]) return;
+      const v = state.aiVisuals[id];
+      openImageLightbox(v.imageUrl, item.word, v.descriptionFa, v.imagePrompt);
     };
   });
 
@@ -1321,6 +1376,8 @@ function renderCurrentFlashcard() {
 
   const detailsEl = document.getElementById('fcBackDetails');
   detailsEl.textContent = item.note ? `نکته: ${item.note}` : (item.fem ? `فرم مؤنث: ${item.fem}` : '');
+
+  renderFlashcardAiVisual(item);
 
   document.getElementById('fcFrontAudioBtn').onclick = (e) => {
     e.stopPropagation();
@@ -2168,9 +2225,40 @@ function openWordModal(item) {
   const modal = document.getElementById('wordModalOverlay');
   const content = document.getElementById('wordModalContent');
 
+  const visual = state.aiVisuals ? state.aiVisuals[item.id] : null;
+
+  let aiBoxHtml = '';
+  if (visual) {
+    aiBoxHtml = `
+      <div class="modal-ai-box">
+        <div class="ai-title-row">
+          <span class="ai-tag">✨ تصویرسازی ذهنی و عکس AI</span>
+          <button class="fc-ai-refresh-btn" id="modalAiRefreshBtn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            <span>تولید مجدد</span>
+          </button>
+        </div>
+        <div class="modal-ai-img-wrap" id="modalAiImgWrap" title="مشاهده تصویر در اندازه بزرگ">
+          <img src="${visual.imageUrl}" alt="${item.word}" loading="lazy">
+        </div>
+        <div style="font-size: 0.9rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 6px;">${visual.descriptionFa}</div>
+        ${visual.mnemonicKeyFa ? `<div class="fc-ai-visual-coding" style="margin-bottom: 6px;">💡 <strong>کدینگ:</strong> ${visual.mnemonicKeyFa}</div>` : ''}
+      </div>
+    `;
+  } else {
+    aiBoxHtml = `
+      <div style="margin-bottom: 16px;" id="modalAiGenContainer">
+        <button class="btn btn-outline btn-sm fc-ai-generate-btn" id="modalAiGenerateBtn" style="width: 100%; justify-content: center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
+          <span>تصویرسازی ذهنی و ساخت عکس با AI</span>
+        </button>
+      </div>
+    `;
+  }
+
   content.innerHTML = `
     <div style="text-align: center; padding: 20px 10px 10px;">
-      <div class="badge-tag" style="margin-bottom: 12px;">${item.categoryNameFr} • ${item.categoryNameFa}</div>
+      <div class="badge-tag" style="margin-bottom: 12px;">${item.categoryNameFr || 'Vocabulaire'} • ${item.categoryNameFa || ''}</div>
       <div style="font-family: var(--font-fr); font-size: 2.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 6px;" dir="ltr">
         ${item.word}
       </div>
@@ -2195,6 +2283,8 @@ function openWordModal(item) {
         <div class="vocab-note-tag" style="text-align: right; margin-bottom: 16px;">💡 ${item.note}</div>
       ` : ''}
 
+      ${aiBoxHtml}
+
       <div style="display: flex; gap: 10px; justify-content: center; margin-top: 10px;">
         <button class="btn btn-secondary btn-sm" id="modalBookmarkBtn">
           ${state.savedIds.has(item.id) ? '⭐ حذف از نشان‌شده‌ها' : '⭐ نشان کردن'}
@@ -2209,6 +2299,56 @@ function openWordModal(item) {
   modal.style.display = 'flex';
 
   document.getElementById('modalSpeakBtn').onclick = () => speakFrench(item.word);
+
+  if (visual) {
+    const wrap = document.getElementById('modalAiImgWrap');
+    if (wrap) {
+      wrap.onclick = () => openImageLightbox(visual.imageUrl, item.word, visual.descriptionFa, visual.imagePrompt);
+    }
+    const refBtn = document.getElementById('modalAiRefreshBtn');
+    if (refBtn) {
+      refBtn.onclick = async () => {
+        refBtn.disabled = true;
+        try {
+          await generateAiVisualForItem(item, { forceRefresh: true });
+          showToast('تصویرسازی مجدد آماده شد ✨');
+          openWordModal(item);
+        } catch (err) {
+          console.error(err);
+          if (err.message !== 'کلید OpenRouter تنظیم نشد') {
+            showToast(err.message || 'خطا در تصویرسازی');
+          }
+          openWordModal(item);
+        }
+      };
+    }
+  } else {
+    const genBtn = document.getElementById('modalAiGenerateBtn');
+    if (genBtn) {
+      genBtn.onclick = async () => {
+        const c = document.getElementById('modalAiGenContainer');
+        if (c) {
+          c.innerHTML = `
+            <div class="fc-ai-loading">
+              <div class="fc-ai-spinner"></div>
+              <span>در حال خلق تصویرسازی ذهنی با AI...</span>
+            </div>
+          `;
+        }
+        try {
+          await generateAiVisualForItem(item);
+          showToast('تصویرسازی ذهنی آماده شد ✨');
+          openWordModal(item);
+        } catch (err) {
+          console.error(err);
+          if (err.message !== 'کلید OpenRouter تنظیم نشد') {
+            showToast(err.message || 'خطا در تصویرسازی');
+          }
+          openWordModal(item);
+        }
+      };
+    }
+  }
 
   document.getElementById('modalBookmarkBtn').onclick = () => {
     if (state.savedIds.has(item.id)) {
@@ -2267,6 +2407,8 @@ function setupGlobalSearch() {
       closeSearch();
       document.getElementById('wordModalOverlay').style.display = 'none';
       document.getElementById('quizResultModalOverlay').style.display = 'none';
+      closeAiKeyModal(true);
+      closeImageLightbox();
     }
   });
 
@@ -2343,6 +2485,284 @@ function saveCustomData(data) {
 
 function getOpenRouterKey() {
   return state.openRouterKey || window.FF_OPENROUTER_KEY || '';
+}
+
+let pendingKeyResolve = null;
+let pendingKeyReject = null;
+
+function openAiKeyModal() {
+  const modal = document.getElementById('aiKeyModalOverlay');
+  const input = document.getElementById('modalOpenRouterKeyInput');
+  const modelSelect = document.getElementById('modalOpenRouterModelSelect');
+  if (modal) {
+    if (input) input.value = state.openRouterKey || '';
+    if (modelSelect) modelSelect.value = state.openRouterModel || 'openai/gpt-4o-mini';
+    modal.style.display = 'flex';
+    if (input) input.focus();
+  }
+}
+
+function closeAiKeyModal(cancelled = true) {
+  const modal = document.getElementById('aiKeyModalOverlay');
+  if (modal) modal.style.display = 'none';
+  if (cancelled && pendingKeyReject) {
+    pendingKeyReject(new Error('کلید OpenRouter تنظیم نشد'));
+  }
+  pendingKeyResolve = null;
+  pendingKeyReject = null;
+}
+
+function saveAiKeyFromModal() {
+  const input = document.getElementById('modalOpenRouterKeyInput');
+  const modelSelect = document.getElementById('modalOpenRouterModelSelect');
+  const key = (input ? input.value : '').trim();
+  const model = modelSelect ? modelSelect.value : (state.openRouterModel || 'openai/gpt-4o-mini');
+
+  if (!key) {
+    showToast('لطفاً کلید OpenRouter را وارد کنید');
+    return;
+  }
+
+  state.openRouterKey = key;
+  state.openRouterModel = model;
+  saveState();
+
+  const importerKey = document.getElementById('openRouterKeyInput');
+  if (importerKey) importerKey.value = key;
+  const importerModel = document.getElementById('openRouterModelSelect');
+  if (importerModel) importerModel.value = model;
+
+  showToast('کلید OpenRouter با موفقیت ذخیره شد');
+
+  if (pendingKeyResolve) {
+    pendingKeyResolve(key);
+    pendingKeyResolve = null;
+    pendingKeyReject = null;
+  }
+  closeAiKeyModal(false);
+}
+
+function ensureOpenRouterKey() {
+  const currentKey = getOpenRouterKey();
+  if (currentKey) {
+    return Promise.resolve(currentKey);
+  }
+
+  return new Promise((resolve, reject) => {
+    pendingKeyResolve = resolve;
+    pendingKeyReject = reject;
+    openAiKeyModal();
+  });
+}
+
+function openImageLightbox(imageUrl, word, descriptionFa, imagePrompt) {
+  const modal = document.getElementById('imageLightboxOverlay');
+  const img = document.getElementById('lightboxImg');
+  const wordEl = document.getElementById('lightboxWordTitle');
+  const mnemonicEl = document.getElementById('lightboxMnemonicBox');
+  const promptEl = document.getElementById('lightboxPromptText');
+
+  if (!modal || !img) return;
+
+  img.src = imageUrl;
+  if (wordEl) wordEl.textContent = word || '';
+  if (mnemonicEl) mnemonicEl.textContent = descriptionFa ? descriptionFa : '';
+  if (promptEl) promptEl.textContent = imagePrompt || '';
+
+  modal.style.display = 'flex';
+}
+
+function closeImageLightbox() {
+  const modal = document.getElementById('imageLightboxOverlay');
+  if (modal) modal.style.display = 'none';
+}
+
+async function generateAiVisualForItem(item, { forceRefresh = false } = {}) {
+  if (!item || !item.id) {
+    throw new Error('کارت معتبر نیست');
+  }
+
+  if (!forceRefresh && state.aiVisuals && state.aiVisuals[item.id]) {
+    return state.aiVisuals[item.id];
+  }
+
+  const key = await ensureOpenRouterKey();
+  const model = state.openRouterModel || 'openai/gpt-4o-mini';
+
+  const word = item.word || item.expression || item.fr || '';
+  const translation = item.translation || item.fa || '';
+  const example = item.example || '';
+  const category = item.categoryNameFa || item.categoryKey || item.type || '';
+  const gender = item.gender ? (item.gender === 'masculine' ? 'masculine (le/un)' : item.gender === 'feminine' ? 'feminine (la/une)' : item.gender) : '';
+  const note = item.note || item.fem || '';
+
+  const systemPrompt = `You are an expert French visual mnemonic teacher and concept illustrator for Persian (Farsi) learners.
+Create a memorable mental visual scene (کدینگ و تصویرسازی ذهنی) to help a learner effortlessly remember this French word or expression.
+
+Return ONLY a valid JSON object with these keys:
+{
+  "descriptionFa": "توصیف صحنه/تصویر ذهنی به زبان فارسی به صورت داستانی، جذاب و ملموس (۱ الی ۲ جمله) که معنای کلمه را در ذهن تثبیت کند",
+  "imagePrompt": "A charming, vivid, high-quality digital illustration of (specific concrete visual scene representing the concept/mnemonic), French vibe, warm cinematic lighting, detailed, clean composition, storybook style, no text, no letters, no typography",
+  "mnemonicKeyFa": "کدینگ کلیدی کوتاه به فارسی (اختیاری)"
+}
+Rules:
+- descriptionFa must be in natural, engaging Persian.
+- imagePrompt must be in English, descriptive, concrete and optimized for image generation.
+- Do NOT output any markdown or explanation outside the JSON.`;
+
+  const userPrompt = `French: "${word}"
+Persian: "${translation}"
+${category ? `Category: ${category}` : ''}
+${gender ? `Gender: ${gender}` : ''}
+${example ? `Example in French: ${example}` : ''}
+${note ? `Note: ${note}` : ''}`;
+
+  const body = {
+    model,
+    temperature: 0.7,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ]
+  };
+
+  let response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${key}`,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': window.location.origin || 'http://localhost',
+      'X-Title': 'FrancaisFacile'
+    },
+    body: JSON.stringify({ ...body, response_format: { type: 'json_object' } })
+  });
+
+  let payload = await response.json();
+  if (!response.ok && /response_format|json_object/i.test(payload.error?.message || '')) {
+    response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': window.location.origin || 'http://localhost',
+        'X-Title': 'FrancaisFacile'
+      },
+      body: JSON.stringify(body)
+    });
+    payload = await response.json();
+  }
+
+  if (!response.ok) {
+    throw new Error(payload.error?.message || 'خطا در ارتباط با OpenRouter');
+  }
+
+  const raw = payload.choices?.[0]?.message?.content || '';
+  const parsed = JSON.parse(raw.replace(/^```json\s*|\s*```$/g, ''));
+
+  const seed = Math.floor(Math.random() * 1000000);
+  const cleanPrompt = (parsed.imagePrompt || `${word} ${translation}`).replace(/["\n\r]/g, ' ').slice(0, 320);
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=600&height=400&nologo=true&seed=${seed}`;
+
+  const visualRecord = {
+    descriptionFa: parsed.descriptionFa || `تصویرسازی برای ${word}: ${translation}`,
+    imagePrompt: cleanPrompt,
+    mnemonicKeyFa: parsed.mnemonicKeyFa || '',
+    imageUrl,
+    seed,
+    createdAt: new Date().toISOString()
+  };
+
+  if (!state.aiVisuals) state.aiVisuals = {};
+  state.aiVisuals[item.id] = visualRecord;
+  saveState();
+
+  return visualRecord;
+}
+
+function renderFlashcardAiVisual(item) {
+  const container = document.getElementById('fcBackAiVisual');
+  if (!container || !item) return;
+
+  const visual = state.aiVisuals ? state.aiVisuals[item.id] : null;
+
+  if (visual) {
+    container.innerHTML = `
+      <div class="fc-ai-visual-card">
+        <div class="fc-ai-visual-thumb-container" id="fcAiThumbBtn" title="برای مشاهده تصویر بزرگ کلیک کنید">
+          <img src="${visual.imageUrl}" alt="${item.word || ''}" class="fc-ai-visual-img" loading="lazy">
+          <div class="fc-ai-visual-zoom-badge">🔍 بزرگ</div>
+        </div>
+        <div class="fc-ai-visual-content">
+          <div class="fc-ai-visual-title">✨ تصویرسازی ذهنی (AI)</div>
+          <div class="fc-ai-visual-desc">${visual.descriptionFa}</div>
+          ${visual.mnemonicKeyFa ? `<div class="fc-ai-visual-coding">💡 <strong>کدینگ:</strong> ${visual.mnemonicKeyFa}</div>` : ''}
+          <div class="fc-ai-visual-actions">
+            <button class="fc-ai-refresh-btn" id="fcAiRefreshBtn" title="بازتولید تصویر با پرامپت جدید">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              <span>تولید مجدد</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const thumbBtn = document.getElementById('fcAiThumbBtn');
+    if (thumbBtn) {
+      thumbBtn.onclick = (e) => {
+        e.stopPropagation();
+        openImageLightbox(visual.imageUrl, item.word || item.fr, visual.descriptionFa, visual.imagePrompt);
+      };
+    }
+
+    const refreshBtn = document.getElementById('fcAiRefreshBtn');
+    if (refreshBtn) {
+      refreshBtn.onclick = (e) => {
+        e.stopPropagation();
+        handleGenerateFlashcardVisual(item, true);
+      };
+    }
+  } else {
+    container.innerHTML = `
+      <div class="fc-ai-placeholder">
+        <button class="btn btn-outline btn-sm fc-ai-generate-btn" id="fcGenerateAiBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
+          <span>تصویرسازی ذهنی با AI (توصیف + عکس)</span>
+        </button>
+      </div>
+    `;
+
+    const genBtn = document.getElementById('fcGenerateAiBtn');
+    if (genBtn) {
+      genBtn.onclick = (e) => {
+        e.stopPropagation();
+        handleGenerateFlashcardVisual(item, false);
+      };
+    }
+  }
+}
+
+async function handleGenerateFlashcardVisual(item, forceRefresh = false) {
+  const container = document.getElementById('fcBackAiVisual');
+  if (container) {
+    container.innerHTML = `
+      <div class="fc-ai-loading">
+        <div class="fc-ai-spinner"></div>
+        <span>در حال تصویرسازی و خلق عکس با AI...</span>
+      </div>
+    `;
+  }
+
+  try {
+    await generateAiVisualForItem(item, { forceRefresh });
+    renderFlashcardAiVisual(item);
+    showToast('تصویرسازی ذهنی آماده شد ✨');
+  } catch (err) {
+    console.error(err);
+    renderFlashcardAiVisual(item);
+    if (err.message !== 'کلید OpenRouter تنظیم نشد') {
+      showToast(err.message || 'خطا در تولید تصویرسازی');
+    }
+  }
 }
 
 function setupImporterView() {
@@ -3023,6 +3443,30 @@ function initApp() {
       document.getElementById('wordModalOverlay').style.display = 'none';
     }
   };
+
+  // AI Key Modal Handlers
+  const aiKeyCloseBtn = document.getElementById('aiKeyModalCloseBtn');
+  const modalCancelAiKeyBtn = document.getElementById('modalCancelAiKeyBtn');
+  const modalSaveAiKeyBtn = document.getElementById('modalSaveAiKeyBtn');
+  const aiKeyModalOverlay = document.getElementById('aiKeyModalOverlay');
+  if (aiKeyCloseBtn) aiKeyCloseBtn.onclick = () => closeAiKeyModal(true);
+  if (modalCancelAiKeyBtn) modalCancelAiKeyBtn.onclick = () => closeAiKeyModal(true);
+  if (modalSaveAiKeyBtn) modalSaveAiKeyBtn.onclick = saveAiKeyFromModal;
+  if (aiKeyModalOverlay) {
+    aiKeyModalOverlay.onclick = (e) => {
+      if (e.target === aiKeyModalOverlay) closeAiKeyModal(true);
+    };
+  }
+
+  // Image Lightbox Handlers
+  const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+  const imageLightboxOverlay = document.getElementById('imageLightboxOverlay');
+  if (lightboxCloseBtn) lightboxCloseBtn.onclick = closeImageLightbox;
+  if (imageLightboxOverlay) {
+    imageLightboxOverlay.onclick = (e) => {
+      if (e.target === imageLightboxOverlay) closeImageLightbox();
+    };
+  }
 
   // Setup Global Search
   setupGlobalSearch();

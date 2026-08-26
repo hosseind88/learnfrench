@@ -49,8 +49,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Bypass API calls (e.g. OpenRouter API)
-  if (url.hostname.includes('openrouter.ai') || event.request.method !== 'GET') {
+  // Bypass API calls and dynamic AI image generation
+  if (url.hostname.includes('openrouter.ai') || url.hostname.includes('pollinations.ai') || event.request.method !== 'GET') {
     return;
   }
 
