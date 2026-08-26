@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v4';
+const CACHE_NAME = 'francais-facile-v5';
 
 const CORE_ASSETS = [
   './',
@@ -52,8 +52,13 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Bypass API calls, dynamic AI image generation and remote audio streaming
-  if (url.hostname.includes('openrouter.ai') || url.hostname.includes('pollinations.ai') || url.hostname.includes('arvanstorage.ir') || event.request.method !== 'GET') {
+  // Bypass API calls, dynamic AI image generation and remote audio/pdf streaming
+  if (url.hostname.includes('openrouter.ai') || 
+      url.hostname.includes('pollinations.ai') || 
+      url.hostname.includes('arvanstorage.ir') || 
+      url.pathname.endsWith('.pdf') || 
+      url.pathname.includes('.pdf') ||
+      event.request.method !== 'GET') {
     return;
   }
 

@@ -1418,9 +1418,9 @@ function renderCurrentFlashcard() {
   const backAudioBtn = document.getElementById('fcBackAudioBtn');
   if (backAudioBtn) {
     backAudioBtn.onclick = (e) => {
-      e.stopPropagation();
-      speakFrench(item.word);
-    };
+    e.stopPropagation();
+    speakFrench(item.word);
+  };
   }
 
   updateAnswerButtonIntervals(item);
@@ -3113,6 +3113,64 @@ function populateLessonJumpSelect() {
   });
 }
 
+const ARVAN_PDF_URL = 'https://france.s3.ir-thr-at1.arvanstorage.ir/Communication%20essentielle%20du%20franc%CC%A7ais%20A1.pdf?versionId=';
+const IDB_PDF_DB = 'FrancaisFacilePDF_DB';
+const IDB_PDF_STORE = 'files';
+const IDB_PDF_KEY = 'a1_book_data';
+
+let currentPdfRenderTask = null;
+
+function openPdfIdb() {
+  if (!('indexedDB' in window)) return Promise.resolve(null);
+  return new Promise((resolve) => {
+    try {
+      const request = indexedDB.open(IDB_PDF_DB, 1);
+      request.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(IDB_PDF_STORE)) {
+          db.createObjectStore(IDB_PDF_STORE);
+        }
+      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => resolve(null);
+    } catch (e) {
+      resolve(null);
+    }
+  });
+}
+
+async function getSavedPdfFromIdb() {
+  const db = await openPdfIdb();
+  if (!db) return null;
+  return new Promise((resolve) => {
+    try {
+      const tx = db.transaction(IDB_PDF_STORE, 'readonly');
+      const store = tx.objectStore(IDB_PDF_STORE);
+      const req = store.get(IDB_PDF_KEY);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => resolve(null);
+    } catch (e) {
+      resolve(null);
+    }
+  });
+}
+
+async function savePdfToIdb(data) {
+  const db = await openPdfIdb();
+  if (!db) return false;
+  return new Promise((resolve) => {
+    try {
+      const tx = db.transaction(IDB_PDF_STORE, 'readwrite');
+      const store = tx.objectStore(IDB_PDF_STORE);
+      store.put(data, IDB_PDF_KEY);
+      tx.oncomplete = () => resolve(true);
+      tx.onerror = () => resolve(false);
+    } catch (e) {
+      resolve(false);
+    }
+  });
+}
+
 async function loadBookPdf() {
   if (bookPdfDoc) {
     renderBookPage(state.book.currentPage || 1);
@@ -3120,42 +3178,134 @@ async function loadBookPdf() {
   }
 
   const overlay = document.getElementById('pdfLoadingOverlay');
+  if (overlay) {
+    overlay.style.display = 'flex';
+    overlay.innerHTML = `
+      <div class="fc-ai-spinner" style="width: 36px; height: 36px; border-width: 3px;"></div>
+      <div class="pdf-loading-text" id="pdfLoadingText">در حال بررسی و بارگذاری کتاب فرانسوی...</div>
+    `;
+  }
   const loadingText = document.getElementById('pdfLoadingText');
-  if (overlay) overlay.style.display = 'flex';
-  if (loadingText) loadingText.textContent = 'در حال بارگذاری کتاب فرانسوی...';
 
+  if (typeof pdfjsLib === 'undefined') {
+    showPdfError('کتابخانه PDF.js بارگذاری نشد. لطفاً اتصال اینترنت خود را بررسی کنید.');
+    return;
+  }
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  // 1. Check if already stored in IndexedDB (Ultra fast offline)
   try {
-    if (typeof pdfjsLib === 'undefined') {
-      throw new Error('کتابخانه PDF.js بارگذاری نشد');
-    }
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-    const pdfPath = 'Communication essentielle du français A1.pdf';
-    const loadingTask = pdfjsLib.getDocument(pdfPath);
-    bookPdfDoc = await loadingTask.promise;
-    finishPdfLoading();
-  } catch (err1) {
-    console.warn('PDF relative load failed, trying encoded URI...', err1);
-    try {
-      const encoded = encodeURI('Communication essentielle du français A1.pdf');
-      const loadingTask2 = pdfjsLib.getDocument(encoded);
-      bookPdfDoc = await loadingTask2.promise;
+    const cachedData = await getSavedPdfFromIdb();
+    if (cachedData) {
+      if (loadingText) loadingText.textContent = 'در حال باز کردن کتاب از حافظه آفلاین مرورگر...';
+      const loadingTask = pdfjsLib.getDocument({
+        data: cachedData,
+        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+        cMapPacked: true
+      });
+      bookPdfDoc = await loadingTask.promise;
       finishPdfLoading();
-    } catch (err2) {
-      console.error('All PDF load attempts failed:', err2);
+      return;
+    }
+  } catch (errIdb) {
+    console.warn('IDB PDF check failed:', errIdb);
+  }
+
+  // 2. Try URL sources
+  const sources = [
+    { name: 'سرور ابری آروان', url: ARVAN_PDF_URL },
+    { name: 'فایل محلی book.pdf', url: './book.pdf' },
+    { name: 'فایل اصلی کتاب', url: encodeURI('Communication essentielle du français A1.pdf') }
+  ];
+
+  let lastErr = null;
+
+  for (const src of sources) {
+    try {
+      if (loadingText) loadingText.textContent = `در حال دریافت کتاب از ${src.name}...`;
+
+      const response = await fetch(src.url);
+      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+
+      const arrayBuffer = await response.arrayBuffer();
+      if (arrayBuffer && arrayBuffer.byteLength > 1000) {
+        // Cache in IDB for instant future access
+        savePdfToIdb(arrayBuffer).catch(() => {});
+
+        const loadingTask = pdfjsLib.getDocument({
+          data: arrayBuffer,
+          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+          cMapPacked: true
+        });
+        bookPdfDoc = await loadingTask.promise;
+        finishPdfLoading();
+        return;
+      }
+    } catch (err) {
+      console.warn(`Load from ${src.name} failed:`, err);
+      lastErr = err;
+    }
+  }
+
+  showPdfError(lastErr?.message || 'عدم امکان دریافت خودکار به دلیل تنظیمات CORS سرور یا آفلاین بودن');
+}
+
+function showPdfError(errMsg) {
+  const overlay = document.getElementById('pdfLoadingOverlay');
+  if (!overlay) return;
+
+  overlay.innerHTML = `
+    <div style="text-align: center; padding: 28px 22px; max-width: 480px; color: #ffffff;">
+      <div style="font-size: 2.8rem; margin-bottom: 12px;">📖✨</div>
+      <div style="font-weight: 800; font-size: 1.2rem; margin-bottom: 8px; color: #f87171;">بارگذاری فایل کتاب PDF</div>
+      <div style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 20px;">
+        برای اجرای بدون محدودیت و کارکرد ۱۰۰٪ آفلاین، لطفاً فایل PDF کتاب را یک‌بار از روی سیستم انتخاب نمایید (به صورت دائمی در مرورگر ذخیره خواهد شد).
+      </div>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-primary" id="manualSelectPdfBtn" style="padding: 12px 20px; font-weight: 700; font-size: 0.95rem;">
+          📁 انتخاب فایل کتاب (PDF) از سیستم
+        </button>
+        <button class="btn btn-secondary btn-sm" id="retryPdfBtn">
+          🔄 تلاش مجدد از سرور آروان
+        </button>
+        <input type="file" id="manualPdfFileInput" accept="application/pdf,.pdf" hidden>
+      </div>
+    </div>
+  `;
+
+  const retryBtn = document.getElementById('retryPdfBtn');
+  if (retryBtn) retryBtn.onclick = () => loadBookPdf();
+
+  const manualBtn = document.getElementById('manualSelectPdfBtn');
+  const fileInput = document.getElementById('manualPdfFileInput');
+  if (manualBtn && fileInput) {
+    manualBtn.onclick = () => fileInput.click();
+    fileInput.onchange = async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
       if (overlay) {
         overlay.innerHTML = `
-          <div style="text-align: center; padding: 24px; color: var(--danger);">
-            <div style="font-size: 2.2rem; margin-bottom: 10px;">⚠️</div>
-            <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 6px;">خطا در بارگذاری فایل کتاب PDF</div>
-            <div style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 14px;">فایل Communication essentielle du français A1.pdf در دسترس نیست.</div>
-            <button class="btn btn-primary btn-sm" id="retryPdfBtn">تلاش مجدد</button>
-          </div>
+          <div class="fc-ai-spinner" style="width: 36px; height: 36px; border-width: 3px;"></div>
+          <div class="pdf-loading-text">در حال پردازش و ذخیره کتاب در حافظه مرورگر...</div>
         `;
-        const retryBtn = document.getElementById('retryPdfBtn');
-        if (retryBtn) retryBtn.onclick = () => loadBookPdf();
       }
-    }
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        await savePdfToIdb(arrayBuffer);
+        const loadingTask = pdfjsLib.getDocument({
+          data: arrayBuffer,
+          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+          cMapPacked: true
+        });
+        bookPdfDoc = await loadingTask.promise;
+        finishPdfLoading();
+        showToast('کتاب با موفقیت در حافظه مرورگر ذخیره شد ✨');
+      } catch (err) {
+        console.error('Manual PDF load error:', err);
+        showPdfError(err.message || 'فایل انتخابی نامعتبر است');
+      }
+    };
   }
 }
 
@@ -3189,21 +3339,19 @@ async function renderBookPage(pageNum) {
   if (nextBtn) nextBtn.disabled = pageNum >= bookPdfDoc.numPages;
 
   const zoomText = document.getElementById('pdfZoomLevel');
-  if (zoomText) zoomText.textContent = `${Math.round((state.book.zoom || 1.0) * 100)}%`;
 
-  if (isPdfRendering) {
-    pendingPdfPage = pageNum;
-    return;
+  // Cancel any active render task
+  if (currentPdfRenderTask) {
+    try {
+      currentPdfRenderTask.cancel();
+    } catch (e) {}
+    currentPdfRenderTask = null;
   }
-  isPdfRendering = true;
 
   try {
     const page = await bookPdfDoc.getPage(pageNum);
     const canvas = document.getElementById('pdfRenderCanvas');
-    if (!canvas) {
-      isPdfRendering = false;
-      return;
-    }
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
     const viewportWrapper = document.getElementById('bookPdfViewport');
@@ -3212,10 +3360,10 @@ async function renderBookPage(pageNum) {
     let scale = state.book.zoom || 1.0;
     if (state.book.fitWidth && containerWidth > 320) {
       const baseViewport = page.getViewport({ scale: 1.0 });
-      scale = containerWidth / baseViewport.width;
+      scale = Math.max(0.5, containerWidth / baseViewport.width);
       state.book.zoom = scale;
-      if (zoomText) zoomText.textContent = `${Math.round(scale * 100)}%`;
     }
+    if (zoomText) zoomText.textContent = `${Math.round(scale * 100)}%`;
 
     const dpr = window.devicePixelRatio || 1;
     const viewport = page.getViewport({ scale: scale * dpr });
@@ -3230,17 +3378,13 @@ async function renderBookPage(pageNum) {
       viewport: viewport
     };
 
-    await page.render(renderContext).promise;
-    isPdfRendering = false;
-
-    if (pendingPdfPage !== null) {
-      const nextP = pendingPdfPage;
-      pendingPdfPage = null;
-      renderBookPage(nextP);
-    }
+    currentPdfRenderTask = page.render(renderContext);
+    await currentPdfRenderTask.promise;
+    currentPdfRenderTask = null;
   } catch (err) {
-    console.error('Error during PDF rendering:', err);
-    isPdfRendering = false;
+    if (err && err.name !== 'RenderingCancelledException') {
+      console.error('Error during PDF rendering:', err);
+    }
   }
 
   updateBookAiDockForPage(pageNum);
