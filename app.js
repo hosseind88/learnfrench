@@ -1349,21 +1349,17 @@ function renderCurrentFlashcard() {
   const pct = sessionTotal ? Math.round((sessionPosition / sessionTotal) * 100) : 100;
   document.getElementById('flashcardProgressFill').style.width = `${pct}%`;
 
-  const isFaToFr = state.flashcards.direction !== 'fr-fa'; // Default is Persian -> French
+  // Always force Persian on FRONT, French on BACK
+  state.flashcards.direction = 'fa-fr';
 
   const frontHint = item.kind === 'sentence'
-    ? (isFaToFr ? 'معادل فرانسوی این جمله چیست؟' : 'جمله این درس را ترجمه کنید')
-    : (isFaToFr
-      ? (item.gender ? `جنسیت: ${item.gender === 'masculine' ? 'مذکر (le / un)' : item.gender === 'feminine' ? 'مؤنث (la / une)' : item.gender}` : (item.categoryNameFa || 'معادل فرانسوی این واژه چیست؟'))
-      : (item.gender ? `جنسیت: ${item.gender === 'masculine' ? 'مذکر (le)' : item.gender === 'feminine' ? 'مؤنث (la)' : item.gender}` : item.categoryNameFa));
+    ? 'معادل فرانسوی این جمله چیست؟'
+    : (item.gender
+      ? `جنسیت: ${item.gender === 'masculine' ? 'مذکر (le / un)' : item.gender === 'feminine' ? 'مؤنث (la / une)' : item.gender}`
+      : (item.categoryNameFa ? `دسته: ${item.categoryNameFa}` : 'معادل فرانسوی این واژه چیست؟'));
 
-  const frontCategory = isFaToFr
-    ? (item.categoryNameFa || item.categoryNameFr || 'واژگان')
-    : (item.categoryNameFr || 'Vocabulaire');
-
-  const backCategory = isFaToFr
-    ? (item.categoryNameFr || 'Français')
-    : (item.categoryNameFa || 'معنی و کاربرد');
+  const frontCategory = item.categoryNameFa || item.categoryNameFr || 'واژگان';
+  const backCategory = item.categoryNameFr || 'Français';
 
   const frontTextEl = document.getElementById('fcFrontText');
   const backTextEl = document.getElementById('fcBackTranslation');
@@ -1372,24 +1368,18 @@ function renderCurrentFlashcard() {
   document.getElementById('fcFrontCategory').textContent = frontCategory;
   document.getElementById('fcBackCategory').textContent = backCategory;
 
-  if (isFaToFr) {
-    frontTextEl.textContent = item.translation;
-    frontTextEl.dir = 'rtl';
-    frontTextEl.style.fontFamily = 'var(--font-fa)';
+  // FRONT: Always Persian
+  frontTextEl.textContent = item.translation;
+  frontTextEl.dir = 'rtl';
+  frontTextEl.style.fontFamily = 'var(--font-fa)';
 
-    backTextEl.textContent = item.word;
-    backTextEl.dir = 'ltr';
-    backTextEl.style.fontFamily = 'var(--font-fr)';
-    if (flipHintEl) flipHintEl.textContent = 'کلیک کنید یا Space را بزنید تا معادل فرانسوی را ببینید';
-  } else {
-    frontTextEl.textContent = item.word;
-    frontTextEl.dir = 'ltr';
-    frontTextEl.style.fontFamily = 'var(--font-fr)';
+  // BACK: Always French
+  backTextEl.textContent = item.word;
+  backTextEl.dir = 'ltr';
+  backTextEl.style.fontFamily = 'var(--font-fr)';
 
-    backTextEl.textContent = item.translation;
-    backTextEl.dir = 'rtl';
-    backTextEl.style.fontFamily = 'var(--font-fa)';
-    if (flipHintEl) flipHintEl.textContent = 'کلیک کنید یا Space را بزنید تا معنی فارسی را ببینید';
+  if (flipHintEl) {
+    flipHintEl.textContent = 'کلیک کنید یا Space را بزنید تا معادل فرانسوی را ببینید';
   }
 
   document.getElementById('fcFrontHint').textContent = frontHint;
@@ -1410,10 +1400,7 @@ function renderCurrentFlashcard() {
 
   const frontAudioBtn = document.getElementById('fcFrontAudioBtn');
   if (frontAudioBtn) {
-    frontAudioBtn.onclick = (e) => {
-      e.stopPropagation();
-      speakFrench(item.word);
-    };
+    frontAudioBtn.style.display = 'none'; // Never spoil French audio on front of card
   }
 
   const backAudioBtn = document.getElementById('fcBackAudioBtn');

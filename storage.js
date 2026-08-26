@@ -247,7 +247,7 @@ function applySnapshotToState(snapshot, state) {
   state.bestMatchRecord = Number(snapshot.bestMatchRecord) || 0;
   state.currentView = VALID_VIEWS.has(snapshot.currentView) ? snapshot.currentView : 'dashboard';
   state.flashcards.category = snapshot.flashcards?.category || 'all';
-  state.flashcards.direction = snapshot.flashcards?.direction || 'fa-fr';
+  state.flashcards.direction = 'fa-fr';
   state.flashcards.currentIndex = Number(snapshot.flashcards?.currentIndex) || 0;
   state.flashcards.deckId = snapshot.flashcards?.deckId || null;
   state.flashcards.screen = snapshot.flashcards?.screen === 'study' ? 'study' : 'browser';
