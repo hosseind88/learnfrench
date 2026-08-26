@@ -149,7 +149,7 @@ function readLegacyLocalStorage() {
     quizAccuracyHistory: JSON.parse(localStorage.getItem('ff_accuracy_hist') || '[]'),
     bestMatchRecord: parseInt(localStorage.getItem('ff_best_match') || '0', 10) || 0,
     currentView: 'dashboard',
-    flashcards: { category: 'all', direction: 'fr-fa', currentIndex: 0, deckId: null, screen: 'browser', reviews: {} },
+    flashcards: { category: 'all', direction: 'fa-fr', currentIndex: 0, deckId: null, screen: 'browser', reviews: {} },
     vocab: { category: 'all', gender: 'all', viewMode: 'grid' },
     sentences: { topic: 'all', hideTranslations: false },
     gameCategory: 'all',
@@ -247,7 +247,7 @@ function applySnapshotToState(snapshot, state) {
   state.bestMatchRecord = Number(snapshot.bestMatchRecord) || 0;
   state.currentView = VALID_VIEWS.has(snapshot.currentView) ? snapshot.currentView : 'dashboard';
   state.flashcards.category = snapshot.flashcards?.category || 'all';
-  state.flashcards.direction = snapshot.flashcards?.direction || 'fr-fa';
+  state.flashcards.direction = snapshot.flashcards?.direction || 'fa-fr';
   state.flashcards.currentIndex = Number(snapshot.flashcards?.currentIndex) || 0;
   state.flashcards.deckId = snapshot.flashcards?.deckId || null;
   state.flashcards.screen = snapshot.flashcards?.screen === 'study' ? 'study' : 'browser';
