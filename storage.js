@@ -149,7 +149,7 @@ function readLegacyLocalStorage() {
     quizAccuracyHistory: JSON.parse(localStorage.getItem('ff_accuracy_hist') || '[]'),
     bestMatchRecord: parseInt(localStorage.getItem('ff_best_match') || '0', 10) || 0,
     currentView: 'dashboard',
-    flashcards: { category: 'all', direction: 'fr-fa', currentIndex: 0 },
+    flashcards: { category: 'all', direction: 'fr-fa', currentIndex: 0, deckId: null, screen: 'browser' },
     vocab: { category: 'all', gender: 'all', viewMode: 'grid' },
     sentences: { topic: 'all', hideTranslations: false },
     gameCategory: 'all',
@@ -248,6 +248,8 @@ function applySnapshotToState(snapshot, state) {
   state.flashcards.category = snapshot.flashcards?.category || 'all';
   state.flashcards.direction = snapshot.flashcards?.direction || 'fr-fa';
   state.flashcards.currentIndex = Number(snapshot.flashcards?.currentIndex) || 0;
+  state.flashcards.deckId = snapshot.flashcards?.deckId || null;
+  state.flashcards.screen = snapshot.flashcards?.screen === 'study' ? 'study' : 'browser';
   state.vocab.category = snapshot.vocab?.category || 'all';
   state.vocab.gender = snapshot.vocab?.gender || 'all';
   state.vocab.viewMode = snapshot.vocab?.viewMode || 'grid';
@@ -348,7 +350,9 @@ window.FFStorage.buildSnapshot = function buildSnapshot(state) {
     flashcards: {
       category: state.flashcards.category,
       direction: state.flashcards.direction,
-      currentIndex: state.flashcards.currentIndex || 0
+      currentIndex: state.flashcards.currentIndex || 0,
+      deckId: state.flashcards.deckId || null,
+      screen: state.flashcards.screen || 'browser'
     },
     vocab: {
       category: state.vocab.category,
@@ -539,6 +543,8 @@ window.FFStorage.clearLearning = async function clearLearning(state) {
   state.quizLog = [];
   state.activityDates = [todayISO()];
   state.flashcards.currentIndex = 0;
+  state.flashcards.deckId = null;
+  state.flashcards.screen = 'browser';
   await this.flush(state);
 };
 

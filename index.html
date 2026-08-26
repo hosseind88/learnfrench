@@ -463,119 +463,145 @@
       <!-- VIEW 3: FLASHCARDS (Cartes Mémoire) -->
       <!-- ============================================================== -->
       <section id="view-flashcards" class="app-view">
-        <div class="flashcards-top-bar">
-          <div>
-            <h1 class="view-main-title">فلش‌کارت‌های تعاملی</h1>
-            <p class="view-main-desc">با سیستم تکرار هوشمند، لغات را به حافظه بلندمدت بسپارید</p>
+        <!-- Anki-style deck browser: pick a lesson, then study -->
+        <div id="flashcardDeckBrowser">
+          <div class="view-header-row">
+            <div>
+              <h1 class="view-main-title">فلش‌کارت‌ها مثل Anki</h1>
+              <p class="view-main-desc">هر درس یک دک جداست؛ روی درس بزنید و فقط همان کارت‌ها را مرور کنید</p>
+            </div>
           </div>
 
-          <div class="flashcard-settings-row">
-            <!-- Category Selector for Flashcards -->
-            <select id="flashcardCatSelect" class="custom-select">
-              <option value="all">تمام دسته‌ها (همه لغات)</option>
-              <option value="verbs">فعل‌ها (Verbes)</option>
-              <option value="nouns">اسم‌ها (Noms)</option>
-              <option value="adjectives">صفت‌ها (Adjectifs)</option>
-              <option value="expressions">اصطلاحات (Expressions)</option>
-              <option value="numbers">اعداد (Nombres)</option>
-              <option value="custom">اضافه‌شده با AI</option>
-              <option value="saved">فقط نشان‌شده‌ها ⭐</option>
-              <option value="unmastered">فقط لغات یاد نگرفته</option>
-            </select>
-
-            <!-- Mode: French->Persian or Persian->French -->
-            <button class="btn btn-outline btn-sm" id="flashcardFlipDirectionBtn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
-              <span id="flashcardDirectionLabel">فرانسوی ➔ فارسی</span>
-            </button>
-
-            <!-- Shuffle Button -->
-            <button class="icon-btn-sm" id="flashcardShuffleBtn" title="بر زدن کارت‌ها">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
-            </button>
+          <div class="anki-deck-table">
+            <div class="anki-deck-table-head">
+              <span>دک / درس</span>
+              <span class="anki-col-new">جدید</span>
+              <span class="anki-col-known">یادگرفته</span>
+              <span class="anki-col-total">کل</span>
+            </div>
+            <div id="flashcardDeckList"></div>
           </div>
         </div>
 
-        <!-- Flashcard Progress Bar -->
-        <div class="flashcard-progress-wrapper">
-          <div class="flashcard-progress-labels">
-            <span id="flashcardCounter">کارت 1 از 167</span>
-            <span id="flashcardMasteryRatio">۰ یاد گرفته شده</span>
-          </div>
-          <div class="progress-bar-container">
-            <div class="progress-bar-fill" id="flashcardProgressFill" style="width: 1%"></div>
-          </div>
-        </div>
-
-        <!-- 3D Flashcard Stage -->
-        <div class="flashcard-stage-container">
-          <div class="flashcard-card" id="mainFlashcard">
-            <div class="flashcard-inner" id="flashcardInner">
-              <!-- FRONT FACE -->
-              <div class="flashcard-face flashcard-front">
-                <div class="card-corner-tag" id="fcFrontCategory">Verbe</div>
-                <button class="fc-audio-btn" id="fcFrontAudioBtn" title="پخش تلفظ">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                </button>
-                <div class="fc-main-text" id="fcFrontText" dir="ltr">aimer</div>
-                <div class="fc-article-hint" id="fcFrontHint">فعل (verb)</div>
-                <div class="fc-flip-hint">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21h5v-5"></path></svg>
-                  <span>کلیک کنید یا Space را بزنید تا معنی را ببینید</span>
-                </div>
-              </div>
-
-              <!-- BACK FACE -->
-              <div class="flashcard-face flashcard-back">
-                <div class="card-corner-tag" id="fcBackCategory">معنی و مثال</div>
-                <div class="fc-translation-text" id="fcBackTranslation">دوست داشتن</div>
-                
-                <div class="fc-example-box" id="fcBackExampleBox">
-                  <div class="fc-example-label">مثال در جمله:</div>
-                  <div class="fc-example-fr" id="fcBackExampleFr" dir="ltr">J’aime lire des livres le soir.</div>
-                  <div class="fc-example-fa" id="fcBackExampleFa">من دوست دارم شب‌ها کتاب بخوانم.</div>
-                </div>
-
-                <div class="fc-details-tag" id="fcBackDetails"></div>
+        <!-- Study session for the selected deck -->
+        <div id="flashcardStudyScreen" style="display: none;">
+          <div class="flashcards-top-bar">
+            <div class="flashcard-study-heading">
+              <button class="btn btn-outline btn-sm" id="flashcardBackToDecksBtn" title="بازگشت به فهرست درس‌ها">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>درس‌ها</span>
+              </button>
+              <div>
+                <h1 class="view-main-title" id="flashcardStudyTitle">فلش‌کارت</h1>
+                <p class="view-main-desc" id="flashcardStudyDesc">روی کارت کلیک کنید تا پاسخ دیده شود</p>
               </div>
             </div>
+
+            <div class="flashcard-settings-row">
+              <button class="btn btn-outline btn-sm" id="flashcardFlipDirectionBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                <span id="flashcardDirectionLabel">فرانسوی ➔ فارسی</span>
+              </button>
+
+              <button class="icon-btn-sm" id="flashcardShuffleBtn" title="بر زدن کارت‌ها">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+              </button>
+            </div>
           </div>
-        </div>
 
-        <!-- Flashcard Interaction Buttons -->
-        <div class="flashcard-actions-bar">
-          <button class="fc-action-btn btn-again" id="fcBtnAgain" title="کلید 1 یا پیکان چپ">
-            <span class="btn-emoji">🔄</span>
-            <div class="btn-text">
-              <span class="main-label">نیاز به مرور</span>
-              <span class="sub-label">À revoir</span>
+          <div class="flashcard-progress-wrapper">
+            <div class="flashcard-progress-labels">
+              <span id="flashcardCounter">کارت 1 از 167</span>
+              <span id="flashcardMasteryRatio">۰ یاد گرفته شده</span>
             </div>
-          </button>
-
-          <button class="fc-action-btn btn-flip" id="fcBtnFlip" title="کلید Space">
-            <span class="btn-emoji">↩️</span>
-            <div class="btn-text">
-              <span class="main-label">برگرداندن کارت</span>
-              <span class="sub-label">Tourner</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" id="flashcardProgressFill" style="width: 1%"></div>
             </div>
-          </button>
+          </div>
 
-          <button class="fc-action-btn btn-know" id="fcBtnKnow" title="کلید 2 یا پیکان راست">
-            <span class="btn-emoji">✅</span>
-            <div class="btn-text">
-              <span class="main-label">کاملاً بلدم (+10 XP)</span>
-              <span class="sub-label">Je le sais</span>
+          <div class="flashcard-stage-container">
+            <div class="flashcard-card" id="mainFlashcard">
+              <div class="flashcard-inner" id="flashcardInner">
+                <div class="flashcard-face flashcard-front">
+                  <div class="card-corner-tag" id="fcFrontCategory">Verbe</div>
+                  <button class="fc-audio-btn" id="fcFrontAudioBtn" title="پخش تلفظ">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                  </button>
+                  <div class="fc-main-text" id="fcFrontText" dir="ltr">aimer</div>
+                  <div class="fc-article-hint" id="fcFrontHint">فعل (verb)</div>
+                  <div class="fc-flip-hint">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21h5v-5"></path></svg>
+                    <span>کلیک کنید یا Space را بزنید تا معنی را ببینید</span>
+                  </div>
+                </div>
+
+                <div class="flashcard-face flashcard-back">
+                  <div class="card-corner-tag" id="fcBackCategory">معنی و مثال</div>
+                  <div class="fc-translation-text" id="fcBackTranslation">دوست داشتن</div>
+                  
+                  <div class="fc-example-box" id="fcBackExampleBox">
+                    <div class="fc-example-label">مثال در جمله:</div>
+                    <div class="fc-example-fr" id="fcBackExampleFr" dir="ltr">J’aime lire des livres le soir.</div>
+                    <div class="fc-example-fa" id="fcBackExampleFa">من دوست دارم شب‌ها کتاب بخوانم.</div>
+                  </div>
+
+                  <div class="fc-details-tag" id="fcBackDetails"></div>
+                </div>
+              </div>
             </div>
-          </button>
-        </div>
+          </div>
 
-        <!-- Keyboard Shortcut Helper -->
-        <div class="keyboard-hints-row">
-          <span>میانبرهای کیبورد:</span>
-          <kbd>Space</kbd> برگرداندن کارت &bull;
-          <kbd>&larr;</kbd> مرور مجدد &bull;
-          <kbd>&rarr;</kbd> بلدم &bull;
-          <kbd>S</kbd> پخش صوت
+          <div class="flashcard-actions-bar" id="fcShowAnswerBar">
+            <button class="fc-action-btn btn-flip" id="fcBtnFlip" title="کلید Space">
+              <span class="btn-emoji">👁️</span>
+              <div class="btn-text">
+                <span class="main-label">نمایش پاسخ</span>
+                <span class="sub-label">Show Answer</span>
+              </div>
+            </button>
+          </div>
+
+          <div class="flashcard-actions-bar anki-rate-bar" id="fcRateBar" style="display: none;">
+            <button class="fc-action-btn btn-again" id="fcBtnAgain" title="کلید 1">
+              <span class="btn-emoji">1</span>
+              <div class="btn-text">
+                <span class="main-label">دوباره</span>
+                <span class="sub-label">Again</span>
+              </div>
+            </button>
+            <button class="fc-action-btn btn-hard" id="fcBtnHard" title="کلید 2">
+              <span class="btn-emoji">2</span>
+              <div class="btn-text">
+                <span class="main-label">سخت</span>
+                <span class="sub-label">Hard</span>
+              </div>
+            </button>
+            <button class="fc-action-btn btn-good" id="fcBtnGood" title="کلید 3">
+              <span class="btn-emoji">3</span>
+              <div class="btn-text">
+                <span class="main-label">خوب</span>
+                <span class="sub-label">Good</span>
+              </div>
+            </button>
+            <button class="fc-action-btn btn-easy" id="fcBtnKnow" title="کلید 4">
+              <span class="btn-emoji">4</span>
+              <div class="btn-text">
+                <span class="main-label">آسان</span>
+                <span class="sub-label">Easy</span>
+              </div>
+            </button>
+          </div>
+
+          <div class="keyboard-hints-row">
+            <span>میانبرهای Anki:</span>
+            <kbd>Space</kbd> نمایش پاسخ &bull;
+            <kbd>1</kbd> دوباره &bull;
+            <kbd>2</kbd> سخت &bull;
+            <kbd>3</kbd> خوب &bull;
+            <kbd>4</kbd> آسان &bull;
+            <kbd>S</kbd> پخش صوت &bull;
+            <kbd>Esc</kbd> فهرست درس‌ها
+          </div>
         </div>
       </section>
 

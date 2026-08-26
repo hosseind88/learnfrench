@@ -65,11 +65,14 @@ def main():
         }.get(cat, "x")
 
         if cat == "expressions":
-            cats[cat].append({
+            exp_entry = {
                 "id": f"exp{counters[cat]}",
                 "expression": item.get("expression") or item.get("word"),
                 "translation": item["translation"],
-            })
+            }
+            if item.get("lesson"):
+                exp_entry["lesson"] = item["lesson"]
+            cats[cat].append(exp_entry)
             continue
 
         entry = {
@@ -77,6 +80,8 @@ def main():
             "word": item.get("word") or item.get("expression"),
             "translation": item["translation"],
         }
+        if item.get("lesson"):
+            entry["lesson"] = item["lesson"]
         if cat == "nouns":
             entry["gender"] = item.get("gender") or "common"
             if item.get("note"):

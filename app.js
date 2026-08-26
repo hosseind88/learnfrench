@@ -27,7 +27,9 @@ const state = {
     currentIndex: 0,
     isFlipped: false,
     direction: 'fr-fa',
-    category: 'all'
+    category: 'all',
+    deckId: null,
+    screen: 'browser'
   },
 
   quiz: {
@@ -330,7 +332,7 @@ function switchView(viewName) {
   // Specific view initializer triggers
   if (viewName === 'dashboard') renderDashboard();
   if (viewName === 'vocab') renderVocabGrid();
-  if (viewName === 'flashcards') setupFlashcards({ reset: false });
+  if (viewName === 'flashcards') initFlashcardsView();
   if (viewName === 'quiz') resetQuizView();
   if (viewName === 'sentences') renderSentences();
   if (viewName === 'grammar') renderGrammarLab();
@@ -574,34 +576,212 @@ function renderVocabGrid() {
 }
 
 // ==========================================================================
-// 3. FLASHCARDS ENGINE
+// 3. FLASHCARDS ENGINE (Anki-style decks by lesson)
 // ==========================================================================
-function setupFlashcards({ reset = true } = {}) {
-  const allVocab = getAllVocabItems();
-  let deck = [...allVocab];
+function getLessonMeta(num) {
+  const lessons = APP_DATA.lessons || {};
+  return lessons[num] || { titleFa: 'درس', topic: 'other' };
+}
 
-  const cat = state.flashcards.category;
-  if (cat === 'saved') {
-    deck = deck.filter(item => state.savedIds.has(item.id));
-  } else if (cat === 'unmastered') {
-    deck = deck.filter(item => !state.masteredIds.has(item.id));
-  } else if (cat === 'custom') {
-    deck = deck.filter(item => item.custom);
-  } else if (cat !== 'all') {
-    deck = deck.filter(item => item.categoryKey === cat);
+function sentenceToFlashcard(s) {
+  const lesson = s.lesson || '00';
+  const meta = getLessonMeta(lesson);
+  return {
+    id: s.id,
+    word: s.fr,
+    translation: s.fa,
+    kind: 'sentence',
+    lesson,
+    categoryNameFr: lesson !== '00' ? `Leçon ${lesson}` : 'Phrase',
+    categoryNameFa: meta.titleFa
+  };
+}
+
+function getAnkiLessonCards(lessonNum) {
+  const sentences = getAllSentences()
+    .filter(s => s.lesson === lessonNum)
+    .map(sentenceToFlashcard);
+  const vocab = getAllVocabItems().filter(v => v.lesson === lessonNum);
+  return [...sentences, ...vocab];
+}
+
+function getAllAnkiCards() {
+  return [
+    ...getAllSentences().filter(s => s.lesson).map(sentenceToFlashcard),
+    ...getAllVocabItems().filter(v => v.lesson)
+  ];
+}
+
+function getFlashcardDeck(deckId) {
+  if (!deckId || deckId === 'all-lessons') return getAllAnkiCards();
+  if (deckId.startsWith('lesson-')) return getAnkiLessonCards(deckId.slice('lesson-'.length));
+  if (deckId === 'vocab-all') return getAllVocabItems();
+  if (deckId === 'vocab-saved') return getAllVocabItems().filter(item => state.savedIds.has(item.id));
+  if (deckId === 'vocab-unmastered') return getAllVocabItems().filter(item => !state.masteredIds.has(item.id));
+  if (deckId === 'vocab-custom') return getAllVocabItems().filter(item => item.custom);
+  if (deckId.startsWith('vocab-')) {
+    const cat = deckId.slice('vocab-'.length);
+    return getAllVocabItems().filter(item => item.categoryKey === cat);
   }
+  return getAllAnkiCards();
+}
+
+function countDeckStats(cards) {
+  const total = cards.length;
+  const known = cards.filter(card => state.masteredIds.has(card.id)).length;
+  return { total, known, neu: Math.max(0, total - known) };
+}
+
+function deckRowHtml({ id, title, sub, stats, parent = false }) {
+  return `
+    <button type="button" class="anki-deck-row${parent ? ' is-parent' : ''}" data-deck-id="${id}">
+      <span class="anki-deck-name">
+        <span class="anki-deck-title">${title}</span>
+        <span class="anki-deck-sub">${sub}</span>
+      </span>
+      <span class="anki-count-new">${stats.neu}</span>
+      <span class="anki-count-known">${stats.known}</span>
+      <span class="anki-count-total">${stats.total}</span>
+    </button>
+  `;
+}
+
+function renderFlashcardDeckBrowser() {
+  const list = document.getElementById('flashcardDeckList');
+  if (!list) return;
+
+  const lessonNums = Object.keys(APP_DATA.lessons || {}).sort((a, b) => Number(a) - Number(b));
+  const parts = [
+    deckRowHtml({
+      id: 'all-lessons',
+      title: 'Communication essentielle A1',
+      sub: 'همه درس‌های کتاب',
+      stats: countDeckStats(getAllAnkiCards()),
+      parent: true
+    }),
+    '<div class="anki-deck-section-label">درس‌ها · Leçons</div>'
+  ];
+
+  lessonNums.forEach((num) => {
+    const cards = getAnkiLessonCards(num);
+    if (!cards.length) return;
+    const meta = getLessonMeta(num);
+    parts.push(deckRowHtml({
+      id: `lesson-${num}`,
+      title: `Leçon ${num}`,
+      sub: meta.titleFa,
+      stats: countDeckStats(cards)
+    }));
+  });
+
+  const vocabDecks = [
+    { id: 'vocab-all', title: 'Vocabulaire', sub: 'همه واژگان' },
+    { id: 'vocab-verbs', title: 'Verbes', sub: 'فعل‌ها' },
+    { id: 'vocab-nouns', title: 'Noms', sub: 'اسم‌ها' },
+    { id: 'vocab-adjectives', title: 'Adjectifs', sub: 'صفت‌ها' },
+    { id: 'vocab-numbers', title: 'Nombres', sub: 'اعداد' },
+    { id: 'vocab-expressions', title: 'Expressions', sub: 'اصطلاحات' },
+    { id: 'vocab-custom', title: 'AI', sub: 'اضافه‌شده با AI' },
+    { id: 'vocab-saved', title: 'Signets', sub: 'نشان‌شده‌ها ⭐' },
+    { id: 'vocab-unmastered', title: 'À revoir', sub: 'فقط لغات یاد نگرفته' }
+  ];
+
+  parts.push('<div class="anki-deck-section-label">واژگان دسته‌ای</div>');
+  vocabDecks.forEach((deck) => {
+    const cards = getFlashcardDeck(deck.id);
+    if (!cards.length && deck.id !== 'vocab-all') return;
+    parts.push(deckRowHtml({
+      id: deck.id,
+      title: deck.title,
+      sub: deck.sub,
+      stats: countDeckStats(cards)
+    }));
+  });
+
+  list.innerHTML = parts.join('');
+  list.querySelectorAll('[data-deck-id]').forEach((btn) => {
+    btn.onclick = () => openFlashcardDeck(btn.dataset.deckId, { reset: true });
+  });
+}
+
+function showFlashcardScreen(screen) {
+  state.flashcards.screen = screen;
+  const browser = document.getElementById('flashcardDeckBrowser');
+  const study = document.getElementById('flashcardStudyScreen');
+  if (browser) browser.style.display = screen === 'browser' ? 'block' : 'none';
+  if (study) study.style.display = screen === 'study' ? 'block' : 'none';
+}
+
+function updateStudyHeading(deckId) {
+  const title = document.getElementById('flashcardStudyTitle');
+  const desc = document.getElementById('flashcardStudyDesc');
+  if (!title || !desc) return;
+
+  if (deckId === 'all-lessons') {
+    title.textContent = 'همه درس‌ها';
+    desc.textContent = 'Communication essentielle A1';
+    return;
+  }
+  if (deckId && deckId.startsWith('lesson-')) {
+    const num = deckId.slice('lesson-'.length);
+    title.textContent = `Leçon ${num}`;
+    desc.textContent = getLessonMeta(num).titleFa;
+    return;
+  }
+  title.textContent = 'واژگان';
+  desc.textContent = 'مرور کارت‌های این دسته';
+}
+
+function setFlashcardAnswerVisible(visible) {
+  state.flashcards.isFlipped = visible;
+  const cardEl = document.getElementById('mainFlashcard');
+  if (cardEl) cardEl.classList.toggle('flipped', visible);
+  const showBar = document.getElementById('fcShowAnswerBar');
+  const rateBar = document.getElementById('fcRateBar');
+  if (showBar) showBar.style.display = visible ? 'none' : 'flex';
+  if (rateBar) rateBar.style.display = visible ? 'flex' : 'none';
+}
+
+function initFlashcardsView() {
+  if (state.flashcards.screen === 'study' && state.flashcards.deckId) {
+    showFlashcardScreen('study');
+    setupFlashcards({ reset: false });
+    return;
+  }
+  showFlashcardScreen('browser');
+  renderFlashcardDeckBrowser();
+}
+
+function openFlashcardDeck(deckId, { reset = true } = {}) {
+  state.flashcards.deckId = deckId;
+  showFlashcardScreen('study');
+  setupFlashcards({ reset });
+  saveState();
+}
+
+function backToFlashcardDecks() {
+  showFlashcardScreen('browser');
+  renderFlashcardDeckBrowser();
+  saveState();
+}
+
+function setupFlashcards({ reset = true } = {}) {
+  const deckId = state.flashcards.deckId || 'all-lessons';
+  const deck = getFlashcardDeck(deckId);
 
   if (deck.length === 0) {
-    deck = [...allVocab];
-    showToast('دسته‌بندی انتخابی کارتی نداشت، تمام لغات لود شدند.');
+    showToast('این دک کارتی ندارد.');
+    backToFlashcardDecks();
+    return;
   }
+
+  updateStudyHeading(deckId);
 
   const resumeIndex = Math.max(0, Number(state.flashcards.currentIndex) || 0);
   state.flashcards.deck = deck;
   state.flashcards.currentIndex = reset
     ? 0
     : Math.min(resumeIndex, Math.max(0, deck.length - 1));
-  state.flashcards.isFlipped = false;
 
   renderCurrentFlashcard();
 }
@@ -611,31 +791,30 @@ function renderCurrentFlashcard() {
   const index = state.flashcards.currentIndex;
   const cardEl = document.getElementById('mainFlashcard');
 
-  if (!deck.length) return;
+  if (!deck.length || !cardEl) return;
 
   const item = deck[index];
-  state.flashcards.isFlipped = false;
-  cardEl.classList.remove('flipped');
+  setFlashcardAnswerVisible(false);
+  cardEl.classList.toggle('is-sentence', item.kind === 'sentence');
 
-  // Update progress
   document.getElementById('flashcardCounter').textContent = `کارت ${index + 1} از ${deck.length}`;
   const masteredInDeck = deck.filter(x => state.masteredIds.has(x.id)).length;
   document.getElementById('flashcardMasteryRatio').textContent = `${masteredInDeck} یاد گرفته شده`;
   const pct = Math.round(((index + 1) / deck.length) * 100);
   document.getElementById('flashcardProgressFill').style.width = `${pct}%`;
 
-  // Front & Back text based on direction
   const isFrToFa = state.flashcards.direction === 'fr-fa';
-  
-  // Front Elements
+  const frontHint = item.kind === 'sentence'
+    ? (isFrToFa ? 'جمله این درس را ترجمه کنید' : 'معادل فرانسوی این جمله چیست؟')
+    : (isFrToFa
+      ? (item.gender ? `جنسیت: ${item.gender === 'masculine' ? 'مذکر (le)' : item.gender === 'feminine' ? 'مؤنث (la)' : item.gender}` : item.categoryNameFa)
+      : 'معادل فرانسوی این واژه چیست؟');
+
   document.getElementById('fcFrontCategory').textContent = item.categoryNameFr || 'Vocabulaire';
   document.getElementById('fcFrontText').textContent = isFrToFa ? item.word : item.translation;
   document.getElementById('fcFrontText').dir = isFrToFa ? 'ltr' : 'rtl';
-  document.getElementById('fcFrontHint').textContent = isFrToFa 
-    ? (item.gender ? `جنسیت: ${item.gender === 'masculine' ? 'مذکر (le)' : item.gender === 'feminine' ? 'مؤنث (la)' : item.gender}` : item.categoryNameFa) 
-    : 'معادل فرانسوی این واژه چیست؟';
+  document.getElementById('fcFrontHint').textContent = frontHint;
 
-  // Back Elements
   document.getElementById('fcBackCategory').textContent = item.categoryNameFa || 'معنی و کاربرد';
   document.getElementById('fcBackTranslation').textContent = isFrToFa ? item.translation : item.word;
   document.getElementById('fcBackTranslation').dir = isFrToFa ? 'rtl' : 'ltr';
@@ -652,7 +831,6 @@ function renderCurrentFlashcard() {
   const detailsEl = document.getElementById('fcBackDetails');
   detailsEl.textContent = item.note ? `نکته: ${item.note}` : (item.fem ? `فرم مؤنث: ${item.fem}` : '');
 
-  // Front Audio trigger
   document.getElementById('fcFrontAudioBtn').onclick = (e) => {
     e.stopPropagation();
     speakFrench(item.word);
@@ -660,40 +838,56 @@ function renderCurrentFlashcard() {
 }
 
 function flipFlashcard() {
-  const cardEl = document.getElementById('mainFlashcard');
-  state.flashcards.isFlipped = !state.flashcards.isFlipped;
-  cardEl.classList.toggle('flipped', state.flashcards.isFlipped);
+  const nextVisible = !state.flashcards.isFlipped;
+  setFlashcardAnswerVisible(nextVisible);
   sfx.playFlip();
 
-  if (state.flashcards.isFlipped && state.flashcards.direction === 'fa-fr') {
+  if (nextVisible && state.flashcards.direction === 'fa-fr') {
     const item = state.flashcards.deck[state.flashcards.currentIndex];
-    speakFrench(item.word);
+    if (item) speakFrench(item.word);
   }
 }
 
-function nextFlashcard(knowsIt) {
+function rateFlashcard(rating) {
+  if (!state.flashcards.isFlipped) {
+    flipFlashcard();
+    return;
+  }
+
   const deck = state.flashcards.deck;
   const currentItem = deck[state.flashcards.currentIndex];
+  if (!currentItem) return;
 
-  if (knowsIt) {
+  if (rating === 'again') {
+    deck.push(currentItem);
+    sfx.playWrong();
+  } else if (rating === 'easy') {
     state.masteredIds.add(currentItem.id);
     addXP(10);
     sfx.playCorrect();
+  } else if (rating === 'good') {
+    addXP(7);
+    sfx.playCorrect();
   } else {
-    deck.push(currentItem);
-    sfx.playWrong();
+    addXP(3);
+    sfx.playCorrect();
   }
 
   if (state.flashcards.currentIndex < deck.length - 1) {
     state.flashcards.currentIndex++;
     saveState();
     renderCurrentFlashcard();
-  } else {
-    saveState();
-    showToast('🎉 تمام کارت‌های این دسته مرور شدند!');
-    triggerConfetti();
-    setupFlashcards({ reset: true });
+    return;
   }
+
+  saveState();
+  showToast('🎉 کارت‌های این درس تمام شد');
+  triggerConfetti();
+  backToFlashcardDecks();
+}
+
+function nextFlashcard(knowsIt) {
+  rateFlashcard(knowsIt ? 'easy' : 'again');
 }
 
 function shuffleFlashcardDeck() {
@@ -706,6 +900,10 @@ function shuffleFlashcardDeck() {
   saveState();
   renderCurrentFlashcard();
   showToast('کارت‌ها بر زده شدند 🔀');
+}
+
+function isFlashcardStudyActive() {
+  return state.currentView === 'flashcards' && state.flashcards.screen === 'study';
 }
 
 // ==========================================================================
@@ -1835,8 +2033,6 @@ function restoreUiFromState() {
   const speedBtn = document.getElementById('audioSpeedBtn');
   if (speedBtn) speedBtn.title = `سرعت تلفظ صوتی (فعلی: ${state.audioSpeed}x)`;
 
-  const flashCat = document.getElementById('flashcardCatSelect');
-  if (flashCat) flashCat.value = state.flashcards.category;
   const dirLabel = document.getElementById('flashcardDirectionLabel');
   if (dirLabel) {
     dirLabel.textContent = state.flashcards.direction === 'fr-fa' ? 'فرانسوی ➔ فارسی' : 'فارسی ➔ فرانسوی';
@@ -2053,7 +2249,10 @@ function initApp() {
     switchView('quiz');
     startQuiz('mcq');
   };
-  document.getElementById('dashFlashcardsBtn').onclick = () => switchView('flashcards');
+  document.getElementById('dashFlashcardsBtn').onclick = () => {
+    state.flashcards.screen = 'browser';
+    switchView('flashcards');
+  };
 
   // Dashboard Category Cards
   document.querySelectorAll('.cat-enter-btn, .category-card').forEach(el => {
@@ -2148,15 +2347,15 @@ function initApp() {
 
   // Flashcards Interactions
   document.getElementById('mainFlashcard').onclick = flipFlashcard;
-  document.getElementById('fcBtnFlip').onclick = flipFlashcard;
-  document.getElementById('fcBtnAgain').onclick = () => nextFlashcard(false);
-  document.getElementById('fcBtnKnow').onclick = () => nextFlashcard(true);
-
-  document.getElementById('flashcardCatSelect').onchange = (e) => {
-    state.flashcards.category = e.target.value;
-    setupFlashcards({ reset: true });
-    saveState();
+  document.getElementById('fcBtnFlip').onclick = (e) => {
+    e.stopPropagation();
+    flipFlashcard();
   };
+  document.getElementById('fcBtnAgain').onclick = () => rateFlashcard('again');
+  document.getElementById('fcBtnHard').onclick = () => rateFlashcard('hard');
+  document.getElementById('fcBtnGood').onclick = () => rateFlashcard('good');
+  document.getElementById('fcBtnKnow').onclick = () => rateFlashcard('easy');
+  document.getElementById('flashcardBackToDecksBtn').onclick = backToFlashcardDecks;
 
   document.getElementById('flashcardShuffleBtn').onclick = shuffleFlashcardDeck;
 
@@ -2167,20 +2366,34 @@ function initApp() {
     renderCurrentFlashcard();
   };
 
-  // Flashcards Keyboard Shortcuts
+  // Flashcards Keyboard Shortcuts (Anki: Space, 1-4)
   window.addEventListener('keydown', (e) => {
     if (state.currentView !== 'flashcards') return;
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
 
-    if (e.code === 'Space') {
+    if (e.key === 'Escape') {
       e.preventDefault();
-      flipFlashcard();
-    } else if (e.code === 'ArrowLeft' || e.key === '1') {
+      backToFlashcardDecks();
+      return;
+    }
+    if (!isFlashcardStudyActive()) return;
+
+    if (e.code === 'Space' || e.key === 'Enter') {
       e.preventDefault();
-      nextFlashcard(false);
-    } else if (e.code === 'ArrowRight' || e.key === '2') {
+      if (!state.flashcards.isFlipped) flipFlashcard();
+      else rateFlashcard('good');
+    } else if (e.key === '1') {
       e.preventDefault();
-      nextFlashcard(true);
+      rateFlashcard('again');
+    } else if (e.key === '2') {
+      e.preventDefault();
+      rateFlashcard('hard');
+    } else if (e.key === '3') {
+      e.preventDefault();
+      rateFlashcard('good');
+    } else if (e.key === '4') {
+      e.preventDefault();
+      rateFlashcard('easy');
     } else if (e.key.toLowerCase() === 's') {
       const item = state.flashcards.deck[state.flashcards.currentIndex];
       if (item) speakFrench(item.word);

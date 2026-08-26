@@ -842,107 +842,123 @@ const APP_DATA = {
         "word": "journaliste",
         "translation": "خبرنگار",
         "gender": "masculine",
-        "note": "مؤنث: journaliste"
+        "note": "مؤنث: journaliste",
+        "lesson": "01"
       },
       {
         "id": "n102",
         "word": "étudiant",
         "translation": "دانشجو",
         "gender": "masculine",
-        "note": "مؤنث: étudiante"
+        "note": "مؤنث: étudiante",
+        "lesson": "01"
       },
       {
         "id": "n103",
         "word": "professeur",
         "translation": "استاد / معلم",
         "gender": "masculine",
-        "note": "مؤنث: professeure"
+        "note": "مؤنث: professeure",
+        "lesson": "01"
       },
       {
         "id": "n104",
         "word": "ingénieur",
         "translation": "مهندس",
         "gender": "masculine",
-        "note": "مؤنث: ingénieure"
+        "note": "مؤنث: ingénieure",
+        "lesson": "01"
       },
       {
         "id": "n105",
         "word": "infirmier",
         "translation": "پرستار",
         "gender": "masculine",
-        "note": "مؤنث: infirmière"
+        "note": "مؤنث: infirmière",
+        "lesson": "01"
       },
       {
         "id": "n106",
         "word": "cuisinier",
         "translation": "آشپز",
         "gender": "masculine",
-        "note": "مؤنث: cuisinière"
+        "note": "مؤنث: cuisinière",
+        "lesson": "01"
       },
       {
         "id": "n107",
         "word": "technicien",
         "translation": "تکنسین",
         "gender": "masculine",
-        "note": "مؤنث: technicienne"
+        "note": "مؤنث: technicienne",
+        "lesson": "01"
       },
       {
         "id": "n108",
         "word": "pharmacien",
         "translation": "داروساز",
         "gender": "masculine",
-        "note": "مؤنث: pharmacienne"
+        "note": "مؤنث: pharmacienne",
+        "lesson": "01"
       },
       {
         "id": "n109",
         "word": "vendeur",
         "translation": "فروشنده",
         "gender": "masculine",
-        "note": "مؤنث: vendeuse"
+        "note": "مؤنث: vendeuse",
+        "lesson": "01"
       },
       {
         "id": "n110",
         "word": "serveur",
         "translation": "پیشخدمت",
         "gender": "masculine",
-        "note": "مؤنث: serveuse"
+        "note": "مؤنث: serveuse",
+        "lesson": "01"
       },
       {
         "id": "n111",
         "word": "nom",
         "translation": "نام خانوادگی",
-        "gender": "masculine"
+        "gender": "masculine",
+        "lesson": "01"
       },
       {
         "id": "n112",
         "word": "prénom",
         "translation": "نام",
-        "gender": "masculine"
+        "gender": "masculine",
+        "lesson": "01"
       },
       {
         "id": "n113",
         "word": "carte d'identité",
         "translation": "کارت شناسایی",
-        "gender": "feminine"
+        "gender": "feminine",
+        "lesson": "01"
       },
       {
         "id": "n114",
         "word": "âge",
         "translation": "سن",
-        "gender": "common"
+        "gender": "common",
+        "lesson": "01"
       },
       {
         "id": "n115",
         "word": "carte de visite",
         "translation": "کارت ویزیت",
-        "gender": "feminine"
+        "gender": "feminine",
+        "lesson": "01"
       },
       {
         "id": "n116",
         "word": "e-mail",
         "translation": "ایمیل",
         "gender": "masculine",
-        "note": "همچنین: courriel"
+        "note": "همچنین: courriel",
+        "lesson": "01"
       }
     ],
     "adjectives": [
@@ -1167,73 +1183,85 @@ const APP_DATA = {
         "id": "adj37",
         "word": "français",
         "translation": "فرانسوی",
-        "fem": "française"
+        "fem": "française",
+        "lesson": "01"
       },
       {
         "id": "adj38",
         "word": "anglais",
         "translation": "انگلیسی",
-        "fem": "anglaise"
+        "fem": "anglaise",
+        "lesson": "01"
       },
       {
         "id": "adj39",
         "word": "chinois",
         "translation": "چینی",
-        "fem": "chinoise"
+        "fem": "chinoise",
+        "lesson": "01"
       },
       {
         "id": "adj40",
         "word": "américain",
         "translation": "آمریکایی",
-        "fem": "américaine"
+        "fem": "américaine",
+        "lesson": "01"
       },
       {
         "id": "adj41",
         "word": "italien",
         "translation": "ایتالیایی",
-        "fem": "italienne"
+        "fem": "italienne",
+        "lesson": "01"
       },
       {
         "id": "adj42",
         "word": "brésilien",
         "translation": "برزیلی",
-        "fem": "brésilienne"
+        "fem": "brésilienne",
+        "lesson": "01"
       },
       {
         "id": "adj43",
         "word": "coréen",
         "translation": "کره‌ای",
-        "fem": "coréenne"
+        "fem": "coréenne",
+        "lesson": "01"
       },
       {
         "id": "adj44",
         "word": "espagnol",
         "translation": "اسپانیایی",
-        "fem": "espagnole"
+        "fem": "espagnole",
+        "lesson": "01"
       },
       {
         "id": "adj45",
         "word": "allemand",
         "translation": "آلمانی",
-        "fem": "allemande"
+        "fem": "allemande",
+        "lesson": "01"
       },
       {
         "id": "adj46",
         "word": "suisse",
         "translation": "سوئیسی",
-        "fem": "suisse"
+        "fem": "suisse",
+        "lesson": "01"
       },
       {
         "id": "adj47",
         "word": "belge",
         "translation": "بلژیکی",
-        "fem": "belge"
+        "fem": "belge",
+        "lesson": "01"
       },
       {
         "id": "adj48",
         "word": "russe",
         "translation": "روسی",
-        "fem": "russe"
+        "fem": "russe",
+        "lesson": "01"
       }
     ],
     "adverbs": [
@@ -1476,142 +1504,170 @@ const APP_DATA = {
       {
         "id": "num1",
         "word": "zéro",
-        "translation": "صفر"
+        "translation": "صفر",
+        "lesson": "01"
       },
       {
         "id": "num2",
         "word": "un",
-        "translation": "یک"
+        "translation": "یک",
+        "lesson": "01"
       },
       {
         "id": "num3",
         "word": "deux",
-        "translation": "دو"
+        "translation": "دو",
+        "lesson": "01"
       },
       {
         "id": "num4",
         "word": "trois",
-        "translation": "سه"
+        "translation": "سه",
+        "lesson": "01"
       },
       {
         "id": "num5",
         "word": "quatre",
-        "translation": "چهار"
+        "translation": "چهار",
+        "lesson": "01"
       },
       {
         "id": "num6",
         "word": "cinq",
-        "translation": "پنج"
+        "translation": "پنج",
+        "lesson": "01"
       },
       {
         "id": "num7",
         "word": "six",
-        "translation": "شش"
+        "translation": "شش",
+        "lesson": "01"
       },
       {
         "id": "num8",
         "word": "sept",
-        "translation": "هفت"
+        "translation": "هفت",
+        "lesson": "01"
       },
       {
         "id": "num9",
         "word": "huit",
-        "translation": "هشت"
+        "translation": "هشت",
+        "lesson": "01"
       },
       {
         "id": "num10",
         "word": "neuf",
-        "translation": "نه"
+        "translation": "نه",
+        "lesson": "01"
       },
       {
         "id": "num11",
         "word": "dix",
-        "translation": "ده"
+        "translation": "ده",
+        "lesson": "01"
       },
       {
         "id": "num12",
         "word": "onze",
-        "translation": "یازده"
+        "translation": "یازده",
+        "lesson": "01"
       },
       {
         "id": "num13",
         "word": "douze",
-        "translation": "دوازده"
+        "translation": "دوازده",
+        "lesson": "01"
       },
       {
         "id": "num14",
         "word": "treize",
-        "translation": "سیزده"
+        "translation": "سیزده",
+        "lesson": "01"
       },
       {
         "id": "num15",
         "word": "quatorze",
-        "translation": "چهارده"
+        "translation": "چهارده",
+        "lesson": "01"
       },
       {
         "id": "num16",
         "word": "quinze",
-        "translation": "پانزده"
+        "translation": "پانزده",
+        "lesson": "01"
       },
       {
         "id": "num17",
         "word": "seize",
-        "translation": "شانزده"
+        "translation": "شانزده",
+        "lesson": "01"
       },
       {
         "id": "num18",
         "word": "dix-sept",
-        "translation": "هفده"
+        "translation": "هفده",
+        "lesson": "01"
       },
       {
         "id": "num19",
         "word": "dix-huit",
-        "translation": "هجده"
+        "translation": "هجده",
+        "lesson": "01"
       },
       {
         "id": "num20",
         "word": "dix-neuf",
-        "translation": "نوزده"
+        "translation": "نوزده",
+        "lesson": "01"
       },
       {
         "id": "num21",
         "word": "vingt",
-        "translation": "بیست"
+        "translation": "بیست",
+        "lesson": "01"
       },
       {
         "id": "num22",
         "word": "trente",
-        "translation": "سی"
+        "translation": "سی",
+        "lesson": "01"
       },
       {
         "id": "num23",
         "word": "quarante",
-        "translation": "چهل"
+        "translation": "چهل",
+        "lesson": "01"
       },
       {
         "id": "num24",
         "word": "cinquante",
-        "translation": "پنجاه"
+        "translation": "پنجاه",
+        "lesson": "01"
       },
       {
         "id": "num25",
         "word": "soixante",
-        "translation": "شصت"
+        "translation": "شصت",
+        "lesson": "01"
       },
       {
         "id": "num26",
         "word": "soixante-dix",
-        "translation": "هفتاد"
+        "translation": "هفتاد",
+        "lesson": "01"
       },
       {
         "id": "num27",
         "word": "quatre-vingts",
-        "translation": "هشتاد"
+        "translation": "هشتاد",
+        "lesson": "01"
       },
       {
         "id": "num28",
         "word": "quatre-vingt-dix",
-        "translation": "نود"
+        "translation": "نود",
+        "lesson": "01"
       }
     ]
   },
@@ -4819,7 +4875,89 @@ const APP_DATA = {
       "topic": "culture",
       "lesson": "20"
     }
-  ]
+  ],
+  "lessons": {
+    "01": {
+      "topic": "identity",
+      "titleFa": "هویت، اعداد، ملیت و شغل"
+    },
+    "02": {
+      "topic": "family",
+      "titleFa": "خانواده و توصیف افراد"
+    },
+    "03": {
+      "topic": "time",
+      "titleFa": "روزها، ماه‌ها، ساعت و میز غذا"
+    },
+    "04": {
+      "topic": "housing",
+      "titleFa": "شهر، آدرس و خانه"
+    },
+    "05": {
+      "topic": "housing",
+      "titleFa": "تأسیسات خانه و تعمیرات"
+    },
+    "06": {
+      "topic": "housing",
+      "titleFa": "ساختمان، همسایه و حیوانات"
+    },
+    "07": {
+      "topic": "university",
+      "titleFa": "دانشگاه و درس"
+    },
+    "08": {
+      "topic": "routine",
+      "titleFa": "برنامه روزانه"
+    },
+    "09": {
+      "topic": "work",
+      "titleFa": "محیط کار و اداره"
+    },
+    "10": {
+      "topic": "clothing",
+      "titleFa": "رنگ‌ها، لباس و جنس"
+    },
+    "11": {
+      "topic": "food",
+      "titleFa": "میوه، سبزی و رستوران"
+    },
+    "12": {
+      "topic": "food",
+      "titleFa": "نانوایی و آشپزی"
+    },
+    "13": {
+      "topic": "health",
+      "titleFa": "بدن و بیماری"
+    },
+    "14": {
+      "topic": "health",
+      "titleFa": "داروخانه و درمان"
+    },
+    "15": {
+      "topic": "transport",
+      "titleFa": "حمل‌ونقل شهری"
+    },
+    "16": {
+      "topic": "transport",
+      "titleFa": "قطار و رانندگی"
+    },
+    "17": {
+      "topic": "travel",
+      "titleFa": "فرودگاه و مدارک سفر"
+    },
+    "18": {
+      "topic": "travel",
+      "titleFa": "هتل و طبیعت"
+    },
+    "19": {
+      "topic": "leisure",
+      "titleFa": "ورزش و آب‌وهوا"
+    },
+    "20": {
+      "topic": "culture",
+      "titleFa": "فرهنگ، موزه و نمایش"
+    }
+  }
 };
 
 function getAppCustomData() {

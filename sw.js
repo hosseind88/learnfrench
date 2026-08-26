@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v1';
+const CACHE_NAME = 'francais-facile-v2';
 
 const CORE_ASSETS = [
   './',

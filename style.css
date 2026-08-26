@@ -1463,6 +1463,157 @@ body.theme-dark .nav-item.active {
   margin-bottom: 20px;
 }
 
+.flashcard-study-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.anki-deck-table {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.anki-deck-table-head,
+.anki-deck-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px 88px 64px;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 18px;
+}
+
+.anki-deck-table-head {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.anki-deck-row {
+  width: 100%;
+  text-align: right;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  transition: background var(--transition-fast);
+}
+
+.anki-deck-row:last-child {
+  border-bottom: 0;
+}
+
+.anki-deck-row:hover {
+  background: var(--french-blue-light);
+}
+
+.anki-deck-row.is-parent {
+  font-weight: 800;
+}
+
+.anki-deck-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.anki-deck-title {
+  font-family: var(--font-fr);
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--text-primary);
+}
+
+.anki-deck-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.anki-deck-section-label {
+  padding: 10px 18px 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.anki-col-new,
+.anki-count-new {
+  color: #2563eb;
+  font-weight: 800;
+  text-align: center;
+}
+
+.anki-col-known,
+.anki-count-known {
+  color: #059669;
+  font-weight: 800;
+  text-align: center;
+}
+
+.anki-col-total,
+.anki-count-total {
+  color: var(--text-secondary);
+  font-weight: 700;
+  text-align: center;
+}
+
+.anki-rate-bar {
+  max-width: 720px;
+}
+
+.btn-hard {
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid rgba(234, 88, 12, 0.22);
+}
+
+.btn-good {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.btn-easy {
+  background: var(--french-blue-light);
+  color: var(--french-blue);
+  border: 1px solid rgba(37, 99, 235, 0.22);
+}
+
+.flashcard-card.is-sentence {
+  height: 400px;
+}
+
+.flashcard-card.is-sentence .fc-main-text,
+.flashcard-card.is-sentence .fc-translation-text {
+  font-size: 1.45rem;
+  line-height: 1.45;
+  max-width: 100%;
+}
+
+.theme-dark .btn-hard {
+  background: rgba(234, 88, 12, 0.18);
+  color: #fb923c;
+}
+
+.theme-dark .anki-deck-row:hover {
+  background: rgba(37, 99, 235, 0.16);
+}
+
 .flashcard-settings-row {
   display: flex;
   align-items: center;
@@ -1536,6 +1687,7 @@ body.theme-dark .nav-item.active {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  overflow: auto;
   border-radius: var(--radius-xl);
   border: 1px solid var(--border-subtle);
   background: var(--bg-surface);
@@ -1595,6 +1747,8 @@ body.theme-dark .nav-item.active {
   color: var(--text-primary);
   margin-bottom: 8px;
   letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .fc-article-hint {
@@ -3252,6 +3406,22 @@ body.theme-dark .nav-item.active {
     align-items: stretch;
     gap: 8px;
   }
+  .anki-deck-table-head,
+  .anki-deck-row {
+    grid-template-columns: minmax(0, 1fr) 52px 64px 48px;
+    padding: 10px 12px;
+  }
+  .anki-deck-title {
+    font-size: 0.88rem;
+  }
+  .anki-rate-bar {
+    max-width: 100%;
+  }
+  .btn-hard,
+  .btn-good,
+  .btn-easy {
+    min-width: 0;
+  }
   .flashcard-settings-row {
     justify-content: space-between;
     width: 100%;
@@ -3265,6 +3435,16 @@ body.theme-dark .nav-item.active {
     height: 280px;
     max-width: 100%;
     width: 100%;
+  }
+  .flashcard-study-heading {
+    width: 100%;
+  }
+  .flashcard-card.is-sentence {
+    height: 340px;
+  }
+  .flashcard-card.is-sentence .fc-main-text,
+  .flashcard-card.is-sentence .fc-translation-text {
+    font-size: 1.15rem;
   }
   .flashcard-face {
     padding: 20px 14px;
@@ -3574,6 +3754,9 @@ body.theme-dark .nav-item.active {
   }
   .flashcard-card {
     height: 260px;
+  }
+  .flashcard-card.is-sentence {
+    height: 300px;
   }
   .fc-main-text {
     font-size: 1.6rem;
