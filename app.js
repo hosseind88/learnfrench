@@ -323,6 +323,9 @@ function triggerConfetti() {
 function switchView(viewName) {
   state.currentView = viewName;
   
+  // Toggle body layout class for Book view (widescreen, compact margins)
+  document.body.classList.toggle('view-is-book', viewName === 'book');
+
   // Hide all views, show target
   document.querySelectorAll('.app-view').forEach(view => {
     view.classList.remove('active');
@@ -3753,6 +3756,40 @@ function setupBookSideDock() {
   });
 }
 
+function toggleBookFullscreen(forceState) {
+  const pane = document.querySelector('.book-pdf-pane');
+  if (!pane) return;
+
+  const isCurrentlyFs = pane.classList.contains('is-fullscreen');
+  const targetFs = typeof forceState === 'boolean' ? forceState : !isCurrentlyFs;
+
+  pane.classList.toggle('is-fullscreen', targetFs);
+
+  const enterIcon = document.querySelector('#pdfFullscreenBtn .fs-enter-icon');
+  const exitIcon = document.querySelector('#pdfFullscreenBtn .fs-exit-icon');
+  const label = document.getElementById('pdfFullscreenLabel');
+  if (enterIcon) enterIcon.style.display = targetFs ? 'none' : 'block';
+  if (exitIcon) exitIcon.style.display = targetFs ? 'block' : 'none';
+  if (label) label.textContent = targetFs ? 'خروج' : 'تمام‌صفحه';
+
+  // Request/exit native browser fullscreen
+  if (targetFs) {
+    if (document.documentElement.requestFullscreen && !document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
+    showToast('حالت تمام‌صفحه فعال شد (کلید F یا Esc برای خروج)');
+  } else {
+    if (document.exitFullscreen && document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    }
+  }
+
+  // Smoothly adjust zoom to new dimensions
+  setTimeout(() => {
+    fitBookPdfWidth();
+  }, 120);
+}
+
 function setupBookEventListeners() {
   const prevBtn = document.getElementById('pdfPrevPageBtn');
   const nextBtn = document.getElementById('pdfNextPageBtn');
@@ -3761,6 +3798,7 @@ function setupBookEventListeners() {
   const zoomInBtn = document.getElementById('pdfZoomInBtn');
   const zoomOutBtn = document.getElementById('pdfZoomOutBtn');
   const fitWidthBtn = document.getElementById('pdfFitWidthBtn');
+  const fullscreenBtn = document.getElementById('pdfFullscreenBtn');
   const analyzeBtn = document.getElementById('bookAiAnalyzePageBtn');
   const dockAnalyzeBtn = document.getElementById('dockAiAnalyzeBtn');
   const refreshAiBtn = document.getElementById('dockAiRefreshBtn');
@@ -3787,6 +3825,7 @@ function setupBookEventListeners() {
   if (zoomInBtn) zoomInBtn.onclick = () => zoomBookPdf('in');
   if (zoomOutBtn) zoomOutBtn.onclick = () => zoomBookPdf('out');
   if (fitWidthBtn) fitWidthBtn.onclick = fitBookPdfWidth;
+  if (fullscreenBtn) fullscreenBtn.onclick = () => toggleBookFullscreen();
 
   if (analyzeBtn) analyzeBtn.onclick = () => explainCurrentBookPageWithAi();
   if (dockAnalyzeBtn) dockAnalyzeBtn.onclick = () => explainCurrentBookPageWithAi();
@@ -3842,7 +3881,17 @@ function setupBookEventListeners() {
     }
   });
 
-  // Keyboard navigation for PDF reader (Left/Right arrow)
+  // Native fullscreen exit sync
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      const pane = document.querySelector('.book-pdf-pane');
+      if (pane && pane.classList.contains('is-fullscreen')) {
+        toggleBookFullscreen(false);
+      }
+    }
+  });
+
+  // Keyboard navigation for PDF reader (Left/Right arrow, F for fullscreen, Esc to exit)
   window.addEventListener('keydown', (e) => {
     if (state.currentView !== 'book') return;
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
@@ -3853,6 +3902,15 @@ function setupBookEventListeners() {
     } else if (e.key === 'ArrowLeft') {
       e.preventDefault();
       changeBookPage('prev');
+    } else if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault();
+      toggleBookFullscreen();
+    } else if (e.key === 'Escape') {
+      const pane = document.querySelector('.book-pdf-pane');
+      if (pane && pane.classList.contains('is-fullscreen')) {
+        e.preventDefault();
+        toggleBookFullscreen(false);
+      }
     }
   });
 }

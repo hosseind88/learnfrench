@@ -4452,16 +4452,56 @@ body.theme-dark .nav-item.active {
 /* ==========================================================================
    Book View (Livre & Audio - PDF Reader, Vision AI Dock, Audio Playlist)
    ========================================================================== */
+
+/* Fluid widescreen when viewing the book */
+body.view-is-book .app-layout {
+  max-width: 100%;
+  padding: 8px 14px 20px;
+  gap: 14px;
+}
+
+body.view-is-book .header-container {
+  max-width: 100%;
+  padding: 0 14px;
+}
+
+body.view-is-book .app-sidebar {
+  width: 225px;
+}
+
+body.view-is-book .nav-item {
+  padding: 8px 10px;
+  font-size: 0.85rem;
+}
+
+body.view-is-book .sidebar-tip-card {
+  display: none;
+}
+
+#view-book .view-header-row {
+  margin-bottom: 8px;
+  padding: 0 2px;
+}
+
+#view-book .view-main-title {
+  font-size: 1.28rem;
+  margin-bottom: 2px;
+}
+
+#view-book .view-main-desc {
+  font-size: 0.78rem;
+}
+
 .book-header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .book-workspace-layout {
   display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 20px;
+  grid-template-columns: 1fr 390px;
+  gap: 12px;
   align-items: start;
 }
 
@@ -4469,7 +4509,7 @@ body.theme-dark .nav-item.active {
 .book-pdf-pane {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   min-width: 0;
 }
 
@@ -4478,73 +4518,76 @@ body.theme-dark .nav-item.active {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
-  padding: 10px 16px;
-  border-radius: var(--radius-lg);
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
   background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .pdf-nav-group,
 .pdf-zoom-group {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .pdf-page-indicator {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
+  gap: 5px;
+  font-size: 0.82rem;
   color: var(--text-secondary);
 }
 
 .pdf-page-input {
-  width: 54px;
-  height: 32px;
+  width: 50px;
+  height: 28px;
   text-align: center;
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-sm);
   background: var(--bg-primary);
   font-weight: 700;
   color: var(--text-primary);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
+  padding: 0 2px;
 }
 
 .pdf-lesson-select {
-  max-width: 260px;
-  font-size: 0.82rem;
-  padding: 6px 12px;
-  height: 34px;
+  max-width: 230px;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  height: 30px;
 }
 
 .pdf-zoom-level {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-muted);
-  min-width: 44px;
+  min-width: 38px;
   text-align: center;
 }
 
 /* PDF Canvas Viewport */
 .book-pdf-viewport {
   position: relative;
-  background: #1e293b;
-  border-radius: var(--radius-xl);
+  background: #0f172a;
+  border-radius: var(--radius-lg);
   overflow: auto;
-  min-height: 650px;
-  max-height: calc(100vh - 170px);
+  min-height: 520px;
+  height: calc(100vh - 128px);
+  max-height: calc(100vh - 128px);
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 20px 12px;
+  padding: 8px 4px;
   box-shadow: var(--shadow-lg);
 }
 
 .pdf-loading-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(15, 23, 42, 0.88);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -4553,7 +4596,7 @@ body.theme-dark .nav-item.active {
   z-index: 10;
   backdrop-filter: blur(4px);
   color: #ffffff;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
 }
 
 .pdf-loading-text {
@@ -4564,8 +4607,8 @@ body.theme-dark .nav-item.active {
 .pdf-canvas-wrapper {
   display: flex;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
   background: #ffffff;
 }
 
@@ -4574,16 +4617,81 @@ body.theme-dark .nav-item.active {
   max-width: 100%;
 }
 
+/* Fullscreen Mode for Book PDF */
+.book-pdf-pane.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: #090d16;
+  width: 100vw;
+  height: 100vh;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.book-pdf-pane.is-fullscreen .book-pdf-toolbar {
+  background: rgba(30, 41, 59, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 6px 14px;
+}
+
+.book-pdf-pane.is-fullscreen .book-pdf-toolbar .pdf-page-indicator,
+.book-pdf-pane.is-fullscreen .book-pdf-toolbar .pdf-zoom-level {
+  color: #cbd5e1;
+}
+
+.book-pdf-pane.is-fullscreen .book-pdf-toolbar .btn-outline {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.book-pdf-pane.is-fullscreen .book-pdf-toolbar .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.book-pdf-pane.is-fullscreen .book-pdf-toolbar .icon-btn-sm {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.book-pdf-pane.is-fullscreen .book-pdf-toolbar .pdf-page-input,
+.book-pdf-pane.is-fullscreen .book-pdf-toolbar .pdf-lesson-select {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.book-pdf-pane.is-fullscreen .book-pdf-viewport {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 65px);
+  min-height: 0;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  background: #090d16;
+}
+
 /* Side Dock (AI Teacher + Audio Playlist) */
 .book-side-dock {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 170px);
-  min-height: 650px;
+  height: calc(100vh - 128px);
+  max-height: calc(100vh - 128px);
+  min-height: 520px;
   overflow: hidden;
 }
 
