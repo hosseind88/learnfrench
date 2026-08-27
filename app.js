@@ -2640,18 +2640,22 @@ async function generateAiVisualForItem(item, { forceRefresh = false } = {}) {
   const gender = item.gender ? (item.gender === 'masculine' ? 'masculine (le/un)' : item.gender === 'feminine' ? 'feminine (la/une)' : item.gender) : '';
   const note = item.note || item.fem || '';
 
-  const systemPrompt = `You are an expert French visual mnemonic teacher and concept illustrator for Persian (Farsi) learners.
-Create a memorable mental visual scene (کدینگ و تصویرسازی ذهنی) to help a learner effortlessly remember this French word or expression.
+  const systemPrompt = `You are an expert French teacher and art director for Persian (Farsi) learners.
+Create a clear, realistic visual scene that shows the real meaning of the French word or expression in its natural French context.
 
 Return ONLY a valid JSON object with these keys:
 {
-  "descriptionFa": "توصیف صحنه/تصویر ذهنی به زبان فارسی به صورت داستانی، جذاب و ملموس (۱ الی ۲ جمله) که معنای کلمه را در ذهن تثبیت کند",
-  "imagePrompt": "A charming, vivid, high-quality digital illustration of (specific concrete visual scene representing the concept/mnemonic), French vibe, warm cinematic lighting, detailed, clean composition, storybook style, no text, no letters, no typography",
-  "mnemonicKeyFa": "کدینگ کلیدی کوتاه به فارسی (اختیاری)"
+  "descriptionFa": "توصیف کوتاه و طبیعی صحنه به فارسی در ۱ یا ۲ جمله",
+  "imagePrompt": "A precise English description of a believable real-world scene that visually demonstrates the French meaning",
+  "mnemonicKeyFa": "نکته تصویری کلیدی کوتاه به فارسی (اختیاری)"
 }
 Rules:
 - descriptionFa must be in natural, engaging Persian.
-- imagePrompt must be in English, descriptive, concrete and optimized for image generation.
+- Prefer the supplied French example as the main scene when available.
+- imagePrompt must be concrete, location-aware and visually unambiguous.
+- Depict ordinary people, objects and architecture with realistic scale and anatomy.
+- Never invent surreal puns, giant objects, fantasy elements, collages, labels, captions or educational graphics.
+- Do not request visible writing or typography inside the image.
 - Do NOT output any markdown or explanation outside the JSON.`;
 
   const userPrompt = `French: "${word}"
@@ -2704,14 +2708,60 @@ ${note ? `Note: ${note}` : ''}`;
   const parsed = JSON.parse(raw.replace(/^```json\s*|\s*```$/g, ''));
 
   const seed = Math.floor(Math.random() * 1000000);
-  const cleanPrompt = (parsed.imagePrompt || `${word} ${translation}`).replace(/["\n\r]/g, ' ').slice(0, 320);
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=600&height=400&nologo=true&seed=${seed}`;
+  const scenePrompt = (parsed.imagePrompt || `${word}: ${translation}`).replace(/["\n\r]/g, ' ').trim();
+  const cleanPrompt = [
+    scenePrompt,
+    `The scene must accurately communicate the French concept "${word}" (${translation}).`,
+    example ? `Base the scene on this usage: "${example}".` : '',
+    'Photorealistic editorial travel photography, authentic contemporary France, natural candid moment, realistic people and anatomy, coherent architecture, soft daylight, cinematic composition, fine detail, 35mm lens.',
+    'Single continuous scene. No illustration, cartoon, surrealism, montage, split screen, watermark, caption, logo, UI, or legible text.'
+  ].filter(Boolean).join(' ');
+
+  const imageResponse = await fetch('https://openrouter.ai/api/v1/images', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${key}`,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': window.location.origin || 'http://localhost',
+      'X-Title': 'FrancaisFacile'
+    },
+    body: JSON.stringify({
+      model: 'openai/gpt-image-2',
+      prompt: cleanPrompt,
+      aspect_ratio: '3:2',
+      quality: 'medium',
+      n: 1
+    })
+  });
+
+  let imagePayload;
+  try {
+    imagePayload = await imageResponse.json();
+  } catch (err) {
+    throw new Error('پاسخ نامعتبر از مدل تولید تصویر');
+  }
+
+  if (!imageResponse.ok) {
+    throw new Error(imagePayload.error?.message || 'خطا در تولید تصویر با GPT Image');
+  }
+
+  const generatedImage = imagePayload.data?.[0];
+  const base64Image = generatedImage?.b64_json;
+  if (!base64Image) {
+    throw new Error('مدل تصویری عکسی برنگرداند');
+  }
+
+  const mediaType = generatedImage.media_type || 'image/png';
+  const imageUrl = base64Image.startsWith('data:')
+    ? base64Image
+    : `data:${mediaType};base64,${base64Image}`;
 
   const visualRecord = {
     descriptionFa: parsed.descriptionFa || `تصویرسازی برای ${word}: ${translation}`,
     imagePrompt: cleanPrompt,
     mnemonicKeyFa: parsed.mnemonicKeyFa || '',
     imageUrl,
+    imageModel: 'openai/gpt-image-2',
     seed,
     createdAt: new Date().toISOString()
   };
