@@ -486,7 +486,7 @@ function renderVocabGrid() {
   grid.innerHTML = items.map(item => {
     const isSaved = state.savedIds.has(item.id);
     const isMastered = state.masteredIds.has(item.id);
-    const visual = state.aiVisuals ? state.aiVisuals[item.id] : null;
+    const breakdown = getAiBreakdown(item.id);
 
     // Gender/Type tag format
     let genderBadgeHtml = '';
@@ -520,7 +520,7 @@ function renderVocabGrid() {
             <button class="vocab-action-icon-btn speak-btn" data-word="${item.word}" title="پخش تلفظ">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
             </button>
-            <button class="vocab-action-icon-btn ai-visual-btn ${visual ? 'has-visual' : ''}" data-id="${item.id}" title="${visual ? 'مشاهده تصویر و کدینگ AI' : 'تصویرسازی ذهنی با AI'}">
+            <button class="vocab-action-icon-btn ai-visual-btn ${breakdown ? 'has-visual' : ''}" data-id="${item.id}" title="${breakdown ? 'مشاهده ترجمه و تجزیه AI' : 'ترجمه و تجزیه با AI'}">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
             </button>
             <button class="vocab-action-icon-btn save-btn ${isSaved ? 'is-saved' : ''}" data-id="${item.id}" title="${isSaved ? 'حذف از نشان‌شده‌ها' : 'نشان کردن لغت'}">
@@ -545,13 +545,10 @@ function renderVocabGrid() {
           <div class="vocab-note-tag">💡 ${item.note}</div>
         ` : ''}
 
-        ${visual ? `
+        ${breakdown ? `
           <div class="vocab-ai-visual-snippet" data-id="${item.id}">
-            <div class="vocab-ai-thumb" title="بزرگ‌نمایی">
-              <img src="${visual.imageUrl}" alt="${item.word}" loading="lazy">
-            </div>
             <div class="vocab-ai-info">
-              <div class="vocab-ai-desc">✨ ${visual.descriptionFa}</div>
+              <div class="vocab-ai-desc">${escapeHtml(formatBreakdownMeaning(breakdown))}</div>
             </div>
           </div>
         ` : ''}
@@ -574,20 +571,20 @@ function renderVocabGrid() {
       const item = items.find(x => x.id === id);
       if (!item) return;
 
-      if (state.aiVisuals && state.aiVisuals[id]) {
-        const v = state.aiVisuals[id];
-        openImageLightbox(v.imageUrl, item.word, v.descriptionFa, v.imagePrompt);
+      const existing = getAiBreakdown(id);
+      if (existing) {
+        openBreakdownLightbox(existing, item);
       } else {
         btn.innerHTML = `<span style="display:inline-block;width:14px;height:14px;border:2px solid var(--purple);border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;"></span>`;
         btn.disabled = true;
         try {
-          await generateAiVisualForItem(item);
-          showToast('تصویرسازی ذهنی آماده شد ✨');
+          await generateAiBreakdownForItem(item);
+          showToast('ترجمه و تجزیه آماده شد ✨');
           renderVocabGrid();
         } catch (err) {
           console.error(err);
           if (err.message !== 'کلید OpenRouter تنظیم نشد') {
-            showToast(err.message || 'خطا در تصویرسازی AI');
+            showToast(err.message || 'خطا در ترجمه AI');
           }
           renderVocabGrid();
         }
@@ -600,9 +597,9 @@ function renderVocabGrid() {
       e.stopPropagation();
       const id = el.dataset.id;
       const item = items.find(x => x.id === id);
-      if (!item || !state.aiVisuals || !state.aiVisuals[id]) return;
-      const v = state.aiVisuals[id];
-      openImageLightbox(v.imageUrl, item.word, v.descriptionFa, v.imagePrompt);
+      const breakdown = getAiBreakdown(id);
+      if (!item || !breakdown) return;
+      openBreakdownLightbox(breakdown, item);
     };
   });
 
@@ -1411,7 +1408,7 @@ function renderCurrentFlashcard() {
   const detailsEl = document.getElementById('fcBackDetails');
   detailsEl.textContent = item.note ? `نکته: ${item.note}` : (item.fem ? `فرم مؤنث: ${item.fem}` : '');
 
-  renderFlashcardAiVisual(item);
+  renderFlashcardAiBreakdown(item);
 
   const frontAudioBtn = document.getElementById('fcFrontAudioBtn');
   if (frontAudioBtn) {
@@ -2269,24 +2266,20 @@ function openWordModal(item) {
   const modal = document.getElementById('wordModalOverlay');
   const content = document.getElementById('wordModalContent');
 
-  const visual = state.aiVisuals ? state.aiVisuals[item.id] : null;
+  const breakdown = getAiBreakdown(item.id);
 
   let aiBoxHtml = '';
-  if (visual) {
+  if (breakdown) {
     aiBoxHtml = `
       <div class="modal-ai-box">
         <div class="ai-title-row">
-          <span class="ai-tag">✨ تصویرسازی ذهنی و عکس AI</span>
+          <span class="ai-tag">✨ ترجمه و تجزیه AI</span>
           <button class="fc-ai-refresh-btn" id="modalAiRefreshBtn">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
             <span>تولید مجدد</span>
           </button>
         </div>
-        <div class="modal-ai-img-wrap" id="modalAiImgWrap" title="مشاهده تصویر در اندازه بزرگ">
-          <img src="${visual.imageUrl}" alt="${item.word}" loading="lazy">
-        </div>
-        <div style="font-size: 0.9rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 6px;">${visual.descriptionFa}</div>
-        ${visual.mnemonicKeyFa ? `<div class="fc-ai-visual-coding" style="margin-bottom: 6px;">💡 <strong>کدینگ:</strong> ${visual.mnemonicKeyFa}</div>` : ''}
+        ${renderAiBreakdownInner(breakdown)}
       </div>
     `;
   } else {
@@ -2294,7 +2287,7 @@ function openWordModal(item) {
       <div style="margin-bottom: 16px;" id="modalAiGenContainer">
         <button class="btn btn-outline btn-sm fc-ai-generate-btn" id="modalAiGenerateBtn" style="width: 100%; justify-content: center;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
-          <span>تصویرسازی ذهنی و ساخت عکس با AI</span>
+          <span>ترجمه و تجزیه با AI</span>
         </button>
       </div>
     `;
@@ -2344,23 +2337,19 @@ function openWordModal(item) {
 
   document.getElementById('modalSpeakBtn').onclick = () => speakFrench(item.word);
 
-  if (visual) {
-    const wrap = document.getElementById('modalAiImgWrap');
-    if (wrap) {
-      wrap.onclick = () => openImageLightbox(visual.imageUrl, item.word, visual.descriptionFa, visual.imagePrompt);
-    }
+  if (breakdown) {
     const refBtn = document.getElementById('modalAiRefreshBtn');
     if (refBtn) {
       refBtn.onclick = async () => {
         refBtn.disabled = true;
         try {
-          await generateAiVisualForItem(item, { forceRefresh: true });
-          showToast('تصویرسازی مجدد آماده شد ✨');
+          await generateAiBreakdownForItem(item, { forceRefresh: true });
+          showToast('ترجمه مجدد آماده شد ✨');
           openWordModal(item);
         } catch (err) {
           console.error(err);
           if (err.message !== 'کلید OpenRouter تنظیم نشد') {
-            showToast(err.message || 'خطا در تصویرسازی');
+            showToast(err.message || 'خطا در ترجمه');
           }
           openWordModal(item);
         }
@@ -2375,18 +2364,18 @@ function openWordModal(item) {
           c.innerHTML = `
             <div class="fc-ai-loading">
               <div class="fc-ai-spinner"></div>
-              <span>در حال خلق تصویرسازی ذهنی با AI...</span>
+              <span>در حال ترجمه و تجزیه با AI...</span>
             </div>
           `;
         }
         try {
-          await generateAiVisualForItem(item);
-          showToast('تصویرسازی ذهنی آماده شد ✨');
+          await generateAiBreakdownForItem(item);
+          showToast('ترجمه و تجزیه آماده شد ✨');
           openWordModal(item);
         } catch (err) {
           console.error(err);
           if (err.message !== 'کلید OpenRouter تنظیم نشد') {
-            showToast(err.message || 'خطا در تصویرسازی');
+            showToast(err.message || 'خطا در ترجمه');
           }
           openWordModal(item);
         }
@@ -2599,20 +2588,74 @@ function ensureOpenRouterKey() {
   });
 }
 
-function openImageLightbox(imageUrl, word, descriptionFa, imagePrompt) {
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function getAiBreakdown(itemId) {
+  const record = state.aiVisuals ? state.aiVisuals[itemId] : null;
+  if (!record || !Array.isArray(record.chunks)) return null;
+  return record;
+}
+
+function formatBreakdownMeaning(breakdown) {
+  const meaning = (breakdown.meaningFa || '').replace(/^یعنی[:：]\s*/, '');
+  const emojis = breakdown.emojis ? ` ${breakdown.emojis}` : '';
+  return meaning ? `یعنی: ${meaning}${emojis}` : '';
+}
+
+function renderAiBreakdownInner(breakdown) {
+  const chunks = (breakdown.chunks || [])
+    .filter(chunk => chunk && (chunk.fr || chunk.fa))
+    .map(chunk => `
+      <div class="ai-breakdown-chunk">
+        <span class="ai-breakdown-chunk-fr" dir="ltr">${escapeHtml(chunk.fr)}</span>
+        <span class="ai-breakdown-eq">=</span>
+        <span class="ai-breakdown-chunk-fa">${escapeHtml(chunk.fa)}</span>
+      </div>
+    `).join('');
+
+  const notes = (breakdown.notes || [])
+    .filter(note => note && (note.fr || note.fa))
+    .map(note => `
+      <div class="ai-breakdown-note">📌 ${escapeHtml(note.fr)} = ${escapeHtml(note.fa)}</div>
+    `).join('');
+
+  const exampleFr = breakdown.exampleFr || '';
+  const exampleFa = breakdown.exampleFa || '';
+
+  return `
+    <div class="ai-breakdown">
+      ${breakdown.fr ? `<div class="ai-breakdown-fr" dir="ltr">${escapeHtml(breakdown.fr)}</div>` : ''}
+      ${formatBreakdownMeaning(breakdown) ? `<div class="ai-breakdown-meaning">${escapeHtml(formatBreakdownMeaning(breakdown))}</div>` : ''}
+      ${chunks ? `<div class="ai-breakdown-chunks">${chunks}</div>` : ''}
+      ${notes ? `<div class="ai-breakdown-notes">${notes}</div>` : ''}
+      ${exampleFr ? `
+        <div class="ai-breakdown-example">
+          <div class="ai-breakdown-example-label">مثلاً:</div>
+          <div class="ai-breakdown-example-fr" dir="ltr">${escapeHtml(exampleFr)}</div>
+          ${exampleFa ? `<div class="ai-breakdown-example-fa">= ${escapeHtml(exampleFa)}</div>` : ''}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function openBreakdownLightbox(breakdown, item) {
   const modal = document.getElementById('imageLightboxOverlay');
-  const img = document.getElementById('lightboxImg');
-  const wordEl = document.getElementById('lightboxWordTitle');
-  const mnemonicEl = document.getElementById('lightboxMnemonicBox');
-  const promptEl = document.getElementById('lightboxPromptText');
+  const body = document.getElementById('lightboxBreakdownBody');
+  if (!modal || !body || !breakdown) return;
 
-  if (!modal || !img) return;
-
-  img.src = imageUrl;
-  if (wordEl) wordEl.textContent = word || '';
-  if (mnemonicEl) mnemonicEl.textContent = descriptionFa ? descriptionFa : '';
-  if (promptEl) promptEl.textContent = imagePrompt || '';
-
+  body.innerHTML = `
+    <div class="lightbox-info">
+      <div class="lightbox-word-title" dir="ltr">${escapeHtml(item?.word || breakdown.fr || '')}</div>
+      ${renderAiBreakdownInner(breakdown)}
+    </div>
+  `;
   modal.style.display = 'flex';
 }
 
@@ -2621,112 +2664,177 @@ function closeImageLightbox() {
   if (modal) modal.style.display = 'none';
 }
 
-function buildAiVisualPrompt(item) {
+function getBreakdownSource(item) {
   const word = item.word || item.expression || item.fr || '';
   const translation = item.translation || item.fa || '';
   const example = item.example || '';
-  const category = item.categoryNameFa || item.categoryKey || item.type || '';
+  const exampleFa = example ? (getTranslationForExample(example) || '') : '';
 
-  return [
-    'Photorealistic photograph of one continuous real-world scene in contemporary France.',
-    `Visually show the meaning of this French phrase: ${word}.`,
-    translation ? `Meaning: ${translation}.` : '',
-    example ? `Exact situation: ${example}.` : '',
-    category ? `Setting: ${category}.` : '',
-    'Authentic French streets, interiors, people, clothing and architecture.',
-    'Natural daylight, 35mm travel photography, realistic anatomy and scale, cinematic but natural.',
-    'No illustration, cartoon, collage, surreal giant objects, watermark, logo, caption or visible text.'
-  ].filter(Boolean).join(' ');
+  if (item.kind === 'sentence' || (word && /\s/.test(word))) {
+    return { fr: word, fa: translation, focus: word };
+  }
+  if (example) {
+    return { fr: example, fa: exampleFa || translation, focus: word };
+  }
+  return { fr: word, fa: translation, focus: word };
 }
 
-function buildPollinationsImageUrl(prompt, seed) {
-  const params = new URLSearchParams({
-    model: 'flux',
-    width: '1024',
-    height: '682',
-    nologo: 'true',
-    enhance: 'true',
-    private: 'true',
-    seed: String(seed)
-  });
-  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?${params.toString()}`;
-}
-
-async function generateAiVisualForItem(item, { forceRefresh = false } = {}) {
+async function generateAiBreakdownForItem(item, { forceRefresh = false } = {}) {
   if (!item || !item.id) {
     throw new Error('کارت معتبر نیست');
   }
 
-  if (!forceRefresh && state.aiVisuals && state.aiVisuals[item.id]) {
-    return state.aiVisuals[item.id];
+  const existing = getAiBreakdown(item.id);
+  if (!forceRefresh && existing) {
+    return existing;
   }
 
-  const word = item.word || item.expression || item.fr || '';
-  const translation = item.translation || item.fa || '';
-  const example = item.example || '';
-  const seed = Math.floor(Math.random() * 1000000);
-  const cleanPrompt = buildAiVisualPrompt(item);
-  const imageUrl = buildPollinationsImageUrl(cleanPrompt, seed);
+  const key = await ensureOpenRouterKey();
+  const model = state.openRouterModel || 'openai/gpt-4o-mini';
+  const source = getBreakdownSource(item);
+  const category = item.categoryNameFa || item.categoryKey || item.type || '';
+  const gender = item.gender
+    ? (item.gender === 'masculine' ? 'masculine (le/un)' : item.gender === 'feminine' ? 'feminine (la/une)' : item.gender)
+    : '';
 
-  const visualRecord = {
-    descriptionFa: example
-      ? `این تصویر کاربرد «${word}» را در یک موقعیت واقعی نشان می‌دهد؛ معنی: ${translation}`
-      : `یک صحنه واقعی برای به‌خاطر سپردن «${word}» به معنی «${translation}».`,
-    imagePrompt: cleanPrompt,
-    mnemonicKeyFa: '',
-    imageUrl,
-    imageModel: 'pollinations/flux',
-    seed,
+  const systemPrompt = `You are a patient A1 French teacher for Persian (Farsi) learners.
+Break the French sentence or phrase into small, useful pieces so the learner sees what each part means.
+
+Return ONLY a valid JSON object:
+{
+  "fr": "the French sentence or phrase being explained",
+  "meaningFa": "natural Persian translation without the word یعنی",
+  "emojis": "1 to 3 relevant emojis, or empty string",
+  "chunks": [{"fr":"Je bois","fa":"من می‌نوشم"}],
+  "notes": [{"fr":"boire","fa":"نوشیدن"}],
+  "exampleFr": "one similar A1 sentence with a small substitution",
+  "exampleFa": "Persian translation of that example"
+}
+
+Rules:
+- chunks must be meaningful groups (subject+verb, article+noun, preposition+noun), not every isolated letter.
+- Keep 3 to 6 chunks when possible.
+- notes: 1 to 3 key vocabulary or grammar points.
+- exampleFr should reuse the same pattern with one changed word.
+- Persian must be natural and simple.
+- If a focus word is given, include it in notes.
+- Do NOT output markdown or extra text.`;
+
+  const userPrompt = [
+    `French: "${source.fr}"`,
+    `Persian: "${source.fa}"`,
+    source.focus && source.focus !== source.fr ? `Focus word: "${source.focus}"` : '',
+    category ? `Category: ${category}` : '',
+    gender ? `Gender: ${gender}` : '',
+    item.note ? `Note: ${item.note}` : ''
+  ].filter(Boolean).join('\n');
+
+  const body = {
+    model,
+    temperature: 0.4,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ]
+  };
+
+  let response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${key}`,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': window.location.origin || 'http://localhost',
+      'X-Title': 'FrancaisFacile'
+    },
+    body: JSON.stringify({ ...body, response_format: { type: 'json_object' } })
+  });
+
+  let payload = await response.json();
+  if (!response.ok && /response_format|json_object/i.test(payload.error?.message || '')) {
+    response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': window.location.origin || 'http://localhost',
+        'X-Title': 'FrancaisFacile'
+      },
+      body: JSON.stringify(body)
+    });
+    payload = await response.json();
+  }
+
+  if (!response.ok && /insufficient credits|purchase more|never purchased credits/i.test(payload.error?.message || '')) {
+    const freeBody = { ...body, model: 'openrouter/free' };
+    response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': window.location.origin || 'http://localhost',
+        'X-Title': 'FrancaisFacile'
+      },
+      body: JSON.stringify(freeBody)
+    });
+    payload = await response.json();
+  }
+
+  if (!response.ok) {
+    throw new Error(payload.error?.message || 'خطا در ارتباط با OpenRouter');
+  }
+
+  const raw = payload.choices?.[0]?.message?.content || '';
+  let parsed;
+  try {
+    parsed = JSON.parse(raw.replace(/^```json\s*|\s*```$/g, ''));
+  } catch (err) {
+    throw new Error('پاسخ نامعتبر از مدل ترجمه');
+  }
+
+  const record = {
+    kind: 'breakdown',
+    fr: parsed.fr || source.fr,
+    meaningFa: parsed.meaningFa || source.fa,
+    emojis: parsed.emojis || '',
+    chunks: Array.isArray(parsed.chunks) ? parsed.chunks : [],
+    notes: Array.isArray(parsed.notes) ? parsed.notes : [],
+    exampleFr: parsed.exampleFr || '',
+    exampleFa: parsed.exampleFa || '',
     createdAt: new Date().toISOString()
   };
 
   if (!state.aiVisuals) state.aiVisuals = {};
-  state.aiVisuals[item.id] = visualRecord;
+  state.aiVisuals[item.id] = record;
   saveState();
 
-  return visualRecord;
+  return record;
 }
 
-function renderFlashcardAiVisual(item) {
+function renderFlashcardAiBreakdown(item) {
   const container = document.getElementById('fcBackAiVisual');
   if (!container || !item) return;
 
-  const visual = state.aiVisuals ? state.aiVisuals[item.id] : null;
+  const breakdown = getAiBreakdown(item.id);
 
-  if (visual) {
+  if (breakdown) {
     container.innerHTML = `
-      <div class="fc-ai-visual-card">
-        <div class="fc-ai-visual-thumb-container" id="fcAiThumbBtn" title="برای مشاهده تصویر بزرگ کلیک کنید">
-          <img src="${visual.imageUrl}" alt="${item.word || ''}" class="fc-ai-visual-img" loading="lazy">
-          <div class="fc-ai-visual-zoom-badge">🔍 بزرگ</div>
+      <div class="fc-ai-visual-card ai-breakdown-card">
+        <div class="ai-breakdown-toolbar">
+          <div class="fc-ai-visual-title">✨ ترجمه و تجزیه</div>
+          <button class="fc-ai-refresh-btn" id="fcAiRefreshBtn" title="تولید مجدد ترجمه">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            <span>تولید مجدد</span>
+          </button>
         </div>
-        <div class="fc-ai-visual-content">
-          <div class="fc-ai-visual-title">✨ تصویرسازی ذهنی (AI)</div>
-          <div class="fc-ai-visual-desc">${visual.descriptionFa}</div>
-          ${visual.mnemonicKeyFa ? `<div class="fc-ai-visual-coding">💡 <strong>کدینگ:</strong> ${visual.mnemonicKeyFa}</div>` : ''}
-          <div class="fc-ai-visual-actions">
-            <button class="fc-ai-refresh-btn" id="fcAiRefreshBtn" title="بازتولید تصویر با پرامپت جدید">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-              <span>تولید مجدد</span>
-            </button>
-          </div>
-        </div>
+        ${renderAiBreakdownInner(breakdown)}
       </div>
     `;
-
-    const thumbBtn = document.getElementById('fcAiThumbBtn');
-    if (thumbBtn) {
-      thumbBtn.onclick = (e) => {
-        e.stopPropagation();
-        openImageLightbox(visual.imageUrl, item.word || item.fr, visual.descriptionFa, visual.imagePrompt);
-      };
-    }
 
     const refreshBtn = document.getElementById('fcAiRefreshBtn');
     if (refreshBtn) {
       refreshBtn.onclick = (e) => {
         e.stopPropagation();
-        handleGenerateFlashcardVisual(item, true);
+        handleGenerateFlashcardBreakdown(item, true);
       };
     }
   } else {
@@ -2734,7 +2842,7 @@ function renderFlashcardAiVisual(item) {
       <div class="fc-ai-placeholder">
         <button class="btn btn-outline btn-sm fc-ai-generate-btn" id="fcGenerateAiBtn">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
-          <span>تصویرسازی ذهنی با AI (توصیف + عکس)</span>
+          <span>ترجمه و تجزیه با AI</span>
         </button>
       </div>
     `;
@@ -2743,32 +2851,32 @@ function renderFlashcardAiVisual(item) {
     if (genBtn) {
       genBtn.onclick = (e) => {
         e.stopPropagation();
-        handleGenerateFlashcardVisual(item, false);
+        handleGenerateFlashcardBreakdown(item, false);
       };
     }
   }
 }
 
-async function handleGenerateFlashcardVisual(item, forceRefresh = false) {
+async function handleGenerateFlashcardBreakdown(item, forceRefresh = false) {
   const container = document.getElementById('fcBackAiVisual');
   if (container) {
     container.innerHTML = `
       <div class="fc-ai-loading">
         <div class="fc-ai-spinner"></div>
-        <span>در حال تصویرسازی و خلق عکس با AI...</span>
+        <span>در حال ترجمه و تجزیه با AI...</span>
       </div>
     `;
   }
 
   try {
-    await generateAiVisualForItem(item, { forceRefresh });
-    renderFlashcardAiVisual(item);
-    showToast('تصویرسازی ذهنی آماده شد ✨');
+    await generateAiBreakdownForItem(item, { forceRefresh });
+    renderFlashcardAiBreakdown(item);
+    showToast('ترجمه و تجزیه آماده شد ✨');
   } catch (err) {
     console.error(err);
-    renderFlashcardAiVisual(item);
+    renderFlashcardAiBreakdown(item);
     if (err.message !== 'کلید OpenRouter تنظیم نشد') {
-      showToast(err.message || 'خطا در تولید تصویرسازی');
+      showToast(err.message || 'خطا در ترجمه');
     }
   }
 }

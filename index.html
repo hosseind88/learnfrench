@@ -565,7 +565,7 @@
 
                   <div class="fc-details-tag" id="fcBackDetails"></div>
 
-                  <!-- AI Visual Mnemonic & Image Container -->
+                  <!-- AI sentence / word breakdown -->
                   <div class="fc-ai-visual-box" id="fcBackAiVisual"></div>
                 </div>
               </div>
@@ -1347,7 +1347,7 @@
       <div class="ai-key-header">
         <div class="ai-key-icon-ring">✨</div>
         <h2 class="result-title" style="margin-top: 8px;">تنظیم هوش مصنوعی (OpenRouter)</h2>
-        <p class="result-subtitle">برای تصویرسازی ذهنی، تولید کدینگ و ساخت عکس فلش‌کارت‌ها، کلید OpenRouter خود را وارد کنید.</p>
+        <p class="result-subtitle">برای ترجمه تکه‌تکهٔ جمله‌ها و واژه‌های فلش‌کارت، کلید OpenRouter خود را وارد کنید.</p>
       </div>
 
       <div class="ai-key-form" style="margin-top: 18px; text-align: right;">
@@ -1369,7 +1369,7 @@
         </div>
 
         <div class="result-actions-row">
-          <button class="btn btn-primary" id="modalSaveAiKeyBtn" style="flex: 1;">ذخیره و ادامه تصویرسازی</button>
+          <button class="btn btn-primary" id="modalSaveAiKeyBtn" style="flex: 1;">ذخیره و ادامه ترجمه</button>
           <button class="btn btn-secondary" id="modalCancelAiKeyBtn">انصراف</button>
         </div>
       </div>
@@ -1377,24 +1377,12 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL 6: IMAGE LIGHTBOX & PROMPT VIEWER -->
+  <!-- MODAL 6: AI BREAKDOWN VIEWER -->
   <!-- ============================================================== -->
   <div class="modal-overlay" id="imageLightboxOverlay" style="display: none;">
     <div class="modal-dialog image-lightbox-dialog">
       <button class="modal-close-btn" id="lightboxCloseBtn" aria-label="بستن">&times;</button>
-      <div class="lightbox-content">
-        <div class="lightbox-image-wrapper">
-          <img id="lightboxImg" src="" alt="AI generated illustration" class="lightbox-img">
-        </div>
-        <div class="lightbox-info">
-          <div class="lightbox-word-title" id="lightboxWordTitle"></div>
-          <div class="lightbox-mnemonic-box" id="lightboxMnemonicBox"></div>
-          <div class="lightbox-prompt-box">
-            <div class="lightbox-prompt-label">پرامپت انگلیسی تصویرسازی (AI Image Prompt):</div>
-            <div class="lightbox-prompt-text" id="lightboxPromptText" dir="ltr"></div>
-          </div>
-        </div>
-      </div>
+      <div class="lightbox-content" id="lightboxBreakdownBody"></div>
     </div>
   </div>
 
