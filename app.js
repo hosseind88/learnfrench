@@ -2621,26 +2621,35 @@ function closeImageLightbox() {
   if (modal) modal.style.display = 'none';
 }
 
-async function makeGeneratedImagePersistent(generatedImage) {
-  const source = generatedImage?.src || generatedImage?.url || (typeof generatedImage === 'string' ? generatedImage : '');
-  if (!source) {
-    throw new Error('مدل تصویری عکسی برنگرداند');
-  }
-  if (source.startsWith('data:')) return source;
+function buildAiVisualPrompt(item) {
+  const word = item.word || item.expression || item.fr || '';
+  const translation = item.translation || item.fa || '';
+  const example = item.example || '';
+  const category = item.categoryNameFa || item.categoryKey || item.type || '';
 
-  try {
-    const response = await fetch(source);
-    if (!response.ok) return source;
-    const blob = await response.blob();
-    return await new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  } catch (err) {
-    return source;
-  }
+  return [
+    'Photorealistic photograph of one continuous real-world scene in contemporary France.',
+    `Visually show the meaning of this French phrase: ${word}.`,
+    translation ? `Meaning: ${translation}.` : '',
+    example ? `Exact situation: ${example}.` : '',
+    category ? `Setting: ${category}.` : '',
+    'Authentic French streets, interiors, people, clothing and architecture.',
+    'Natural daylight, 35mm travel photography, realistic anatomy and scale, cinematic but natural.',
+    'No illustration, cartoon, collage, surreal giant objects, watermark, logo, caption or visible text.'
+  ].filter(Boolean).join(' ');
+}
+
+function buildPollinationsImageUrl(prompt, seed) {
+  const params = new URLSearchParams({
+    model: 'flux',
+    width: '1024',
+    height: '682',
+    nologo: 'true',
+    enhance: 'true',
+    private: 'true',
+    seed: String(seed)
+  });
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?${params.toString()}`;
 }
 
 async function generateAiVisualForItem(item, { forceRefresh = false } = {}) {
@@ -2655,29 +2664,9 @@ async function generateAiVisualForItem(item, { forceRefresh = false } = {}) {
   const word = item.word || item.expression || item.fr || '';
   const translation = item.translation || item.fa || '';
   const example = item.example || '';
-  const category = item.categoryNameFa || item.categoryKey || item.type || '';
   const seed = Math.floor(Math.random() * 1000000);
-  const cleanPrompt = [
-    'Create one believable real-world scene for a French language learner.',
-    `The image must clearly communicate this French expression: "${word}".`,
-    `Its Persian meaning is: "${translation}".`,
-    category ? `Context category: ${category}.` : '',
-    example ? `Build the scene specifically around this natural usage: "${example}".` : '',
-    'Infer the correct place, people, actions, objects, era and atmosphere from the meaning instead of using symbolic mnemonic puns.',
-    'Photorealistic editorial travel photography, authentic contemporary France, natural candid moment, realistic people and anatomy, coherent architecture, soft daylight, cinematic composition, fine detail, 35mm lens.',
-    'Single continuous scene. No illustration, cartoon, surrealism, montage, split screen, watermark, caption, logo, UI, or legible text.'
-  ].filter(Boolean).join(' ');
-
-  if (!window.puter?.ai?.txt2img) {
-    throw new Error('سرویس رایگان تصویر بارگذاری نشد؛ اتصال اینترنت را بررسی کنید');
-  }
-
-  const generatedImage = await window.puter.ai.txt2img(cleanPrompt, {
-    model: 'openai/gpt-image-2',
-    quality: 'medium',
-    ratio: { w: 3, h: 2 }
-  });
-  const imageUrl = await makeGeneratedImagePersistent(generatedImage);
+  const cleanPrompt = buildAiVisualPrompt(item);
+  const imageUrl = buildPollinationsImageUrl(cleanPrompt, seed);
 
   const visualRecord = {
     descriptionFa: example
@@ -2686,7 +2675,7 @@ async function generateAiVisualForItem(item, { forceRefresh = false } = {}) {
     imagePrompt: cleanPrompt,
     mnemonicKeyFa: '',
     imageUrl,
-    imageModel: 'puter/openai/gpt-image-2',
+    imageModel: 'pollinations/flux',
     seed,
     createdAt: new Date().toISOString()
   };
