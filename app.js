@@ -2621,6 +2621,28 @@ function closeImageLightbox() {
   if (modal) modal.style.display = 'none';
 }
 
+async function makeGeneratedImagePersistent(generatedImage) {
+  const source = generatedImage?.src || generatedImage?.url || (typeof generatedImage === 'string' ? generatedImage : '');
+  if (!source) {
+    throw new Error('مدل تصویری عکسی برنگرداند');
+  }
+  if (source.startsWith('data:')) return source;
+
+  try {
+    const response = await fetch(source);
+    if (!response.ok) return source;
+    const blob = await response.blob();
+    return await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  } catch (err) {
+    return source;
+  }
+}
+
 async function generateAiVisualForItem(item, { forceRefresh = false } = {}) {
   if (!item || !item.id) {
     throw new Error('کارت معتبر نیست');
@@ -2630,138 +2652,41 @@ async function generateAiVisualForItem(item, { forceRefresh = false } = {}) {
     return state.aiVisuals[item.id];
   }
 
-  const key = await ensureOpenRouterKey();
-  const model = state.openRouterModel || 'openai/gpt-4o-mini';
-
   const word = item.word || item.expression || item.fr || '';
   const translation = item.translation || item.fa || '';
   const example = item.example || '';
   const category = item.categoryNameFa || item.categoryKey || item.type || '';
-  const gender = item.gender ? (item.gender === 'masculine' ? 'masculine (le/un)' : item.gender === 'feminine' ? 'feminine (la/une)' : item.gender) : '';
-  const note = item.note || item.fem || '';
-
-  const systemPrompt = `You are an expert French teacher and art director for Persian (Farsi) learners.
-Create a clear, realistic visual scene that shows the real meaning of the French word or expression in its natural French context.
-
-Return ONLY a valid JSON object with these keys:
-{
-  "descriptionFa": "توصیف کوتاه و طبیعی صحنه به فارسی در ۱ یا ۲ جمله",
-  "imagePrompt": "A precise English description of a believable real-world scene that visually demonstrates the French meaning",
-  "mnemonicKeyFa": "نکته تصویری کلیدی کوتاه به فارسی (اختیاری)"
-}
-Rules:
-- descriptionFa must be in natural, engaging Persian.
-- Prefer the supplied French example as the main scene when available.
-- imagePrompt must be concrete, location-aware and visually unambiguous.
-- Depict ordinary people, objects and architecture with realistic scale and anatomy.
-- Never invent surreal puns, giant objects, fantasy elements, collages, labels, captions or educational graphics.
-- Do not request visible writing or typography inside the image.
-- Do NOT output any markdown or explanation outside the JSON.`;
-
-  const userPrompt = `French: "${word}"
-Persian: "${translation}"
-${category ? `Category: ${category}` : ''}
-${gender ? `Gender: ${gender}` : ''}
-${example ? `Example in French: ${example}` : ''}
-${note ? `Note: ${note}` : ''}`;
-
-  const body = {
-    model,
-    temperature: 0.7,
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userPrompt }
-    ]
-  };
-
-  let response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${key}`,
-      'Content-Type': 'application/json',
-      'HTTP-Referer': window.location.origin || 'http://localhost',
-      'X-Title': 'FrancaisFacile'
-    },
-    body: JSON.stringify({ ...body, response_format: { type: 'json_object' } })
-  });
-
-  let payload = await response.json();
-  if (!response.ok && /response_format|json_object/i.test(payload.error?.message || '')) {
-    response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${key}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': window.location.origin || 'http://localhost',
-        'X-Title': 'FrancaisFacile'
-      },
-      body: JSON.stringify(body)
-    });
-    payload = await response.json();
-  }
-
-  if (!response.ok) {
-    throw new Error(payload.error?.message || 'خطا در ارتباط با OpenRouter');
-  }
-
-  const raw = payload.choices?.[0]?.message?.content || '';
-  const parsed = JSON.parse(raw.replace(/^```json\s*|\s*```$/g, ''));
-
   const seed = Math.floor(Math.random() * 1000000);
-  const scenePrompt = (parsed.imagePrompt || `${word}: ${translation}`).replace(/["\n\r]/g, ' ').trim();
   const cleanPrompt = [
-    scenePrompt,
-    `The scene must accurately communicate the French concept "${word}" (${translation}).`,
-    example ? `Base the scene on this usage: "${example}".` : '',
+    'Create one believable real-world scene for a French language learner.',
+    `The image must clearly communicate this French expression: "${word}".`,
+    `Its Persian meaning is: "${translation}".`,
+    category ? `Context category: ${category}.` : '',
+    example ? `Build the scene specifically around this natural usage: "${example}".` : '',
+    'Infer the correct place, people, actions, objects, era and atmosphere from the meaning instead of using symbolic mnemonic puns.',
     'Photorealistic editorial travel photography, authentic contemporary France, natural candid moment, realistic people and anatomy, coherent architecture, soft daylight, cinematic composition, fine detail, 35mm lens.',
     'Single continuous scene. No illustration, cartoon, surrealism, montage, split screen, watermark, caption, logo, UI, or legible text.'
   ].filter(Boolean).join(' ');
 
-  const imageResponse = await fetch('https://openrouter.ai/api/v1/images', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${key}`,
-      'Content-Type': 'application/json',
-      'HTTP-Referer': window.location.origin || 'http://localhost',
-      'X-Title': 'FrancaisFacile'
-    },
-    body: JSON.stringify({
-      model: 'openai/gpt-image-2',
-      prompt: cleanPrompt,
-      aspect_ratio: '3:2',
-      quality: 'medium',
-      n: 1
-    })
+  if (!window.puter?.ai?.txt2img) {
+    throw new Error('سرویس رایگان تصویر بارگذاری نشد؛ اتصال اینترنت را بررسی کنید');
+  }
+
+  const generatedImage = await window.puter.ai.txt2img(cleanPrompt, {
+    model: 'openai/gpt-image-2',
+    quality: 'medium',
+    ratio: { w: 3, h: 2 }
   });
-
-  let imagePayload;
-  try {
-    imagePayload = await imageResponse.json();
-  } catch (err) {
-    throw new Error('پاسخ نامعتبر از مدل تولید تصویر');
-  }
-
-  if (!imageResponse.ok) {
-    throw new Error(imagePayload.error?.message || 'خطا در تولید تصویر با GPT Image');
-  }
-
-  const generatedImage = imagePayload.data?.[0];
-  const base64Image = generatedImage?.b64_json;
-  if (!base64Image) {
-    throw new Error('مدل تصویری عکسی برنگرداند');
-  }
-
-  const mediaType = generatedImage.media_type || 'image/png';
-  const imageUrl = base64Image.startsWith('data:')
-    ? base64Image
-    : `data:${mediaType};base64,${base64Image}`;
+  const imageUrl = await makeGeneratedImagePersistent(generatedImage);
 
   const visualRecord = {
-    descriptionFa: parsed.descriptionFa || `تصویرسازی برای ${word}: ${translation}`,
+    descriptionFa: example
+      ? `این تصویر کاربرد «${word}» را در یک موقعیت واقعی نشان می‌دهد؛ معنی: ${translation}`
+      : `یک صحنه واقعی برای به‌خاطر سپردن «${word}» به معنی «${translation}».`,
     imagePrompt: cleanPrompt,
-    mnemonicKeyFa: parsed.mnemonicKeyFa || '',
+    mnemonicKeyFa: '',
     imageUrl,
-    imageModel: 'openai/gpt-image-2',
+    imageModel: 'puter/openai/gpt-image-2',
     seed,
     createdAt: new Date().toISOString()
   };
