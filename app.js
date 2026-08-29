@@ -1111,7 +1111,7 @@ function getLessonMeta(num) {
 }
 
 function sentenceToFlashcard(s) {
-  const lesson = s.lesson || '00';
+  const lesson = s.lesson || (s.custom ? '00' : '00');
   const meta = getLessonMeta(lesson);
   return {
     id: s.id,
@@ -1119,8 +1119,9 @@ function sentenceToFlashcard(s) {
     translation: s.fa,
     kind: 'sentence',
     lesson,
-    categoryNameFr: lesson !== '00' ? `Leçon ${lesson}` : 'Phrase',
-    categoryNameFa: meta.titleFa
+    custom: Boolean(s.custom),
+    categoryNameFr: s.custom ? 'Phrase AI' : (lesson !== '00' ? `Leçon ${lesson}` : 'Phrase'),
+    categoryNameFa: s.custom ? 'افزوده‌شده با AI' : meta.titleFa
   };
 }
 
@@ -1134,7 +1135,7 @@ function getAnkiLessonCards(lessonNum) {
 
 function getAllAnkiCards() {
   return [
-    ...getAllSentences().filter(s => s.lesson).map(sentenceToFlashcard),
+    ...getAllSentences().filter(s => s.lesson || s.custom).map(sentenceToFlashcard),
     ...getAllVocabItems().filter(v => v.lesson)
   ];
 }
@@ -1142,6 +1143,9 @@ function getAllAnkiCards() {
 function getFlashcardDeck(deckId) {
   if (!deckId || deckId === 'all-lessons') return getAllAnkiCards();
   if (deckId.startsWith('lesson-')) return getAnkiLessonCards(deckId.slice('lesson-'.length));
+  if (deckId === 'sentences-custom') {
+    return getAllSentences().filter(s => s.custom).map(sentenceToFlashcard);
+  }
   if (deckId === 'vocab-all') return getAllVocabItems();
   if (deckId === 'vocab-saved') return getAllVocabItems().filter(item => state.savedIds.has(item.id));
   if (deckId === 'vocab-unmastered') return getAllVocabItems().filter(item => !state.masteredIds.has(item.id));
@@ -1228,10 +1232,21 @@ function renderFlashcardDeckBrowser() {
     { id: 'vocab-adjectives', title: 'Adjectifs', sub: 'صفت‌ها' },
     { id: 'vocab-numbers', title: 'Nombres', sub: 'اعداد' },
     { id: 'vocab-expressions', title: 'Expressions', sub: 'اصطلاحات' },
-    { id: 'vocab-custom', title: 'AI', sub: 'اضافه‌شده با AI' },
+    { id: 'vocab-custom', title: 'AI', sub: 'واژگان افزوده‌شده با AI' },
     { id: 'vocab-saved', title: 'Signets', sub: 'نشان‌شده‌ها ⭐' },
     { id: 'vocab-unmastered', title: 'À revoir', sub: 'فقط لغات یاد نگرفته' }
   ];
+
+  const customSentenceCards = getFlashcardDeck('sentences-custom');
+  if (customSentenceCards.length) {
+    parts.push('<div class="anki-deck-section-label">جملات افزوده‌شده</div>');
+    parts.push(deckRowHtml({
+      id: 'sentences-custom',
+      title: 'Phrases AI',
+      sub: 'کارت جمله ساخته‌شده با AI',
+      stats: countDeckStats(customSentenceCards)
+    }));
+  }
 
   parts.push('<div class="anki-deck-section-label">واژگان دسته‌ای</div>');
   vocabDecks.forEach((deck) => {
@@ -1273,6 +1288,11 @@ function updateStudyHeading(deckId) {
     const num = deckId.slice('lesson-'.length);
     title.textContent = `Leçon ${num}`;
     desc.textContent = getLessonMeta(num).titleFa;
+    return;
+  }
+  if (deckId === 'sentences-custom') {
+    title.textContent = 'جملات AI';
+    desc.textContent = 'کارت‌های جمله افزوده‌شده با هوش مصنوعی';
     return;
   }
   title.textContent = 'واژگان';
@@ -2916,30 +2936,33 @@ async function analyzeImportedSentence() {
   status.textContent = 'در حال تحلیل جمله...';
   preview.style.display = 'none';
 
-  const systemPrompt = `You are a French A1 teacher for Persian (Farsi) speakers.
-Extract learning data from the user's French text.
-Return ONLY valid JSON with this shape:
+  const systemPrompt = `You are a patient A1 French teacher for Persian (Farsi) learners.
+Split the user's French text into complete teaching sentences and break each sentence into meaningful chunks.
+
+Return ONLY valid JSON:
 {
-  "sentence": { "fr": "...", "fa": "...", "topic": "food|work|family|health|travel|housing|routine|culture|other" },
-  "items": [
+  "sentences": [
     {
-      "word": "lemma in French",
-      "translation": "Persian meaning",
-      "categoryKey": "verbs|nouns|adjectives|adverbs|prepositions|expressions|numbers",
-      "gender": "masculine|feminine|common|feminine_plural|",
-      "type": "verb|reflexive_verb|noun|",
-      "fem": "feminine adjective form if relevant",
-      "example": "short French example using the word",
-      "note": "optional Persian note"
+      "fr": "complete French sentence",
+      "fa": "natural Persian translation",
+      "topic": "food|work|family|health|travel|housing|routine|culture|other",
+      "emojis": "1 to 3 relevant emojis or empty string",
+      "chunks": [{"fr":"Je pense que","fa":"من فکر می‌کنم که"}],
+      "notes": [{"fr":"avoir de la fièvre","fa":"تب داشتن"}],
+      "exampleFr": "one similar A1 sentence with a small substitution",
+      "exampleFa": "Persian translation of that example"
     }
   ]
 }
+
 Rules:
-- Include the full sentence even if the user pasted several sentences; pick the main one or keep them together.
-- Extract useful A1 vocabulary: nouns with gender, verbs in infinitive, adjectives with feminine form, expressions.
-- Skip names and very basic grammar words like je, tu, le, la unless they are the teaching point.
-- Maximum 12 items.
-- Persian translations must be natural.`;
+- One object per complete sentence. If the user pasted several sentences, return several objects.
+- chunks must be useful groups (subject+verb, article+noun, connector+clause), not every isolated word.
+- 3 to 8 chunks per sentence.
+- notes: 1 to 3 key vocabulary or grammar points.
+- Persian must be natural and simple.
+- Do not extract standalone vocabulary cards.
+- Do NOT output markdown.`;
 
   try {
     const body = {
@@ -2976,15 +2999,33 @@ Rules:
       });
       payload = await response.json();
     }
+    if (!response.ok && /insufficient credits|purchase more|never purchased credits/i.test(payload.error?.message || '')) {
+      const freeBody = { ...body, model: 'openrouter/free' };
+      response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${key}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': window.location.origin || 'http://localhost',
+          'X-Title': 'FrancaisFacile'
+        },
+        body: JSON.stringify(freeBody)
+      });
+      payload = await response.json();
+    }
+
     if (!response.ok) {
       throw new Error(payload.error?.message || 'خطای OpenRouter');
     }
 
     const raw = payload.choices?.[0]?.message?.content || '';
     const parsed = JSON.parse(raw.replace(/^```json\s*|\s*```$/g, ''));
-    importerDraft = parsed;
-    renderImporterPreview(parsed);
-    status.textContent = 'تحلیل آماده است. موارد را انتخاب و ذخیره کنید.';
+    importerDraft = normalizeImporterDraft(parsed, text);
+    if (!importerDraft.sentences.length) {
+      throw new Error('جمله‌ای برای ساخت کارت پیدا نشد');
+    }
+    renderImporterPreview(importerDraft);
+    status.textContent = 'تحلیل آماده است. کارت‌های جمله را انتخاب و به انکی اضافه کنید.';
   } catch (err) {
     console.error(err);
     status.textContent = '';
@@ -2994,71 +3035,130 @@ Rules:
   }
 }
 
+function normalizeImporterDraft(parsed, originalText) {
+  const rawSentences = Array.isArray(parsed?.sentences) && parsed.sentences.length
+    ? parsed.sentences
+    : (parsed?.sentence ? [parsed.sentence] : []);
+
+  const sentences = rawSentences
+    .map((item) => {
+      const fr = (item.fr || item.word || '').trim();
+      const fa = (item.fa || item.meaningFa || item.translation || '').trim();
+      if (!fr) return null;
+      return {
+        fr,
+        fa,
+        topic: item.topic || 'other',
+        emojis: item.emojis || '',
+        chunks: Array.isArray(item.chunks) ? item.chunks : [],
+        notes: Array.isArray(item.notes) ? item.notes : [],
+        exampleFr: item.exampleFr || '',
+        exampleFa: item.exampleFa || ''
+      };
+    })
+    .filter(Boolean);
+
+  if (!sentences.length && originalText) {
+    sentences.push({
+      fr: originalText,
+      fa: parsed?.sentence?.fa || '',
+      topic: 'other',
+      emojis: '',
+      chunks: [],
+      notes: [],
+      exampleFr: '',
+      exampleFa: ''
+    });
+  }
+
+  return { sentences };
+}
+
 function renderImporterPreview(data) {
   const preview = document.getElementById('importerPreview');
-  const grid = document.getElementById('importerVocabGrid');
-  document.getElementById('importerPreviewFr').textContent = data.sentence?.fr || '';
-  document.getElementById('importerPreviewFa').textContent = data.sentence?.fa || '';
-  const items = data.items || [];
+  const grid = document.getElementById('importerSentenceGrid');
+  if (!preview || !grid) return;
+
+  const items = data.sentences || [];
   grid.innerHTML = items.map((item, idx) => `
-    <label class="vocab-card" style="cursor: pointer;">
-      <div class="vocab-card-header">
-        <div class="vocab-word-info">
-          <div class="vocab-word-fr" dir="ltr">${item.word || ''}</div>
-          <div style="margin-top: 4px;">
-            <span class="vocab-gender-badge common">${item.categoryKey || 'word'} ${item.gender ? '• ' + item.gender : ''}</span>
-          </div>
-        </div>
+    <label class="card importer-sentence-card">
+      <div class="importer-sentence-card-top">
+        <span class="badge-tag">کارت جمله ${idx + 1}</span>
         <input type="checkbox" class="importer-item-check" data-idx="${idx}" checked>
       </div>
-      <div class="vocab-translation">${item.translation || ''}</div>
-      ${item.example ? `<div class="vocab-example-snippet"><div class="snippet-fr" dir="ltr">${item.example}</div></div>` : ''}
-      ${item.note ? `<div class="vocab-note-tag">💡 ${item.note}</div>` : ''}
+      ${renderAiBreakdownInner({
+        fr: item.fr,
+        meaningFa: item.fa,
+        emojis: item.emojis,
+        chunks: item.chunks,
+        notes: item.notes,
+        exampleFr: item.exampleFr,
+        exampleFa: item.exampleFa
+      })}
     </label>
   `).join('');
   preview.style.display = 'block';
 }
 
 function saveImportedItems() {
-  if (!importerDraft) {
+  if (!importerDraft || !importerDraft.sentences?.length) {
     showToast('ابتدا جمله را تحلیل کنید');
     return;
   }
+
   const extra = getCustomData();
   const selected = [...document.querySelectorAll('.importer-item-check:checked')].map(el => Number(el.dataset.idx));
   const now = Date.now();
+  let added = 0;
+
+  if (!state.aiVisuals) state.aiVisuals = {};
 
   selected.forEach((idx, i) => {
-    const item = importerDraft.items[idx];
-    if (!item || !item.word) return;
-    extra.vocab.push({
-      id: `c-${now}-${i}`,
-      word: item.word,
-      translation: item.translation,
-      categoryKey: item.categoryKey || 'expressions',
-      gender: item.gender || undefined,
-      type: item.type || undefined,
-      fem: item.fem || undefined,
-      example: item.example || importerDraft.sentence?.fr,
-      note: item.note || '',
+    const item = importerDraft.sentences[idx];
+    if (!item || !item.fr) return;
+
+    if (extra.sentences.some(existing => (existing.fr || '').trim() === item.fr.trim())) {
+      return;
+    }
+
+    const id = `cs-${now}-${i}`;
+    extra.sentences.push({
+      id,
+      fr: item.fr,
+      fa: item.fa || '',
+      topic: item.topic || 'other',
+      lesson: '00',
       custom: true
     });
+
+    if (item.chunks?.length || item.fa) {
+      state.aiVisuals[id] = {
+        kind: 'breakdown',
+        fr: item.fr,
+        meaningFa: item.fa || '',
+        emojis: item.emojis || '',
+        chunks: item.chunks || [],
+        notes: item.notes || [],
+        exampleFr: item.exampleFr || '',
+        exampleFa: item.exampleFa || '',
+        createdAt: new Date().toISOString()
+      };
+    }
+    added += 1;
   });
 
-  if (importerDraft.sentence?.fr) {
-    extra.sentences.push({
-      id: `cs-${now}`,
-      fr: importerDraft.sentence.fr,
-      fa: importerDraft.sentence.fa || '',
-      topic: importerDraft.sentence.topic || 'other',
-      custom: true
-    });
+  if (!added) {
+    showToast(selected.length ? 'این جمله‌ها از قبل در انکی هستند' : 'حداقل یک جمله را انتخاب کنید');
+    return;
   }
 
   saveCustomData(extra);
   updateContentCounts();
-  addXP(15, 'برای افزودن جمله جدید');
-  showToast('جمله و لغات انتخاب‌شده به اپ اضافه شد');
+  addXP(15 * added, 'برای افزودن کارت جمله');
+  showToast(`${added} کارت جمله به انکی اضافه شد`);
+  if (typeof renderFlashcardDeckBrowser === 'function') {
+    renderFlashcardDeckBrowser();
+  }
 }
 
 function restoreUiFromState() {

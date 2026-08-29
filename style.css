@@ -3112,6 +3112,32 @@ body.theme-dark .nav-item.active {
   text-align: right;
 }
 
+.importer-sentence-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.importer-sentence-card {
+  cursor: pointer;
+  text-align: right;
+  display: block;
+}
+
+.importer-sentence-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.importer-sentence-card .importer-item-check {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--french-blue);
+}
+
 .importer-fr {
   font-family: var(--font-fr);
   font-size: 1.35rem;
