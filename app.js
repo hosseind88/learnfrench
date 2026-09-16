@@ -4851,10 +4851,6 @@ function initApp() {
   if (dashBookBtn) {
     dashBookBtn.onclick = () => switchView('book');
   }
-  const dashDonateMoreBtn = document.getElementById('dashDonateMoreBtn');
-  if (dashDonateMoreBtn) {
-    dashDonateMoreBtn.onclick = () => switchView('donate');
-  }
   document.querySelectorAll('[data-copy-card-btn]').forEach((btn) => {
     btn.onclick = (event) => {
       event.preventDefault();

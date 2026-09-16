@@ -1009,45 +1009,6 @@ body.theme-dark .nav-item.active {
   margin-top: 4px;
 }
 
-/* Donation banner on dashboard */
-.donate-banner-card {
-  display: grid;
-  grid-template-columns: 1.1fr minmax(260px, 340px);
-  gap: 24px;
-  align-items: center;
-  background: linear-gradient(135deg, rgba(225, 29, 72, 0.08) 0%, rgba(37, 99, 235, 0.1) 100%), var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
-  padding: 24px 28px;
-  margin-bottom: 32px;
-  box-shadow: var(--shadow-sm);
-}
-
-.donate-kicker {
-  display: inline-flex;
-  padding: 4px 12px;
-  background: var(--french-red-light);
-  color: var(--french-red);
-  border-radius: var(--radius-full);
-  font-size: 0.78rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.donate-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  margin-bottom: 8px;
-  color: var(--text-primary);
-}
-
-.donate-desc {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.7;
-  margin-bottom: 14px;
-}
-
 .bank-card {
   background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 55%, #be123c 140%);
   color: #fff;
@@ -3346,7 +3307,6 @@ body.theme-dark .nav-item.active {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .donate-banner-card,
   .donate-page-layout {
     grid-template-columns: 1fr;
   }
@@ -3547,15 +3507,6 @@ body.theme-dark .nav-item.active {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-  }
-  .donate-banner-card {
-    padding: 16px 14px;
-    gap: 16px;
-    margin-bottom: 18px;
-    border-radius: var(--radius-md);
-  }
-  .donate-title {
-    font-size: 1.08rem;
   }
   .bank-card {
     min-height: 168px;
