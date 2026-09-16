@@ -101,8 +101,10 @@ def main():
             # enrich existing with lesson if missing
             for old in sentences:
                 if norm(old["fr"]) == key:
-                    old.setdefault("lesson", s.get("lesson"))
-                    old.setdefault("topic", s.get("topic"))
+                    if s.get("lesson"):
+                        old["lesson"] = s["lesson"]
+                    if s.get("topic"):
+                        old["topic"] = s["topic"]
                     break
             continue
         seen_sents.add(key)

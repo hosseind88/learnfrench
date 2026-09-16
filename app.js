@@ -76,6 +76,7 @@ const state = {
 
   sentences: {
     topic: 'all',
+    lesson: 'all',
     searchQuery: '',
     hideTranslations: false
   },
@@ -521,8 +522,11 @@ function renderVocabGrid() {
     items = items.filter(item => item.categoryKey === state.vocab.category);
   }
 
-  // Gender Filter
-  if (state.vocab.gender !== 'all') {
+  // Gender only applies to nouns (or mixed "all"). Other tabs ignore a leftover gender value.
+  const genderWrapper = document.getElementById('genderFilterWrapper');
+  const usesGender = state.vocab.category === 'all' || state.vocab.category === 'nouns';
+  if (genderWrapper) genderWrapper.hidden = !usesGender;
+  if (usesGender && state.vocab.gender !== 'all') {
     items = items.filter(item => item.gender === state.vocab.gender);
   }
 
@@ -1945,16 +1949,79 @@ function finishQuiz() {
 // ==========================================================================
 // 5. SENTENCES LIBRARY
 // ==========================================================================
+function getSentenceLesson(sentence) {
+  return normalizeSceneLesson(sentence && sentence.lesson);
+}
+
+function getAvailableSentenceLessons() {
+  const lessons = new Set();
+  getAllSentences().forEach((sentence) => {
+    const lesson = getSentenceLesson(sentence);
+    if (lesson) lessons.add(lesson);
+  });
+  return [...lessons].sort((a, b) => Number(a) - Number(b) || a.localeCompare(b, 'fa'));
+}
+
+function populateSentenceLessonFilter() {
+  const select = document.getElementById('sentenceLessonFilter');
+  if (!select) return;
+  const current = state.sentences.lesson || 'all';
+  const lessons = getAvailableSentenceLessons();
+  if (current !== 'all' && !lessons.includes(current)) {
+    state.sentences.lesson = 'all';
+  }
+  const selected = state.sentences.lesson || 'all';
+  const counts = {};
+  getAllSentences().forEach((sentence) => {
+    const lesson = getSentenceLesson(sentence);
+    if (lesson) counts[lesson] = (counts[lesson] || 0) + 1;
+  });
+  select.replaceChildren();
+  const allOption = document.createElement('option');
+  allOption.value = 'all';
+  allOption.textContent = `همه درس‌ها (${getAllSentences().length})`;
+  select.append(allOption);
+  lessons.forEach((lesson) => {
+    const option = document.createElement('option');
+    option.value = lesson;
+    const meta = getLessonMeta(lesson);
+    option.textContent = `درس ${lesson} · ${meta.titleFa} (${counts[lesson] || 0})`;
+    select.append(option);
+  });
+  select.value = selected;
+}
+
+function syncSentenceTopicTabs() {
+  const counts = { all: getAllSentences().length };
+  getAllSentences().forEach((sentence) => {
+    const topic = sentence.topic || 'other';
+    counts[topic] = (counts[topic] || 0) + 1;
+  });
+  document.querySelectorAll('#sentenceTopicTabs .tab-chip').forEach((tab) => {
+    const topic = tab.dataset.topic || 'all';
+    tab.classList.toggle('active', topic === (state.sentences.topic || 'all'));
+    const label = tab.dataset.label || tab.textContent.replace(/\s*\(\d+\)\s*$/, '');
+    tab.dataset.label = label;
+    const count = counts[topic] ?? 0;
+    tab.textContent = topic === 'all' ? `${label} (${count})` : `${label} (${count})`;
+  });
+}
+
 function renderSentences() {
   const container = document.getElementById('sentencesListContainer');
   let items = [...getAllSentences()];
 
-  // Topic filter
+  populateSentenceLessonFilter();
+  syncSentenceTopicTabs();
+
+  if ((state.sentences.lesson || 'all') !== 'all') {
+    items = items.filter(s => getSentenceLesson(s) === state.sentences.lesson);
+  }
+
   if (state.sentences.topic !== 'all') {
     items = items.filter(s => s.topic === state.sentences.topic);
   }
 
-  // Search filter
   if (state.sentences.searchQuery.trim()) {
     const q = state.sentences.searchQuery.trim().toLowerCase();
     items = items.filter(s => s.fr.toLowerCase().includes(q) || s.fa.toLowerCase().includes(q));
@@ -2034,7 +2101,19 @@ function getSceneSentenceIndex() {
   const index = new Map();
   getAllSentences().forEach((sentence) => {
     const key = normalizeFrenchText(sentence.fr);
-    if (key && !index.has(key)) index.set(key, sentence);
+    if (key && !index.has(key)) index.set(key, { ...sentence, kind: 'sentence' });
+  });
+  getAllVocabItems().forEach((item) => {
+    const key = normalizeFrenchText(item.word || item.expression || '');
+    if (key && !index.has(key)) {
+      index.set(key, {
+        fr: item.word || item.expression,
+        fa: item.translation,
+        lesson: item.lesson,
+        level: item.level || 'A1',
+        kind: 'word'
+      });
+    }
   });
   sceneSentenceIndex = index;
   return index;
@@ -2062,11 +2141,29 @@ function getSceneLesson(scene) {
   return normalizeSceneLesson(match && match.lesson);
 }
 
+function compareScenes(a, b) {
+  const lessonA = getSceneLesson(a) || '99';
+  const lessonB = getSceneLesson(b) || '99';
+  if (lessonA !== lessonB) {
+    return Number(lessonA) - Number(lessonB) || lessonA.localeCompare(lessonB, 'fa');
+  }
+  return String(a.french || '').localeCompare(String(b.french || ''), 'fr');
+}
+
 function getScenesForCurrentCourse() {
   const items = Array.isArray(state.scenes.items) ? state.scenes.items : [];
   const level = state.scenes.level || 'all';
-  if (level === 'all') return items;
-  return items.filter((scene) => getSceneCourse(scene) === level);
+  const filtered = level === 'all' ? items.slice() : items.filter((scene) => getSceneCourse(scene) === level);
+  return filtered.sort(compareScenes);
+}
+
+function getAvailableSceneCourses() {
+  const counts = { all: (state.scenes.items || []).length };
+  (state.scenes.items || []).forEach((scene) => {
+    const course = getSceneCourse(scene);
+    counts[course] = (counts[course] || 0) + 1;
+  });
+  return counts;
 }
 
 function getAvailableSceneLessons() {
@@ -2126,7 +2223,7 @@ function populateSceneLessonFilter() {
   select.replaceChildren();
   const allOption = document.createElement('option');
   allOption.value = 'all';
-  allOption.textContent = 'همه درس‌ها';
+  allOption.textContent = `همه درس‌ها (${getScenesForCurrentCourse().length})`;
   select.append(allOption);
   lessons.forEach((lesson) => {
     const option = document.createElement('option');
@@ -2140,8 +2237,19 @@ function populateSceneLessonFilter() {
 }
 
 function syncSceneLevelTabs() {
+  const counts = getAvailableSceneCourses();
+  const current = state.scenes.level || 'all';
+  if (current !== 'all' && !counts[current]) {
+    state.scenes.level = 'all';
+  }
   document.querySelectorAll('#sceneLevelTabs .tab-chip').forEach((btn) => {
-    btn.classList.toggle('active', btn.dataset.level === (state.scenes.level || 'all'));
+    const level = btn.dataset.level || 'all';
+    const count = counts[level] || 0;
+    const label = btn.dataset.label || btn.textContent.replace(/\s*\(\d+\)\s*$/, '');
+    btn.dataset.label = label;
+    btn.textContent = `${label} (${count})`;
+    btn.hidden = level !== 'all' && count === 0;
+    btn.classList.toggle('active', level === (state.scenes.level || 'all'));
   });
 }
 
@@ -2236,6 +2344,7 @@ function renderSceneStudyCard() {
   const lessonLabel = lesson
     ? `درس ${lesson}${lessonMeta && lessonMeta.titleFa ? ` · ${lessonMeta.titleFa}` : ''}`
     : '';
+  const kindLabel = scene.kind === 'word' ? 'واژه' : 'جمله';
 
   card.innerHTML = `
     <div class="scene-study-figure">
@@ -2246,6 +2355,7 @@ function renderSceneStudyCard() {
       <div class="scene-meta-pills">
         <span class="pill-info">${course}</span>
         ${lessonLabel ? `<span class="pill-info">${lessonLabel}</span>` : ''}
+        <span class="pill-info">${kindLabel}</span>
       </div>
       <p class="scene-french-text" dir="ltr"></p>
       <p class="scene-persian-text ${showFa ? '' : 'is-hidden'}"></p>
@@ -4792,6 +4902,12 @@ function initApp() {
       document.querySelectorAll('#vocabCategoryTabs .tab-chip').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       state.vocab.category = tab.dataset.cat;
+      const usesGender = state.vocab.category === 'all' || state.vocab.category === 'nouns';
+      if (!usesGender) {
+        state.vocab.gender = 'all';
+        const genderSelect = document.getElementById('vocabGenderFilter');
+        if (genderSelect) genderSelect.value = 'all';
+      }
       saveState();
       renderVocabGrid();
     };
@@ -4921,13 +5037,20 @@ function initApp() {
   // Sentence Topic Tabs
   document.querySelectorAll('#sentenceTopicTabs .tab-chip').forEach(tab => {
     tab.onclick = () => {
-      document.querySelectorAll('#sentenceTopicTabs .tab-chip').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
       state.sentences.topic = tab.dataset.topic;
       saveState();
       renderSentences();
     };
   });
+
+  const sentenceLessonFilter = document.getElementById('sentenceLessonFilter');
+  if (sentenceLessonFilter) {
+    sentenceLessonFilter.onchange = () => {
+      state.sentences.lesson = sentenceLessonFilter.value || 'all';
+      saveState();
+      renderSentences();
+    };
+  }
 
   document.getElementById('sentenceSearchInput').oninput = (e) => {
     state.sentences.searchQuery = e.target.value;

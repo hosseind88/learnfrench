@@ -1836,7 +1836,7 @@ const APP_DATA = {
       "id": "s4",
       "fr": "Elle fait les courses au supermarché.",
       "fa": "او از سوپرمارکت خرید می‌کند.",
-      "topic": "shopping",
+      "topic": "routine",
       "lesson": "08"
     },
     {
@@ -1941,14 +1941,14 @@ const APP_DATA = {
       "id": "s19",
       "fr": "Paul est toujours disponible pour aider.",
       "fa": "پل همیشه برای کمک کردن در دسترس است.",
-      "topic": "people",
+      "topic": "work",
       "lesson": "09"
     },
     {
       "id": "s20",
       "fr": "Cette prof est très patiente avec ses élèves.",
       "fa": "این معلم با شاگردانش خیلی صبور است.",
-      "topic": "people",
+      "topic": "work",
       "lesson": "09"
     },
     {
@@ -1962,14 +1962,14 @@ const APP_DATA = {
       "id": "s22",
       "fr": "Julie est dynamique et motivée.",
       "fa": "جولی پرانرژی و باانگیزه است.",
-      "topic": "people",
+      "topic": "work",
       "lesson": "09"
     },
     {
       "id": "s23",
       "fr": "Il reste calme dans toutes les situations.",
       "fa": "او در تمام موقعیت‌ها آرام می‌ماند.",
-      "topic": "people",
+      "topic": "work",
       "lesson": "09"
     },
     {
@@ -1983,7 +1983,7 @@ const APP_DATA = {
       "id": "s25",
       "fr": "Mon ami est bavard, il parle beaucoup.",
       "fa": "دوستم پرحرف است، خیلی صحبت می‌کند.",
-      "topic": "people",
+      "topic": "work",
       "lesson": "09"
     },
     {
@@ -2053,70 +2053,70 @@ const APP_DATA = {
       "id": "s35",
       "fr": "Le ciel est bleu.",
       "fa": "آسمان آبی است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
       "id": "s36",
       "fr": "La pomme est rouge.",
       "fa": "سیب قرمز است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
       "id": "s37",
       "fr": "Le soleil est jaune.",
       "fa": "خورشید زرد است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
       "id": "s38",
       "fr": "La nuit est noire.",
       "fa": "شب سیاه است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
       "id": "s39",
       "fr": "La neige est blanche.",
       "fa": "برف سفید است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
       "id": "s40",
       "fr": "L’herbe est verte.",
       "fa": "چمن سبز است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
       "id": "s41",
       "fr": "La souris est grise.",
       "fa": "موش خاکستری است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
       "id": "s42",
       "fr": "Le chocolat est marron.",
       "fa": "شکلات قهوه‌ای است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
       "id": "s43",
       "fr": "La fleur est rose.",
       "fa": "گل صورتی است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
       "id": "s44",
       "fr": "L’orange est orange.",
       "fa": "پرتقال نارنجی است.",
-      "topic": "colors",
+      "topic": "clothing",
       "lesson": "10"
     },
     {
@@ -2214,7 +2214,7 @@ const APP_DATA = {
       "id": "s58",
       "fr": "Il regarde sa montre.",
       "fa": "او به ساعتش نگاه می‌کند.",
-      "topic": "routine",
+      "topic": "clothing",
       "lesson": "10"
     },
     {

@@ -260,8 +260,14 @@ function applySnapshotToState(snapshot, state) {
   state.flashcards.sessionTotal = 0;
   state.vocab.category = snapshot.vocab?.category || 'all';
   state.vocab.gender = snapshot.vocab?.gender || 'all';
+  if (state.vocab.category !== 'all' && state.vocab.category !== 'nouns') {
+    state.vocab.gender = 'all';
+  }
+  state.vocab.searchQuery = '';
   state.vocab.viewMode = snapshot.vocab?.viewMode || 'grid';
   state.sentences.topic = snapshot.sentences?.topic || 'all';
+  state.sentences.lesson = 'all';
+  state.sentences.searchQuery = '';
   state.sentences.hideTranslations = Boolean(snapshot.sentences?.hideTranslations);
   state.game.category = snapshot.gameCategory || 'all';
   state.lastQuizType = snapshot.lastQuizType || 'mcq';

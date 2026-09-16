@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-16T09:40:29Z",
+  "updatedAt": "2026-09-16T10:19:52Z",
   "scenes": [
     {
       "id": "elle-ouvre-un-dossier-important",
@@ -3280,6 +3280,742 @@
       "image": "learning-scenes/images/je-fais-du-ski.jpg",
       "level": "A1",
       "lesson": "19"
+    },
+    {
+      "id": "il-pleut",
+      "french": "Il pleut.",
+      "persian": "باران می‌بارد.",
+      "image": "learning-scenes/images/il-pleut.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "je-vais-a-la-salle-de-sport",
+      "french": "Je vais à la salle de sport.",
+      "persian": "من به باشگاه می‌روم.",
+      "image": "learning-scenes/images/je-vais-a-la-salle-de-sport.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "il-neige",
+      "french": "Il neige.",
+      "persian": "برف می‌بارد.",
+      "image": "learning-scenes/images/il-neige.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "il-fait-beau",
+      "french": "Il fait beau.",
+      "persian": "هوا خوب است.",
+      "image": "learning-scenes/images/il-fait-beau.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "il-fait-chaud",
+      "french": "Il fait chaud.",
+      "persian": "هوا گرم است.",
+      "image": "learning-scenes/images/il-fait-chaud.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "il-fait-froid",
+      "french": "Il fait froid.",
+      "persian": "هوا سرد است.",
+      "image": "learning-scenes/images/il-fait-froid.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "le-printemps-commence",
+      "french": "Le printemps commence.",
+      "persian": "بهار شروع می‌شود.",
+      "image": "learning-scenes/images/le-printemps-commence.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "l-ete-est-chaud",
+      "french": "L'été est chaud.",
+      "persian": "تابستان گرم است.",
+      "image": "learning-scenes/images/l-ete-est-chaud.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "l-automne-est-beau",
+      "french": "L'automne est beau.",
+      "persian": "پاییز زیباست.",
+      "image": "learning-scenes/images/l-automne-est-beau.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "l-hiver-est-froid",
+      "french": "L'hiver est froid.",
+      "persian": "زمستان سرد است.",
+      "image": "learning-scenes/images/l-hiver-est-froid.jpg",
+      "level": "A1",
+      "lesson": "19"
+    },
+    {
+      "id": "je-visite-un-musee-ce-week-end",
+      "french": "Je visite un musée ce week-end.",
+      "persian": "من این آخر هفته از یک موزه دیدن می‌کنم.",
+      "image": "learning-scenes/images/je-visite-un-musee-ce-week-end.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "nous-allons-au-chateau-demain",
+      "french": "Nous allons au château demain.",
+      "persian": "ما فردا به قلعه می‌رویم.",
+      "image": "learning-scenes/images/nous-allons-au-chateau-demain.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "j-adore-aller-au-theatre",
+      "french": "J'adore aller au théâtre.",
+      "persian": "من عاشق رفتن به تئاتر هستم.",
+      "image": "learning-scenes/images/j-adore-aller-au-theatre.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "ce-soir-on-va-au-cinema",
+      "french": "Ce soir, on va au cinéma.",
+      "persian": "امشب می‌رویم سینما.",
+      "image": "learning-scenes/images/ce-soir-on-va-au-cinema.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "il-y-a-un-concert-ce-samedi",
+      "french": "Il y a un concert ce samedi.",
+      "persian": "این شنبه یک کنسرت برگزار می‌شود.",
+      "image": "learning-scenes/images/il-y-a-un-concert-ce-samedi.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "la-salle-de-spectacle-est-pleine",
+      "french": "La salle de spectacle est pleine.",
+      "persian": "سالن نمایش پر است.",
+      "image": "learning-scenes/images/la-salle-de-spectacle-est-pleine.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "la-seance-de-cinema-commence-a-20h",
+      "french": "La séance de cinéma commence à 20h.",
+      "persian": "سانس سینما ساعت ۸ شروع می‌شود.",
+      "image": "learning-scenes/images/la-seance-de-cinema-commence-a-20h.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "le-spectacle-etait-tres-amusant",
+      "french": "Le spectacle était très amusant.",
+      "persian": "نمایش خیلی سرگرم‌کننده بود.",
+      "image": "learning-scenes/images/le-spectacle-etait-tres-amusant.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "ce-concert-est-incroyable",
+      "french": "Ce concert est incroyable !",
+      "persian": "این کنسرت فوق‌العاده است!",
+      "image": "learning-scenes/images/ce-concert-est-incroyable.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "j-aime-visiter-des-expositions-d-art",
+      "french": "J'aime visiter des expositions d'art.",
+      "persian": "من دوست دارم از نمایشگاه‌های هنری دیدن کنم.",
+      "image": "learning-scenes/images/j-aime-visiter-des-expositions-d-art.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "le-guide-explique-l-histoire-du-chateau",
+      "french": "Le guide explique l'histoire du château.",
+      "persian": "راهنما تاریخ قلعه را توضیح می‌دهد.",
+      "image": "learning-scenes/images/le-guide-explique-l-histoire-du-chateau.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "nous-faisons-une-visite-guidee",
+      "french": "Nous faisons une visite guidée.",
+      "persian": "ما یک بازدید با راهنما داریم.",
+      "image": "learning-scenes/images/nous-faisons-une-visite-guidee.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "j-ai-achete-deux-billets-pour-ce-spectacle",
+      "french": "J'ai acheté deux billets pour ce spectacle.",
+      "persian": "من دو بلیت برای این نمایش خریده‌ام.",
+      "image": "learning-scenes/images/j-ai-achete-deux-billets-pour-ce-spectacle.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "le-comedien-joue-tres-bien",
+      "french": "Le comédien joue très bien.",
+      "persian": "بازیگر نمایش خیلی خوب بازی می‌کند.",
+      "image": "learning-scenes/images/le-comedien-joue-tres-bien.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "cet-acteur-est-tres-celebre",
+      "french": "Cet acteur est très célèbre.",
+      "persian": "این بازیگر خیلی معروف است.",
+      "image": "learning-scenes/images/cet-acteur-est-tres-celebre.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "la-chanteuse-a-une-belle-voix",
+      "french": "La chanteuse a une belle voix.",
+      "persian": "خواننده زن صدای زیبایی دارد.",
+      "image": "learning-scenes/images/la-chanteuse-a-une-belle-voix.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "le-danseur-danse-tres-bien",
+      "french": "Le danseur danse très bien.",
+      "persian": "رقصنده خیلی خوب می‌رقصد.",
+      "image": "learning-scenes/images/le-danseur-danse-tres-bien.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "le-musicien-joue-de-la-guitare",
+      "french": "Le musicien joue de la guitare.",
+      "persian": "نوازنده گیتار می‌نوازد.",
+      "image": "learning-scenes/images/le-musicien-joue-de-la-guitare.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "le-peintre-travaille-dans-son-atelier",
+      "french": "Le peintre travaille dans son atelier.",
+      "persian": "نقاش در کارگاهش کار می‌کند.",
+      "image": "learning-scenes/images/le-peintre-travaille-dans-son-atelier.jpg",
+      "level": "A1",
+      "lesson": "20"
+    },
+    {
+      "id": "journaliste",
+      "french": "journaliste",
+      "persian": "خبرنگار",
+      "image": "learning-scenes/images/journaliste.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "etudiant",
+      "french": "étudiant",
+      "persian": "دانشجو",
+      "image": "learning-scenes/images/etudiant.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "professeur",
+      "french": "professeur",
+      "persian": "استاد / معلم",
+      "image": "learning-scenes/images/professeur.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "ingenieur",
+      "french": "ingénieur",
+      "persian": "مهندس",
+      "image": "learning-scenes/images/ingenieur.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "infirmier",
+      "french": "infirmier",
+      "persian": "پرستار",
+      "image": "learning-scenes/images/infirmier.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "cuisinier",
+      "french": "cuisinier",
+      "persian": "آشپز",
+      "image": "learning-scenes/images/cuisinier.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "technicien",
+      "french": "technicien",
+      "persian": "تکنسین",
+      "image": "learning-scenes/images/technicien.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "pharmacien",
+      "french": "pharmacien",
+      "persian": "داروساز",
+      "image": "learning-scenes/images/pharmacien.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "vendeur",
+      "french": "vendeur",
+      "persian": "فروشنده",
+      "image": "learning-scenes/images/vendeur.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "serveur",
+      "french": "serveur",
+      "persian": "پیشخدمت",
+      "image": "learning-scenes/images/serveur.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "nom",
+      "french": "nom",
+      "persian": "نام خانوادگی",
+      "image": "learning-scenes/images/nom.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "prenom",
+      "french": "prénom",
+      "persian": "نام",
+      "image": "learning-scenes/images/prenom.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "carte-d-identite",
+      "french": "carte d'identité",
+      "persian": "کارت شناسایی",
+      "image": "learning-scenes/images/carte-d-identite.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "age",
+      "french": "âge",
+      "persian": "سن",
+      "image": "learning-scenes/images/age.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "carte-de-visite",
+      "french": "carte de visite",
+      "persian": "کارت ویزیت",
+      "image": "learning-scenes/images/carte-de-visite.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "e-mail",
+      "french": "e-mail",
+      "persian": "ایمیل",
+      "image": "learning-scenes/images/e-mail.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "francais",
+      "french": "français",
+      "persian": "فرانسوی",
+      "image": "learning-scenes/images/francais.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "anglais",
+      "french": "anglais",
+      "persian": "انگلیسی",
+      "image": "learning-scenes/images/anglais.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "chinois",
+      "french": "chinois",
+      "persian": "چینی",
+      "image": "learning-scenes/images/chinois.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "americain",
+      "french": "américain",
+      "persian": "آمریکایی",
+      "image": "learning-scenes/images/americain.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "italien",
+      "french": "italien",
+      "persian": "ایتالیایی",
+      "image": "learning-scenes/images/italien.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "bresilien",
+      "french": "brésilien",
+      "persian": "برزیلی",
+      "image": "learning-scenes/images/bresilien.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "coreen",
+      "french": "coréen",
+      "persian": "کره‌ای",
+      "image": "learning-scenes/images/coreen.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "espagnol",
+      "french": "espagnol",
+      "persian": "اسپانیایی",
+      "image": "learning-scenes/images/espagnol.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "allemand",
+      "french": "allemand",
+      "persian": "آلمانی",
+      "image": "learning-scenes/images/allemand.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "suisse",
+      "french": "suisse",
+      "persian": "سوئیسی",
+      "image": "learning-scenes/images/suisse.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "belge",
+      "french": "belge",
+      "persian": "بلژیکی",
+      "image": "learning-scenes/images/belge.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "russe",
+      "french": "russe",
+      "persian": "روسی",
+      "image": "learning-scenes/images/russe.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "zero",
+      "french": "zéro",
+      "persian": "صفر",
+      "image": "learning-scenes/images/zero.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "un",
+      "french": "un",
+      "persian": "یک",
+      "image": "learning-scenes/images/un.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "deux",
+      "french": "deux",
+      "persian": "دو",
+      "image": "learning-scenes/images/deux.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "trois",
+      "french": "trois",
+      "persian": "سه",
+      "image": "learning-scenes/images/trois.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "quatre",
+      "french": "quatre",
+      "persian": "چهار",
+      "image": "learning-scenes/images/quatre.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "cinq",
+      "french": "cinq",
+      "persian": "پنج",
+      "image": "learning-scenes/images/cinq.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "six",
+      "french": "six",
+      "persian": "شش",
+      "image": "learning-scenes/images/six.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "sept",
+      "french": "sept",
+      "persian": "هفت",
+      "image": "learning-scenes/images/sept.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "huit",
+      "french": "huit",
+      "persian": "هشت",
+      "image": "learning-scenes/images/huit.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "neuf",
+      "french": "neuf",
+      "persian": "نه",
+      "image": "learning-scenes/images/neuf.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "dix",
+      "french": "dix",
+      "persian": "ده",
+      "image": "learning-scenes/images/dix.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "onze",
+      "french": "onze",
+      "persian": "یازده",
+      "image": "learning-scenes/images/onze.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "douze",
+      "french": "douze",
+      "persian": "دوازده",
+      "image": "learning-scenes/images/douze.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "treize",
+      "french": "treize",
+      "persian": "سیزده",
+      "image": "learning-scenes/images/treize.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "quatorze",
+      "french": "quatorze",
+      "persian": "چهارده",
+      "image": "learning-scenes/images/quatorze.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "quinze",
+      "french": "quinze",
+      "persian": "پانزده",
+      "image": "learning-scenes/images/quinze.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "seize",
+      "french": "seize",
+      "persian": "شانزده",
+      "image": "learning-scenes/images/seize.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "dix-sept",
+      "french": "dix-sept",
+      "persian": "هفده",
+      "image": "learning-scenes/images/dix-sept.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "dix-huit",
+      "french": "dix-huit",
+      "persian": "هجده",
+      "image": "learning-scenes/images/dix-huit.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "dix-neuf",
+      "french": "dix-neuf",
+      "persian": "نوزده",
+      "image": "learning-scenes/images/dix-neuf.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "vingt",
+      "french": "vingt",
+      "persian": "بیست",
+      "image": "learning-scenes/images/vingt.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "trente",
+      "french": "trente",
+      "persian": "سی",
+      "image": "learning-scenes/images/trente.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "quarante",
+      "french": "quarante",
+      "persian": "چهل",
+      "image": "learning-scenes/images/quarante.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "cinquante",
+      "french": "cinquante",
+      "persian": "پنجاه",
+      "image": "learning-scenes/images/cinquante.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "soixante",
+      "french": "soixante",
+      "persian": "شصت",
+      "image": "learning-scenes/images/soixante.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "soixante-dix",
+      "french": "soixante-dix",
+      "persian": "هفتاد",
+      "image": "learning-scenes/images/soixante-dix.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "quatre-vingts",
+      "french": "quatre-vingts",
+      "persian": "هشتاد",
+      "image": "learning-scenes/images/quatre-vingts.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
+    },
+    {
+      "id": "quatre-vingt-dix",
+      "french": "quatre-vingt-dix",
+      "persian": "نود",
+      "image": "learning-scenes/images/quatre-vingt-dix.jpg",
+      "level": "A1",
+      "lesson": "01",
+      "kind": "word"
     }
   ]
 }
