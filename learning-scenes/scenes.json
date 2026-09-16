@@ -1,0 +1,1793 @@
+{
+  "updatedAt": "2026-09-15T23:52:02Z",
+  "scenes": [
+    {
+      "id": "elle-ouvre-un-dossier-important",
+      "french": "Elle ouvre un dossier important.",
+      "persian": "او یک پرونده‌ی مهم را باز می‌کند.",
+      "image": "learning-scenes/images/elle-ouvre-un-dossier-important.jpg"
+    },
+    {
+      "id": "marie-est-stressee-avant-la-reunion",
+      "french": "Marie est stressée avant la réunion.",
+      "persian": "ماری قبل از جلسه استرس دارد.",
+      "image": "learning-scenes/images/marie-est-stressee-avant-la-reunion.jpg"
+    },
+    {
+      "id": "j-ai-signe-mon-contrat-de-travail-hier",
+      "french": "J’ai signé mon contrat de travail hier.",
+      "persian": "دیروز قرارداد کاری‌ام را امضا کردم.",
+      "image": "learning-scenes/images/j-ai-signe-mon-contrat-de-travail-hier.jpg"
+    },
+    {
+      "id": "mon-bureau-est-au-troisieme-etage",
+      "french": "Mon bureau est au troisième étage.",
+      "persian": "دفتر کار من در طبقه سوم است.",
+      "image": "learning-scenes/images/mon-bureau-est-au-troisieme-etage.jpg"
+    },
+    {
+      "id": "l-informaticien-repare-l-ordinateur",
+      "french": "L’informaticien répare l’ordinateur.",
+      "persian": "متخصص کامپیوتر دارد کامپیوتر را تعمیر می‌کند.",
+      "image": "learning-scenes/images/l-informaticien-repare-l-ordinateur.jpg"
+    },
+    {
+      "id": "le-directeur-parle-avec-les-employes",
+      "french": "Le directeur parle avec les employés.",
+      "persian": "مدیر با کارمندان صحبت می‌کند.",
+      "image": "learning-scenes/images/le-directeur-parle-avec-les-employes.jpg"
+    },
+    {
+      "id": "julie-est-dynamique-et-motivee",
+      "french": "Julie est dynamique et motivée.",
+      "persian": "ژولی پرانرژی و باانگیزه است.",
+      "image": "learning-scenes/images/julie-est-dynamique-et-motivee.jpg"
+    },
+    {
+      "id": "la-reunion-commence-a-9-heures",
+      "french": "La réunion commence à 9 heures.",
+      "persian": "جلسه ساعت ۹ شروع می‌شود.",
+      "image": "learning-scenes/images/la-reunion-commence-a-9-heures.jpg"
+    },
+    {
+      "id": "je-range-les-papiers-dans-le-classeur",
+      "french": "Je range les papiers dans le classeur.",
+      "persian": "کاغذها را در کلاسور مرتب می‌کنم.",
+      "image": "learning-scenes/images/je-range-les-papiers-dans-le-classeur.jpg"
+    },
+    {
+      "id": "ce-travail-est-excellent-bravo",
+      "french": "Ce travail est excellent, bravo !",
+      "persian": "این کار عالی است، آفرین!",
+      "image": "learning-scenes/images/ce-travail-est-excellent-bravo.jpg"
+    },
+    {
+      "id": "l-assistante-prepare-les-documents",
+      "french": "L’assistante prépare les documents.",
+      "persian": "دستیار مدارک را آماده می‌کند.",
+      "image": "learning-scenes/images/l-assistante-prepare-les-documents.jpg"
+    },
+    {
+      "id": "nous-avons-un-rendez-vous-demain-a-10-heures",
+      "french": "Nous avons un rendez-vous demain à 10 heures.",
+      "persian": "ما فردا ساعت ۱۰ یک قرار داریم.",
+      "image": "learning-scenes/images/nous-avons-un-rendez-vous-demain-a-10-heures.jpg"
+    },
+    {
+      "id": "j-allume-mon-ordinateur-le-matin",
+      "french": "J’allume mon ordinateur le matin.",
+      "persian": "من صبح‌ها کامپیوترم را روشن می‌کنم.",
+      "image": "learning-scenes/images/j-allume-mon-ordinateur-le-matin.jpg"
+    },
+    {
+      "id": "je-sauvegarde-le-fichier-sur-une-cle-usb",
+      "french": "Je sauvegarde le fichier sur une clé USB.",
+      "persian": "من فایل را روی یک فلش‌مموری ذخیره می‌کنم.",
+      "image": "learning-scenes/images/je-sauvegarde-le-fichier-sur-une-cle-usb.jpg"
+    },
+    {
+      "id": "il-a-des-chaussures-blanches",
+      "french": "Il a des chaussures blanches.",
+      "persian": "او کفش‌های سفید دارد.",
+      "image": "learning-scenes/images/il-a-des-chaussures-blanches.jpg"
+    },
+    {
+      "id": "ces-chaussures-sont-en-cuir",
+      "french": "Ces chaussures sont en cuir.",
+      "persian": "این کفش‌ها از جنس چرم هستند.",
+      "image": "learning-scenes/images/ces-chaussures-sont-en-cuir.jpg"
+    },
+    {
+      "id": "la-souris-est-grise",
+      "french": "La souris est grise.",
+      "persian": "موش خاکستری است.",
+      "image": "learning-scenes/images/la-souris-est-grise.jpg"
+    },
+    {
+      "id": "je-mets-une-veste",
+      "french": "Je mets une veste.",
+      "persian": "من یک کت می‌پوشم.",
+      "image": "learning-scenes/images/je-mets-une-veste.jpg"
+    },
+    {
+      "id": "elle-porte-une-echarpe-rouge",
+      "french": "Elle porte une écharpe rouge.",
+      "persian": "او یک شال‌گردن قرمز پوشیده است.",
+      "image": "learning-scenes/images/elle-porte-une-echarpe-rouge.jpg"
+    },
+    {
+      "id": "je-mets-un-bonnet",
+      "french": "Je mets un bonnet.",
+      "persian": "من یک کلاه سر می‌گذارم.",
+      "image": "learning-scenes/images/je-mets-un-bonnet.jpg"
+    },
+    {
+      "id": "elle-prend-un-sac-a-main",
+      "french": "Elle prend un sac à main.",
+      "persian": "او یک کیف دستی برمی‌دارد.",
+      "image": "learning-scenes/images/elle-prend-un-sac-a-main.jpg"
+    },
+    {
+      "id": "il-met-un-pull",
+      "french": "Il met un pull.",
+      "persian": "او یک پلیور می‌پوشد.",
+      "image": "learning-scenes/images/il-met-un-pull.jpg"
+    },
+    {
+      "id": "je-cherche-des-chaussettes",
+      "french": "Je cherche des chaussettes.",
+      "persian": "من دنبال جوراب می‌گردم.",
+      "image": "learning-scenes/images/je-cherche-des-chaussettes.jpg"
+    },
+    {
+      "id": "elle-a-un-t-shirt",
+      "french": "Elle a un T-shirt.",
+      "persian": "او یک تی‌شرت دارد.",
+      "image": "learning-scenes/images/elle-a-un-t-shirt.jpg"
+    },
+    {
+      "id": "la-pomme-est-rouge",
+      "french": "La pomme est rouge.",
+      "persian": "سیب قرمز است.",
+      "image": "learning-scenes/images/la-pomme-est-rouge.jpg"
+    },
+    {
+      "id": "l-herbe-est-verte",
+      "french": "L’herbe est verte.",
+      "persian": "چمن سبز است.",
+      "image": "learning-scenes/images/l-herbe-est-verte.jpg"
+    },
+    {
+      "id": "l-orange-est-orange",
+      "french": "L’orange est orange.",
+      "persian": "پرتقال نارنجی است.",
+      "image": "learning-scenes/images/l-orange-est-orange.jpg"
+    },
+    {
+      "id": "la-nuit-est-noire",
+      "french": "La nuit est noire.",
+      "persian": "شب تاریک است.",
+      "image": "learning-scenes/images/la-nuit-est-noire.jpg"
+    },
+    {
+      "id": "le-soleil-est-jaune",
+      "french": "Le soleil est jaune.",
+      "persian": "خورشید زرد است.",
+      "image": "learning-scenes/images/le-soleil-est-jaune.jpg"
+    },
+    {
+      "id": "elle-achete-un-jean",
+      "french": "Elle achète un jean.",
+      "persian": "او یک شلوار جین می‌خرد.",
+      "image": "learning-scenes/images/elle-achete-un-jean.jpg"
+    },
+    {
+      "id": "j-ai-une-ceinture",
+      "french": "J’ai une ceinture.",
+      "persian": "من یک کمربند دارم.",
+      "image": "learning-scenes/images/j-ai-une-ceinture.jpg"
+    },
+    {
+      "id": "le-chocolat-est-marron",
+      "french": "Le chocolat est marron.",
+      "persian": "شکلات قهوه‌ای است.",
+      "image": "learning-scenes/images/le-chocolat-est-marron.jpg"
+    },
+    {
+      "id": "la-fleur-est-rose",
+      "french": "La fleur est rose.",
+      "persian": "گل صورتی است.",
+      "image": "learning-scenes/images/la-fleur-est-rose.jpg"
+    },
+    {
+      "id": "la-neige-est-blanche",
+      "french": "La neige est blanche.",
+      "persian": "برف سفید است.",
+      "image": "learning-scenes/images/la-neige-est-blanche.jpg"
+    },
+    {
+      "id": "il-porte-un-manteau",
+      "french": "Il porte un manteau.",
+      "persian": "او یک پالتو پوشیده است.",
+      "image": "learning-scenes/images/il-porte-un-manteau.jpg"
+    },
+    {
+      "id": "elle-porte-une-jupe-rouge",
+      "french": "Elle porte une jupe rouge.",
+      "persian": "او یک دامن قرمز پوشیده است.",
+      "image": "learning-scenes/images/elle-porte-une-jupe-rouge.jpg"
+    },
+    {
+      "id": "je-mets-des-lunettes-de-soleil",
+      "french": "Je mets des lunettes de soleil.",
+      "persian": "من عینک آفتابی می‌زنم.",
+      "image": "learning-scenes/images/je-mets-des-lunettes-de-soleil.jpg"
+    },
+    {
+      "id": "il-regarde-sa-montre",
+      "french": "Il regarde sa montre.",
+      "persian": "او به ساعتش نگاه می‌کند.",
+      "image": "learning-scenes/images/il-regarde-sa-montre.jpg"
+    },
+    {
+      "id": "il-a-un-sac-a-dos",
+      "french": "Il a un sac à dos.",
+      "persian": "او یک کوله‌پشتی دارد.",
+      "image": "learning-scenes/images/il-a-un-sac-a-dos.jpg"
+    },
+    {
+      "id": "ce-pull-est-en-laine",
+      "french": "Ce pull est en laine.",
+      "persian": "این پلیور پشمی است.",
+      "image": "learning-scenes/images/ce-pull-est-en-laine.jpg"
+    },
+    {
+      "id": "je-cherche-un-pantalon",
+      "french": "Je cherche un pantalon.",
+      "persian": "دنبال یک شلوار می‌گردم.",
+      "image": "learning-scenes/images/je-cherche-un-pantalon.jpg"
+    },
+    {
+      "id": "ma-chemise-est-en-coton",
+      "french": "Ma chemise est en coton.",
+      "persian": "پیراهن من از جنس پنبه است.",
+      "image": "learning-scenes/images/ma-chemise-est-en-coton.jpg"
+    },
+    {
+      "id": "le-ciel-est-bleu",
+      "french": "Le ciel est bleu.",
+      "persian": "آسمان آبی است.",
+      "image": "learning-scenes/images/le-ciel-est-bleu.jpg"
+    },
+    {
+      "id": "je-porte-une-chemise",
+      "french": "Je porte une chemise.",
+      "persian": "من یک پیراهن پوشیده‌ام.",
+      "image": "learning-scenes/images/je-porte-une-chemise.jpg"
+    },
+    {
+      "id": "il-met-un-short",
+      "french": "Il met un short.",
+      "persian": "او یک شلوارک می‌پوشد.",
+      "image": "learning-scenes/images/il-met-un-short.jpg"
+    },
+    {
+      "id": "il-met-des-gants",
+      "french": "Il met des gants.",
+      "persian": "او دستکش می‌پوشد.",
+      "image": "learning-scenes/images/il-met-des-gants.jpg"
+    },
+    {
+      "id": "je-mets-une-robe-verte",
+      "french": "Je mets une robe verte.",
+      "persian": "یک پیراهن سبز می‌پوشم.",
+      "image": "learning-scenes/images/je-mets-une-robe-verte.jpg"
+    },
+    {
+      "id": "la-tarte-aux-fraises-est-jolie",
+      "french": "La tarte aux fraises est jolie.",
+      "persian": "تارت توت‌فرنگی زیبا است.",
+      "image": "learning-scenes/images/la-tarte-aux-fraises-est-jolie.jpg"
+    },
+    {
+      "id": "je-prends-un-steak-avec-des-frites",
+      "french": "Je prends un steak avec des frites.",
+      "persian": "من یک استیک با سیب‌زمینی سرخ‌کرده سفارش می‌دهم.",
+      "image": "learning-scenes/images/je-prends-un-steak-avec-des-frites.jpg"
+    },
+    {
+      "id": "le-saumon-est-avec-du-riz",
+      "french": "Le saumon est avec du riz.",
+      "persian": "ماهی آزاد با برنج است.",
+      "image": "learning-scenes/images/le-saumon-est-avec-du-riz.jpg"
+    },
+    {
+      "id": "le-kiwi-est-petit",
+      "french": "Le kiwi est petit.",
+      "persian": "کیوی کوچک است.",
+      "image": "learning-scenes/images/le-kiwi-est-petit.jpg"
+    },
+    {
+      "id": "le-citron-est-tres-acide",
+      "french": "Le citron est très acide.",
+      "persian": "لیمو خیلی ترش است.",
+      "image": "learning-scenes/images/le-citron-est-tres-acide.jpg"
+    },
+    {
+      "id": "la-banane-est-jaune",
+      "french": "La banane est jaune.",
+      "persian": "موز زرد است.",
+      "image": "learning-scenes/images/la-banane-est-jaune.jpg"
+    },
+    {
+      "id": "je-bois-de-l-eau-plate",
+      "french": "Je bois de l’eau plate",
+      "persian": "من آب معدنی بدون گاز می‌نوشم.",
+      "image": "learning-scenes/images/je-bois-de-l-eau-plate.jpg"
+    },
+    {
+      "id": "l-orange-donne-du-jus",
+      "french": "L’orange donne du jus.",
+      "persian": "پرتقال آبمیوه می‌دهد.",
+      "image": "learning-scenes/images/l-orange-donne-du-jus.jpg"
+    },
+    {
+      "id": "le-raisin-est-sur-la-table",
+      "french": "Le raisin est sur la table.",
+      "persian": "انگور روی میز است.",
+      "image": "learning-scenes/images/le-raisin-est-sur-la-table.jpg"
+    },
+    {
+      "id": "la-tomate-est-dans-la-salade",
+      "french": "La tomate est dans la salade.",
+      "persian": "گوجه‌فرنگی توی سالاد است.",
+      "image": "learning-scenes/images/la-tomate-est-dans-la-salade.jpg"
+    },
+    {
+      "id": "je-bois-un-jus-d-orange",
+      "french": "Je bois un jus d’orange.",
+      "persian": "من آب پرتقال می‌نوشم.",
+      "image": "learning-scenes/images/je-bois-un-jus-d-orange.jpg"
+    },
+    {
+      "id": "le-fromage-est-bon",
+      "french": "Le fromage est bon.",
+      "persian": "پنیر خوشمزه است.",
+      "image": "learning-scenes/images/le-fromage-est-bon.jpg"
+    },
+    {
+      "id": "je-mange-une-salade-verte",
+      "french": "Je mange une salade verte.",
+      "persian": "من یک سالاد سبز می‌خورم.",
+      "image": "learning-scenes/images/je-mange-une-salade-verte.jpg"
+    },
+    {
+      "id": "la-viande-est-cuite",
+      "french": "La viande est cuite.",
+      "persian": "گوشت پخته است.",
+      "image": "learning-scenes/images/la-viande-est-cuite.jpg"
+    },
+    {
+      "id": "la-carafe-d-eau-est-sur-la-table",
+      "french": "La carafe d’eau est sur la table.",
+      "persian": "پارچ آب روی میز است.",
+      "image": "learning-scenes/images/la-carafe-d-eau-est-sur-la-table.jpg"
+    },
+    {
+      "id": "la-creme-caramel-est-douce",
+      "french": "La crème caramel est douce.",
+      "persian": "کرم کارامل شیرین و لطیف است.",
+      "image": "learning-scenes/images/la-creme-caramel-est-douce.jpg"
+    },
+    {
+      "id": "je-croque-une-pomme",
+      "french": "Je croque une pomme.",
+      "persian": "دارم یک سیب گاز می‌زنم.",
+      "image": "learning-scenes/images/je-croque-une-pomme.jpg"
+    },
+    {
+      "id": "l-eau-gazeuse-a-des-bulles",
+      "french": "L’eau gazeuse a des bulles.",
+      "persian": "آب گازدار حباب دارد.",
+      "image": "learning-scenes/images/l-eau-gazeuse-a-des-bulles.jpg"
+    },
+    {
+      "id": "j-achete-une-courgette-au-marche",
+      "french": "J’achète une courgette au marché.",
+      "persian": "من یک کدو سبز از بازار می‌خرم.",
+      "image": "learning-scenes/images/j-achete-une-courgette-au-marche.jpg"
+    },
+    {
+      "id": "la-carotte-est-orange",
+      "french": "La carotte est orange.",
+      "persian": "هویج نارنجی است.",
+      "image": "learning-scenes/images/la-carotte-est-orange.jpg"
+    },
+    {
+      "id": "l-ananas-est-sucre",
+      "french": "L’ananas est sucré.",
+      "persian": "آناناس شیرین است.",
+      "image": "learning-scenes/images/l-ananas-est-sucre.jpg"
+    },
+    {
+      "id": "le-the-est-vert",
+      "french": "Le thé est vert.",
+      "persian": "چای سبز است.",
+      "image": "learning-scenes/images/le-the-est-vert.jpg"
+    },
+    {
+      "id": "la-fraise-est-delicieuse",
+      "french": "La fraise est délicieuse.",
+      "persian": "توت‌فرنگی خوشمزه است.",
+      "image": "learning-scenes/images/la-fraise-est-delicieuse.jpg"
+    },
+    {
+      "id": "je-prends-un-cafe-chaud",
+      "french": "Je prends un café chaud.",
+      "persian": "من یک قهوه گرم می‌نوشم.",
+      "image": "learning-scenes/images/je-prends-un-cafe-chaud.jpg"
+    },
+    {
+      "id": "l-entree-est-une-salade",
+      "french": "L’entrée est une salade.",
+      "persian": "پیش‌غذا یک سالاد است.",
+      "image": "learning-scenes/images/l-entree-est-une-salade.jpg"
+    },
+    {
+      "id": "le-poisson-est-frais",
+      "french": "Le poisson est frais.",
+      "persian": "ماهی تازه است.",
+      "image": "learning-scenes/images/le-poisson-est-frais.jpg"
+    },
+    {
+      "id": "le-poivron-est-rouge",
+      "french": "Le poivron est rouge.",
+      "persian": "فلفل دلمه‌ای قرمز است.",
+      "image": "learning-scenes/images/le-poivron-est-rouge.jpg"
+    },
+    {
+      "id": "le-jus-de-pomme-est-froid",
+      "french": "Le jus de pomme est froid.",
+      "persian": "آبمیوه سیب سرد است.",
+      "image": "learning-scenes/images/le-jus-de-pomme-est-froid.jpg"
+    },
+    {
+      "id": "les-pates-sont-chaudes",
+      "french": "Les pâtes sont chaudes.",
+      "persian": "ماکارونی داغ است.",
+      "image": "learning-scenes/images/les-pates-sont-chaudes.jpg"
+    },
+    {
+      "id": "je-veux-une-glace-au-chocolat",
+      "french": "Je veux une glace au chocolat.",
+      "persian": "من یک بستنی شکلاتی می‌خواهم.",
+      "image": "learning-scenes/images/je-veux-une-glace-au-chocolat.jpg"
+    },
+    {
+      "id": "le-vin-est-rouge",
+      "french": "Le vin est rouge.",
+      "persian": "شراب قرمز است.",
+      "image": "learning-scenes/images/le-vin-est-rouge.jpg"
+    },
+    {
+      "id": "l-aubergine-est-violette",
+      "french": "L’aubergine est violette.",
+      "persian": "بادمجان بنفش است.",
+      "image": "learning-scenes/images/l-aubergine-est-violette.jpg"
+    },
+    {
+      "id": "je-voudrais-une-baguette-bien-cuite-s-il-vous-plait",
+      "french": "Je voudrais une baguette bien cuite, s’il vous plaît.",
+      "persian": "یک باگت برشته لطفاً.",
+      "image": "learning-scenes/images/je-voudrais-une-baguette-bien-cuite-s-il-vous-plait.jpg"
+    },
+    {
+      "id": "je-prends-un-pain-pour-le-petit-dejeuner",
+      "french": "Je prends un pain pour le petit-déjeuner.",
+      "persian": "من یک نان برای صبحانه می‌گیرم.",
+      "image": "learning-scenes/images/je-prends-un-pain-pour-le-petit-dejeuner.jpg"
+    },
+    {
+      "id": "un-croissant-chaud-c-est-parfait-le-matin",
+      "french": "Un croissant chaud, c’est parfait le matin.",
+      "persian": "یک کروسان داغ، برای صبحانه عالی است.",
+      "image": "learning-scenes/images/un-croissant-chaud-c-est-parfait-le-matin.jpg"
+    },
+    {
+      "id": "les-enfants-adorent-le-pain-au-chocolat",
+      "french": "Les enfants adorent le pain au chocolat.",
+      "persian": "بچه‌ها عاشق نان شکلاتی هستند.",
+      "image": "learning-scenes/images/les-enfants-adorent-le-pain-au-chocolat.jpg"
+    },
+    {
+      "id": "a-midi-je-mange-un-sandwich-au-fromage",
+      "french": "À midi, je mange un sandwich au fromage.",
+      "persian": "ظهر، یک ساندویچ پنیر می‌خورم.",
+      "image": "learning-scenes/images/a-midi-je-mange-un-sandwich-au-fromage.jpg"
+    },
+    {
+      "id": "pour-ce-soir-je-commande-un-sandwich-au-poulet",
+      "french": "Pour ce soir, je commande un sandwich au poulet.",
+      "persian": "برای امشب، یک ساندویچ مرغ سفارش می‌دهم.",
+      "image": "learning-scenes/images/pour-ce-soir-je-commande-un-sandwich-au-poulet.jpg"
+    },
+    {
+      "id": "dimanche-nous-faisons-des-crepes-a-la-maison",
+      "french": "Dimanche, nous faisons des crêpes à la maison.",
+      "persian": "یک‌شنبه، توی خانه کرپ درست می‌کنیم.",
+      "image": "learning-scenes/images/dimanche-nous-faisons-des-crepes-a-la-maison.jpg"
+    },
+    {
+      "id": "j-achete-une-tarte-aux-pommes-pour-le-dessert",
+      "french": "J’achète une tarte aux pommes pour le dessert.",
+      "persian": "من دارم یک پای سیب برای دسر می‌خرم.",
+      "image": "learning-scenes/images/j-achete-une-tarte-aux-pommes-pour-le-dessert.jpg"
+    },
+    {
+      "id": "pour-l-anniversaire-elle-prepare-un-gateau-au-chocolat",
+      "french": "Pour l’anniversaire, elle prépare un gâteau au chocolat.",
+      "persian": "برای تولد، او یک کیک شکلاتی درست می‌کند.",
+      "image": "learning-scenes/images/pour-l-anniversaire-elle-prepare-un-gateau-au-chocolat.jpg"
+    },
+    {
+      "id": "il-faut-de-la-farine-pour-la-pate",
+      "french": "Il faut de la farine pour la pâte.",
+      "persian": "برای خمیر به آرد نیاز است.",
+      "image": "learning-scenes/images/il-faut-de-la-farine-pour-la-pate.jpg"
+    },
+    {
+      "id": "mets-un-peu-de-sucre-dans-le-the",
+      "french": "Mets un peu de sucre dans le thé.",
+      "persian": "یک‌کم شکر توی چای بریز.",
+      "image": "learning-scenes/images/mets-un-peu-de-sucre-dans-le-the.jpg"
+    },
+    {
+      "id": "n-oublie-pas-le-sel-dans-la-soupe",
+      "french": "N’oublie pas le sel dans la soupe.",
+      "persian": "نمک را توی سوپ فراموش نکن.",
+      "image": "learning-scenes/images/n-oublie-pas-le-sel-dans-la-soupe.jpg"
+    },
+    {
+      "id": "je-coupe-l-uf-dur-en-deux",
+      "french": "Je coupe l’œuf dur en deux.",
+      "persian": "من تخم‌مرغ سفت‌پخته را به دو نصف می‌کنم.",
+      "image": "learning-scenes/images/je-coupe-l-uf-dur-en-deux.jpg"
+    },
+    {
+      "id": "fais-fondre-le-beurre-dans-la-poele",
+      "french": "Fais fondre le beurre dans la poêle.",
+      "persian": "کره را در ماهیتابه آب کنید.",
+      "image": "learning-scenes/images/fais-fondre-le-beurre-dans-la-poele.jpg"
+    },
+    {
+      "id": "j-achete-du-lait-pour-le-petit-dejeuner",
+      "french": "J’achète du lait pour le petit-déjeuner.",
+      "persian": "من برای صبحانه شیر می‌خرم.",
+      "image": "learning-scenes/images/j-achete-du-lait-pour-le-petit-dejeuner.jpg"
+    },
+    {
+      "id": "melange-la-farine-et-le-sucre",
+      "french": "Mélange la farine et le sucre.",
+      "persian": "آرد و شکر را با هم مخلوط کن.",
+      "image": "learning-scenes/images/melange-la-farine-et-le-sucre.jpg"
+    },
+    {
+      "id": "ajoute-deux-ufs-dans-le-bol",
+      "french": "Ajoute deux œufs dans le bol.",
+      "persian": "دو تا تخم‌مرغ به کاسه اضافه کن.",
+      "image": "learning-scenes/images/ajoute-deux-ufs-dans-le-bol.jpg"
+    },
+    {
+      "id": "verse-le-lait-doucement",
+      "french": "Verse le lait doucement.",
+      "persian": "شیر را به آرامی بریز.",
+      "image": "learning-scenes/images/verse-le-lait-doucement.jpg"
+    },
+    {
+      "id": "mets-la-pate-dans-la-poele",
+      "french": "Mets la pâte dans la poêle.",
+      "persian": "خمیر را در ماهیتابه بگذار.",
+      "image": "learning-scenes/images/mets-la-pate-dans-la-poele.jpg"
+    },
+    {
+      "id": "ajoute-150-grammes-de-farine",
+      "french": "Ajoute 150 grammes de farine.",
+      "persian": "۱۵۰ گرم آرد اضافه کن.",
+      "image": "learning-scenes/images/ajoute-150-grammes-de-farine.jpg"
+    },
+    {
+      "id": "mesure-50-millilitres-de-lait",
+      "french": "Mesure 50 millilitres de lait.",
+      "persian": "پنجاه میلی‌لیتر شیر اندازه‌گیری کن.",
+      "image": "learning-scenes/images/mesure-50-millilitres-de-lait.jpg"
+    },
+    {
+      "id": "bois-un-verre-de-jus-d-orange",
+      "french": "Bois un verre de jus d’orange.",
+      "persian": "یک لیوان آب پرتقال بنوش.",
+      "image": "learning-scenes/images/bois-un-verre-de-jus-d-orange.jpg"
+    },
+    {
+      "id": "nous-achetons-une-bouteille-de-lait",
+      "french": "Nous achetons une bouteille de lait",
+      "persian": "ما یک بطری شیر می‌خریم.",
+      "image": "learning-scenes/images/nous-achetons-une-bouteille-de-lait.jpg"
+    },
+    {
+      "id": "je-prends-une-tranche-de-pain",
+      "french": "Je prends une tranche de pain.",
+      "persian": "من یک برش نان برمی‌دارم.",
+      "image": "learning-scenes/images/je-prends-une-tranche-de-pain.jpg"
+    },
+    {
+      "id": "donne-moi-une-part-de-tarte-s-il-te-plait",
+      "french": "Donne-moi une part de tarte, s’il te plaît.",
+      "persian": "یک تکه پای به من بده، لطفا.",
+      "image": "learning-scenes/images/donne-moi-une-part-de-tarte-s-il-te-plait.jpg"
+    },
+    {
+      "id": "je-coupe-un-morceau-de-fromage",
+      "french": "Je coupe un morceau de fromage.",
+      "persian": "من یک تکه پنیر می‌برم.",
+      "image": "learning-scenes/images/je-coupe-un-morceau-de-fromage.jpg"
+    },
+    {
+      "id": "j-ai-un-rhume",
+      "french": "J’ai un rhume.",
+      "persian": "من سرما خورده‌ام.",
+      "image": "learning-scenes/images/j-ai-un-rhume.jpg"
+    },
+    {
+      "id": "j-ai-la-grippe",
+      "french": "J’ai la grippe.",
+      "persian": "آنفلوانزا دارم.",
+      "image": "learning-scenes/images/j-ai-la-grippe.jpg"
+    },
+    {
+      "id": "j-ai-mal-a-la-gorge",
+      "french": "J’ai mal à la gorge.",
+      "persian": "گلو درد دارم.",
+      "image": "learning-scenes/images/j-ai-mal-a-la-gorge.jpg"
+    },
+    {
+      "id": "j-ai-le-bras-casse",
+      "french": "J’ai le bras cassé.",
+      "persian": "بازویم شکسته است.",
+      "image": "learning-scenes/images/j-ai-le-bras-casse.jpg"
+    },
+    {
+      "id": "je-suis-malade",
+      "french": "Je suis malade.",
+      "persian": "من مریض هستم.",
+      "image": "learning-scenes/images/je-suis-malade.jpg"
+    },
+    {
+      "id": "je-dois-voir-le-medecin",
+      "french": "Je dois voir le médecin.",
+      "persian": "باید دکتر را ببینم.",
+      "image": "learning-scenes/images/je-dois-voir-le-medecin.jpg"
+    },
+    {
+      "id": "j-ai-un-rendez-vous-chez-le-dentiste",
+      "french": "J’ai un rendez-vous chez le dentiste.",
+      "persian": "من وقت ملاقات دندانپزشکی دارم.",
+      "image": "learning-scenes/images/j-ai-un-rendez-vous-chez-le-dentiste.jpg"
+    },
+    {
+      "id": "j-ai-une-consultation-aujourd-hui",
+      "french": "J’ai une consultation aujourd’hui.",
+      "persian": "امروز یک نوبت ویزیت دارم.",
+      "image": "learning-scenes/images/j-ai-une-consultation-aujourd-hui.jpg"
+    },
+    {
+      "id": "je-vais-au-cabinet-medical",
+      "french": "Je vais au cabinet médical.",
+      "persian": "من به مطب پزشک می‌روم.",
+      "image": "learning-scenes/images/je-vais-au-cabinet-medical.jpg"
+    },
+    {
+      "id": "je-suis-a-l-hopital",
+      "french": "Je suis à l’hôpital.",
+      "persian": "من در بیمارستان هستم.",
+      "image": "learning-scenes/images/je-suis-a-l-hopital.jpg"
+    },
+    {
+      "id": "nous-allons-aux-urgences-tout-de-suite",
+      "french": "Nous allons aux urgences tout de suite.",
+      "persian": "ما همین الان به بخش اورژانس می‌رویم.",
+      "image": "learning-scenes/images/nous-allons-aux-urgences-tout-de-suite.jpg"
+    },
+    {
+      "id": "tourne-la-tete-s-il-te-plait",
+      "french": "Tourne la tête, s’il te plaît.",
+      "persian": "لطفاً سرت را بچرخان.",
+      "image": "learning-scenes/images/tourne-la-tete-s-il-te-plait.jpg"
+    },
+    {
+      "id": "ma-gorge-est-seche",
+      "french": "Ma gorge est sèche.",
+      "persian": "گلويم خشک است.",
+      "image": "learning-scenes/images/ma-gorge-est-seche.jpg"
+    },
+    {
+      "id": "j-ai-mal-au-dos",
+      "french": "J’ai mal au dos.",
+      "persian": "کمرم درد می‌کند.",
+      "image": "learning-scenes/images/j-ai-mal-au-dos.jpg"
+    },
+    {
+      "id": "j-ai-mal-aux-yeux",
+      "french": "J’ai mal aux yeux.",
+      "persian": "چشم‌ام درد می‌کند.",
+      "image": "learning-scenes/images/j-ai-mal-aux-yeux.jpg"
+    },
+    {
+      "id": "j-ai-mal-a-l-oreille",
+      "french": "J’ai mal à l’oreille.",
+      "persian": "گوشم درد می‌کند.",
+      "image": "learning-scenes/images/j-ai-mal-a-l-oreille.jpg"
+    },
+    {
+      "id": "mon-nez-est-bouche",
+      "french": "Mon nez est bouché.",
+      "persian": "بینیم گرفته است.",
+      "image": "learning-scenes/images/mon-nez-est-bouche.jpg"
+    },
+    {
+      "id": "j-ouvre-la-bouche",
+      "french": "J’ouvre la bouche.",
+      "persian": "دهانم را باز می‌کنم.",
+      "image": "learning-scenes/images/j-ouvre-la-bouche.jpg"
+    },
+    {
+      "id": "j-ai-mal-aux-dents",
+      "french": "J’ai mal aux dents.",
+      "persian": "دندان درد دارم.",
+      "image": "learning-scenes/images/j-ai-mal-aux-dents.jpg"
+    },
+    {
+      "id": "le-medecin-examine-mon-ventre",
+      "french": "Le médecin examine mon ventre.",
+      "persian": "پزشک شکمم را معاینه می‌کند.",
+      "image": "learning-scenes/images/le-medecin-examine-mon-ventre.jpg"
+    },
+    {
+      "id": "j-ai-mal-a-la-main",
+      "french": "J’ai mal à la main.",
+      "persian": "دستم درد می‌کند.",
+      "image": "learning-scenes/images/j-ai-mal-a-la-main.jpg"
+    },
+    {
+      "id": "j-ai-mal-a-la-jambe",
+      "french": "J’ai mal à la jambe.",
+      "persian": "پایم درد می‌کند.",
+      "image": "learning-scenes/images/j-ai-mal-a-la-jambe.jpg"
+    },
+    {
+      "id": "j-ai-mal-au-pied",
+      "french": "J’ai mal au pied.",
+      "persian": "پایم درد می‌کند.",
+      "image": "learning-scenes/images/j-ai-mal-au-pied.jpg"
+    },
+    {
+      "id": "je-vais-a-la-pharmacie-ce-soir",
+      "french": "Je vais à la pharmacie ce soir.",
+      "persian": "من امشب به داروخانه می‌روم.",
+      "image": "learning-scenes/images/je-vais-a-la-pharmacie-ce-soir.jpg"
+    },
+    {
+      "id": "je-lis-la-notice-avant-de-prendre-le-medicament",
+      "french": "Je lis la notice avant de prendre le médicament.",
+      "persian": "قبل از خوردن دارو، بروشور آن را می‌خوانم.",
+      "image": "learning-scenes/images/je-lis-la-notice-avant-de-prendre-le-medicament.jpg"
+    },
+    {
+      "id": "il-presente-sa-carte-vitale-a-la-caisse",
+      "french": "Il présente sa carte Vitale à la caisse.",
+      "persian": "او کارت بیمه درمانی‌اش را در صندوق پرداخت ارائه می‌دهد.",
+      "image": "learning-scenes/images/il-presente-sa-carte-vitale-a-la-caisse.jpg"
+    },
+    {
+      "id": "j-achete-une-boite-d-antibiotiques",
+      "french": "J’achète une boîte d’antibiotiques.",
+      "persian": "من یک جعبه آنتی‌بیوتیک می‌خرم.",
+      "image": "learning-scenes/images/j-achete-une-boite-d-antibiotiques.jpg"
+    },
+    {
+      "id": "elle-prend-un-comprime-avec-de-l-eau",
+      "french": "Elle prend un comprimé avec de l’eau.",
+      "persian": "او یک قرص را با آب می‌خورد.",
+      "image": "learning-scenes/images/elle-prend-un-comprime-avec-de-l-eau.jpg"
+    },
+    {
+      "id": "l-enfant-boit-une-cuillere-de-sirop",
+      "french": "L’enfant boit une cuillère de sirop.",
+      "persian": "کودک یک قاشق شربت می‌نوشد.",
+      "image": "learning-scenes/images/l-enfant-boit-une-cuillere-de-sirop.jpg"
+    },
+    {
+      "id": "il-suce-une-pastille-contre-la-toux",
+      "french": "Il suce une pastille contre la toux.",
+      "persian": "او دارد یک قرص مکیدنی ضد سرفه می‌مکد.",
+      "image": "learning-scenes/images/il-suce-une-pastille-contre-la-toux.jpg"
+    },
+    {
+      "id": "je-mets-un-sachet-d-aspirine-dans-un-verre-d-eau",
+      "french": "Je mets un sachet d’aspirine dans un verre d’eau.",
+      "persian": "یک بسته آسپرین توی یک لیوان آب می‌اندازم.",
+      "image": "learning-scenes/images/je-mets-un-sachet-d-aspirine-dans-un-verre-d-eau.jpg"
+    },
+    {
+      "id": "elle-met-de-la-creme-sur-sa-main",
+      "french": "Elle met de la crème sur sa main.",
+      "persian": "او دارد به دستش کرم می‌زند.",
+      "image": "learning-scenes/images/elle-met-de-la-creme-sur-sa-main.jpg"
+    },
+    {
+      "id": "il-nettoie-la-plaie-avec-un-desinfectant",
+      "french": "Il nettoie la plaie avec un désinfectant.",
+      "persian": "او زخم را با ضدعفونی‌کننده تمیز می‌کند.",
+      "image": "learning-scenes/images/il-nettoie-la-plaie-avec-un-desinfectant.jpg"
+    },
+    {
+      "id": "le-docteur-met-un-pansement-sur-la-coupure",
+      "french": "Le docteur met un pansement sur la coupure.",
+      "persian": "پزشک روی بریدگی چسب زخم می‌گذارد.",
+      "image": "learning-scenes/images/le-docteur-met-un-pansement-sur-la-coupure.jpg"
+    },
+    {
+      "id": "il-a-une-petite-coupure-au-doigt",
+      "french": "Il a une petite coupure au doigt.",
+      "persian": "یک بریدگی کوچک روی انگشتش دارد.",
+      "image": "learning-scenes/images/il-a-une-petite-coupure-au-doigt.jpg"
+    },
+    {
+      "id": "elle-a-une-brulure-sur-le-bras",
+      "french": "Elle a une brûlure sur le bras.",
+      "persian": "او روی بازویش سوختگی دارد.",
+      "image": "learning-scenes/images/elle-a-une-brulure-sur-le-bras.jpg"
+    },
+    {
+      "id": "le-medecin-me-donne-une-ordonnance",
+      "french": "Le médecin me donne une ordonnance.",
+      "persian": "پزشک برای من نسخه می‌نویسد.",
+      "image": "learning-scenes/images/le-medecin-me-donne-une-ordonnance.jpg"
+    },
+    {
+      "id": "je-prends-le-bus-pour-aller-a-l-ecole",
+      "french": "Je prends le bus pour aller à l’école.",
+      "persian": "من برای رفتن به مدرسه سوار اتوبوس می‌شوم.",
+      "image": "learning-scenes/images/je-prends-le-bus-pour-aller-a-l-ecole.jpg"
+    },
+    {
+      "id": "nous-allons-au-travail-en-metro",
+      "french": "Nous allons au travail en métro.",
+      "persian": "ما با مترو به سر کار می‌رویم.",
+      "image": "learning-scenes/images/nous-allons-au-travail-en-metro.jpg"
+    },
+    {
+      "id": "il-va-a-l-universite-en-tramway",
+      "french": "Il va à l’université en tramway.",
+      "persian": "او با تراموا به دانشگاه می‌رود.",
+      "image": "learning-scenes/images/il-va-a-l-universite-en-tramway.jpg"
+    },
+    {
+      "id": "le-train-part-de-la-gare-a-huit-heures",
+      "french": "Le train part de la gare à huit heures.",
+      "persian": "قطار ساعت هشت از ایستگاه حرکت می‌کند.",
+      "image": "learning-scenes/images/le-train-part-de-la-gare-a-huit-heures.jpg"
+    },
+    {
+      "id": "j-attends-mon-ami-a-l-arret",
+      "french": "J’attends mon ami à l’arrêt.",
+      "persian": "منتظر دوستم در ایستگاه هستم.",
+      "image": "learning-scenes/images/j-attends-mon-ami-a-l-arret.jpg"
+    },
+    {
+      "id": "elle-descend-a-la-station-suivante",
+      "french": "Elle descend à la station suivante.",
+      "persian": "او در ایستگاه بعدی پیاده می‌شود.",
+      "image": "learning-scenes/images/elle-descend-a-la-station-suivante.jpg"
+    },
+    {
+      "id": "tu-achetes-un-ticket-au-guichet",
+      "french": "Tu achètes un ticket au guichet.",
+      "persian": "تو از باجه بلیط می‌خری.",
+      "image": "learning-scenes/images/tu-achetes-un-ticket-au-guichet.jpg"
+    },
+    {
+      "id": "nous-utilisons-une-carte-pour-voyager",
+      "french": "Nous utilisons une carte pour voyager.",
+      "persian": "ما برای سفر از نقشه استفاده می‌کنیم.",
+      "image": "learning-scenes/images/nous-utilisons-une-carte-pour-voyager.jpg"
+    },
+    {
+      "id": "lundi-j-ai-cours-de-francais",
+      "french": "Lundi, j'ai cours de français.",
+      "persian": "دوشنبه کلاس فرانسه دارم.",
+      "image": "learning-scenes/images/lundi-j-ai-cours-de-francais.jpg"
+    },
+    {
+      "id": "mardi-je-vais-au-marche",
+      "french": "Mardi, je vais au marché.",
+      "persian": "سه‌شنبه به بازار می‌روم.",
+      "image": "learning-scenes/images/mardi-je-vais-au-marche.jpg"
+    },
+    {
+      "id": "mercredi-il-joue-au-foot",
+      "french": "Mercredi, il joue au foot.",
+      "persian": "چهارشنبه‌ها او فوتبال بازی می‌کند.",
+      "image": "learning-scenes/images/mercredi-il-joue-au-foot.jpg"
+    },
+    {
+      "id": "jeudi-elle-travaille-a-la-maison",
+      "french": "Jeudi, elle travaille à la maison.",
+      "persian": "پنجشنبه، او در خانه کار می‌کند.",
+      "image": "learning-scenes/images/jeudi-elle-travaille-a-la-maison.jpg"
+    },
+    {
+      "id": "vendredi-nous-allons-au-cinema",
+      "french": "Vendredi, nous allons au cinéma.",
+      "persian": "جمعه، ما به سینما می‌رویم.",
+      "image": "learning-scenes/images/vendredi-nous-allons-au-cinema.jpg"
+    },
+    {
+      "id": "samedi-je-fais-les-courses",
+      "french": "Samedi, je fais les courses.",
+      "persian": "شنبه، من خرید می‌کنم.",
+      "image": "learning-scenes/images/samedi-je-fais-les-courses.jpg"
+    },
+    {
+      "id": "dimanche-je-me-repose",
+      "french": "Dimanche, je me repose.",
+      "persian": "یکشنبه‌ها استراحت می‌کنم.",
+      "image": "learning-scenes/images/dimanche-je-me-repose.jpg"
+    },
+    {
+      "id": "mon-anniversaire-est-en-janvier",
+      "french": "Mon anniversaire est en janvier.",
+      "persian": "تولد من در ماه ژانویه است.",
+      "image": "learning-scenes/images/mon-anniversaire-est-en-janvier.jpg"
+    },
+    {
+      "id": "il-fait-froid-en-fevrier",
+      "french": "Il fait froid en février.",
+      "persian": "در ماه فوریه هوا سرد است.",
+      "image": "learning-scenes/images/il-fait-froid-en-fevrier.jpg"
+    },
+    {
+      "id": "mars-est-le-troisieme-mois",
+      "french": "Mars est le troisième mois.",
+      "persian": "مارس سومین ماه سال است.",
+      "image": "learning-scenes/images/mars-est-le-troisieme-mois.jpg"
+    },
+    {
+      "id": "en-avril-il-pleut-souvent",
+      "french": "En avril, il pleut souvent.",
+      "persian": "در ماه آوریل، اغلب باران می‌بارد.",
+      "image": "learning-scenes/images/en-avril-il-pleut-souvent.jpg"
+    },
+    {
+      "id": "mai-est-un-beau-mois",
+      "french": "Mai est un beau mois.",
+      "persian": "ماه مه، ماه زیبایی است.",
+      "image": "learning-scenes/images/mai-est-un-beau-mois.jpg"
+    },
+    {
+      "id": "l-ecole-finit-en-juin",
+      "french": "L'école finit en juin.",
+      "persian": "مدرسه در ماه ژوئن تمام می‌شود.",
+      "image": "learning-scenes/images/l-ecole-finit-en-juin.jpg"
+    },
+    {
+      "id": "il-fait-chaud-en-juillet",
+      "french": "Il fait chaud en juillet.",
+      "persian": "در ماه ژوئیه هوا گرم است.",
+      "image": "learning-scenes/images/il-fait-chaud-en-juillet.jpg"
+    },
+    {
+      "id": "nous-partons-en-vacances-en-aout",
+      "french": "Nous partons en vacances en août.",
+      "persian": "ما در ماه اوت به تعطیلات می‌رویم.",
+      "image": "learning-scenes/images/nous-partons-en-vacances-en-aout.jpg"
+    },
+    {
+      "id": "la-rentree-est-en-septembre",
+      "french": "La rentrée est en septembre.",
+      "persian": "شروع سال تحصیلی در ماه سپتامبر است.",
+      "image": "learning-scenes/images/la-rentree-est-en-septembre.jpg"
+    },
+    {
+      "id": "les-feuilles-tombent-en-octobre",
+      "french": "Les feuilles tombent en octobre.",
+      "persian": "برگ‌ها در ماه اکتبر می‌ریزند.",
+      "image": "learning-scenes/images/les-feuilles-tombent-en-octobre.jpg"
+    },
+    {
+      "id": "il-fait-gris-en-novembre",
+      "french": "Il fait gris en novembre.",
+      "persian": "در ماه نوامبر هوا ابری است.",
+      "image": "learning-scenes/images/il-fait-gris-en-novembre.jpg"
+    },
+    {
+      "id": "noel-est-en-decembre",
+      "french": "Noël est en décembre.",
+      "persian": "کریسمس در ماه دسامبر است.",
+      "image": "learning-scenes/images/noel-est-en-decembre.jpg"
+    },
+    {
+      "id": "il-est-deux-heures",
+      "french": "Il est deux heures.",
+      "persian": "ساعت دو است.",
+      "image": "learning-scenes/images/il-est-deux-heures.jpg"
+    },
+    {
+      "id": "il-est-trois-heures-et-quart",
+      "french": "Il est trois heures et quart.",
+      "persian": "ساعت سه و ربع است.",
+      "image": "learning-scenes/images/il-est-trois-heures-et-quart.jpg"
+    },
+    {
+      "id": "il-est-cinq-heures-moins-le-quart",
+      "french": "Il est cinq heures moins le quart.",
+      "persian": "ساعت یک ربع به پنج است.",
+      "image": "learning-scenes/images/il-est-cinq-heures-moins-le-quart.jpg"
+    },
+    {
+      "id": "il-est-six-heures-et-demie",
+      "french": "Il est six heures et demie.",
+      "persian": "ساعت شش و نیم است.",
+      "image": "learning-scenes/images/il-est-six-heures-et-demie.jpg"
+    },
+    {
+      "id": "je-mets-une-assiette-sur-la-table",
+      "french": "Je mets une assiette sur la table.",
+      "persian": "من یک بشقاب روی میز می‌گذارم.",
+      "image": "learning-scenes/images/je-mets-une-assiette-sur-la-table.jpg"
+    },
+    {
+      "id": "je-prends-une-cuillere-pour-la-soupe",
+      "french": "Je prends une cuillère pour la soupe.",
+      "persian": "من برای سوپ از قاشق استفاده می‌کنم.",
+      "image": "learning-scenes/images/je-prends-une-cuillere-pour-la-soupe.jpg"
+    },
+    {
+      "id": "il-utilise-un-couteau-pour-couper-le-pain",
+      "french": "Il utilise un couteau pour couper le pain.",
+      "persian": "او از چاقو برای بریدن نان استفاده می‌کند.",
+      "image": "learning-scenes/images/il-utilise-un-couteau-pour-couper-le-pain.jpg"
+    },
+    {
+      "id": "elle-mange-avec-une-fourchette",
+      "french": "Elle mange avec une fourchette.",
+      "persian": "او با چنگال غذا می‌خورد.",
+      "image": "learning-scenes/images/elle-mange-avec-une-fourchette.jpg"
+    },
+    {
+      "id": "je-bois-un-jus-dans-un-verre",
+      "french": "Je bois un jus dans un verre.",
+      "persian": "من در یک لیوان آب‌میوه می‌نوشم.",
+      "image": "learning-scenes/images/je-bois-un-jus-dans-un-verre.jpg"
+    },
+    {
+      "id": "il-y-a-des-serviettes-en-papier-sur-la-table",
+      "french": "Il y a des serviettes en papier sur la table.",
+      "persian": "دستمال‌های کاغذی روی میز هستند.",
+      "image": "learning-scenes/images/il-y-a-des-serviettes-en-papier-sur-la-table.jpg"
+    },
+    {
+      "id": "je-mange-un-plat-chaud-ce-soir",
+      "french": "Je mange un plat chaud ce soir.",
+      "persian": "من امشب یک غذای گرم می‌خورم.",
+      "image": "learning-scenes/images/je-mange-un-plat-chaud-ce-soir.jpg"
+    },
+    {
+      "id": "elle-prepare-un-plat-froid",
+      "french": "Elle prépare un plat froid.",
+      "persian": "او یک غذای سرد آماده می‌کند.",
+      "image": "learning-scenes/images/elle-prepare-un-plat-froid.jpg"
+    },
+    {
+      "id": "nous-mangeons-une-quiche-au-fromage",
+      "french": "Nous mangeons une quiche au fromage.",
+      "persian": "ما داریم یک کیش پنیر می‌خوریم.",
+      "image": "learning-scenes/images/nous-mangeons-une-quiche-au-fromage.jpg"
+    },
+    {
+      "id": "j-adore-la-pizza",
+      "french": "J'adore la pizza.",
+      "persian": "من عاشق پیتزا هستم.",
+      "image": "learning-scenes/images/j-adore-la-pizza.jpg"
+    },
+    {
+      "id": "tu-prends-une-salade",
+      "french": "Tu prends une salade ?",
+      "persian": "آیا سالاد می‌خوری؟",
+      "image": "learning-scenes/images/tu-prends-une-salade.jpg"
+    },
+    {
+      "id": "il-y-a-des-chips-pour-la-fete",
+      "french": "Il y a des chips pour la fête.",
+      "persian": "برای مهمانی چیپس داریم.",
+      "image": "learning-scenes/images/il-y-a-des-chips-pour-la-fete.jpg"
+    },
+    {
+      "id": "je-fais-une-salade-de-fruits-pour-le-dessert",
+      "french": "Je fais une salade de fruits pour le dessert.",
+      "persian": "من برای دسر یک سالاد میوه درست می‌کنم.",
+      "image": "learning-scenes/images/je-fais-une-salade-de-fruits-pour-le-dessert.jpg"
+    },
+    {
+      "id": "voici-une-bouteille-d-eau",
+      "french": "Voici une bouteille d'eau.",
+      "persian": "این یک بطری آب است.",
+      "image": "learning-scenes/images/voici-une-bouteille-d-eau.jpg"
+    },
+    {
+      "id": "je-veux-une-boisson-fraiche",
+      "french": "Je veux une boisson fraîche.",
+      "persian": "من یک نوشیدنی خنک می‌خواهم.",
+      "image": "learning-scenes/images/je-veux-une-boisson-fraiche.jpg"
+    },
+    {
+      "id": "un-numero-de-telephone-portable",
+      "french": "un numéro de téléphone (portable)",
+      "persian": "یک شماره تلفن (همراه)",
+      "image": "learning-scenes/images/un-numero-de-telephone-portable.jpg"
+    },
+    {
+      "id": "c-est-une-femme-gentille",
+      "french": "C'est une femme gentille.",
+      "persian": "او یک زن مهربان است.",
+      "image": "learning-scenes/images/c-est-une-femme-gentille.jpg"
+    },
+    {
+      "id": "mon-pere-est-un-bon-mari",
+      "french": "Mon père est un bon mari.",
+      "persian": "پدرم شوهر خوبی است.",
+      "image": "learning-scenes/images/mon-pere-est-un-bon-mari.jpg"
+    },
+    {
+      "id": "j-ai-une-fille-de-dix-ans",
+      "french": "J'ai une fille de dix ans.",
+      "persian": "من یک دختر ده ساله دارم.",
+      "image": "learning-scenes/images/j-ai-une-fille-de-dix-ans.jpg"
+    },
+    {
+      "id": "il-a-un-fils-tres-drole",
+      "french": "Il a un fils très drôle.",
+      "persian": "او یک پسر خیلی بامزه دارد.",
+      "image": "learning-scenes/images/il-a-un-fils-tres-drole.jpg"
+    },
+    {
+      "id": "j-ai-un-frere-et-une-s-ur",
+      "french": "J'ai un frère et une sœur.",
+      "persian": "من یک برادر و یک خواهر دارم.",
+      "image": "learning-scenes/images/j-ai-un-frere-et-une-s-ur.jpg"
+    },
+    {
+      "id": "ma-s-ur-s-appelle-julie",
+      "french": "Ma sœur s'appelle Julie.",
+      "persian": "اسم خواهرم جولی است.",
+      "image": "learning-scenes/images/ma-s-ur-s-appelle-julie.jpg"
+    },
+    {
+      "id": "ma-mere-travaille-a-l-hopital",
+      "french": "Ma mère travaille à l'hôpital.",
+      "persian": "مادرم در بیمارستان کار می‌کند.",
+      "image": "learning-scenes/images/ma-mere-travaille-a-l-hopital.jpg"
+    },
+    {
+      "id": "mon-pere-est-professeur",
+      "french": "Mon père est professeur.",
+      "persian": "پدرم معلم است.",
+      "image": "learning-scenes/images/mon-pere-est-professeur.jpg"
+    },
+    {
+      "id": "mes-grands-parents-habitent-a-lyon",
+      "french": "Mes grands-parents habitent à Lyon.",
+      "persian": "پدربزرگ و مادربزرگم در لیون زندگی می‌کنند.",
+      "image": "learning-scenes/images/mes-grands-parents-habitent-a-lyon.jpg"
+    },
+    {
+      "id": "ils-ont-trois-petits-enfants",
+      "french": "Ils ont trois petits-enfants.",
+      "persian": "آن‌ها سه نوه کوچک دارند.",
+      "image": "learning-scenes/images/ils-ont-trois-petits-enfants.jpg"
+    },
+    {
+      "id": "c-est-un-homme-tres-grand",
+      "french": "C'est un homme très grand.",
+      "persian": "او مرد بسیار قدبلندی است.",
+      "image": "learning-scenes/images/c-est-un-homme-tres-grand.jpg"
+    },
+    {
+      "id": "la-femme-parle-francais",
+      "french": "La femme parle français.",
+      "persian": "آن زن به زبان فرانسوی صحبت می‌کند.",
+      "image": "learning-scenes/images/la-femme-parle-francais.jpg"
+    },
+    {
+      "id": "mon-frere-est-grand",
+      "french": "Mon frère est grand.",
+      "persian": "برادر من قدبلند است.",
+      "image": "learning-scenes/images/mon-frere-est-grand.jpg"
+    },
+    {
+      "id": "le-bebe-est-petit",
+      "french": "Le bébé est petit.",
+      "persian": "آن نوزاد کوچک است.",
+      "image": "learning-scenes/images/le-bebe-est-petit.jpg"
+    },
+    {
+      "id": "ma-s-ur-est-grande",
+      "french": "Ma sœur est grande.",
+      "persian": "خواهرم قدبلند است.",
+      "image": "learning-scenes/images/ma-s-ur-est-grande.jpg"
+    },
+    {
+      "id": "elle-est-petite-mais-forte",
+      "french": "Elle est petite mais forte.",
+      "persian": "او قد کوتاه است اما قوی است.",
+      "image": "learning-scenes/images/elle-est-petite-mais-forte.jpg"
+    },
+    {
+      "id": "il-est-blond-et-souriant",
+      "french": "Il est blond et souriant.",
+      "persian": "او بلوند است و لبخند می‌زند.",
+      "image": "learning-scenes/images/il-est-blond-et-souriant.jpg"
+    },
+    {
+      "id": "elle-est-blonde-et-gentille",
+      "french": "Elle est blonde et gentille.",
+      "persian": "او بلوند و مهربان است.",
+      "image": "learning-scenes/images/elle-est-blonde-et-gentille.jpg"
+    },
+    {
+      "id": "mon-cousin-est-brun",
+      "french": "Mon cousin est brun.",
+      "persian": "پسرعموی من موهای قهوه‌ای دارد.",
+      "image": "learning-scenes/images/mon-cousin-est-brun.jpg"
+    },
+    {
+      "id": "la-fille-brune-est-sympa",
+      "french": "La fille brune est sympa.",
+      "persian": "آن دختر مو قهوه‌ای مهربان است.",
+      "image": "learning-scenes/images/la-fille-brune-est-sympa.jpg"
+    },
+    {
+      "id": "le-garcon-roux-joue-au-foot",
+      "french": "Le garçon roux joue au foot.",
+      "persian": "آن پسر مو قرمز دارد فوتبال بازی می‌کند.",
+      "image": "learning-scenes/images/le-garcon-roux-joue-au-foot.jpg"
+    },
+    {
+      "id": "ma-tante-est-rousse",
+      "french": "Ma tante est rousse.",
+      "persian": "خاله من موقرمز است.",
+      "image": "learning-scenes/images/ma-tante-est-rousse.jpg"
+    },
+    {
+      "id": "le-professeur-est-jeune",
+      "french": "Le professeur est jeune.",
+      "persian": "استاد جوان است.",
+      "image": "learning-scenes/images/le-professeur-est-jeune.jpg"
+    },
+    {
+      "id": "mon-grand-pere-est-age",
+      "french": "Mon grand-père est âgé.",
+      "persian": "پدربزرگم پیر است.",
+      "image": "learning-scenes/images/mon-grand-pere-est-age.jpg"
+    },
+    {
+      "id": "ma-voisine-est-agee",
+      "french": "Ma voisine est âgée.",
+      "persian": "همسایه‌ام مسن است.",
+      "image": "learning-scenes/images/ma-voisine-est-agee.jpg"
+    },
+    {
+      "id": "il-est-celibataire",
+      "french": "Il est célibataire.",
+      "persian": "او مجرد است.",
+      "image": "learning-scenes/images/il-est-celibataire.jpg"
+    },
+    {
+      "id": "elle-est-en-couple",
+      "french": "Elle est en couple.",
+      "persian": "او در رابطه است.",
+      "image": "learning-scenes/images/elle-est-en-couple.jpg"
+    },
+    {
+      "id": "mon-oncle-est-marie",
+      "french": "Mon oncle est marié.",
+      "persian": "عموی من متأهل است.",
+      "image": "learning-scenes/images/mon-oncle-est-marie.jpg"
+    },
+    {
+      "id": "elle-est-pacsee-depuis-deux-ans",
+      "french": "Elle est pacsée depuis deux ans.",
+      "persian": "او دو سال است که با شریک زندگی‌اش پیمان مدنی بسته است.",
+      "image": "learning-scenes/images/elle-est-pacsee-depuis-deux-ans.jpg"
+    },
+    {
+      "id": "mon-voisin-est-divorce",
+      "french": "Mon voisin est divorcé.",
+      "persian": "همسایه‌ام طلاق گرفته است.",
+      "image": "learning-scenes/images/mon-voisin-est-divorce.jpg"
+    },
+    {
+      "id": "elle-est-divorcee",
+      "french": "Elle est divorcée.",
+      "persian": "او طلاق گرفته است.",
+      "image": "learning-scenes/images/elle-est-divorcee.jpg"
+    },
+    {
+      "id": "paul-est-separe",
+      "french": "Paul est séparé.",
+      "persian": "پل جدا شده است.",
+      "image": "learning-scenes/images/paul-est-separe.jpg"
+    },
+    {
+      "id": "il-est-veuf-depuis-2018",
+      "french": "Il est veuf depuis 2018.",
+      "persian": "او از سال ۲۰۱۸ بیوه است.",
+      "image": "learning-scenes/images/il-est-veuf-depuis-2018.jpg"
+    },
+    {
+      "id": "elle-est-veuve-mais-heureuse",
+      "french": "Elle est veuve mais heureuse.",
+      "persian": "او بیوه است اما خوشحال است.",
+      "image": "learning-scenes/images/elle-est-veuve-mais-heureuse.jpg"
+    },
+    {
+      "id": "le-numero-de-la-maison-est-6",
+      "french": "Le numéro de la maison est 6.",
+      "persian": "شماره‌ی خانه ۶ است.",
+      "image": "learning-scenes/images/le-numero-de-la-maison-est-6.jpg"
+    },
+    {
+      "id": "mon-code-postal-est-75006",
+      "french": "Mon code postal est 75006.",
+      "persian": "کد پستی من ۷۵۰۰۶ است.",
+      "image": "learning-scenes/images/mon-code-postal-est-75006.jpg"
+    },
+    {
+      "id": "j-habite-dans-la-ville-de-paris",
+      "french": "J'habite dans la ville de Paris.",
+      "persian": "من در شهر پاریس زندگی می‌کنم.",
+      "image": "learning-scenes/images/j-habite-dans-la-ville-de-paris.jpg"
+    },
+    {
+      "id": "elle-habite-rue-victor-hugo",
+      "french": "Elle habite rue Victor Hugo.",
+      "persian": "او در خیابان ویکتور هوگو زندگی می‌کند.",
+      "image": "learning-scenes/images/elle-habite-rue-victor-hugo.jpg"
+    },
+    {
+      "id": "l-avenue-est-tres-large",
+      "french": "L'avenue est très large.",
+      "persian": "این خیابان خیلی عریض است.",
+      "image": "learning-scenes/images/l-avenue-est-tres-large.jpg"
+    },
+    {
+      "id": "le-centre-ville-est-anime",
+      "french": "Le centre-ville est animé.",
+      "persian": "مرکز شهر پرجنب‌وجوش است.",
+      "image": "learning-scenes/images/le-centre-ville-est-anime.jpg"
+    },
+    {
+      "id": "c-est-un-quartier-calme",
+      "french": "C'est un quartier calme.",
+      "persian": "اینجا یک محله آرام است.",
+      "image": "learning-scenes/images/c-est-un-quartier-calme.jpg"
+    },
+    {
+      "id": "ils-ont-une-grande-maison",
+      "french": "Ils ont une grande maison.",
+      "persian": "آن‌ها یک خانه بزرگ دارند.",
+      "image": "learning-scenes/images/ils-ont-une-grande-maison.jpg"
+    },
+    {
+      "id": "je-vis-dans-un-immeuble-moderne",
+      "french": "Je vis dans un immeuble moderne.",
+      "persian": "من در یک ساختمان مدرن زندگی می‌کنم.",
+      "image": "learning-scenes/images/je-vis-dans-un-immeuble-moderne.jpg"
+    },
+    {
+      "id": "mon-appartement-a-deux-chambres",
+      "french": "Mon appartement a deux chambres.",
+      "persian": "آپارتمان من دو اتاق خواب دارد.",
+      "image": "learning-scenes/images/mon-appartement-a-deux-chambres.jpg"
+    },
+    {
+      "id": "cet-immeuble-est-neuf",
+      "french": "Cet immeuble est neuf.",
+      "persian": "این ساختمان نوساز است.",
+      "image": "learning-scenes/images/cet-immeuble-est-neuf.jpg"
+    },
+    {
+      "id": "c-est-un-batiment-ancien",
+      "french": "C'est un bâtiment ancien.",
+      "persian": "این یک ساختمان قدیمی است.",
+      "image": "learning-scenes/images/c-est-un-batiment-ancien.jpg"
+    },
+    {
+      "id": "j-aime-vivre-dans-un-endroit-calme",
+      "french": "J'aime vivre dans un endroit calme.",
+      "persian": "من دوست دارم در یک جای آرام زندگی کنم.",
+      "image": "learning-scenes/images/j-aime-vivre-dans-un-endroit-calme.jpg"
+    },
+    {
+      "id": "la-rue-est-tres-bruyante",
+      "french": "La rue est très bruyante.",
+      "persian": "خیابان خیلی شلوغ و پر سر و صدا است.",
+      "image": "learning-scenes/images/la-rue-est-tres-bruyante.jpg"
+    },
+    {
+      "id": "la-cuisine-est-bien-equipee",
+      "french": "La cuisine est bien équipée.",
+      "persian": "آشپزخانه به‌خوبی مجهز است.",
+      "image": "learning-scenes/images/la-cuisine-est-bien-equipee.jpg"
+    },
+    {
+      "id": "je-dors-dans-ma-chambre",
+      "french": "Je dors dans ma chambre.",
+      "persian": "من در اتاقم می‌خوابم.",
+      "image": "learning-scenes/images/je-dors-dans-ma-chambre.jpg"
+    },
+    {
+      "id": "la-salle-de-bains-est-a-droite",
+      "french": "La salle de bains est à droite.",
+      "persian": "حمام سمت راست است.",
+      "image": "learning-scenes/images/la-salle-de-bains-est-a-droite.jpg"
+    },
+    {
+      "id": "ou-sont-les-toilettes",
+      "french": "Où sont les toilettes ?",
+      "persian": "سرویس بهداشتی کجاست؟",
+      "image": "learning-scenes/images/ou-sont-les-toilettes.jpg"
+    },
+    {
+      "id": "il-fume-sur-le-balcon",
+      "french": "Il fume sur le balcon.",
+      "persian": "او در بالکن سیگار می‌کشد.",
+      "image": "learning-scenes/images/il-fume-sur-le-balcon.jpg"
+    },
+    {
+      "id": "nous-mangeons-sur-la-terrasse",
+      "french": "Nous mangeons sur la terrasse.",
+      "persian": "ما داریم روی تراس غذا می‌خوریم.",
+      "image": "learning-scenes/images/nous-mangeons-sur-la-terrasse.jpg"
+    },
+    {
+      "id": "les-enfants-jouent-dans-le-jardin",
+      "french": "Les enfants jouent dans le jardin.",
+      "persian": "بچه‌ها در باغ مشغول بازی هستند.",
+      "image": "learning-scenes/images/les-enfants-jouent-dans-le-jardin.jpg"
+    },
+    {
+      "id": "ma-maison-est-grande-pas-petite",
+      "french": "Ma maison est grande, pas petite.",
+      "persian": "خانه من بزرگ است، نه کوچک.",
+      "image": "learning-scenes/images/ma-maison-est-grande-pas-petite.jpg"
+    },
+    {
+      "id": "cet-appartement-est-lumineux",
+      "french": "Cet appartement est lumineux.",
+      "persian": "این آپارتمان پرنور است.",
+      "image": "learning-scenes/images/cet-appartement-est-lumineux.jpg"
+    },
+    {
+      "id": "j-ai-de-l-eau-dans-la-cuisine",
+      "french": "J'ai de l'eau dans la cuisine.",
+      "persian": "من در آشپزخانه آب دارم.",
+      "image": "learning-scenes/images/j-ai-de-l-eau-dans-la-cuisine.jpg"
+    },
+    {
+      "id": "nous-cuisinons-avec-le-gaz",
+      "french": "Nous cuisinons avec le gaz.",
+      "persian": "ما با گاز آشپزی می‌کنیم.",
+      "image": "learning-scenes/images/nous-cuisinons-avec-le-gaz.jpg"
+    },
+    {
+      "id": "il-y-a-de-la-lumiere-dans-la-chambre",
+      "french": "Il y a de la lumière dans la chambre.",
+      "persian": "نور در اتاق وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-de-la-lumiere-dans-la-chambre.jpg"
+    },
+    {
+      "id": "le-chauffage-est-chaud",
+      "french": "Le chauffage est chaud.",
+      "persian": "بخاری داغ است.",
+      "image": "learning-scenes/images/le-chauffage-est-chaud.jpg"
+    },
+    {
+      "id": "le-frigo-est-plein",
+      "french": "Le frigo est plein.",
+      "persian": "یخچال پر است.",
+      "image": "learning-scenes/images/le-frigo-est-plein.jpg"
+    },
+    {
+      "id": "je-regarde-la-tele",
+      "french": "Je regarde la télé.",
+      "persian": "من دارم تلویزیون تماشا می‌کنم.",
+      "image": "learning-scenes/images/je-regarde-la-tele.jpg"
+    },
+    {
+      "id": "j-ai-un-ordinateur-sur-la-table",
+      "french": "J'ai un ordinateur sur la table.",
+      "persian": "من یک کامپیوتر روی میز دارم.",
+      "image": "learning-scenes/images/j-ai-un-ordinateur-sur-la-table.jpg"
+    },
+    {
+      "id": "la-box-est-dans-le-salon",
+      "french": "La box est dans le salon.",
+      "persian": "جعبه در اتاق نشیمن است.",
+      "image": "learning-scenes/images/la-box-est-dans-le-salon.jpg"
+    },
+    {
+      "id": "le-wi-fi-est-rapide",
+      "french": "Le Wi-Fi est rapide.",
+      "persian": "وای‌فای سریع است.",
+      "image": "learning-scenes/images/le-wi-fi-est-rapide.jpg"
+    },
+    {
+      "id": "l-electricien-repare-la-lampe",
+      "french": "L'électricien répare la lampe.",
+      "persian": "برق‌کار دارد لامپ را تعمیر می‌کند.",
+      "image": "learning-scenes/images/l-electricien-repare-la-lampe.jpg"
+    },
+    {
+      "id": "le-plombier-repare-la-fuite-d-eau",
+      "french": "Le plombier répare la fuite d'eau.",
+      "persian": "لوله‌کش در حال تعمیر نشتی آب است.",
+      "image": "learning-scenes/images/le-plombier-repare-la-fuite-d-eau.jpg"
+    },
+    {
+      "id": "le-serrurier-ouvre-la-porte",
+      "french": "Le serrurier ouvre la porte.",
+      "persian": "قفل‌ساز در را باز می‌کند.",
+      "image": "learning-scenes/images/le-serrurier-ouvre-la-porte.jpg"
+    },
+    {
+      "id": "la-technicienne-installe-la-box",
+      "french": "La technicienne installe la box.",
+      "persian": "تکنسین در حال نصب مودم است.",
+      "image": "learning-scenes/images/la-technicienne-installe-la-box.jpg"
+    },
+    {
+      "id": "il-y-a-une-fuite-d-eau-dans-la-cuisine",
+      "french": "Il y a une fuite d'eau dans la cuisine.",
+      "persian": "یک نشتی آب در آشپزخانه وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-une-fuite-d-eau-dans-la-cuisine.jpg"
+    },
+    {
+      "id": "les-toilettes-sont-bouchees",
+      "french": "Les toilettes sont bouchées.",
+      "persian": "دستشویی گرفته است.",
+      "image": "learning-scenes/images/les-toilettes-sont-bouchees.jpg"
+    },
+    {
+      "id": "il-y-a-une-panne-electrique-dans-la-maison",
+      "french": "Il y a une panne électrique dans la maison.",
+      "persian": "برق خانه قطع شده است.",
+      "image": "learning-scenes/images/il-y-a-une-panne-electrique-dans-la-maison.jpg"
+    },
+    {
+      "id": "nous-avons-une-panne-de-chauffage",
+      "french": "Nous avons une panne de chauffage.",
+      "persian": "سیستم گرمایشی ما خراب شده است.",
+      "image": "learning-scenes/images/nous-avons-une-panne-de-chauffage.jpg"
+    },
+    {
+      "id": "il-y-a-une-panne-de-gaz",
+      "french": "Il y a une panne de gaz.",
+      "persian": "گاز قطع شده است.",
+      "image": "learning-scenes/images/il-y-a-une-panne-de-gaz.jpg"
+    },
+    {
+      "id": "j-ai-un-probleme-de-serrure",
+      "french": "J'ai un problème de serrure.",
+      "persian": "من با قفل در مشکل دارم.",
+      "image": "learning-scenes/images/j-ai-un-probleme-de-serrure.jpg"
+    },
+    {
+      "id": "nous-avons-un-probleme-de-connexion-internet",
+      "french": "Nous avons un problème de connexion Internet.",
+      "persian": "ما یک مشکل اتصال به اینترنت داریم.",
+      "image": "learning-scenes/images/nous-avons-un-probleme-de-connexion-internet.jpg"
+    },
+    {
+      "id": "j-ouvre-la-porte-d-entree",
+      "french": "J'ouvre la porte d'entrée.",
+      "persian": "من در ورودی را باز می‌کنم.",
+      "image": "learning-scenes/images/j-ouvre-la-porte-d-entree.jpg"
+    },
+    {
+      "id": "nous-attendons-dans-le-hall-d-entree",
+      "french": "Nous attendons dans le hall d'entrée.",
+      "persian": "ما در لابی ورودی منتظر هستیم.",
+      "image": "learning-scenes/images/nous-attendons-dans-le-hall-d-entree.jpg"
+    },
+    {
+      "id": "je-monte-l-escalier",
+      "french": "Je monte l'escalier.",
+      "persian": "من دارم از پله‌ها بالا می‌روم.",
+      "image": "learning-scenes/images/je-monte-l-escalier.jpg"
+    },
+    {
+      "id": "je-prends-l-ascenseur",
+      "french": "Je prends l'ascenseur.",
+      "persian": "من سوار آسانسور می‌شوم.",
+      "image": "learning-scenes/images/je-prends-l-ascenseur.jpg"
+    },
+    {
+      "id": "les-enfants-jouent-dans-le-couloir",
+      "french": "Les enfants jouent dans le couloir.",
+      "persian": "بچه‌ها در راهرو بازی می‌کنند.",
+      "image": "learning-scenes/images/les-enfants-jouent-dans-le-couloir.jpg"
+    },
+    {
+      "id": "ma-voiture-est-dans-le-garage",
+      "french": "Ma voiture est dans le garage.",
+      "persian": "ماشین من در گاراژ است.",
+      "image": "learning-scenes/images/ma-voiture-est-dans-le-garage.jpg"
+    },
+    {
+      "id": "les-bouteilles-sont-dans-la-cave",
+      "french": "Les bouteilles sont dans la cave.",
+      "persian": "بطری‌ها در زیرزمین هستند.",
+      "image": "learning-scenes/images/les-bouteilles-sont-dans-la-cave.jpg"
+    },
+    {
+      "id": "mon-velo-est-dans-le-local-a-velos",
+      "french": "Mon vélo est dans le local à vélos.",
+      "persian": "دوچرخه‌ام در پارکینگ دوچرخه‌ها است.",
+      "image": "learning-scenes/images/mon-velo-est-dans-le-local-a-velos.jpg"
+    },
+    {
+      "id": "je-mets-la-poubelle-dans-le-local-a-poubelles",
+      "french": "Je mets la poubelle dans le local à poubelles.",
+      "persian": "من زباله را در اتاقک زباله می‌گذارم.",
+      "image": "learning-scenes/images/je-mets-la-poubelle-dans-le-local-a-poubelles.jpg"
+    },
+    {
+      "id": "il-y-a-une-lettre-dans-la-boite-aux-lettres",
+      "french": "Il y a une lettre dans la boîte aux lettres.",
+      "persian": "یک نامه در صندوق پستی وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-une-lettre-dans-la-boite-aux-lettres.jpg"
+    },
+    {
+      "id": "le-reglement-interdit-de-fumer",
+      "french": "Le règlement interdit de fumer.",
+      "persian": "قوانین سیگار کشیدن را ممنوع کرده‌اند.",
+      "image": "learning-scenes/images/le-reglement-interdit-de-fumer.jpg"
+    },
+    {
+      "id": "j-ecris-un-mot-pour-mon-voisin",
+      "french": "J'écris un mot pour mon voisin.",
+      "persian": "من دارم برای همسایه‌ام یک یادداشت می‌نویسم.",
+      "image": "learning-scenes/images/j-ecris-un-mot-pour-mon-voisin.jpg"
+    },
+    {
+      "id": "l-appartement-est-propre",
+      "french": "L'appartement est propre.",
+      "persian": "آپارتمان تمیز است.",
+      "image": "learning-scenes/images/l-appartement-est-propre.jpg"
+    },
+    {
+      "id": "la-cuisine-est-sale",
+      "french": "La cuisine est sale.",
+      "persian": "آشپزخانه کثیف است.",
+      "image": "learning-scenes/images/la-cuisine-est-sale.jpg"
+    },
+    {
+      "id": "la-rue-est-calme",
+      "french": "La rue est calme.",
+      "persian": "خیابان آرام است.",
+      "image": "learning-scenes/images/la-rue-est-calme.jpg"
+    },
+    {
+      "id": "la-fete-est-bruyante",
+      "french": "La fête est bruyante.",
+      "persian": "مهمانی پر سر و صدا است.",
+      "image": "learning-scenes/images/la-fete-est-bruyante.jpg"
+    },
+    {
+      "id": "le-chat-dort-sur-le-canape",
+      "french": "Le chat dort sur le canapé.",
+      "persian": "گربه روی مبل خوابیده است.",
+      "image": "learning-scenes/images/le-chat-dort-sur-le-canape.jpg"
+    },
+    {
+      "id": "le-chien-joue-dans-le-jardin",
+      "french": "Le chien joue dans le jardin.",
+      "persian": "سگ در باغچه بازی می‌کند.",
+      "image": "learning-scenes/images/le-chien-joue-dans-le-jardin.jpg"
+    },
+    {
+      "id": "je-tiens-mon-chien-en-laisse",
+      "french": "Je tiens mon chien en laisse.",
+      "persian": "من سگم را با قلاده نگه داشته‌ام.",
+      "image": "learning-scenes/images/je-tiens-mon-chien-en-laisse.jpg"
+    },
+    {
+      "id": "j-etudie-les-lettres-a-l-universite",
+      "french": "J'étudie les lettres à l'université.",
+      "persian": "من در دانشگاه ادبیات می‌خوانم.",
+      "image": "learning-scenes/images/j-etudie-les-lettres-a-l-universite.jpg"
+    },
+    {
+      "id": "paul-aime-beaucoup-les-sciences",
+      "french": "Paul aime beaucoup les sciences.",
+      "persian": "پل خیلی به علوم علاقه دارد.",
+      "image": "learning-scenes/images/paul-aime-beaucoup-les-sciences.jpg"
+    },
+    {
+      "id": "elle-fait-des-recherches-en-economie",
+      "french": "Elle fait des recherches en économie.",
+      "persian": "او در حال تحقیق در زمینه اقتصاد است.",
+      "image": "learning-scenes/images/elle-fait-des-recherches-en-economie.jpg"
+    },
+    {
+      "id": "nous-avons-un-cours-magistral-le-lundi",
+      "french": "Nous avons un cours magistral le lundi.",
+      "persian": "ما روزهای دوشنبه یک کلاس درس عمومی داریم.",
+      "image": "learning-scenes/images/nous-avons-un-cours-magistral-le-lundi.jpg"
+    },
+    {
+      "id": "je-fais-des-revisions-avant-l-examen",
+      "french": "Je fais des révisions avant l'examen.",
+      "persian": "من قبل از امتحان در حال مرور کردن هستم.",
+      "image": "learning-scenes/images/je-fais-des-revisions-avant-l-examen.jpg"
+    },
+    {
+      "id": "j-ai-passe-un-ecrit-de-francais",
+      "french": "J'ai passé un écrit de français.",
+      "persian": "من در یک آزمون کتبی زبان فرانسه شرکت کردم.",
+      "image": "learning-scenes/images/j-ai-passe-un-ecrit-de-francais.jpg"
+    },
+    {
+      "id": "demain-je-passe-un-oral",
+      "french": "Demain, je passe un oral.",
+      "persian": "فردا امتحان شفاهی دارم.",
+      "image": "learning-scenes/images/demain-je-passe-un-oral.jpg"
+    },
+    {
+      "id": "marie-a-recu-une-bonne-note",
+      "french": "Marie a reçu une bonne note.",
+      "persian": "ماری نمره خوبی گرفته است.",
+      "image": "learning-scenes/images/marie-a-recu-une-bonne-note.jpg"
+    },
+    {
+      "id": "j-ai-eu-une-mauvaise-note-en-maths",
+      "french": "J'ai eu une mauvaise note en maths.",
+      "persian": "من در درس ریاضی نمره بدی گرفتم.",
+      "image": "learning-scenes/images/j-ai-eu-une-mauvaise-note-en-maths.jpg"
+    },
+    {
+      "id": "il-a-reussi-son-examen",
+      "french": "Il a réussi son examen.",
+      "persian": "او در امتحانش موفق شد.",
+      "image": "learning-scenes/images/il-a-reussi-son-examen.jpg"
+    },
+    {
+      "id": "malheureusement-j-ai-rate-mon-examen",
+      "french": "Malheureusement, j'ai raté mon examen.",
+      "persian": "متأسفانه در امتحانم رد شدم.",
+      "image": "learning-scenes/images/malheureusement-j-ai-rate-mon-examen.jpg"
+    },
+    {
+      "id": "hier-j-ai-etudie-toute-la-journee",
+      "french": "Hier, j'ai étudié toute la journée.",
+      "persian": "دیروز تمام روز را درس خواندم.",
+      "image": "learning-scenes/images/hier-j-ai-etudie-toute-la-journee.jpg"
+    },
+    {
+      "id": "aujourd-hui-il-y-a-un-cours-important",
+      "french": "Aujourd'hui, il y a un cours important.",
+      "persian": "امروز یک کلاس مهم داریم.",
+      "image": "learning-scenes/images/aujourd-hui-il-y-a-un-cours-important.jpg"
+    }
+  ]
+}

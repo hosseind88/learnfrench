@@ -952,6 +952,7 @@ body.theme-dark .nav-item.active {
 .cat-adj { background-color: #fef3c7; color: #b45309; }
 .cat-expr { background-color: #ede9fe; color: #6d28d9; }
 .cat-sentences { background-color: #d1fae5; color: #047857; }
+.cat-scenes { background-color: #fce7f3; color: #be185d; }
 .cat-grammar { background-color: #ffe4e6; color: #e11d48; }
 
 .cat-name-fr {
@@ -1003,6 +1004,170 @@ body.theme-dark .nav-item.active {
   justify-content: flex-end;
   padding: 0;
   margin-top: 4px;
+}
+
+/* Donation banner on dashboard */
+.donate-banner-card {
+  display: grid;
+  grid-template-columns: 1.1fr minmax(260px, 340px);
+  gap: 24px;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.08) 0%, rgba(37, 99, 235, 0.1) 100%), var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.donate-kicker {
+  display: inline-flex;
+  padding: 4px 12px;
+  background: var(--french-red-light);
+  color: var(--french-red);
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.donate-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.donate-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.bank-card {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 55%, #be123c 140%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 20px 22px 18px;
+  min-height: 186px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 14px 30px -12px rgba(29, 78, 216, 0.55);
+  position: relative;
+  overflow: hidden;
+}
+
+.bank-card::after {
+  content: '';
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  right: -40px;
+  top: -50px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bank-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.bank-card-chip {
+  width: 36px;
+  height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #fde68a, #f59e0b 45%, #fbbf24);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.bank-card-brand {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0.92;
+}
+
+.bank-card-number {
+  font-family: var(--font-fr);
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  direction: ltr;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bank-card-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.bank-card-label {
+  font-size: 0.68rem;
+  opacity: 0.7;
+  margin-bottom: 2px;
+}
+
+.bank-card-holder {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.bank-card-copy-btn {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.bank-card-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.26);
+  transform: translateY(-1px);
+}
+
+.bank-card-copy-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.donate-page-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 380px) 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.donate-page-card {
+  width: 100%;
+  max-width: 380px;
+}
+
+.donate-help-card .donate-steps {
+  margin: 8px 0 16px;
+  padding-right: 18px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  font-size: 0.92rem;
+}
+
+.donate-thanks {
+  font-weight: 700;
+  color: var(--french-blue);
+  margin: 0;
 }
 
 /* Dashboard Bottom Grid (Word of Day + Quick Modes) */
@@ -3174,6 +3339,10 @@ body.theme-dark .nav-item.active {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+  .donate-banner-card,
+  .donate-page-layout {
+    grid-template-columns: 1fr;
+  }
   .categories-grid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
@@ -3371,6 +3540,26 @@ body.theme-dark .nav-item.active {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+  }
+  .donate-banner-card {
+    padding: 16px 14px;
+    gap: 16px;
+    margin-bottom: 18px;
+    border-radius: var(--radius-md);
+  }
+  .donate-title {
+    font-size: 1.08rem;
+  }
+  .bank-card {
+    min-height: 168px;
+    padding: 16px 16px 14px;
+  }
+  .bank-card-number {
+    font-size: 1.02rem;
+    letter-spacing: 0.08em;
+  }
+  .bank-card-bottom {
+    flex-wrap: wrap;
   }
   .hero-title {
     font-size: 1.35rem;
@@ -5117,6 +5306,169 @@ body.view-is-book .sidebar-tip-card {
   .pdf-lesson-select {
     max-width: 100%;
     width: 100%;
+  }
+}
+
+/* ==========================================================================
+   VIEW: LEARNING WITH ANIMATION SCENES
+   ========================================================================== */
+.scene-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scene-study-card {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(240px, 1fr);
+  gap: 28px;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 22px;
+  box-shadow: var(--shadow-lg);
+  animation: sceneFadeIn 0.45s var(--transition-slow);
+}
+
+.scene-study-figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #fdf2f8 0%, #eff6ff 100%);
+  min-height: 280px;
+}
+
+body.theme-dark .scene-study-figure {
+  background: linear-gradient(180deg, rgba(219, 39, 119, 0.16) 0%, rgba(37, 99, 235, 0.16) 100%);
+}
+
+.scene-study-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  animation: sceneFloat 4.8s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.scene-study-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.scene-progress-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.scene-french-text {
+  font-family: var(--font-fr);
+  font-weight: 800;
+  font-size: 1.45rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.scene-persian-text {
+  margin: 0;
+  color: var(--french-blue);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.scene-persian-text.is-hidden {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.scene-study-actions,
+.scene-study-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scene-empty-state {
+  grid-column: 1 / -1;
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.scenes-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.scene-gallery-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.scene-gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.scene-gallery-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.scene-gallery-body {
+  padding: 12px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.scene-gallery-body .scene-french-text {
+  font-size: 1rem;
+}
+
+.scene-gallery-body .scene-persian-text {
+  font-size: 0.86rem;
+}
+
+@keyframes sceneFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sceneFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 768px) {
+  .scene-study-card {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 18px;
+  }
+
+  .scene-french-text {
+    font-size: 1.2rem;
   }
 }
 

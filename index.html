@@ -136,6 +136,12 @@
           <span class="nav-badge" id="sidebarSentencesCount">97</span>
         </button>
 
+        <button class="nav-item" data-view="scenes">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+          <span>یادگیری با انیمیشن</span>
+          <span class="nav-badge highlight" id="sidebarScenesCount">۰</span>
+        </button>
+
         <button class="nav-item" data-view="grammar">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
           <span>قواعد و نکات گرامری</span>
@@ -158,6 +164,12 @@
         <button class="nav-item" data-view="progress">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
           <span>آمار و گزارش پیشرفت</span>
+        </button>
+
+        <button class="nav-item" data-view="donate">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span>حمایت و دونیت</span>
+          <span class="nav-badge highlight">واریز</span>
         </button>
       </nav>
 
@@ -239,6 +251,32 @@
                 <span class="metric-num" id="dashSavedCount">0</span>
                 <span class="metric-label">نشان‌شده‌ها</span>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="donate-banner-card" id="dashDonateCard">
+          <div class="donate-banner-copy">
+            <div class="donate-kicker">حمایت از پروژه • Merci</div>
+            <h2 class="donate-title">از این پروژه حمایت کنید</h2>
+            <p class="donate-desc">اگر این اپ براتون مفیده ممنون می‌شم از این پروژه حمایت کنید که بتونیم قابلیت‌های بیشتری رو فراهم کنیم.</p>
+            <button class="btn btn-outline btn-sm" id="dashDonateMoreBtn" type="button">جزئیات حمایت</button>
+          </div>
+          <div class="bank-card" data-donate-card>
+            <div class="bank-card-top">
+              <span class="bank-card-chip" aria-hidden="true"></span>
+              <span class="bank-card-brand" data-donate-bank>کارت شتاب</span>
+            </div>
+            <div class="bank-card-number" dir="ltr" data-donate-number>0000  0000  0000  0000</div>
+            <div class="bank-card-bottom">
+              <div>
+                <div class="bank-card-label">به نام</div>
+                <div class="bank-card-holder" data-donate-holder>نام صاحب کارت</div>
+              </div>
+              <button class="btn btn-sm bank-card-copy-btn" type="button" data-copy-card-btn>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>کپی شماره کارت</span>
+              </button>
             </div>
           </div>
         </div>
@@ -328,6 +366,22 @@
               <div class="cat-progress-fill" id="catProgSentences" style="width: 0%"></div>
             </div>
             <button class="cat-enter-btn" data-cat="sentences">مرور جملات &larr;</button>
+          </div>
+
+          <!-- Animation scenes Card -->
+          <div class="category-card" data-cat="scenes">
+            <div class="cat-icon-wrapper cat-scenes">
+              <span>🎬</span>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name-fr">Scènes animées</div>
+              <div class="cat-name-fa">یادگیری جمله با عکس انیمیشنی</div>
+              <div class="cat-count-pill" id="catCountScenes">۰ صحنه</div>
+            </div>
+            <div class="cat-progress-bar">
+              <div class="cat-progress-fill" id="catProgScenes" style="width: 0%"></div>
+            </div>
+            <button class="cat-enter-btn" data-cat="scenes">ورود به صحنه‌ها &larr;</button>
           </div>
 
           <!-- Grammar Card -->
@@ -790,6 +844,40 @@
       </section>
 
       <!-- ============================================================== -->
+      <!-- VIEW: LEARNING WITH ANIMATION SCENES -->
+      <!-- ============================================================== -->
+      <section id="view-scenes" class="app-view">
+        <div class="view-header-row">
+          <div>
+            <h1 class="view-main-title">یادگیری با انیمیشن</h1>
+            <p class="view-main-desc">هر جمله فرانسه یک صحنه تصویری دارد تا راحت‌تر در خاطرت بماند. اول عکس را ببین، بعد جمله را بگو، بعد ترجمه را باز کن.</p>
+          </div>
+          <div class="scene-controls-row">
+            <button class="btn btn-outline btn-sm" id="sceneModeToggleBtn">
+              <span id="sceneModeToggleText">نمایش گالری</span>
+            </button>
+            <button class="btn btn-outline btn-sm" id="sceneHideTransBtn">
+              <span id="sceneHideTransText">مخفی‌سازی ترجمه</span>
+            </button>
+            <button class="btn btn-outline btn-sm" id="sceneReloadBtn">بارگذاری مجدد</button>
+          </div>
+        </div>
+
+        <div class="sentence-search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="sceneSearchInput" placeholder="جستجوی جمله فرانسه یا فارسی...">
+        </div>
+
+        <div id="scenesStudyWrap">
+          <div class="scene-study-card" id="scenesStudyCard">
+            <div class="scene-empty-state" id="scenesEmptyState">در حال خواندن صحنه‌ها…</div>
+          </div>
+        </div>
+
+        <div class="scenes-gallery-grid" id="scenesGalleryGrid" hidden></div>
+      </section>
+
+      <!-- ============================================================== -->
       <!-- VIEW 6: GRAMMAR LAB (Grammaire A1) -->
       <!-- ============================================================== -->
       <section id="view-grammar" class="app-view">
@@ -1173,6 +1261,48 @@
             <p>در صورتی که مایلید تمام امتیازات و لغات نشان‌شده از ابتدا تنظیم شوند، روی این دکمه کلیک کنید.</p>
           </div>
           <button class="btn btn-danger btn-sm" id="resetProgressBtn">ریست کردن پیشرفت</button>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW: DONATE -->
+      <!-- ============================================================== -->
+      <section id="view-donate" class="app-view">
+        <div class="view-header-row">
+          <div>
+            <h1 class="view-main-title">حمایت از FrançaisFacile</h1>
+            <p class="view-main-desc" id="donatePageMessage">اگر این اپ براتون مفیده ممنون می‌شم از این پروژه حمایت کنید که بتونیم قابلیت‌های بیشتری رو فراهم کنیم.</p>
+          </div>
+        </div>
+
+        <div class="donate-page-layout">
+          <div class="bank-card donate-page-card" data-donate-card>
+            <div class="bank-card-top">
+              <span class="bank-card-chip" aria-hidden="true"></span>
+              <span class="bank-card-brand" data-donate-bank>کارت شتاب</span>
+            </div>
+            <div class="bank-card-number" dir="ltr" data-donate-number>0000  0000  0000  0000</div>
+            <div class="bank-card-bottom">
+              <div>
+                <div class="bank-card-label">به نام</div>
+                <div class="bank-card-holder" data-donate-holder>نام صاحب کارت</div>
+              </div>
+              <button class="btn btn-sm bank-card-copy-btn" type="button" data-copy-card-btn>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>کپی شماره کارت</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card donate-help-card">
+            <h3 class="card-section-title">چطور حمایت کنم؟</h3>
+            <ol class="donate-steps">
+              <li>شماره کارت را کپی کنید.</li>
+              <li>از اپ بانک یا کارت‌به‌کارت، مبلغ دلخواه را واریز کنید.</li>
+              <li>هر مبلغی کمک می‌کند درس‌ها و امکانات جدید ساخته شود.</li>
+            </ol>
+            <p class="donate-thanks">Merci beaucoup 💙 از حمایتتان سپاسگزاریم.</p>
+          </div>
         </div>
       </section>
 

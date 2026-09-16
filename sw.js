@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v11';
+const CACHE_NAME = 'francais-facile-v18';
 
 const CORE_ASSETS = [
   './',
@@ -51,6 +51,10 @@ self.addEventListener('activate', (event) => {
 // Fetch Event - Stale-While-Revalidate strategy for static resources
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
+
+  if (url.pathname.includes('/learning-scenes/')) {
+    return;
+  }
 
   // Bypass API calls, dynamic AI image generation and remote audio/pdf streaming
   if (url.hostname.includes('openrouter.ai') || 

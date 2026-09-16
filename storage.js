@@ -16,7 +16,7 @@ const IDB_SNAPSHOT_KEY = 'latest';
 
 const VALID_VIEWS = new Set([
   'dashboard', 'book', 'vocab', 'flashcards', 'quiz', 'sentences',
-  'grammar', 'matchgame', 'progress', 'importer'
+  'scenes', 'grammar', 'matchgame', 'progress', 'importer', 'donate'
 ]);
 
 window.FFStorage = {

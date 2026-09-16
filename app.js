@@ -78,6 +78,17 @@ const state = {
     topic: 'all',
     searchQuery: '',
     hideTranslations: false
+  },
+
+  scenes: {
+    items: [],
+    loaded: false,
+    loadError: '',
+    currentIndex: 0,
+    searchQuery: '',
+    hideTranslations: true,
+    mode: 'study',
+    revealed: false
   }
 };
 
@@ -349,11 +360,13 @@ function switchView(viewName) {
 
   // Specific view initializer triggers
   if (viewName === 'dashboard') renderDashboard();
+  if (viewName === 'donate') renderDonateView();
   if (viewName === 'book') initBookView();
   if (viewName === 'vocab') renderVocabGrid();
   if (viewName === 'flashcards') initFlashcardsView();
   if (viewName === 'quiz') resetQuizView();
   if (viewName === 'sentences') renderSentences();
+  if (viewName === 'scenes') initScenesView();
   if (viewName === 'grammar') renderGrammarLab();
   if (viewName === 'matchgame') startMatchGame();
   if (viewName === 'progress') renderProgressStats();
@@ -403,6 +416,7 @@ function renderDashboard() {
 
   // Render Word of the Day
   renderWordOfTheDay();
+  fillDonationCards();
 }
 
 function renderWordOfTheDay() {
@@ -434,6 +448,54 @@ function renderWordOfTheDay() {
 function getTranslationForExample(exampleFr) {
   const match = getAllSentences().find(s => s.fr.toLowerCase() === exampleFr.toLowerCase());
   return match ? match.fa : '';
+}
+
+function getDonationInfo() {
+  const info = window.DONATION_INFO && typeof window.DONATION_INFO === 'object' ? window.DONATION_INFO : {};
+  const digits = String(info.cardNumber || '').replace(/\D/g, '');
+  return {
+    digits,
+    formatted: digits ? digits.replace(/(\d{4})(?=\d)/g, '$1 ').trim() : '0000  0000  0000  0000',
+    holder: (info.cardHolder || '').trim() || 'نام صاحب کارت',
+    bank: (info.bankName || '').trim() || 'کارت شتاب',
+    message: (info.message || '').trim() || 'اگر این اپ براتون مفیده ممنون می‌شم از این پروژه حمایت کنید که بتونیم قابلیت‌های بیشتری رو فراهم کنیم.'
+  };
+}
+
+function fillDonationCards() {
+  const info = getDonationInfo();
+  document.querySelectorAll('[data-donate-number]').forEach((el) => {
+    el.textContent = info.formatted;
+  });
+  document.querySelectorAll('[data-donate-holder]').forEach((el) => {
+    el.textContent = info.holder;
+  });
+  document.querySelectorAll('[data-donate-bank]').forEach((el) => {
+    el.textContent = info.bank;
+  });
+  document.querySelectorAll('[data-copy-card-btn]').forEach((btn) => {
+    btn.disabled = !info.digits;
+  });
+  const pageMessage = document.getElementById('donatePageMessage');
+  if (pageMessage) pageMessage.textContent = info.message;
+}
+
+function renderDonateView() {
+  fillDonationCards();
+}
+
+async function copyDonationCardNumber() {
+  const info = getDonationInfo();
+  if (!info.digits) {
+    showToast('شماره کارت هنوز ثبت نشده است');
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(info.digits);
+    showToast('شماره کارت کپی شد 📋');
+  } catch (err) {
+    showToast('کپی انجام نشد');
+  }
 }
 
 // ==========================================================================
@@ -1948,6 +2010,247 @@ function renderSentences() {
 }
 
 // ==========================================================================
+// LEARNING WITH ANIMATION SCENES
+// ==========================================================================
+function getFilteredScenes() {
+  const query = (state.scenes.searchQuery || '').trim().toLowerCase();
+  const items = Array.isArray(state.scenes.items) ? state.scenes.items : [];
+  if (!query) return items;
+  return items.filter((scene) => {
+    const french = String(scene.french || '').toLowerCase();
+    const persian = String(scene.persian || '').toLowerCase();
+    return french.includes(query) || persian.includes(query);
+  });
+}
+
+function sceneImageSrc(scene) {
+  const link = scene.image || '';
+  if (!link) return '';
+  if (link.startsWith('http://') || link.startsWith('https://') || link.startsWith('data:')) {
+    return link;
+  }
+  return link.startsWith('./') ? link : `./${link.replace(/^\//, '')}`;
+}
+
+function scenesFromPayload(data) {
+  const raw = Array.isArray(data) ? data : ((data && data.scenes) || []);
+  return raw.filter((item) => item && item.french && item.image);
+}
+
+async function loadLearningScenes(force = false) {
+  if (state.scenes.loaded && !force) return;
+  try {
+    const url = new URL('learning-scenes/scenes.json', document.baseURI);
+    url.searchParams.set('t', String(Date.now()));
+    const response = await fetch(url.href, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    state.scenes.items = scenesFromPayload(await response.json());
+    state.scenes.loadError = state.scenes.items.length ? '' : 'هنوز صحنه‌ای در scenes.json نیست.';
+  } catch (_) {
+    state.scenes.items = [];
+    state.scenes.loadError = 'scenes.json خوانده نشد. از پوشه پروژه بزن: python3 -m http.server 3000';
+  }
+  state.scenes.loaded = true;
+  updateContentCounts();
+}
+
+function bindSceneStudyActions(root, scene) {
+  const speakBtn = root.querySelector('[data-scene-speak]');
+  if (speakBtn) speakBtn.onclick = () => speakFrench(scene.french);
+
+  const image = root.querySelector('.scene-study-image');
+  if (image) image.onclick = () => speakFrench(scene.french);
+
+  const revealBtn = root.querySelector('[data-scene-reveal]');
+  const persianBox = root.querySelector('.scene-persian-text');
+  const toggleReveal = () => {
+    state.scenes.revealed = !state.scenes.revealed;
+    renderScenesView();
+  };
+  if (revealBtn) revealBtn.onclick = toggleReveal;
+  if (persianBox) persianBox.onclick = toggleReveal;
+
+  const prevBtn = root.querySelector('[data-scene-prev]');
+  const nextBtn = root.querySelector('[data-scene-next]');
+  if (prevBtn) prevBtn.onclick = () => stepScene(-1);
+  if (nextBtn) nextBtn.onclick = () => stepScene(1);
+}
+
+function stepScene(delta) {
+  const items = getFilteredScenes();
+  if (!items.length) return;
+  const next = (state.scenes.currentIndex + delta + items.length) % items.length;
+  state.scenes.currentIndex = next;
+  state.scenes.revealed = !state.scenes.hideTranslations;
+  renderScenesView();
+}
+
+function renderSceneStudyCard() {
+  const card = document.getElementById('scenesStudyCard');
+  if (!card) return;
+
+  if (!state.scenes.loaded) {
+    card.innerHTML = '<div class="scene-empty-state">در حال خواندن صحنه‌ها…</div>';
+    return;
+  }
+
+  const items = getFilteredScenes();
+  if (!items.length) {
+    const message = state.scenes.loadError
+      || (state.scenes.items.length
+        ? 'جمله‌ای با این جستجو پیدا نشد.'
+        : 'هنوز صحنه‌ای ساخته نشده. اسکریپت <code>tools/generate_learning_scenes.py</code> را اجرا کنید و جمله فرانسه بدهید.');
+    card.innerHTML = `<div class="scene-empty-state">${message}</div>`;
+    return;
+  }
+
+  if (state.scenes.currentIndex >= items.length) state.scenes.currentIndex = 0;
+  const scene = items[state.scenes.currentIndex];
+  const showFa = !state.scenes.hideTranslations || state.scenes.revealed;
+  const src = sceneImageSrc(scene);
+  const french = String(scene.french || '');
+  const persian = String(scene.persian || '');
+
+  card.innerHTML = `
+    <div class="scene-study-figure">
+      <img src="${src}" alt="" class="scene-study-image">
+    </div>
+    <div class="scene-study-copy">
+      <div class="scene-progress-label">${state.scenes.currentIndex + 1} از ${items.length}</div>
+      <p class="scene-french-text" dir="ltr"></p>
+      <p class="scene-persian-text ${showFa ? '' : 'is-hidden'}"></p>
+      <div class="scene-study-actions">
+        <button class="btn btn-secondary btn-sm" data-scene-speak>تلفظ جمله</button>
+        <button class="btn btn-outline btn-sm" data-scene-reveal>${showFa ? 'مخفی کردن ترجمه' : 'نمایش ترجمه'}</button>
+      </div>
+      <div class="scene-study-nav">
+        <button class="btn btn-outline btn-sm" data-scene-prev>قبلی</button>
+        <button class="btn btn-primary btn-sm" data-scene-next>بعدی</button>
+      </div>
+    </div>
+  `;
+  const frenchEl = card.querySelector('.scene-french-text');
+  const persianEl = card.querySelector('.scene-persian-text');
+  if (frenchEl) frenchEl.textContent = french;
+  if (persianEl) persianEl.textContent = showFa ? persian : 'برای دیدن ترجمه فارسی ضربه بزن';
+  bindSceneStudyActions(card, scene);
+}
+
+function renderScenesGallery() {
+  const grid = document.getElementById('scenesGalleryGrid');
+  if (!grid) return;
+  const items = getFilteredScenes();
+  if (!items.length) {
+    grid.innerHTML = `<div class="scene-empty-state">${state.scenes.loadError || 'صحنه‌ای برای نمایش نیست.'}</div>`;
+    return;
+  }
+
+  grid.replaceChildren();
+  items.forEach((scene, index) => {
+    const card = document.createElement('article');
+    card.className = 'scene-gallery-card';
+    card.dataset.sceneIndex = String(index);
+
+    const img = document.createElement('img');
+    img.className = 'scene-gallery-image';
+    img.src = sceneImageSrc(scene);
+    img.alt = '';
+
+    const body = document.createElement('div');
+    body.className = 'scene-gallery-body';
+
+    const frenchEl = document.createElement('p');
+    frenchEl.className = 'scene-french-text';
+    frenchEl.dir = 'ltr';
+    frenchEl.textContent = scene.french || '';
+
+    const persianEl = document.createElement('p');
+    persianEl.className = `scene-persian-text${state.scenes.hideTranslations ? ' is-hidden' : ''}`;
+    persianEl.textContent = state.scenes.hideTranslations ? 'ترجمه مخفی است' : (scene.persian || '');
+
+    body.append(frenchEl, persianEl);
+    card.append(img, body);
+    grid.append(card);
+  });
+
+  grid.querySelectorAll('.scene-gallery-card').forEach((card) => {
+    card.onclick = () => {
+      state.scenes.mode = 'study';
+      state.scenes.currentIndex = Number(card.dataset.sceneIndex) || 0;
+      state.scenes.revealed = !state.scenes.hideTranslations;
+      renderScenesView();
+    };
+  });
+}
+
+function renderScenesView() {
+  const studyWrap = document.getElementById('scenesStudyWrap');
+  const gallery = document.getElementById('scenesGalleryGrid');
+  const modeBtn = document.getElementById('sceneModeToggleText');
+  const hideBtn = document.getElementById('sceneHideTransText');
+
+  if (modeBtn) modeBtn.textContent = state.scenes.mode === 'study' ? 'نمایش گالری' : 'حالت مرور تک‌صحنه';
+  if (hideBtn) hideBtn.textContent = state.scenes.hideTranslations ? 'نمایش ترجمه‌ها' : 'مخفی‌سازی ترجمه';
+
+  const isStudy = state.scenes.mode === 'study';
+  if (studyWrap) studyWrap.hidden = !isStudy;
+  if (gallery) gallery.hidden = isStudy;
+
+  if (isStudy) {
+    renderSceneStudyCard();
+  } else {
+    renderScenesGallery();
+  }
+}
+
+async function initScenesView() {
+  await loadLearningScenes(true);
+  if (state.scenes.hideTranslations && !state.scenes.revealed) {
+    state.scenes.revealed = false;
+  }
+  renderScenesView();
+}
+
+function setupScenesView() {
+  const search = document.getElementById('sceneSearchInput');
+  if (search) {
+    search.value = state.scenes.searchQuery || '';
+    search.oninput = () => {
+      state.scenes.searchQuery = search.value;
+      state.scenes.currentIndex = 0;
+      renderScenesView();
+    };
+  }
+
+  const modeBtn = document.getElementById('sceneModeToggleBtn');
+  if (modeBtn) {
+    modeBtn.onclick = () => {
+      state.scenes.mode = state.scenes.mode === 'study' ? 'gallery' : 'study';
+      renderScenesView();
+    };
+  }
+
+  const hideBtn = document.getElementById('sceneHideTransBtn');
+  if (hideBtn) {
+    hideBtn.onclick = () => {
+      state.scenes.hideTranslations = !state.scenes.hideTranslations;
+      state.scenes.revealed = !state.scenes.hideTranslations;
+      renderScenesView();
+    };
+  }
+
+  const reloadBtn = document.getElementById('sceneReloadBtn');
+  if (reloadBtn) {
+    reloadBtn.onclick = async () => {
+      await loadLearningScenes(true);
+      state.scenes.currentIndex = 0;
+      renderScenesView();
+      showToast(state.scenes.items.length ? `${state.scenes.items.length} صحنه بارگذاری شد` : 'صحنه‌ای پیدا نشد');
+    };
+  }
+}
+
+// ==========================================================================
 // 6. GRAMMAR LAB
 // ==========================================================================
 function renderGrammarLab() {
@@ -2524,6 +2827,9 @@ function updateContentCounts() {
   setText('catCountAdjectives', `${(APP_DATA.categories.adjectives || []).length} صفت`);
   setText('catCountExpr', `${(APP_DATA.categories.expressions || []).length} اصطلاح`);
   setText('catCountSentences', `${sents.length} جمله`);
+  const sceneCount = (state.scenes.items || []).length;
+  setText('sidebarScenesCount', sceneCount);
+  setText('catCountScenes', `${sceneCount} صحنه`);
 }
 
 function getCustomData() {
@@ -4217,6 +4523,26 @@ function initApp() {
   updateStreak();
   updateHeaderStats();
   updateContentCounts();
+  loadLearningScenes().then(() => {
+    updateContentCounts();
+    if (state.currentView === 'scenes') renderScenesView();
+  });
+  setupScenesView();
+  window.addEventListener('keydown', (e) => {
+    if (state.currentView !== 'scenes' || state.scenes.mode !== 'study') return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      stepScene(1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      stepScene(-1);
+    } else if (e.code === 'Space') {
+      e.preventDefault();
+      state.scenes.revealed = !state.scenes.revealed;
+      renderScenesView();
+    }
+  });
 
   // Navigation click listeners
   document.querySelectorAll('[data-view]').forEach(btn => {
@@ -4265,6 +4591,18 @@ function initApp() {
   if (dashBookBtn) {
     dashBookBtn.onclick = () => switchView('book');
   }
+  const dashDonateMoreBtn = document.getElementById('dashDonateMoreBtn');
+  if (dashDonateMoreBtn) {
+    dashDonateMoreBtn.onclick = () => switchView('donate');
+  }
+  document.querySelectorAll('[data-copy-card-btn]').forEach((btn) => {
+    btn.onclick = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      copyDonationCardNumber();
+    };
+  });
+  fillDonationCards();
 
   // Dashboard Category Cards
   document.querySelectorAll('.cat-enter-btn, .category-card').forEach(el => {
@@ -4272,6 +4610,8 @@ function initApp() {
       const cat = el.dataset.cat;
       if (cat === 'sentences') {
         switchView('sentences');
+      } else if (cat === 'scenes') {
+        switchView('scenes');
       } else if (cat === 'grammar') {
         switchView('grammar');
       } else {

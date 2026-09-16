@@ -3,3 +3,4 @@ anki_parsed.json
 tools/existing.json
 .DS_Store
 .vercel
+.env

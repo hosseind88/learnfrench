@@ -1,5 +1,14 @@
 // French A1 Learning Data (Français - فارسی)
 // Source: Communication essentielle A1 (Anki) + existing A1 pack
+
+// شماره کارت حمایت را اینجا بگذارید؛ روی داشبورد و صفحه دونیت نشان داده می‌شود
+window.DONATION_INFO = {
+  cardNumber: "6219861940017485",
+  cardHolder: "حسین دیندار",
+  bankName: "بلو بانک",
+  message: "اگر این اپ براتون مفیده ممنون می‌شم از این پروژه حمایت کنید که بتونیم قابلیت‌های بیشتری رو فراهم کنیم."
+};
+
 const APP_DATA = {
   "language": "fr",
   "translation_language": "fa",
