@@ -4,3 +4,7 @@ tools/existing.json
 .DS_Store
 .vercel
 .env
+anki_data/*.apkg
+anki_data/*.colpkg
+anki_data/**/*.apkg
+anki_data/**/*.colpkg

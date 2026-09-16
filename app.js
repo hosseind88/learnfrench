@@ -88,7 +88,9 @@ const state = {
     searchQuery: '',
     hideTranslations: true,
     mode: 'study',
-    revealed: false
+    revealed: false,
+    level: 'all',
+    lesson: 'all'
   }
 };
 
@@ -2012,14 +2014,134 @@ function renderSentences() {
 // ==========================================================================
 // LEARNING WITH ANIMATION SCENES
 // ==========================================================================
+const SCENE_COURSE_LEVELS = ['A1', 'A2', 'B1', 'B2'];
+let sceneSentenceIndex = null;
+
+function normalizeFrenchText(text) {
+  return String(text || '')
+    .normalize('NFKC')
+    .replace(/[\u2019\u2018`]/g, "'")
+    .replace(/\u00a0/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/[.!?;:…]+$/g, '')
+    .trim()
+    .toLowerCase();
+}
+
+function getSceneSentenceIndex() {
+  if (sceneSentenceIndex) return sceneSentenceIndex;
+  const index = new Map();
+  getAllSentences().forEach((sentence) => {
+    const key = normalizeFrenchText(sentence.fr);
+    if (key && !index.has(key)) index.set(key, sentence);
+  });
+  sceneSentenceIndex = index;
+  return index;
+}
+
+function normalizeSceneLesson(value) {
+  const lesson = String(value || '').trim();
+  if (!lesson) return '';
+  return /^\d+$/.test(lesson) ? lesson.padStart(2, '0') : lesson;
+}
+
+function getSceneCourse(scene) {
+  const explicit = String(scene.level || scene.course || '').toUpperCase();
+  if (SCENE_COURSE_LEVELS.includes(explicit)) return explicit;
+  const match = getSceneSentenceIndex().get(normalizeFrenchText(scene.french));
+  const fromSentence = String(match && match.level ? match.level : '').toUpperCase();
+  if (SCENE_COURSE_LEVELS.includes(fromSentence)) return fromSentence;
+  return 'A1';
+}
+
+function getSceneLesson(scene) {
+  const explicit = normalizeSceneLesson(scene.lesson);
+  if (explicit) return explicit;
+  const match = getSceneSentenceIndex().get(normalizeFrenchText(scene.french));
+  return normalizeSceneLesson(match && match.lesson);
+}
+
+function getScenesForCurrentCourse() {
+  const items = Array.isArray(state.scenes.items) ? state.scenes.items : [];
+  const level = state.scenes.level || 'all';
+  if (level === 'all') return items;
+  return items.filter((scene) => getSceneCourse(scene) === level);
+}
+
+function getAvailableSceneLessons() {
+  const lessons = new Set();
+  getScenesForCurrentCourse().forEach((scene) => {
+    const lesson = getSceneLesson(scene);
+    if (lesson) lessons.add(lesson);
+  });
+  return [...lessons].sort((a, b) => Number(a) - Number(b) || a.localeCompare(b, 'fa'));
+}
+
 function getFilteredScenes() {
   const query = (state.scenes.searchQuery || '').trim().toLowerCase();
-  const items = Array.isArray(state.scenes.items) ? state.scenes.items : [];
+  let items = getScenesForCurrentCourse();
+  const lesson = state.scenes.lesson || 'all';
+  if (lesson !== 'all') {
+    items = items.filter((scene) => getSceneLesson(scene) === lesson);
+  }
   if (!query) return items;
   return items.filter((scene) => {
     const french = String(scene.french || '').toLowerCase();
     const persian = String(scene.persian || '').toLowerCase();
     return french.includes(query) || persian.includes(query);
+  });
+}
+
+function getScenesEmptyMessage() {
+  if (state.scenes.loadError) return state.scenes.loadError;
+  if (!state.scenes.items.length) {
+    return 'هنوز صحنه‌ای ساخته نشده. اسکریپت <code>tools/generate_learning_scenes.py</code> را اجرا کنید و جمله فرانسه بدهید.';
+  }
+  const level = state.scenes.level || 'all';
+  if (level !== 'all' && !getScenesForCurrentCourse().length) {
+    return `هنوز صحنه‌ای برای دوره ${level} ساخته نشده.`;
+  }
+  if ((state.scenes.lesson || 'all') !== 'all' && !getFilteredScenes().length && !(state.scenes.searchQuery || '').trim()) {
+    return 'در این درس صحنه‌ای نیست.';
+  }
+  if ((state.scenes.searchQuery || '').trim()) return 'جمله‌ای با این جستجو پیدا نشد.';
+  return 'صحنه‌ای برای نمایش نیست.';
+}
+
+function populateSceneLessonFilter() {
+  const select = document.getElementById('sceneLessonFilter');
+  if (!select) return;
+  const current = state.scenes.lesson || 'all';
+  const lessons = getAvailableSceneLessons();
+  if (current !== 'all' && !lessons.includes(current)) {
+    state.scenes.lesson = 'all';
+  }
+  const selected = state.scenes.lesson || 'all';
+  const counts = {};
+  getScenesForCurrentCourse().forEach((scene) => {
+    const lesson = getSceneLesson(scene);
+    if (lesson) counts[lesson] = (counts[lesson] || 0) + 1;
+  });
+  select.replaceChildren();
+  const allOption = document.createElement('option');
+  allOption.value = 'all';
+  allOption.textContent = 'همه درس‌ها';
+  select.append(allOption);
+  lessons.forEach((lesson) => {
+    const option = document.createElement('option');
+    option.value = lesson;
+    const meta = getLessonMeta(lesson);
+    const count = counts[lesson] || 0;
+    option.textContent = `درس ${lesson} · ${meta.titleFa} (${count})`;
+    select.append(option);
+  });
+  select.value = selected;
+}
+
+function syncSceneLevelTabs() {
+  document.querySelectorAll('#sceneLevelTabs .tab-chip').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.level === (state.scenes.level || 'all'));
   });
 }
 
@@ -2045,9 +2167,11 @@ async function loadLearningScenes(force = false) {
     const response = await fetch(url.href, { cache: 'no-store' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.scenes.items = scenesFromPayload(await response.json());
+    sceneSentenceIndex = null;
     state.scenes.loadError = state.scenes.items.length ? '' : 'هنوز صحنه‌ای در scenes.json نیست.';
   } catch (_) {
     state.scenes.items = [];
+    sceneSentenceIndex = null;
     state.scenes.loadError = 'scenes.json خوانده نشد. از پوشه پروژه بزن: python3 -m http.server 3000';
   }
   state.scenes.loaded = true;
@@ -2096,11 +2220,7 @@ function renderSceneStudyCard() {
 
   const items = getFilteredScenes();
   if (!items.length) {
-    const message = state.scenes.loadError
-      || (state.scenes.items.length
-        ? 'جمله‌ای با این جستجو پیدا نشد.'
-        : 'هنوز صحنه‌ای ساخته نشده. اسکریپت <code>tools/generate_learning_scenes.py</code> را اجرا کنید و جمله فرانسه بدهید.');
-    card.innerHTML = `<div class="scene-empty-state">${message}</div>`;
+    card.innerHTML = `<div class="scene-empty-state">${getScenesEmptyMessage()}</div>`;
     return;
   }
 
@@ -2110,6 +2230,12 @@ function renderSceneStudyCard() {
   const src = sceneImageSrc(scene);
   const french = String(scene.french || '');
   const persian = String(scene.persian || '');
+  const course = getSceneCourse(scene);
+  const lesson = getSceneLesson(scene);
+  const lessonMeta = lesson ? getLessonMeta(lesson) : null;
+  const lessonLabel = lesson
+    ? `درس ${lesson}${lessonMeta && lessonMeta.titleFa ? ` · ${lessonMeta.titleFa}` : ''}`
+    : '';
 
   card.innerHTML = `
     <div class="scene-study-figure">
@@ -2117,6 +2243,10 @@ function renderSceneStudyCard() {
     </div>
     <div class="scene-study-copy">
       <div class="scene-progress-label">${state.scenes.currentIndex + 1} از ${items.length}</div>
+      <div class="scene-meta-pills">
+        <span class="pill-info">${course}</span>
+        ${lessonLabel ? `<span class="pill-info">${lessonLabel}</span>` : ''}
+      </div>
       <p class="scene-french-text" dir="ltr"></p>
       <p class="scene-persian-text ${showFa ? '' : 'is-hidden'}"></p>
       <div class="scene-study-actions">
@@ -2141,7 +2271,7 @@ function renderScenesGallery() {
   if (!grid) return;
   const items = getFilteredScenes();
   if (!items.length) {
-    grid.innerHTML = `<div class="scene-empty-state">${state.scenes.loadError || 'صحنه‌ای برای نمایش نیست.'}</div>`;
+    grid.innerHTML = `<div class="scene-empty-state">${getScenesEmptyMessage()}</div>`;
     return;
   }
 
@@ -2189,6 +2319,8 @@ function renderScenesView() {
   const modeBtn = document.getElementById('sceneModeToggleText');
   const hideBtn = document.getElementById('sceneHideTransText');
 
+  populateSceneLessonFilter();
+  syncSceneLevelTabs();
   if (modeBtn) modeBtn.textContent = state.scenes.mode === 'study' ? 'نمایش گالری' : 'حالت مرور تک‌صحنه';
   if (hideBtn) hideBtn.textContent = state.scenes.hideTranslations ? 'نمایش ترجمه‌ها' : 'مخفی‌سازی ترجمه';
 
@@ -2217,6 +2349,24 @@ function setupScenesView() {
     search.value = state.scenes.searchQuery || '';
     search.oninput = () => {
       state.scenes.searchQuery = search.value;
+      state.scenes.currentIndex = 0;
+      renderScenesView();
+    };
+  }
+
+  document.querySelectorAll('#sceneLevelTabs .tab-chip').forEach((btn) => {
+    btn.onclick = () => {
+      state.scenes.level = btn.dataset.level || 'all';
+      state.scenes.lesson = 'all';
+      state.scenes.currentIndex = 0;
+      renderScenesView();
+    };
+  });
+
+  const lessonFilter = document.getElementById('sceneLessonFilter');
+  if (lessonFilter) {
+    lessonFilter.onchange = () => {
+      state.scenes.lesson = lessonFilter.value || 'all';
       state.scenes.currentIndex = 0;
       renderScenesView();
     };

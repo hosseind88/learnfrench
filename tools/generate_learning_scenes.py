@@ -42,6 +42,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SCENES_DIR = ROOT / "learning-scenes"
 IMAGES_DIR = SCENES_DIR / "images"
 SCENES_JSON = SCENES_DIR / "scenes.json"
+ANKI_JSON = ROOT / "anki_parsed.json"
+COURSE_LEVELS = ("A1", "A2", "B1", "B2")
 
 AVALAI_BASE = "https://api.avalai.ir/v1"
 AVALAI_TEXT_MODEL = "gemini-2.5-flash-lite"
@@ -119,6 +121,46 @@ def normalize_french(text: str) -> str:
     text = re.sub(r"\s+", " ", text).strip()
     text = text.rstrip(".!?;:…").strip()
     return text.casefold()
+
+
+def normalize_lesson(value: str) -> str:
+    lesson = str(value or "").strip()
+    if lesson.isdigit():
+        return lesson.zfill(2)
+    return lesson
+
+
+_ANKI_LOOKUP: dict[str, dict] | None = None
+
+
+def load_anki_lookup() -> dict[str, dict]:
+    global _ANKI_LOOKUP
+    if _ANKI_LOOKUP is not None:
+        return _ANKI_LOOKUP
+    if not ANKI_JSON.is_file():
+        _ANKI_LOOKUP = {}
+        return _ANKI_LOOKUP
+    data = json.loads(ANKI_JSON.read_text(encoding="utf-8"))
+    sentences = data.get("sentences") if isinstance(data, dict) else data
+    lookup: dict[str, dict] = {}
+    for item in sentences or []:
+        key = normalize_french(item.get("fr") or "")
+        if key and key not in lookup:
+            lookup[key] = item
+    _ANKI_LOOKUP = lookup
+    return lookup
+
+
+def resolve_scene_meta(french: str, level: str = "", lesson: str = "") -> dict:
+    resolved_level = str(level or "").strip().upper()
+    resolved_lesson = normalize_lesson(lesson)
+    match = load_anki_lookup().get(normalize_french(french), {})
+    if resolved_level not in COURSE_LEVELS:
+        match_level = str(match.get("level") or "").strip().upper()
+        resolved_level = match_level if match_level in COURSE_LEVELS else "A1"
+    if not resolved_lesson:
+        resolved_lesson = normalize_lesson(match.get("lesson") or "")
+    return {"level": resolved_level, "lesson": resolved_lesson}
 
 
 def scene_exists(catalog: dict, french: str) -> bool:
@@ -383,7 +425,7 @@ def unique_id(catalog: dict, french: str) -> str:
     return f"{base}-{index}"
 
 
-def process_sentence(settings: Settings, french: str) -> dict:
+def process_sentence(settings: Settings, french: str, *, level: str = "", lesson: str = "") -> dict:
     french = " ".join(french.strip().split())
     if not french:
         raise ValueError("جمله خالی است.")
@@ -424,6 +466,7 @@ def process_sentence(settings: Settings, french: str) -> dict:
         "french": french,
         "persian": translated["persian"],
         "image": image_link,
+        **resolve_scene_meta(french, level, lesson),
     }
     upsert_scene(catalog, scene)
     save_catalog(catalog)
@@ -545,6 +588,8 @@ def main() -> int:
     parser.add_argument("--avalai-key", help="AvalAI API key")
     parser.add_argument("--key", help="Alias for --avalai-key")
     parser.add_argument("--no-compress", action="store_true", help="Keep the raw PNG")
+    parser.add_argument("--level", default="", help="Course level: A1, A2, B1, or B2")
+    parser.add_argument("--lesson", default="", help="Lesson number, e.g. 09")
     args = parser.parse_args()
 
     SCENES_DIR.mkdir(parents=True, exist_ok=True)
@@ -559,7 +604,7 @@ def main() -> int:
         failed = 0
         for french in batch:
             try:
-                process_sentence(settings, french)
+                process_sentence(settings, french, level=args.level, lesson=args.lesson)
             except Exception as exc:
                 failed += 1
                 print(f"خطا برای «{french}»: {exc}")

@@ -5318,6 +5318,42 @@ body.view-is-book .sidebar-tip-card {
   gap: 8px;
 }
 
+.scene-filters-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.scene-level-tabs {
+  margin-bottom: 0;
+}
+
+.scene-search-filter-bar {
+  align-items: stretch;
+}
+
+.scene-search-filter-bar .sentence-search-box {
+  flex: 1 1 240px;
+  min-width: 200px;
+  margin-bottom: 0;
+}
+
+.scene-search-filter-bar .filter-dropdown-wrapper {
+  flex: 0 1 280px;
+}
+
+.scene-search-filter-bar .custom-select {
+  width: 100%;
+  min-width: 0;
+}
+
+.scene-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .scene-study-card {
   display: grid;
   grid-template-columns: minmax(0, 420px) minmax(240px, 1fr);
@@ -5469,6 +5505,15 @@ body.theme-dark .scene-study-figure {
 
   .scene-french-text {
     font-size: 1.2rem;
+  }
+
+  .scene-search-filter-bar {
+    flex-direction: column;
+  }
+
+  .scene-search-filter-bar .custom-select {
+    width: 100%;
+    min-width: 0;
   }
 }
 
