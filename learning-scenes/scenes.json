@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-15T23:52:02Z",
+  "updatedAt": "2026-09-16T09:11:03Z",
   "scenes": [
     {
       "id": "elle-ouvre-un-dossier-important",
@@ -1788,6 +1788,450 @@
       "french": "Aujourd'hui, il y a un cours important.",
       "persian": "امروز یک کلاس مهم داریم.",
       "image": "learning-scenes/images/aujourd-hui-il-y-a-un-cours-important.jpg"
+    },
+    {
+      "id": "ma-cousine-est-mariee",
+      "french": "Ma cousine est mariée.",
+      "persian": "دخترعموی من متأهل است.",
+      "image": "learning-scenes/images/ma-cousine-est-mariee.jpg"
+    },
+    {
+      "id": "il-est-pacse-avec-son-ami",
+      "french": "Il est pacsé avec son ami.",
+      "persian": "او با دوستش پیمان مدنی بسته است.",
+      "image": "learning-scenes/images/il-est-pacse-avec-son-ami.jpg"
+    },
+    {
+      "id": "marie-est-separee",
+      "french": "Marie est séparée.",
+      "persian": "ماری جدا شده است.",
+      "image": "learning-scenes/images/marie-est-separee.jpg"
+    },
+    {
+      "id": "il-y-a-des-cafes-sur-le-boulevard",
+      "french": "Il y a des cafés sur le boulevard.",
+      "persian": "در آن بلوار، چند کافه وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-des-cafes-sur-le-boulevard.jpg"
+    },
+    {
+      "id": "nous-sommes-sur-la-place-centrale",
+      "french": "Nous sommes sur la place centrale.",
+      "persian": "ما در میدان اصلی شهر هستیم.",
+      "image": "learning-scenes/images/nous-sommes-sur-la-place-centrale.jpg"
+    },
+    {
+      "id": "elle-loue-un-petit-studio",
+      "french": "Elle loue un petit studio.",
+      "persian": "او یک استودیوی کوچک اجاره می‌کند.",
+      "image": "learning-scenes/images/elle-loue-un-petit-studio.jpg"
+    },
+    {
+      "id": "on-regarde-la-tele-dans-le-salon",
+      "french": "On regarde la télé dans le salon.",
+      "persian": "ما در حال تماشای تلویزیون در اتاق نشیمن هستیم.",
+      "image": "learning-scenes/images/on-regarde-la-tele-dans-le-salon.jpg"
+    },
+    {
+      "id": "demain-je-vais-voir-mes-amis",
+      "french": "Demain, je vais voir mes amis.",
+      "persian": "فردا می‌روم که دوستانم را ببینم.",
+      "image": "learning-scenes/images/demain-je-vais-voir-mes-amis.jpg"
+    },
+    {
+      "id": "la-faculte-est-tres-grande",
+      "french": "La faculté est très grande.",
+      "persian": "دانشکده خیلی بزرگ است.",
+      "image": "learning-scenes/images/la-faculte-est-tres-grande.jpg"
+    },
+    {
+      "id": "les-etudiants-entrent-dans-la-salle",
+      "french": "Les étudiants entrent dans la salle.",
+      "persian": "دانشجویان وارد کلاس می‌شوند.",
+      "image": "learning-scenes/images/les-etudiants-entrent-dans-la-salle.jpg"
+    },
+    {
+      "id": "le-professeur-parle-dans-l-amphitheatre",
+      "french": "Le professeur parle dans l'amphithéâtre.",
+      "persian": "استاد در سالن سخنرانی صحبت می‌کند.",
+      "image": "learning-scenes/images/le-professeur-parle-dans-l-amphitheatre.jpg"
+    },
+    {
+      "id": "je-vais-au-secretariat-pour-poser-une-question",
+      "french": "Je vais au secrétariat pour poser une question.",
+      "persian": "من برای پرسیدن یک سوال به دفتر اداری می‌روم.",
+      "image": "learning-scenes/images/je-vais-au-secretariat-pour-poser-une-question.jpg"
+    },
+    {
+      "id": "l-etudiant-attend-au-bureau-du-professeur",
+      "french": "L'étudiant attend au bureau du professeur.",
+      "persian": "دانشجو در دفتر استاد منتظر است.",
+      "image": "learning-scenes/images/l-etudiant-attend-au-bureau-du-professeur.jpg"
+    },
+    {
+      "id": "le-campus-est-plein-d-etudiants",
+      "french": "Le campus est plein d'étudiants.",
+      "persian": "محوطه دانشگاه پر از دانشجو است.",
+      "image": "learning-scenes/images/le-campus-est-plein-d-etudiants.jpg"
+    },
+    {
+      "id": "nous-dejeunons-a-la-cafeteria",
+      "french": "Nous déjeunons à la cafétéria.",
+      "persian": "ما در کافه‌تریا ناهار می‌خوریم.",
+      "image": "learning-scenes/images/nous-dejeunons-a-la-cafeteria.jpg"
+    },
+    {
+      "id": "le-soir-je-mange-au-restaurant-universitaire",
+      "french": "Le soir, je mange au restaurant universitaire.",
+      "persian": "شب‌ها در سلف‌سرویس دانشگاه غذا می‌خورم.",
+      "image": "learning-scenes/images/le-soir-je-mange-au-restaurant-universitaire.jpg"
+    },
+    {
+      "id": "les-etudiants-jouent-au-basket-dans-le-gymnase",
+      "french": "Les étudiants jouent au basket dans le gymnase.",
+      "persian": "دانشجویان در سالن ورزشی بسکتبال بازی می‌کنند.",
+      "image": "learning-scenes/images/les-etudiants-jouent-au-basket-dans-le-gymnase.jpg"
+    },
+    {
+      "id": "je-lis-un-livre-a-la-bibliotheque-universitaire",
+      "french": "Je lis un livre à la bibliothèque universitaire.",
+      "persian": "من در کتابخانه دانشگاه مشغول خواندن یک کتاب هستم.",
+      "image": "learning-scenes/images/je-lis-un-livre-a-la-bibliotheque-universitaire.jpg"
+    },
+    {
+      "id": "l-association-des-etudiants-organise-une-fete",
+      "french": "L'association des étudiants organise une fête.",
+      "persian": "انجمن دانشجویان یک مهمانی ترتیب می‌دهد.",
+      "image": "learning-scenes/images/l-association-des-etudiants-organise-une-fete.jpg"
+    },
+    {
+      "id": "mon-emploi-du-temps-est-tres-charge-cette-semaine",
+      "french": "Mon emploi du temps est très chargé cette semaine.",
+      "persian": "برنامه کاری من در این هفته خیلی شلوغ است.",
+      "image": "learning-scenes/images/mon-emploi-du-temps-est-tres-charge-cette-semaine.jpg"
+    },
+    {
+      "id": "la-semaine-je-travaille-beaucoup",
+      "french": "La semaine, je travaille beaucoup.",
+      "persian": "در طول هفته، من خیلی کار می‌کنم.",
+      "image": "learning-scenes/images/la-semaine-je-travaille-beaucoup.jpg"
+    },
+    {
+      "id": "le-week-end-je-me-repose",
+      "french": "Le week-end, je me repose.",
+      "persian": "آخر هفته‌ها استراحت می‌کنم.",
+      "image": "learning-scenes/images/le-week-end-je-me-repose.jpg"
+    },
+    {
+      "id": "le-matin-je-bois-du-cafe",
+      "french": "Le matin, je bois du café.",
+      "persian": "صبح‌ها قهوه می‌نوشم.",
+      "image": "learning-scenes/images/le-matin-je-bois-du-cafe.jpg"
+    },
+    {
+      "id": "l-apres-midi-je-vais-a-la-bibliotheque",
+      "french": "L'après-midi, je vais à la bibliothèque.",
+      "persian": "بعدازظهرها به کتابخانه می‌روم.",
+      "image": "learning-scenes/images/l-apres-midi-je-vais-a-la-bibliotheque.jpg"
+    },
+    {
+      "id": "le-soir-je-regarde-la-television",
+      "french": "Le soir, je regarde la télévision.",
+      "persian": "شب‌ها تلویزیون تماشا می‌کنم.",
+      "image": "learning-scenes/images/le-soir-je-regarde-la-television.jpg"
+    },
+    {
+      "id": "je-prends-un-petit-dejeuner-leger",
+      "french": "Je prends un petit déjeuner léger.",
+      "persian": "من یک صبحانه سبک می‌خورم.",
+      "image": "learning-scenes/images/je-prends-un-petit-dejeuner-leger.jpg"
+    },
+    {
+      "id": "nous-dejeunons-a-midi",
+      "french": "Nous déjeunons à midi.",
+      "persian": "ما ظهر ناهار می‌خوریم.",
+      "image": "learning-scenes/images/nous-dejeunons-a-midi.jpg"
+    },
+    {
+      "id": "le-soir-nous-dinons-ensemble",
+      "french": "Le soir, nous dînons ensemble.",
+      "persian": "عصرها، ما با هم شام می‌خوریم.",
+      "image": "learning-scenes/images/le-soir-nous-dinons-ensemble.jpg"
+    },
+    {
+      "id": "je-me-leve-rapidement",
+      "french": "Je me lève rapidement.",
+      "persian": "من به سرعت از خواب بیدار می‌شوم.",
+      "image": "learning-scenes/images/je-me-leve-rapidement.jpg"
+    },
+    {
+      "id": "je-me-couche-a-dix-heures",
+      "french": "Je me couche à dix heures.",
+      "persian": "من ساعت ده می‌خوابم.",
+      "image": "learning-scenes/images/je-me-couche-a-dix-heures.jpg"
+    },
+    {
+      "id": "je-me-lave-avant-de-sortir",
+      "french": "Je me lave avant de sortir.",
+      "persian": "من قبل از بیرون رفتن، خودم را می‌شویم.",
+      "image": "learning-scenes/images/je-me-lave-avant-de-sortir.jpg"
+    },
+    {
+      "id": "je-me-brosse-les-dents-apres-chaque-repas",
+      "french": "Je me brosse les dents après chaque repas.",
+      "persian": "من بعد از هر وعده غذایی مسواک می‌زنم.",
+      "image": "learning-scenes/images/je-me-brosse-les-dents-apres-chaque-repas.jpg"
+    },
+    {
+      "id": "mon-pere-se-rase-chaque-matin",
+      "french": "Mon père se rase chaque matin.",
+      "persian": "پدرم هر روز صبح صورتش را اصلاح می‌کند.",
+      "image": "learning-scenes/images/mon-pere-se-rase-chaque-matin.jpg"
+    },
+    {
+      "id": "je-me-coiffe-devant-le-miroir",
+      "french": "Je me coiffe devant le miroir.",
+      "persian": "من جلوی آینه موهایم را شانه می‌کنم.",
+      "image": "learning-scenes/images/je-me-coiffe-devant-le-miroir.jpg"
+    },
+    {
+      "id": "je-m-habille-rapidement-le-matin",
+      "french": "Je m'habille rapidement le matin.",
+      "persian": "من صبح‌ها سریع لباس می‌پوشم.",
+      "image": "learning-scenes/images/je-m-habille-rapidement-le-matin.jpg"
+    },
+    {
+      "id": "ma-mere-cuisine-tres-bien",
+      "french": "Ma mère cuisine très bien.",
+      "persian": "مادرم خیلی خوب آشپزی می‌کند.",
+      "image": "learning-scenes/images/ma-mere-cuisine-tres-bien.jpg"
+    },
+    {
+      "id": "j-aime-lire-des-livres-le-soir",
+      "french": "J'aime lire des livres le soir.",
+      "persian": "من دوست دارم شب‌ها کتاب بخوانم.",
+      "image": "learning-scenes/images/j-aime-lire-des-livres-le-soir.jpg"
+    },
+    {
+      "id": "nous-nous-promenons-dans-le-parc",
+      "french": "Nous nous promenons dans le parc.",
+      "persian": "ما در حال قدم زدن در پارک هستیم.",
+      "image": "learning-scenes/images/nous-nous-promenons-dans-le-parc.jpg"
+    },
+    {
+      "id": "je-me-repose-apres-le-travail",
+      "french": "Je me repose après le travail.",
+      "persian": "بعد از کار استراحت می‌کنم.",
+      "image": "learning-scenes/images/je-me-repose-apres-le-travail.jpg"
+    },
+    {
+      "id": "elle-fait-les-courses-au-supermarche",
+      "french": "Elle fait les courses au supermarché.",
+      "persian": "او در سوپرمارکت خرید می‌کند.",
+      "image": "learning-scenes/images/elle-fait-les-courses-au-supermarche.jpg"
+    },
+    {
+      "id": "mon-frere-fait-du-sport-chaque-jour",
+      "french": "Mon frère fait du sport chaque jour.",
+      "persian": "برادر من هر روز ورزش می‌کند.",
+      "image": "learning-scenes/images/mon-frere-fait-du-sport-chaque-jour.jpg"
+    },
+    {
+      "id": "nous-ecoutons-de-la-musique-le-week-end",
+      "french": "Nous écoutons de la musique le week-end.",
+      "persian": "ما آخر هفته‌ها به موسیقی گوش می‌دهیم.",
+      "image": "learning-scenes/images/nous-ecoutons-de-la-musique-le-week-end.jpg"
+    },
+    {
+      "id": "il-envoie-son-c-v-a-l-entreprise",
+      "french": "Il envoie son C.V. à l'entreprise.",
+      "persian": "او رزومه‌اش را برای شرکت می‌فرستد.",
+      "image": "learning-scenes/images/il-envoie-son-c-v-a-l-entreprise.jpg"
+    },
+    {
+      "id": "les-employes-travaillent-dans-le-bureau",
+      "french": "Les employés travaillent dans le bureau.",
+      "persian": "کارمندان در دفتر کار می‌کنند.",
+      "image": "learning-scenes/images/les-employes-travaillent-dans-le-bureau.jpg"
+    },
+    {
+      "id": "paul-est-toujours-disponible-pour-aider",
+      "french": "Paul est toujours disponible pour aider.",
+      "persian": "پل همیشه برای کمک کردن در دسترس است.",
+      "image": "learning-scenes/images/paul-est-toujours-disponible-pour-aider.jpg"
+    },
+    {
+      "id": "cette-prof-est-tres-patiente-avec-ses-eleves",
+      "french": "Cette prof est très patiente avec ses élèves.",
+      "persian": "این معلم با شاگردانش خیلی صبور است.",
+      "image": "learning-scenes/images/cette-prof-est-tres-patiente-avec-ses-eleves.jpg"
+    },
+    {
+      "id": "mon-collegue-est-tres-serieux-dans-son-travail",
+      "french": "Mon collègue est très sérieux dans son travail.",
+      "persian": "همکار من در کارش بسیار جدی است.",
+      "image": "learning-scenes/images/mon-collegue-est-tres-serieux-dans-son-travail.jpg"
+    },
+    {
+      "id": "il-reste-calme-dans-toutes-les-situations",
+      "french": "Il reste calme dans toutes les situations.",
+      "persian": "او در همه شرایط آرام می‌ماند.",
+      "image": "learning-scenes/images/il-reste-calme-dans-toutes-les-situations.jpg"
+    },
+    {
+      "id": "mon-ami-est-bavard-il-parle-beaucoup",
+      "french": "Mon ami est bavard, il parle beaucoup.",
+      "persian": "دوست من پرحرف است، او خیلی صحبت می‌کند.",
+      "image": "learning-scenes/images/mon-ami-est-bavard-il-parle-beaucoup.jpg"
+    },
+    {
+      "id": "je-demande-des-informations-a-l-accueil",
+      "french": "Je demande des informations à l'accueil.",
+      "persian": "من در حال پرسیدن اطلاعات از بخش پذیرش هستم.",
+      "image": "learning-scenes/images/je-demande-des-informations-a-l-accueil.jpg"
+    },
+    {
+      "id": "le-couloir-est-long-et-lumineux",
+      "french": "Le couloir est long et lumineux.",
+      "persian": "راهرو طولانی و پرنور است.",
+      "image": "learning-scenes/images/le-couloir-est-long-et-lumineux.jpg"
+    },
+    {
+      "id": "nous-prenons-un-cafe-a-la-machine-a-cafe",
+      "french": "Nous prenons un café à la machine à café.",
+      "persian": "ما داریم کنار دستگاه قهوه‌ساز قهوه می‌خوریم.",
+      "image": "learning-scenes/images/nous-prenons-un-cafe-a-la-machine-a-cafe.jpg"
+    },
+    {
+      "id": "la-salle-de-reunion-est-grande",
+      "french": "La salle de réunion est grande.",
+      "persian": "اتاق جلسه بزرگ است.",
+      "image": "learning-scenes/images/la-salle-de-reunion-est-grande.jpg"
+    },
+    {
+      "id": "elle-fait-une-presentation-devant-ses-collegues",
+      "french": "Elle fait une présentation devant ses collègues.",
+      "persian": "او در حال ارائه دادن در مقابل همکارانش است.",
+      "image": "learning-scenes/images/elle-fait-une-presentation-devant-ses-collegues.jpg"
+    },
+    {
+      "id": "nous-parlons-avec-le-client-en-visioconference",
+      "french": "Nous parlons avec le client en visioconférence.",
+      "persian": "ما داریم با مشتری از طریق تماس تصویری صحبت می‌کنیم.",
+      "image": "learning-scenes/images/nous-parlons-avec-le-client-en-visioconference.jpg"
+    },
+    {
+      "id": "il-fait-du-teletravail-trois-jours-par-semaine",
+      "french": "Il fait du télétravail trois jours par semaine.",
+      "persian": "او سه روز در هفته دورکاری می‌کند.",
+      "image": "learning-scenes/images/il-fait-du-teletravail-trois-jours-par-semaine.jpg"
+    },
+    {
+      "id": "je-paie-au-distributeur-automatique",
+      "french": "Je paie au distributeur automatique.",
+      "persian": "من با دستگاه خودپرداز پرداخت می‌کنم.",
+      "image": "learning-scenes/images/je-paie-au-distributeur-automatique.jpg"
+    },
+    {
+      "id": "tournez-a-gauche-apres-le-cafe",
+      "french": "Tournez à gauche après le café.",
+      "persian": "بعد از کافه به چپ بپیچید.",
+      "image": "learning-scenes/images/tournez-a-gauche-apres-le-cafe.jpg"
+    },
+    {
+      "id": "traversez-la-rue-ici",
+      "french": "Traversez la rue ici.",
+      "persian": "از اینجا از خیابان عبور کنید.",
+      "image": "learning-scenes/images/traversez-la-rue-ici.jpg"
+    },
+    {
+      "id": "la-banque-est-en-face-du-parc",
+      "french": "La banque est en face du parc.",
+      "persian": "بانک روبروی پارک است.",
+      "image": "learning-scenes/images/la-banque-est-en-face-du-parc.jpg"
+    },
+    {
+      "id": "la-pharmacie-est-a-cote-de-la-poste",
+      "french": "La pharmacie est à côté de la poste.",
+      "persian": "داروخانه کنار اداره پست است.",
+      "image": "learning-scenes/images/la-pharmacie-est-a-cote-de-la-poste.jpg"
+    },
+    {
+      "id": "je-suis-a-la-gare",
+      "french": "Je suis à la gare.",
+      "persian": "من در ایستگاه قطار هستم.",
+      "image": "learning-scenes/images/je-suis-a-la-gare.jpg"
+    },
+    {
+      "id": "j-ai-un-billet-pour-paris",
+      "french": "J'ai un billet pour Paris.",
+      "persian": "من یک بلیط برای پاریس دارم.",
+      "image": "learning-scenes/images/j-ai-un-billet-pour-paris.jpg"
+    },
+    {
+      "id": "le-train-est-sur-le-quai",
+      "french": "Le train est sur le quai.",
+      "persian": "قطار روی سکو است.",
+      "image": "learning-scenes/images/le-train-est-sur-le-quai.jpg"
+    },
+    {
+      "id": "le-depart-est-a-10-heures",
+      "french": "Le départ est à 10 heures.",
+      "persian": "حرکت ساعت ۱۰ است.",
+      "image": "learning-scenes/images/le-depart-est-a-10-heures.jpg"
+    },
+    {
+      "id": "l-arrivee-est-a-lyon",
+      "french": "L'arrivée est à Lyon.",
+      "persian": "مقصد نهایی شهر لیون است.",
+      "image": "learning-scenes/images/l-arrivee-est-a-lyon.jpg"
+    },
+    {
+      "id": "ma-place-est-cote-fenetre",
+      "french": "Ma place est côté fenêtre.",
+      "persian": "جای من کنار پنجره است.",
+      "image": "learning-scenes/images/ma-place-est-cote-fenetre.jpg"
+    },
+    {
+      "id": "le-controleur-demande-le-billet",
+      "french": "Le contrôleur demande le billet.",
+      "persian": "بازرس بلیط را درخواست می‌کند.",
+      "image": "learning-scenes/images/le-controleur-demande-le-billet.jpg"
+    },
+    {
+      "id": "il-y-a-une-greve-demain",
+      "french": "Il y a une grève demain.",
+      "persian": "فردا اعتصاب است.",
+      "image": "learning-scenes/images/il-y-a-une-greve-demain.jpg"
+    },
+    {
+      "id": "j-ai-une-voiture-rouge",
+      "french": "J'ai une voiture rouge.",
+      "persian": "من یک ماشین قرمز دارم.",
+      "image": "learning-scenes/images/j-ai-une-voiture-rouge.jpg"
+    },
+    {
+      "id": "le-bus-arrive-bientot",
+      "french": "Le bus arrive bientôt.",
+      "persian": "اتوبوس به‌زودی می‌رسد.",
+      "image": "learning-scenes/images/le-bus-arrive-bientot.jpg"
+    },
+    {
+      "id": "le-conducteur-conduit-bien",
+      "french": "Le conducteur conduit bien.",
+      "persian": "راننده خوب رانندگی می‌کند.",
+      "image": "learning-scenes/images/le-conducteur-conduit-bien.jpg"
+    },
+    {
+      "id": "le-passager-parle-avec-le-conducteur",
+      "french": "Le passager parle avec le conducteur.",
+      "persian": "مسافر با راننده صحبت می‌کند.",
+      "image": "learning-scenes/images/le-passager-parle-avec-le-conducteur.jpg"
+    },
+    {
+      "id": "j-ai-ma-carte-d-identite",
+      "french": "J'ai ma carte d'identité.",
+      "persian": "من کارت شناسایی‌ام را دارم.",
+      "image": "learning-scenes/images/j-ai-ma-carte-d-identite.jpg"
     }
   ]
 }
