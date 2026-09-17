@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v21';
+const CACHE_NAME = 'francais-facile-v22';
 
 const LOCAL_ASSETS = [
   './',
@@ -82,11 +82,17 @@ async function handleFetch(request) {
     return cached;
   }
 
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 4000);
+  const offline = self.navigator.onLine === false;
+  if (offline) {
+    if (request.mode === 'navigate') {
+      const fallback = await cache.match('./index.html') || await cache.match('./');
+      if (fallback) return fallback;
+    }
+    return new Response('', { status: 503, statusText: 'Offline' });
+  }
 
   try {
-    const response = await fetch(request, { signal: controller.signal });
+    const response = await fetch(request);
     if (response && response.ok && response.type !== 'opaque') {
       cache.put(request, response.clone());
     }
@@ -97,8 +103,6 @@ async function handleFetch(request) {
       if (fallback) return fallback;
     }
     return new Response('', { status: 503, statusText: 'Offline' });
-  } finally {
-    clearTimeout(timeoutId);
   }
 }
 

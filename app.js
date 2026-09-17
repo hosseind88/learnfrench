@@ -2262,6 +2262,55 @@ function sceneImageSrc(scene) {
   return link.startsWith('./') ? link : `./${link.replace(/^\//, '')}`;
 }
 
+function attachResilientImage(img, src, options = {}) {
+  if (!img || !src) return;
+  const maxAttempts = options.maxAttempts || 3;
+  const lazy = options.lazy === true;
+  let attempts = 0;
+
+  const host = img.closest('.scene-study-figure, .scene-gallery-card');
+  const setState = (loading, broken) => {
+    img.classList.toggle('is-loading', loading);
+    img.classList.toggle('is-broken', broken);
+    if (host) {
+      host.classList.toggle('image-loading', loading);
+      host.classList.toggle('image-broken', broken);
+    }
+  };
+
+  const tryLoad = () => {
+    attempts += 1;
+    setState(true, false);
+    if (attempts > 1) img.removeAttribute('src');
+    img.src = src;
+  };
+
+  img.decoding = 'async';
+  if (lazy) img.loading = 'lazy';
+  img.onload = () => setState(false, false);
+  img.onerror = () => {
+    if (attempts < maxAttempts) {
+      setTimeout(tryLoad, 400 * attempts);
+      return;
+    }
+    setState(false, true);
+  };
+
+  tryLoad();
+}
+
+function prefetchSceneImages(items, index) {
+  if (!items.length) return;
+  [index - 1, index + 1].forEach((raw) => {
+    const scene = items[(raw + items.length) % items.length];
+    const src = sceneImageSrc(scene);
+    if (!src) return;
+    const pre = new Image();
+    pre.decoding = 'async';
+    pre.src = src;
+  });
+}
+
 function scenesFromPayload(data) {
   const raw = Array.isArray(data) ? data : ((data && data.scenes) || []);
   return raw.filter((item) => item && item.french && item.image);
@@ -2292,13 +2341,26 @@ function bindSceneStudyActions(root, scene) {
   if (speakBtn) speakBtn.onclick = () => speakFrench(scene.french);
 
   const image = root.querySelector('.scene-study-image');
-  if (image) image.onclick = () => speakFrench(scene.french);
+  if (image) {
+    image.onclick = () => {
+      if (image.classList.contains('is-broken')) {
+        attachResilientImage(image, sceneImageSrc(scene));
+        return;
+      }
+      speakFrench(scene.french);
+    };
+  }
 
   const revealBtn = root.querySelector('[data-scene-reveal]');
   const persianBox = root.querySelector('.scene-persian-text');
   const toggleReveal = () => {
     state.scenes.revealed = !state.scenes.revealed;
-    renderScenesView();
+    const showFa = !state.scenes.hideTranslations || state.scenes.revealed;
+    if (persianBox) {
+      persianBox.classList.toggle('is-hidden', !showFa);
+      persianBox.textContent = showFa ? (scene.persian || '') : 'برای دیدن ترجمه فارسی ضربه بزن';
+    }
+    if (revealBtn) revealBtn.textContent = showFa ? 'مخفی کردن ترجمه' : 'نمایش ترجمه';
   };
   if (revealBtn) revealBtn.onclick = toggleReveal;
   if (persianBox) persianBox.onclick = toggleReveal;
@@ -2348,8 +2410,8 @@ function renderSceneStudyCard() {
   const kindLabel = scene.kind === 'word' ? 'واژه' : 'جمله';
 
   card.innerHTML = `
-    <div class="scene-study-figure">
-      <img src="${src}" alt="" class="scene-study-image">
+    <div class="scene-study-figure image-loading">
+      <img alt="" class="scene-study-image is-loading">
     </div>
     <div class="scene-study-copy">
       <div class="scene-progress-label">${state.scenes.currentIndex + 1} از ${items.length}</div>
@@ -2374,7 +2436,10 @@ function renderSceneStudyCard() {
   const persianEl = card.querySelector('.scene-persian-text');
   if (frenchEl) frenchEl.textContent = french;
   if (persianEl) persianEl.textContent = showFa ? persian : 'برای دیدن ترجمه فارسی ضربه بزن';
+  const studyImg = card.querySelector('.scene-study-image');
+  attachResilientImage(studyImg, src);
   bindSceneStudyActions(card, scene);
+  prefetchSceneImages(items, state.scenes.currentIndex);
 }
 
 function renderScenesGallery() {
@@ -2394,8 +2459,8 @@ function renderScenesGallery() {
 
     const img = document.createElement('img');
     img.className = 'scene-gallery-image';
-    img.src = sceneImageSrc(scene);
     img.alt = '';
+    attachResilientImage(img, sceneImageSrc(scene), { lazy: true });
 
     const body = document.createElement('div');
     body.className = 'scene-gallery-body';
@@ -2415,6 +2480,14 @@ function renderScenesGallery() {
   });
 
   grid.querySelectorAll('.scene-gallery-card').forEach((card) => {
+    const img = card.querySelector('.scene-gallery-image');
+    if (img) {
+      img.onclick = (e) => {
+        if (!img.classList.contains('is-broken')) return;
+        e.stopPropagation();
+        attachResilientImage(img, sceneImageSrc(items[Number(card.dataset.sceneIndex) || 0]), { lazy: true });
+      };
+    }
     card.onclick = () => {
       state.scenes.mode = 'study';
       state.scenes.currentIndex = Number(card.dataset.sceneIndex) || 0;

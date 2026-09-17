@@ -5373,6 +5373,41 @@ body.view-is-book .sidebar-tip-card {
   min-width: 0;
 }
 
+.scene-study-figure.image-loading::after,
+.scene-study-figure.image-broken::after,
+.scene-gallery-card.image-loading::after,
+.scene-gallery-card.image-broken::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.scene-study-figure.image-loading::after,
+.scene-gallery-card.image-loading::after {
+  content: 'در حال بارگذاری تصویر…';
+}
+
+.scene-study-figure.image-broken::after,
+.scene-gallery-card.image-broken::after {
+  content: 'تصویر لود نشد. برای تلاش دوباره روی عکس بزن.';
+}
+
+.scene-study-image.is-loading,
+.scene-study-image.is-broken,
+.scene-gallery-image.is-loading,
+.scene-gallery-image.is-broken {
+  opacity: 0.12;
+}
+
 body.theme-dark .scene-study-figure {
   background: linear-gradient(180deg, rgba(219, 39, 119, 0.16) 0%, rgba(37, 99, 235, 0.16) 100%);
 }
@@ -5447,6 +5482,7 @@ body.theme-dark .scene-study-figure {
 }
 
 .scene-gallery-card {
+  position: relative;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
