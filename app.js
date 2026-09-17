@@ -2271,8 +2271,7 @@ async function loadLearningScenes(force = false) {
   if (state.scenes.loaded && !force) return;
   try {
     const url = new URL('learning-scenes/scenes.json', document.baseURI);
-    url.searchParams.set('t', String(Date.now()));
-    const response = await fetch(url.href, { cache: 'no-store' });
+    const response = await fetch(url.href);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.scenes.items = scenesFromPayload(await response.json());
     sceneSentenceIndex = null;
@@ -2280,7 +2279,9 @@ async function loadLearningScenes(force = false) {
   } catch (_) {
     state.scenes.items = [];
     sceneSentenceIndex = null;
-    state.scenes.loadError = 'scenes.json خوانده نشد. از پوشه پروژه بزن: python3 -m http.server 3000';
+    state.scenes.loadError = navigator.onLine === false
+      ? 'حالت آفلاین است و فهرست صحنه‌ها هنوز در حافظه ذخیره نشده. یک‌بار با اینترنت باز کنید.'
+      : 'scenes.json خوانده نشد. از پوشه پروژه بزن: python3 -m http.server 3000';
   }
   state.scenes.loaded = true;
   updateContentCounts();
@@ -4658,18 +4659,29 @@ function setupBookEventListeners() {
 // ==========================================================================
 let deferredInstallPrompt = null;
 
+function setupOfflineBanner() {
+  const banner = document.getElementById('offlineBanner');
+  const sync = () => {
+    if (!banner) return;
+    banner.hidden = navigator.onLine !== false;
+  };
+  window.addEventListener('online', sync);
+  window.addEventListener('offline', sync);
+  sync();
+}
+
 function setupPwaEngine() {
+  setupOfflineBanner();
+
   // 1. Register Service Worker
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then((reg) => {
-          console.log('PWA ServiceWorker registered with scope:', reg.scope);
-        })
-        .catch((err) => {
-          console.warn('PWA ServiceWorker registration failed:', err);
-        });
-    });
+    navigator.serviceWorker.register('./sw.js')
+      .then((reg) => {
+        console.log('PWA ServiceWorker registered with scope:', reg.scope);
+      })
+      .catch((err) => {
+        console.warn('PWA ServiceWorker registration failed:', err);
+      });
   }
 
   const installModal = document.getElementById('pwaInstallModalOverlay');
