@@ -5274,12 +5274,44 @@ function initApp() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+function withTimeout(promise, ms) {
+  return Promise.race([
+    Promise.resolve(promise).catch((err) => {
+      console.warn(err);
+    }),
+    new Promise((resolve) => setTimeout(resolve, ms))
+  ]);
+}
+
+function loadOptionalSecrets() {
+  if (window.FF_OPENROUTER_KEY) return Promise.resolve();
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = './secrets.js';
+    const finish = () => resolve();
+    script.onload = finish;
+    script.onerror = finish;
+    setTimeout(finish, 400);
+    document.head.appendChild(script);
+  });
+}
+
+async function bootApp() {
+  if (window.__ffBooted) return;
+  window.__ffBooted = true;
+  await withTimeout(loadOptionalSecrets(), 500);
   if (window.FFStorage) {
-    await window.FFStorage.hydrate(state);
+    await withTimeout(window.FFStorage.hydrate(state), 1200);
   }
   initApp();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootApp);
+} else {
+  bootApp();
+}
+setTimeout(bootApp, 2000);
 
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden' && window.FFStorage) {

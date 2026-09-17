@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v22';
+const CACHE_NAME = 'francais-facile-v23';
 
 const LOCAL_ASSETS = [
   './',
@@ -19,7 +19,6 @@ const LOCAL_ASSETS = [
 ];
 
 const OPTIONAL_ASSETS = [
-  './secrets.js',
   'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js',
@@ -36,6 +35,31 @@ function isBypassed(url, request) {
   return false;
 }
 
+function isImageRequest(request) {
+  if (request.destination === 'image') return true;
+  try {
+    return /\.(jpe?g|png|gif|webp|svg|avif)$/i.test(new URL(request.url).pathname);
+  } catch (err) {
+    return false;
+  }
+}
+
+function isScriptRequest(request) {
+  if (request.destination === 'script') return true;
+  try {
+    return /\.js$/i.test(new URL(request.url).pathname);
+  } catch (err) {
+    return false;
+  }
+}
+
+function emptyScript() {
+  return new Response('/* offline optional script */\n', {
+    status: 200,
+    headers: { 'Content-Type': 'application/javascript; charset=utf-8' }
+  });
+}
+
 async function precacheList(cache, urls) {
   await Promise.all(urls.map(async (url) => {
     try {
@@ -44,6 +68,12 @@ async function precacheList(cache, urls) {
       console.warn('Skip precache:', url, err);
     }
   }));
+}
+
+function fetchWithTimeout(request, timeoutMs) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(request, { signal: controller.signal }).finally(() => clearTimeout(timer));
 }
 
 self.addEventListener('install', (event) => {
@@ -63,47 +93,35 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-function refreshCache(cache, request) {
-  fetch(request).then((response) => {
-    if (response && response.ok && response.type !== 'opaque') {
-      cache.put(request, response.clone());
-    }
-  }).catch(() => {});
-}
-
 async function handleFetch(request) {
+  const url = new URL(request.url);
   const cache = await caches.open(CACHE_NAME);
   const cached = await cache.match(request, { ignoreSearch: true });
 
-  if (cached) {
-    if (self.navigator.onLine !== false) {
-      refreshCache(cache, request);
-    }
-    return cached;
-  }
+  if (cached) return cached;
 
-  const offline = self.navigator.onLine === false;
-  if (offline) {
-    if (request.mode === 'navigate') {
-      const fallback = await cache.match('./index.html') || await cache.match('./');
-      if (fallback) return fallback;
-    }
-    return new Response('', { status: 503, statusText: 'Offline' });
-  }
+  const timeoutMs = isImageRequest(request) ? 20000 : 2000;
 
   try {
-    const response = await fetch(request);
+    const response = await fetchWithTimeout(request, timeoutMs);
     if (response && response.ok && response.type !== 'opaque') {
       cache.put(request, response.clone());
     }
-    return response;
+    if (response) return response;
   } catch (err) {
-    if (request.mode === 'navigate') {
-      const fallback = await cache.match('./index.html') || await cache.match('./');
-      if (fallback) return fallback;
-    }
-    return new Response('', { status: 503, statusText: 'Offline' });
+    /* network missing or timed out */
   }
+
+  if (request.mode === 'navigate') {
+    const fallback = await cache.match('./index.html') || await cache.match('./');
+    if (fallback) return fallback;
+  }
+
+  if (isScriptRequest(request) || url.pathname.endsWith('/secrets.js')) {
+    return emptyScript();
+  }
+
+  return new Response('', { status: 503, statusText: 'Offline' });
 }
 
 self.addEventListener('fetch', (event) => {
