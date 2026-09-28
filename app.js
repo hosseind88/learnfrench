@@ -2082,6 +2082,44 @@ function renderSentences() {
 // LEARNING WITH ANIMATION SCENES
 // ==========================================================================
 const SCENE_COURSE_LEVELS = ['A1', 'A2', 'B1', 'B2'];
+const SCENE_LESSON_TITLES = {
+  A2: {
+    '01': 'مقایسه و وضعیت',
+    '02': 'کرایه خودرو',
+    '03': 'مسکن و آگهی املاک',
+    '04': 'مدارک هویتی',
+    '05': 'تلویزیون و اخبار',
+    '06': 'دعوت‌نامه و مراسم',
+    '07': 'آشنایی و دوستی',
+    '08': 'ازدواج',
+    '09': 'مدرسه و غیبت',
+    '10': 'کار داوطلبانه',
+    '11': 'رستوران و سفارش',
+    '12': 'بازی‌های گروهی',
+    '13': 'سرگرمی و کلاس',
+    '14': 'سفر، هتل و گردشگری',
+    '15': 'پزشک و بیمارستان',
+    '16': 'ورزش و تمرین',
+    '17': 'تغذیه و رژیم',
+    '18': 'شهر و خدمات عمومی',
+    '19': 'خواب و رؤیا',
+    '20': 'مدرسه و دانشگاه',
+    '21': 'جستجوی کار',
+    '22': 'رزومه و تجربه',
+    '23': 'قرارداد و حقوق',
+    '24': 'همکاران و محیط کار'
+  }
+};
+
+function sceneLessonTitle(level, lesson) {
+  const custom = SCENE_LESSON_TITLES[level];
+  if (custom && custom[lesson]) return custom[lesson];
+  if (level === 'A1') {
+    const meta = getLessonMeta(lesson);
+    return meta && meta.titleFa && meta.titleFa !== 'درس' ? meta.titleFa : '';
+  }
+  return '';
+}
 let sceneSentenceIndex = null;
 
 function normalizeFrenchText(text) {
@@ -2225,12 +2263,13 @@ function populateSceneLessonFilter() {
   allOption.value = 'all';
   allOption.textContent = `همه درس‌ها (${getScenesForCurrentCourse().length})`;
   select.append(allOption);
+  const course = state.scenes.level || 'all';
   lessons.forEach((lesson) => {
     const option = document.createElement('option');
     option.value = lesson;
-    const meta = getLessonMeta(lesson);
+    const title = course === 'all' ? '' : sceneLessonTitle(course, lesson);
     const count = counts[lesson] || 0;
-    option.textContent = `درس ${lesson} · ${meta.titleFa} (${count})`;
+    option.textContent = title ? `درس ${lesson} · ${title} (${count})` : `درس ${lesson} (${count})`;
     select.append(option);
   });
   select.value = selected;
@@ -2403,9 +2442,9 @@ function renderSceneStudyCard() {
   const persian = String(scene.persian || '');
   const course = getSceneCourse(scene);
   const lesson = getSceneLesson(scene);
-  const lessonMeta = lesson ? getLessonMeta(lesson) : null;
+  const lessonTitle = lesson ? sceneLessonTitle(course, lesson) : '';
   const lessonLabel = lesson
-    ? `درس ${lesson}${lessonMeta && lessonMeta.titleFa ? ` · ${lessonMeta.titleFa}` : ''}`
+    ? (lessonTitle ? `درس ${lesson} · ${lessonTitle}` : `درس ${lesson}`)
     : '';
   const kindLabel = scene.kind === 'word' ? 'واژه' : 'جمله';
 

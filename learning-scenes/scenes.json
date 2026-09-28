@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-16T10:19:52Z",
+  "updatedAt": "2026-09-28T11:01:23Z",
   "scenes": [
     {
       "id": "elle-ouvre-un-dossier-important",
@@ -4016,6 +4016,4558 @@
       "level": "A1",
       "lesson": "01",
       "kind": "word"
+    },
+    {
+      "id": "cette-voiture-est-neuve-l-autre-est-d-occasion",
+      "french": "Cette voiture est neuve, l’autre est d’occasion.",
+      "persian": "این ماشین نو است، آن یکی دست‌دوم.",
+      "image": "learning-scenes/images/cette-voiture-est-neuve-l-autre-est-d-occasion.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "le-pantalon-bleu-est-plus-cher-que-le-noir",
+      "french": "Le pantalon bleu est plus cher que le noir.",
+      "persian": "شلوار آبی از شلوار مشکی گران‌تر است.",
+      "image": "learning-scenes/images/le-pantalon-bleu-est-plus-cher-que-le-noir.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "ce-telephone-est-en-bon-etat-l-autre-est-en-mauvais-etat",
+      "french": "Ce téléphone est en bon état, l’autre est en mauvais état.",
+      "persian": "این گوشی سالم است، آن یکی خراب است.",
+      "image": "learning-scenes/images/ce-telephone-est-en-bon-etat-l-autre-est-en-mauvais-etat.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "tu-veux-quelle-taille-m-ou-l",
+      "french": "Tu veux quelle taille ? M ou L ?",
+      "persian": "چه سایزی می‌خواهی؟ مدیوم یا لارج؟",
+      "image": "learning-scenes/images/tu-veux-quelle-taille-m-ou-l.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "il-y-a-des-soldes-dans-ce-magasin",
+      "french": "Il y a des soldes dans ce magasin.",
+      "persian": "در این فروشگاه حراج هست.",
+      "image": "learning-scenes/images/il-y-a-des-soldes-dans-ce-magasin.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "je-veux-commander-une-pizza",
+      "french": "Je veux commander une pizza.",
+      "persian": "می‌خواهم یک پیتزا سفارش بدهم.",
+      "image": "learning-scenes/images/je-veux-commander-une-pizza.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "elle-cherche-une-petite-annonce-pour-une-maison",
+      "french": "Elle cherche une petite annonce pour une maison.",
+      "persian": "او دنبال آگهی خانه است.",
+      "image": "learning-scenes/images/elle-cherche-une-petite-annonce-pour-une-maison.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "il-negocie-le-prix-de-la-voiture",
+      "french": "Il négocie le prix de la voiture.",
+      "persian": "او در حال چانه‌زنی برای قیمت ماشین است.",
+      "image": "learning-scenes/images/il-negocie-le-prix-de-la-voiture.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "je-fais-les-courses-au-supermarche",
+      "french": "Je fais les courses au supermarché.",
+      "persian": "من خرید را در سوپرمارکت انجام می‌دهم.",
+      "image": "learning-scenes/images/je-fais-les-courses-au-supermarche.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "ce-site-a-un-bon-rapport-qualite-prix",
+      "french": "Ce site a un bon rapport qualité-prix.",
+      "persian": "این سایت کیفیت و قیمت خوبی دارد.",
+      "image": "learning-scenes/images/ce-site-a-un-bon-rapport-qualite-prix.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "je-fais-un-paiement-en-ligne",
+      "french": "Je fais un paiement en ligne.",
+      "persian": "من به‌صورت آنلاین پرداخت می‌کنم.",
+      "image": "learning-scenes/images/je-fais-un-paiement-en-ligne.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "voici-le-ticket-de-caisse",
+      "french": "Voici le ticket de caisse.",
+      "persian": "این رسید خرید است.",
+      "image": "learning-scenes/images/voici-le-ticket-de-caisse.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "je-veux-payer-par-carte-bancaire",
+      "french": "Je veux payer par carte bancaire.",
+      "persian": "می‌خواهم با کارت بانکی پرداخت کنم.",
+      "image": "learning-scenes/images/je-veux-payer-par-carte-bancaire.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "je-dois-echanger-cet-article-il-est-trop-petit",
+      "french": "Je dois échanger cet article, il est trop petit.",
+      "persian": "باید این کالا را تعویض کنم، خیلی کوچک است.",
+      "image": "learning-scenes/images/je-dois-echanger-cet-article-il-est-trop-petit.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "j-attends-le-service-de-livraison-a-domicile",
+      "french": "J’attends le service de livraison à domicile.",
+      "persian": "منتظر خدمات تحویل درب منزل هستم.",
+      "image": "learning-scenes/images/j-attends-le-service-de-livraison-a-domicile.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "le-livreur-arrive-dans-10-minutes",
+      "french": "Le livreur arrive dans 10 minutes.",
+      "persian": "پیک در ۱۰ دقیقه دیگر می‌رسد.",
+      "image": "learning-scenes/images/le-livreur-arrive-dans-10-minutes.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "tu-veux-quel-mode-de-livraison",
+      "french": "Tu veux quel mode de livraison ?",
+      "persian": "چه نوع تحویلی می‌خواهی؟",
+      "image": "learning-scenes/images/tu-veux-quel-mode-de-livraison.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "mon-telephone-est-en-panne-je-dois-appeler-le-service-apres",
+      "french": "Mon téléphone est en panne, je dois appeler le service après-vente.",
+      "persian": "گوشی‌ام خراب شده، باید با خدمات پس از فروش تماس بگیرم.",
+      "image": "learning-scenes/images/mon-telephone-est-en-panne-je-dois-appeler-le-service-apres.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "l-ordinateur-ne-fonctionne-pas-bien",
+      "french": "L’ordinateur ne fonctionne pas bien.",
+      "persian": "کامپیوتر خوب کار نمی‌کند.",
+      "image": "learning-scenes/images/l-ordinateur-ne-fonctionne-pas-bien.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "cette-machine-est-sous-garantie",
+      "french": "Cette machine est sous garantie.",
+      "persian": "این دستگاه گارانتی دارد.",
+      "image": "learning-scenes/images/cette-machine-est-sous-garantie.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "il-faut-faire-reparer-la-tele",
+      "french": "Il faut faire réparer la télé.",
+      "persian": "باید تلویزیون را تعمیر کنیم.",
+      "image": "learning-scenes/images/il-faut-faire-reparer-la-tele.jpg",
+      "level": "A2",
+      "lesson": "01"
+    },
+    {
+      "id": "nous-allons-a-une-agence-de-location-pour-louer-une-voiture",
+      "french": "Nous allons à une agence de location pour louer une voiture.",
+      "persian": "ما به یک آژانس کرایه خودرو می‌رویم تا یک ماشین اجاره کنیم.",
+      "image": "learning-scenes/images/nous-allons-a-une-agence-de-location-pour-louer-une-voiture.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "ce-site-propose-un-service-de-location-de-voitures-entre-par",
+      "french": "Ce site propose un service de location de voitures entre particuliers.",
+      "persian": "این سایت خدمات کرایه خودرو بین افراد را ارائه می‌دهد.",
+      "image": "learning-scenes/images/ce-site-propose-un-service-de-location-de-voitures-entre-par.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "en-cas-de-panne-j-appelle-l-assistance",
+      "french": "En cas de panne, j’appelle l’assistance.",
+      "persian": "در صورت خرابی، با خدمات امداد تماس می‌گیرم.",
+      "image": "learning-scenes/images/en-cas-de-panne-j-appelle-l-assistance.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "le-proprietaire-de-la-voiture-est-tres-sympa",
+      "french": "Le propriétaire de la voiture est très sympa.",
+      "persian": "صاحب خودرو خیلی مهربان است.",
+      "image": "learning-scenes/images/le-proprietaire-de-la-voiture-est-tres-sympa.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-faut-verifier-l-etat-du-vehicule-avant-de-partir",
+      "french": "Il faut vérifier l’état du véhicule avant de partir.",
+      "persian": "باید قبل از حرکت، وضعیت خودرو را بررسی کنیم.",
+      "image": "learning-scenes/images/il-faut-verifier-l-etat-du-vehicule-avant-de-partir.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "je-dois-recuperer-les-cles-a-la-reception",
+      "french": "Je dois récupérer les clés à la réception.",
+      "persian": "باید کلیدها را از پذیرش بگیرم.",
+      "image": "learning-scenes/images/je-dois-recuperer-les-cles-a-la-reception.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "on-doit-rendre-le-vehicule-demain-matin",
+      "french": "On doit rendre le véhicule demain matin.",
+      "persian": "ما باید ماشین را فردا صبح پس بدهیم.",
+      "image": "learning-scenes/images/on-doit-rendre-le-vehicule-demain-matin.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "je-fais-du-covoiturage-avec-mes-collegues",
+      "french": "Je fais du covoiturage avec mes collègues.",
+      "persian": "من با همکارانم هم‌مسیر می‌شوم.",
+      "image": "learning-scenes/images/je-fais-du-covoiturage-avec-mes-collegues.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-a-passe-son-permis-de-conduire-hier",
+      "french": "Il a passé son permis de conduire hier.",
+      "persian": "او دیروز گواهینامه‌اش را گرفته است.",
+      "image": "learning-scenes/images/il-a-passe-son-permis-de-conduire-hier.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "cet-automobiliste-roule-trop-vite",
+      "french": "Cet automobiliste roule trop vite.",
+      "persian": "این راننده خیلی سریع رانندگی می‌کند.",
+      "image": "learning-scenes/images/cet-automobiliste-roule-trop-vite.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-faut-avoir-une-assurance-pour-la-voiture",
+      "french": "Il faut avoir une assurance pour la voiture.",
+      "persian": "برای خودرو باید بیمه داشته باشید.",
+      "image": "learning-scenes/images/il-faut-avoir-une-assurance-pour-la-voiture.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "le-controle-technique-est-obligatoire-tous-les-deux-ans",
+      "french": "Le contrôle technique est obligatoire tous les deux ans.",
+      "persian": "بازرسی فنی هر دو سال اجباری است.",
+      "image": "learning-scenes/images/le-controle-technique-est-obligatoire-tous-les-deux-ans.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "je-vais-faire-le-plein-d-essence-avant-le-voyage",
+      "french": "Je vais faire le plein d’essence avant le voyage.",
+      "persian": "می‌خواهم قبل از سفر بنزین بزنم.",
+      "image": "learning-scenes/images/je-vais-faire-le-plein-d-essence-avant-le-voyage.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-y-a-une-station-service-pres-d-ici",
+      "french": "Il y a une station-service près d’ici.",
+      "persian": "یک پمپ بنزین نزدیک اینجا هست.",
+      "image": "learning-scenes/images/il-y-a-une-station-service-pres-d-ici.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-a-eu-un-accident-hier-soir",
+      "french": "Il a eu un accident hier soir.",
+      "persian": "او دیشب تصادف کرده است.",
+      "image": "learning-scenes/images/il-a-eu-un-accident-hier-soir.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "je-dois-aller-chez-le-garagiste-pour-une-reparation",
+      "french": "Je dois aller chez le garagiste pour une réparation.",
+      "persian": "باید برای تعمیر به مکانیک مراجعه کنم.",
+      "image": "learning-scenes/images/je-dois-aller-chez-le-garagiste-pour-une-reparation.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "ma-voiture-est-au-garage",
+      "french": "Ma voiture est au garage.",
+      "persian": "ماشینم در تعمیرگاه است.",
+      "image": "learning-scenes/images/ma-voiture-est-au-garage.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "n-oublie-pas-de-mettre-le-clignotant",
+      "french": "N’oublie pas de mettre le clignotant.",
+      "persian": "یادت نرود راهنما بزنی.",
+      "image": "learning-scenes/images/n-oublie-pas-de-mettre-le-clignotant.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "le-retroviseur-est-casse",
+      "french": "Le rétroviseur est cassé.",
+      "persian": "آینه عقب شکسته است.",
+      "image": "learning-scenes/images/le-retroviseur-est-casse.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "la-reparation-coute-100-euros",
+      "french": "La réparation coûte 100 euros.",
+      "persian": "تعمیر ۱۰۰ یورو هزینه دارد.",
+      "image": "learning-scenes/images/la-reparation-coute-100-euros.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-y-a-un-embouteillage-sur-l-autoroute",
+      "french": "Il y a un embouteillage sur l’autoroute.",
+      "persian": "در بزرگراه ترافیک سنگینی وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-un-embouteillage-sur-l-autoroute.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "on-peut-laisser-la-voiture-dans-un-parc-relais",
+      "french": "On peut laisser la voiture dans un parc relais.",
+      "persian": "می‌توانیم ماشین را در پارکینگ حومه شهر پارک کنیم.",
+      "image": "learning-scenes/images/on-peut-laisser-la-voiture-dans-un-parc-relais.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-est-interdit-de-stationner-ici",
+      "french": "Il est interdit de stationner ici.",
+      "persian": "پارک کردن در اینجا ممنوع است.",
+      "image": "learning-scenes/images/il-est-interdit-de-stationner-ici.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "je-me-gare-devant-la-maison",
+      "french": "Je me gare devant la maison.",
+      "persian": "ماشین را جلوی خانه پارک می‌کنم.",
+      "image": "learning-scenes/images/je-me-gare-devant-la-maison.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "le-parking-est-gratuit-le-dimanche",
+      "french": "Le parking est gratuit le dimanche.",
+      "persian": "پارکینگ روزهای یکشنبه رایگان است.",
+      "image": "learning-scenes/images/le-parking-est-gratuit-le-dimanche.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "le-conducteur-est-tres-prudent",
+      "french": "Le conducteur est très prudent.",
+      "persian": "راننده خیلی محتاط است.",
+      "image": "learning-scenes/images/le-conducteur-est-tres-prudent.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "nous-sommes-en-route-pour-paris",
+      "french": "Nous sommes en route pour Paris.",
+      "persian": "ما در راه پاریس هستیم.",
+      "image": "learning-scenes/images/nous-sommes-en-route-pour-paris.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "j-ai-trouve-un-bon-itineraire-sur-le-gps",
+      "french": "J’ai trouvé un bon itinéraire sur le GPS.",
+      "persian": "یک مسیر خوب در GPS پیدا کرده‌ام.",
+      "image": "learning-scenes/images/j-ai-trouve-un-bon-itineraire-sur-le-gps.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "la-plaque-d-immatriculation-est-francaise",
+      "french": "La plaque d’immatriculation est française.",
+      "persian": "پلاک ماشین فرانسوی است.",
+      "image": "learning-scenes/images/la-plaque-d-immatriculation-est-francaise.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "les-voitures-circulent-lentement-a-cause-de-la-pluie",
+      "french": "Les voitures circulent lentement à cause de la pluie.",
+      "persian": "ماشین‌ها به خاطر باران آهسته حرکت می‌کنند.",
+      "image": "learning-scenes/images/les-voitures-circulent-lentement-a-cause-de-la-pluie.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "je-prends-le-bus-tous-les-matins",
+      "french": "Je prends le bus tous les matins.",
+      "persian": "من هر روز صبح با اتوبوس می‌روم.",
+      "image": "learning-scenes/images/je-prends-le-bus-tous-les-matins.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "cette-ecole-est-accessible-en-transports-en-commun",
+      "french": "Cette école est accessible en transports en commun.",
+      "persian": "این مدرسه با وسایل حمل‌ونقل عمومی قابل دسترسی است.",
+      "image": "learning-scenes/images/cette-ecole-est-accessible-en-transports-en-commun.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "le-trajet-dure-30-minutes",
+      "french": "Le trajet dure 30 minutes.",
+      "persian": "مسیر ۳۰ دقیقه طول می‌کشد.",
+      "image": "learning-scenes/images/le-trajet-dure-30-minutes.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-y-a-des-travaux-sur-la-ligne-1",
+      "french": "Il y a des travaux sur la ligne 1.",
+      "persian": "در خط یک تعمیرات وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-des-travaux-sur-la-ligne-1.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-y-a-un-arret-de-bus-devant-l-immeuble",
+      "french": "Il y a un arrêt de bus devant l’immeuble.",
+      "persian": "یک ایستگاه اتوبوس جلوی ساختمان هست.",
+      "image": "learning-scenes/images/il-y-a-un-arret-de-bus-devant-l-immeuble.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "la-station-de-metro-est-au-coin-de-la-rue",
+      "french": "La station de métro est au coin de la rue.",
+      "persian": "ایستگاه مترو سر کوچه است.",
+      "image": "learning-scenes/images/la-station-de-metro-est-au-coin-de-la-rue.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "je-prends-le-train-de-banlieue-pour-aller-au-travail",
+      "french": "Je prends le train de banlieue pour aller au travail.",
+      "persian": "من برای رفتن به سر کار قطار حومه را سوار می‌شوم.",
+      "image": "learning-scenes/images/je-prends-le-train-de-banlieue-pour-aller-au-travail.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-y-a-un-bus-de-remplacement-pendant-les-travaux",
+      "french": "Il y a un bus de remplacement pendant les travaux.",
+      "persian": "در زمان تعمیرات، یک اتوبوس جایگزین وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-un-bus-de-remplacement-pendant-les-travaux.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "le-bus-de-nuit-circule-apres-minuit",
+      "french": "Le bus de nuit circule après minuit.",
+      "persian": "اتوبوس شبانه بعد از نیمه‌شب حرکت می‌کند.",
+      "image": "learning-scenes/images/le-bus-de-nuit-circule-apres-minuit.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "une-navette-gratuite-va-a-l-aeroport",
+      "french": "Une navette gratuite va à l’aéroport.",
+      "persian": "یک شاتل رایگان به فرودگاه می‌رود.",
+      "image": "learning-scenes/images/une-navette-gratuite-va-a-l-aeroport.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "tu-dois-prendre-une-correspondance-a-la-gare-centrale",
+      "french": "Tu dois prendre une correspondance à la gare centrale.",
+      "persian": "باید در ایستگاه مرکزی خط عوض کنی.",
+      "image": "learning-scenes/images/tu-dois-prendre-une-correspondance-a-la-gare-centrale.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "cet-arret-n-est-pas-desservi-le-dimanche",
+      "french": "Cet arrêt n’est pas desservi le dimanche.",
+      "persian": "این ایستگاه روزهای یکشنبه سرویس ندارد.",
+      "image": "learning-scenes/images/cet-arret-n-est-pas-desservi-le-dimanche.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "il-faut-un-titre-de-transport-valable-pour-monter",
+      "french": "Il faut un titre de transport valable pour monter.",
+      "persian": "برای سوار شدن باید بلیت معتبر داشته باشید.",
+      "image": "learning-scenes/images/il-faut-un-titre-de-transport-valable-pour-monter.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "le-trafic-est-interrompu-a-cause-d-un-accident",
+      "french": "Le trafic est interrompu à cause d’un accident.",
+      "persian": "به‌خاطر یک تصادف، حرکت متوقف شده است.",
+      "image": "learning-scenes/images/le-trafic-est-interrompu-a-cause-d-un-accident.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "attention-aux-pietons",
+      "french": "Attention aux piétons !",
+      "persian": "مراقب عابران پیاده باشید!",
+      "image": "learning-scenes/images/attention-aux-pietons.jpg",
+      "level": "A2",
+      "lesson": "02"
+    },
+    {
+      "id": "je-vais-a-une-agence-immobiliere-pour-trouver-un-appartement",
+      "french": "Je vais à une agence immobilière pour trouver un appartement.",
+      "persian": "می‌رم به یک بنگاه املاک تا یک آپارتمان پیدا کنم.",
+      "image": "learning-scenes/images/je-vais-a-une-agence-immobiliere-pour-trouver-un-appartement.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "j-ai-vu-une-annonce-immobiliere-interessante-sur-internet",
+      "french": "J’ai vu une annonce immobilière intéressante sur Internet.",
+      "persian": "یک آگهی ملکی جالب در اینترنت دیدم.",
+      "image": "learning-scenes/images/j-ai-vu-une-annonce-immobiliere-interessante-sur-internet.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "l-appartement-est-proche-des-commerces",
+      "french": "L’appartement est proche des commerces.",
+      "persian": "آپارتمان نزدیک فروشگاه‌هاست.",
+      "image": "learning-scenes/images/l-appartement-est-proche-des-commerces.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "le-proprietaire-est-tres-gentil",
+      "french": "Le propriétaire est très gentil.",
+      "persian": "صاحب‌خانه خیلی مهربان است.",
+      "image": "learning-scenes/images/le-proprietaire-est-tres-gentil.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "je-suis-locataire-depuis-deux-ans",
+      "french": "Je suis locataire depuis deux ans.",
+      "persian": "من دو سال است مستأجرم.",
+      "image": "learning-scenes/images/je-suis-locataire-depuis-deux-ans.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "nous-allons-signer-le-bail-demain",
+      "french": "Nous allons signer le bail demain.",
+      "persian": "ما فردا قرارداد اجاره را امضا می‌کنیم.",
+      "image": "learning-scenes/images/nous-allons-signer-le-bail-demain.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "je-veux-louer-un-petit-studio",
+      "french": "Je veux louer un petit studio.",
+      "persian": "می‌خوام یک استودیو کوچک اجاره کنم.",
+      "image": "learning-scenes/images/je-veux-louer-un-petit-studio.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "le-loyer-est-de-600-euros-par-mois",
+      "french": "Le loyer est de 600 euros par mois.",
+      "persian": "اجاره ماهیانه ۶۰۰ یورو است.",
+      "image": "learning-scenes/images/le-loyer-est-de-600-euros-par-mois.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "le-loyer-est-de-700-euros-charges-comprises",
+      "french": "Le loyer est de 700 euros, charges comprises.",
+      "persian": "اجاره ۷۰۰ یورو است، با هزینه‌های جانبی.",
+      "image": "learning-scenes/images/le-loyer-est-de-700-euros-charges-comprises.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "il-habite-dans-un-grand-immeuble",
+      "french": "Il habite dans un grand immeuble.",
+      "persian": "او در یک ساختمان بزرگ زندگی می‌کند.",
+      "image": "learning-scenes/images/il-habite-dans-un-grand-immeuble.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "mon-appartement-est-au-troisieme-etage",
+      "french": "Mon appartement est au troisième étage.",
+      "persian": "آپارتمان من در طبقه سوم است.",
+      "image": "learning-scenes/images/mon-appartement-est-au-troisieme-etage.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "il-y-a-un-ascenseur-dans-l-immeuble",
+      "french": "Il y a un ascenseur dans l’immeuble.",
+      "persian": "در ساختمان آسانسور وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-un-ascenseur-dans-l-immeuble.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "la-gardienne-est-tres-sympathique",
+      "french": "La gardienne est très sympathique.",
+      "persian": "سرایدار خیلی خوش‌برخورد است.",
+      "image": "learning-scenes/images/la-gardienne-est-tres-sympathique.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "je-veux-visiter-l-appartement-demain",
+      "french": "Je veux visiter l’appartement demain.",
+      "persian": "می‌خواهم فردا از آپارتمان بازدید کنم.",
+      "image": "learning-scenes/images/je-veux-visiter-l-appartement-demain.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "on-fait-l-etat-des-lieux-avant-d-emmenager",
+      "french": "On fait l’état des lieux avant d’emménager.",
+      "persian": "قبل از اسباب‌کشی، صورت‌جلسه وضعیت ملک را تهیه می‌کنیم.",
+      "image": "learning-scenes/images/on-fait-l-etat-des-lieux-avant-d-emmenager.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "l-etat-general-de-l-appartement-est-bon",
+      "french": "L’état général de l’appartement est bon.",
+      "persian": "وضعیت کلی آپارتمان خوب است.",
+      "image": "learning-scenes/images/l-etat-general-de-l-appartement-est-bon.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "je-vis-dans-un-petit-studio-en-centre-ville",
+      "french": "Je vis dans un petit studio en centre-ville.",
+      "persian": "من در یک استودیوی کوچک در مرکز شهر زندگی می‌کنم.",
+      "image": "learning-scenes/images/je-vis-dans-un-petit-studio-en-centre-ville.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "nous-cherchons-un-3-pieces-pour-notre-famille",
+      "french": "Nous cherchons un 3 pièces pour notre famille.",
+      "persian": "ما دنبال یک آپارتمان سه‌خوابه برای خانواده‌مان هستیم.",
+      "image": "learning-scenes/images/nous-cherchons-un-3-pieces-pour-notre-famille.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "elle-loue-un-t2-pres-de-la-gare",
+      "french": "Elle loue un T2 près de la gare.",
+      "persian": "او یک آپارتمان T2 نزدیک ایستگاه قطار اجاره کرده.",
+      "image": "learning-scenes/images/elle-loue-un-t2-pres-de-la-gare.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "l-appartement-a-un-balcon-avec-une-belle-vue",
+      "french": "L’appartement a un balcon avec une belle vue.",
+      "persian": "آپارتمان یک بالکن با منظره قشنگ دارد.",
+      "image": "learning-scenes/images/l-appartement-a-un-balcon-avec-une-belle-vue.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "on-prend-le-petit-dejeuner-sur-la-terrasse",
+      "french": "On prend le petit déjeuner sur la terrasse.",
+      "persian": "ما صبحانه را روی تراس می‌خوریم.",
+      "image": "learning-scenes/images/on-prend-le-petit-dejeuner-sur-la-terrasse.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "la-cuisine-est-equipee-avec-un-four-et-un-frigo",
+      "french": "La cuisine est équipée avec un four et un frigo.",
+      "persian": "آشپزخانه مجهز به فر و یخچال است.",
+      "image": "learning-scenes/images/la-cuisine-est-equipee-avec-un-four-et-un-frigo.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "l-appartement-a-des-wc-separes-de-la-salle-de-bain",
+      "french": "L’appartement a des WC séparés de la salle de bain.",
+      "persian": "آپارتمان دارای سرویس بهداشتی جدا از حمام است.",
+      "image": "learning-scenes/images/l-appartement-a-des-wc-separes-de-la-salle-de-bain.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "le-logement-est-disponible-tout-de-suite",
+      "french": "Le logement est disponible tout de suite.",
+      "persian": "خانه بلافاصله در دسترس است.",
+      "image": "learning-scenes/images/le-logement-est-disponible-tout-de-suite.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "je-prefere-un-appartement-meuble",
+      "french": "Je préfère un appartement meublé.",
+      "persian": "من یک آپارتمان مبله را ترجیح می‌دهم.",
+      "image": "learning-scenes/images/je-prefere-un-appartement-meuble.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "c-est-un-immeuble-moderne",
+      "french": "C’est un immeuble moderne.",
+      "persian": "این یک ساختمان مدرن است.",
+      "image": "learning-scenes/images/c-est-un-immeuble-moderne.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "ils-habitent-dans-une-maison-ancienne",
+      "french": "Ils habitent dans une maison ancienne.",
+      "persian": "آن‌ها در یک خانه قدیمی زندگی می‌کنند.",
+      "image": "learning-scenes/images/ils-habitent-dans-une-maison-ancienne.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "l-appartement-est-entierement-renove",
+      "french": "L’appartement est entièrement rénové.",
+      "persian": "آپارتمان کاملاً بازسازی شده است.",
+      "image": "learning-scenes/images/l-appartement-est-entierement-renove.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "l-appartement-est-expose-plein-sud",
+      "french": "L’appartement est exposé plein sud.",
+      "persian": "آپارتمان کاملاً رو به جنوب است.",
+      "image": "learning-scenes/images/l-appartement-est-expose-plein-sud.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "c-est-un-salon-tres-lumineux",
+      "french": "C’est un salon très lumineux.",
+      "persian": "این یک سالن بسیار پرنور است.",
+      "image": "learning-scenes/images/c-est-un-salon-tres-lumineux.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "la-vue-depuis-la-fenetre-est-magnifique",
+      "french": "La vue depuis la fenêtre est magnifique.",
+      "persian": "منظره از پنجره فوق‌العاده است.",
+      "image": "learning-scenes/images/la-vue-depuis-la-fenetre-est-magnifique.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "nous-allons-emmenager-samedi-prochain",
+      "french": "Nous allons emménager samedi prochain.",
+      "persian": "ما شنبه آینده اسباب‌کشی می‌کنیم.",
+      "image": "learning-scenes/images/nous-allons-emmenager-samedi-prochain.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "je-dois-demenager-a-la-fin-du-mois",
+      "french": "Je dois déménager à la fin du mois.",
+      "persian": "من باید آخر ماه اسباب‌کشی کنم.",
+      "image": "learning-scenes/images/je-dois-demenager-a-la-fin-du-mois.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "j-ai-deja-prepare-dix-cartons",
+      "french": "J’ai déjà préparé dix cartons.",
+      "persian": "من قبلاً ده تا کارتن آماده کرده‌ام.",
+      "image": "learning-scenes/images/j-ai-deja-prepare-dix-cartons.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "on-transporte-les-meubles-avec-le-camion",
+      "french": "On transporte les meubles avec le camion.",
+      "persian": "ما وسایل را با کامیون جابه‌جا می‌کنیم.",
+      "image": "learning-scenes/images/on-transporte-les-meubles-avec-le-camion.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "le-camion-de-demenagement-arrive-demain",
+      "french": "Le camion de déménagement arrive demain.",
+      "persian": "کامیون اسباب‌کشی فردا می‌رسد.",
+      "image": "learning-scenes/images/le-camion-de-demenagement-arrive-demain.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "il-faut-signaler-le-changement-d-adresse-a-la-poste",
+      "french": "Il faut signaler le changement d’adresse à la poste.",
+      "persian": "باید تغییر آدرس را به اداره پست اطلاع داد.",
+      "image": "learning-scenes/images/il-faut-signaler-le-changement-d-adresse-a-la-poste.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "j-ai-resilie-mon-ancien-contrat-d-electricite",
+      "french": "J’ai résilié mon ancien contrat d’électricité.",
+      "persian": "قرارداد قبلی برق را لغو کردم.",
+      "image": "learning-scenes/images/j-ai-resilie-mon-ancien-contrat-d-electricite.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "je-dois-transferer-l-abonnement-internet-a-ma-nouvelle-adres",
+      "french": "Je dois transférer l’abonnement Internet à ma nouvelle adresse.",
+      "persian": "باید اشتراک اینترنت را به آدرس جدید منتقل کنم.",
+      "image": "learning-scenes/images/je-dois-transferer-l-abonnement-internet-a-ma-nouvelle-adres.jpg",
+      "level": "A2",
+      "lesson": "03"
+    },
+    {
+      "id": "je-demande-un-acte-d-etat-civil",
+      "french": "Je demande un acte d’état civil.",
+      "persian": "من یک گواهی ثبت احوال درخواست می‌دهم.",
+      "image": "learning-scenes/images/je-demande-un-acte-d-etat-civil.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-ai-une-carte-d-identite-francaise",
+      "french": "J’ai une carte d’identité française.",
+      "persian": "من یک کارت شناسایی فرانسوی دارم.",
+      "image": "learning-scenes/images/j-ai-une-carte-d-identite-francaise.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "mon-passeport-est-dans-mon-sac",
+      "french": "Mon passeport est dans mon sac.",
+      "persian": "پاسپورت من در کیفم است.",
+      "image": "learning-scenes/images/mon-passeport-est-dans-mon-sac.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "ce-document-est-encore-valide",
+      "french": "Ce document est encore valide.",
+      "persian": "این مدرک هنوز معتبر است.",
+      "image": "learning-scenes/images/ce-document-est-encore-valide.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "la-date-de-validite-est-en-2026",
+      "french": "La date de validité est en 2026.",
+      "persian": "تاریخ اعتبار در سال ۲۰۲۶ است.",
+      "image": "learning-scenes/images/la-date-de-validite-est-en-2026.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "mon-passeport-a-expire",
+      "french": "Mon passeport a expiré.",
+      "persian": "پاسپورت من منقضی شده است.",
+      "image": "learning-scenes/images/mon-passeport-a-expire.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "je-veux-renouveler-mon-passeport",
+      "french": "Je veux renouveler mon passeport.",
+      "persian": "می‌خواهم پاسپورتم را تمدید کنم.",
+      "image": "learning-scenes/images/je-veux-renouveler-mon-passeport.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "je-depose-une-demande-de-carte-d-identite",
+      "french": "Je dépose une demande de carte d’identité.",
+      "persian": "درخواست کارت شناسایی ثبت می‌کنم.",
+      "image": "learning-scenes/images/je-depose-une-demande-de-carte-d-identite.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "il-a-un-titre-de-sejour-de-1-an",
+      "french": "Il a un titre de séjour de 1 an.",
+      "persian": "او یک کارت اقامت یک‌ساله دارد.",
+      "image": "learning-scenes/images/il-a-un-titre-de-sejour-de-1-an.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "elle-montre-sa-carte-de-sejour",
+      "french": "Elle montre sa carte de séjour.",
+      "persian": "او کارت اقامتش را نشان می‌دهد.",
+      "image": "learning-scenes/images/elle-montre-sa-carte-de-sejour.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-attends-mon-autorisation-de-sejour",
+      "french": "J’attends mon autorisation de séjour.",
+      "persian": "منتظر اجازه اقامتم هستم.",
+      "image": "learning-scenes/images/j-attends-mon-autorisation-de-sejour.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "il-est-en-situation-reguliere",
+      "french": "Il est en situation régulière.",
+      "persian": "او وضعیت اقامت قانونی دارد.",
+      "image": "learning-scenes/images/il-est-en-situation-reguliere.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-ai-besoin-d-une-photo-d-identite",
+      "french": "J’ai besoin d’une photo d’identité.",
+      "persian": "من به یک عکس پرسنلی نیاز دارم.",
+      "image": "learning-scenes/images/j-ai-besoin-d-une-photo-d-identite.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "elle-a-un-permis-de-conduire-francais",
+      "french": "Elle a un permis de conduire français.",
+      "persian": "او گواهینامه رانندگی فرانسوی دارد.",
+      "image": "learning-scenes/images/elle-a-un-permis-de-conduire-francais.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-achete-un-timbre-fiscal-pour-le-dossier",
+      "french": "J’achète un timbre fiscal pour le dossier.",
+      "persian": "برای پرونده یک تمبر مالیاتی می‌خرم.",
+      "image": "learning-scenes/images/j-achete-un-timbre-fiscal-pour-le-dossier.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-ai-recu-un-recepisse",
+      "french": "J’ai reçu un récépissé.",
+      "persian": "من رسید دریافت کرده‌ام.",
+      "image": "learning-scenes/images/j-ai-recu-un-recepisse.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "voici-l-accuse-de-reception",
+      "french": "Voici l’accusé de réception.",
+      "persian": "این هم رسید دریافت است.",
+      "image": "learning-scenes/images/voici-l-accuse-de-reception.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-envoie-une-lettre-recommandee",
+      "french": "J’envoie une lettre recommandée.",
+      "persian": "من یک نامه‌ی سفارشی می‌فرستم.",
+      "image": "learning-scenes/images/j-envoie-une-lettre-recommandee.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-ai-une-convocation-a-10h",
+      "french": "J’ai une convocation à 10h.",
+      "persian": "من یک احضاریه برای ساعت ۱۰ دارم.",
+      "image": "learning-scenes/images/j-ai-une-convocation-a-10h.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "je-me-presente-a-la-prefecture-demain",
+      "french": "Je me présente à la préfecture demain.",
+      "persian": "من فردا به استانداری مراجعه می‌کنم.",
+      "image": "learning-scenes/images/je-me-presente-a-la-prefecture-demain.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "il-vient-retirer-son-document",
+      "french": "Il vient retirer son document.",
+      "persian": "او آمده تا مدرکش را تحویل بگیرد.",
+      "image": "learning-scenes/images/il-vient-retirer-son-document.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-ouvre-un-compte-courant",
+      "french": "J’ouvre un compte courant.",
+      "persian": "من یک حساب جاری باز می‌کنم.",
+      "image": "learning-scenes/images/j-ouvre-un-compte-courant.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-ai-perdu-ma-carte-bancaire",
+      "french": "J’ai perdu ma carte bancaire.",
+      "persian": "کارت بانکی‌ام را گم کرده‌ام.",
+      "image": "learning-scenes/images/j-ai-perdu-ma-carte-bancaire.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "je-commande-un-chequier",
+      "french": "Je commande un chéquier.",
+      "persian": "من یک دسته‌چک سفارش می‌دهم.",
+      "image": "learning-scenes/images/je-commande-un-chequier.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "mon-livret-a-est-a-la-banque",
+      "french": "Mon livret A est à la banque.",
+      "persian": "دفترچه پس‌انداز من در بانک است.",
+      "image": "learning-scenes/images/mon-livret-a-est-a-la-banque.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "elle-veut-ouvrir-un-compte",
+      "french": "Elle veut ouvrir un compte.",
+      "persian": "او می‌خواهد یک حساب باز کند.",
+      "image": "learning-scenes/images/elle-veut-ouvrir-un-compte.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "il-montre-sa-piece-d-identite",
+      "french": "Il montre sa pièce d’identité.",
+      "persian": "او مدرک شناسایی‌اش را نشان می‌دهد.",
+      "image": "learning-scenes/images/il-montre-sa-piece-d-identite.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "voici-un-justificatif-de-domicile",
+      "french": "Voici un justificatif de domicile.",
+      "persian": "این یک مدرک محل سکونت است.",
+      "image": "learning-scenes/images/voici-un-justificatif-de-domicile.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "je-retire-100-euros",
+      "french": "Je retire 100 euros.",
+      "persian": "من ۱۰۰ یورو برداشت می‌کنم.",
+      "image": "learning-scenes/images/je-retire-100-euros.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "je-veux-economiser-pour-mes-vacances",
+      "french": "Je veux économiser pour mes vacances.",
+      "persian": "می‌خواهم برای تعطیلاتم پس‌انداز کنم.",
+      "image": "learning-scenes/images/je-veux-economiser-pour-mes-vacances.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "il-epargne-chaque-mois",
+      "french": "Il épargne chaque mois.",
+      "persian": "او هر ماه پول کنار می‌گذارد.",
+      "image": "learning-scenes/images/il-epargne-chaque-mois.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "mon-telephone-portable-est-eteint",
+      "french": "Mon téléphone portable est éteint.",
+      "persian": "تلفن همراهم خاموش است.",
+      "image": "learning-scenes/images/mon-telephone-portable-est-eteint.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "mon-operateur-mobile-est-orange",
+      "french": "Mon opérateur mobile est Orange.",
+      "persian": "اپراتور موبایلم «اورنج» است.",
+      "image": "learning-scenes/images/mon-operateur-mobile-est-orange.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-ai-un-abonnement-sans-engagement",
+      "french": "J’ai un abonnement sans engagement.",
+      "persian": "من یک اشتراک بدون تعهد دارم.",
+      "image": "learning-scenes/images/j-ai-un-abonnement-sans-engagement.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "je-choisis-un-forfait-internet",
+      "french": "Je choisis un forfait internet.",
+      "persian": "من یک بسته اینترنت انتخاب می‌کنم.",
+      "image": "learning-scenes/images/je-choisis-un-forfait-internet.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "je-paie-ma-facture-aujourd-hui",
+      "french": "Je paie ma facture aujourd’hui.",
+      "persian": "امروز قبضم را پرداخت می‌کنم.",
+      "image": "learning-scenes/images/je-paie-ma-facture-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-ai-un-acces-a-internet-rapide",
+      "french": "J’ai un accès à Internet rapide.",
+      "persian": "من دسترسی سریع به اینترنت دارم.",
+      "image": "learning-scenes/images/j-ai-un-acces-a-internet-rapide.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "j-ai-des-sms-illimites-avec-ce-forfait",
+      "french": "J’ai des SMS illimités avec ce forfait.",
+      "persian": "با این بسته، پیامک نامحدود دارم.",
+      "image": "learning-scenes/images/j-ai-des-sms-illimites-avec-ce-forfait.jpg",
+      "level": "A2",
+      "lesson": "04"
+    },
+    {
+      "id": "je-regarde-les-infos-tous-les-soirs",
+      "french": "Je regarde les infos tous les soirs.",
+      "persian": "من هر شب اخبار تماشا می‌کنم.",
+      "image": "learning-scenes/images/je-regarde-les-infos-tous-les-soirs.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "la-tele-ne-marche-plus",
+      "french": "La télé ne marche plus.",
+      "persian": "تلویزیون دیگر کار نمی‌کند.",
+      "image": "learning-scenes/images/la-tele-ne-marche-plus.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "le-jt-commence-a-20-heures",
+      "french": "Le JT commence à 20 heures.",
+      "persian": "اخبار تلویزیونی ساعت ۸ شب شروع می‌شود.",
+      "image": "learning-scenes/images/le-jt-commence-a-20-heures.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "la-presentatrice-parle-tres-vite",
+      "french": "La présentatrice parle très vite.",
+      "persian": "مجری خیلی سریع صحبت می‌کند.",
+      "image": "learning-scenes/images/la-presentatrice-parle-tres-vite.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "quel-est-le-programme-de-ce-soir",
+      "french": "Quel est le programme de ce soir ?",
+      "persian": "برنامه‌ی امشب چیست؟",
+      "image": "learning-scenes/images/quel-est-le-programme-de-ce-soir.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "on-va-regarder-une-emission-drole",
+      "french": "On va regarder une émission drôle.",
+      "persian": "می‌خواهیم یک برنامه‌ی خنده‌دار تماشا کنیم.",
+      "image": "learning-scenes/images/on-va-regarder-une-emission-drole.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "il-lit-le-journal-tous-les-matins",
+      "french": "Il lit le journal tous les matins.",
+      "persian": "او هر صبح روزنامه می‌خواند.",
+      "image": "learning-scenes/images/il-lit-le-journal-tous-les-matins.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "la-presse-parle-de-cette-affaire",
+      "french": "La presse parle de cette affaire.",
+      "persian": "مطبوعات درباره‌ی این ماجرا صحبت می‌کنند.",
+      "image": "learning-scenes/images/la-presse-parle-de-cette-affaire.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "j-ai-lu-un-article-interessant",
+      "french": "J’ai lu un article intéressant.",
+      "persian": "یک مقاله‌ی جالب خواندم.",
+      "image": "learning-scenes/images/j-ai-lu-un-article-interessant.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "la-journaliste-pose-une-question-importante",
+      "french": "La journaliste pose une question importante.",
+      "persian": "خبرنگار یک سؤال مهم می‌پرسد.",
+      "image": "learning-scenes/images/la-journaliste-pose-une-question-importante.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "je-suis-l-actualite-sur-internet",
+      "french": "Je suis l’actualité sur Internet.",
+      "persian": "اخبار روز را در اینترنت دنبال می‌کنم.",
+      "image": "learning-scenes/images/je-suis-l-actualite-sur-internet.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "attention-aux-fausses-informations",
+      "french": "Attention aux fausses informations !",
+      "persian": "مراقب اخبار جعلی باش!",
+      "image": "learning-scenes/images/attention-aux-fausses-informations.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "j-aime-ecouter-la-radio-en-voiture",
+      "french": "J’aime écouter la radio en voiture.",
+      "persian": "دوست دارم در ماشین به رادیو گوش بدم.",
+      "image": "learning-scenes/images/j-aime-ecouter-la-radio-en-voiture.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "ce-podcast-est-tres-utile",
+      "french": "Ce podcast est très utile.",
+      "persian": "این پادکست خیلی مفید است.",
+      "image": "learning-scenes/images/ce-podcast-est-tres-utile.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "je-me-connecte-tous-les-matins",
+      "french": "Je me connecte tous les matins.",
+      "persian": "هر صبح وصل می‌شوم (به اینترنت).",
+      "image": "learning-scenes/images/je-me-connecte-tous-les-matins.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "la-connexion-est-tres-lente-aujourd-hui",
+      "french": "La connexion est très lente aujourd’hui.",
+      "persian": "اتصال اینترنت امروز خیلی کند است.",
+      "image": "learning-scenes/images/la-connexion-est-tres-lente-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "ce-site-d-information-est-fiable",
+      "french": "Ce site d’information est fiable.",
+      "persian": "این سایت خبری قابل اعتماد است.",
+      "image": "learning-scenes/images/ce-site-d-information-est-fiable.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "je-lis-le-journal-en-ligne-sur-mon-telephone",
+      "french": "Je lis le journal en ligne sur mon téléphone.",
+      "persian": "روزنامه آنلاین را در گوشیم می‌خوانم.",
+      "image": "learning-scenes/images/je-lis-le-journal-en-ligne-sur-mon-telephone.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "les-jeunes-utilisent-beaucoup-les-medias-sociaux",
+      "french": "Les jeunes utilisent beaucoup les médias sociaux.",
+      "persian": "جوانان خیلی از رسانه‌های اجتماعی استفاده می‌کنند.",
+      "image": "learning-scenes/images/les-jeunes-utilisent-beaucoup-les-medias-sociaux.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "elle-ecrit-un-blog-sur-la-mode",
+      "french": "Elle écrit un blog sur la mode.",
+      "persian": "او یک وبلاگ درباره‌ی مد می‌نویسد.",
+      "image": "learning-scenes/images/elle-ecrit-un-blog-sur-la-mode.jpg",
+      "level": "A2",
+      "lesson": "05"
+    },
+    {
+      "id": "j-ai-recu-une-invitation-pour-le-mariage-de-mon-cousin",
+      "french": "J’ai reçu une invitation pour le mariage de mon cousin.",
+      "persian": "یک دعوت‌نامه برای عروسی پسرخاله‌ام دریافت کردم.",
+      "image": "learning-scenes/images/j-ai-recu-une-invitation-pour-le-mariage-de-mon-cousin.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "elle-va-envoyer-une-invitation-a-ses-amis",
+      "french": "Elle va envoyer une invitation à ses amis.",
+      "persian": "او قرار است برای دوستانش دعوت‌نامه بفرستد.",
+      "image": "learning-scenes/images/elle-va-envoyer-une-invitation-a-ses-amis.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "nous-avons-recu-un-carton-d-invitation-tres-joli",
+      "french": "Nous avons reçu un carton d’invitation très joli.",
+      "persian": "ما یک کارت دعوت خیلی زیبا دریافت کردیم.",
+      "image": "learning-scenes/images/nous-avons-recu-un-carton-d-invitation-tres-joli.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "ils-ont-fixe-une-date-pour-la-fete",
+      "french": "Ils ont fixé une date pour la fête.",
+      "persian": "آن‌ها تاریخ جشن را مشخص کردند.",
+      "image": "learning-scenes/images/ils-ont-fixe-une-date-pour-la-fete.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "il-y-a-dix-invites-a-la-maison",
+      "french": "Il y a dix invités à la maison.",
+      "persian": "ده مهمان در خانه هستند.",
+      "image": "learning-scenes/images/il-y-a-dix-invites-a-la-maison.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "je-vais-accueillir-mes-amis-a-18h",
+      "french": "Je vais accueillir mes amis à 18h.",
+      "persian": "قرار است دوستانم را ساعت ۶ عصر استقبال کنم.",
+      "image": "learning-scenes/images/je-vais-accueillir-mes-amis-a-18h.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "en-france-on-fait-la-bise-pour-dire-bonjour",
+      "french": "En France, on fait la bise pour dire bonjour.",
+      "persian": "در فرانسه، برای سلام کردن گونه‌ها را می‌بوسند.",
+      "image": "learning-scenes/images/en-france-on-fait-la-bise-pour-dire-bonjour.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "les-hommes-se-serrent-la-main",
+      "french": "Les hommes se serrent la main.",
+      "persian": "مردها با هم دست می‌دهند.",
+      "image": "learning-scenes/images/les-hommes-se-serrent-la-main.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "on-prend-l-aperitif-avant-le-diner",
+      "french": "On prend l’apéritif avant le dîner.",
+      "persian": "قبل از شام، پیش‌غذا یا نوشیدنی سرو می‌شود.",
+      "image": "learning-scenes/images/on-prend-l-aperitif-avant-le-diner.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "les-invites-passent-a-table-a-20h",
+      "french": "Les invités passent à table à 20h.",
+      "persian": "مهمانان ساعت ۸ سر میز می‌نشینند.",
+      "image": "learning-scenes/images/les-invites-passent-a-table-a-20h.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "j-ai-recu-un-cadeau-une-bouteille-de-vin",
+      "french": "J’ai reçu un cadeau : une bouteille de vin.",
+      "persian": "یک هدیه گرفتم: یک بطری شراب.",
+      "image": "learning-scenes/images/j-ai-recu-un-cadeau-une-bouteille-de-vin.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "il-faut-repondre-a-l-invitation-avant-lundi",
+      "french": "Il faut répondre à l’invitation avant lundi.",
+      "persian": "باید تا دوشنبه به دعوت‌نامه پاسخ داد.",
+      "image": "learning-scenes/images/il-faut-repondre-a-l-invitation-avant-lundi.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "je-veux-te-remercier-pour-ton-invitation",
+      "french": "Je veux te remercier pour ton invitation.",
+      "persian": "می‌خواهم بابت دعوتت ازت تشکر کنم.",
+      "image": "learning-scenes/images/je-veux-te-remercier-pour-ton-invitation.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "elle-a-accepte-l-invitation",
+      "french": "Elle a accepté l’invitation.",
+      "persian": "او دعوت را پذیرفت.",
+      "image": "learning-scenes/images/elle-a-accepte-l-invitation.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "je-suis-desole-je-dois-refuser",
+      "french": "Je suis désolé, je dois refuser.",
+      "persian": "متأسفم، باید رد کنم.",
+      "image": "learning-scenes/images/je-suis-desole-je-dois-refuser.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "il-s-excuse-il-ne-peut-pas-venir",
+      "french": "Il s’excuse, il ne peut pas venir.",
+      "persian": "او عذرخواهی می‌کند، نمی‌تواند بیاید.",
+      "image": "learning-scenes/images/il-s-excuse-il-ne-peut-pas-venir.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "puis-je-venir-avec-une-amie",
+      "french": "Puis-je venir avec une amie ?",
+      "persian": "می‌توانم با یک دوستم بیایم؟",
+      "image": "learning-scenes/images/puis-je-venir-avec-une-amie.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "je-ne-suis-pas-dispo-ce-week-end",
+      "french": "Je ne suis pas dispo ce week-end.",
+      "persian": "این آخر هفته در دسترس نیستم.",
+      "image": "learning-scenes/images/je-ne-suis-pas-dispo-ce-week-end.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "tu-es-libre-samedi-soir",
+      "french": "Tu es libre samedi soir ?",
+      "persian": "شنبه شب آزادی؟",
+      "image": "learning-scenes/images/tu-es-libre-samedi-soir.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "on-va-assister-a-un-defile-militaire",
+      "french": "On va assister à un défilé militaire.",
+      "persian": "قرار است در یک رژه نظامی شرکت کنیم.",
+      "image": "learning-scenes/images/on-va-assister-a-un-defile-militaire.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "il-y-a-un-bal-ce-soir-au-village",
+      "french": "Il y a un bal ce soir au village.",
+      "persian": "امشب در روستا یک رقص شبانه هست.",
+      "image": "learning-scenes/images/il-y-a-un-bal-ce-soir-au-village.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "on-regarde-le-feu-d-artifice-a-minuit",
+      "french": "On regarde le feu d’artifice à minuit.",
+      "persian": "نیمه‌شب آتش‌بازی را تماشا می‌کنیم.",
+      "image": "learning-scenes/images/on-regarde-le-feu-d-artifice-a-minuit.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "c-est-la-fete-d-anniversaire-de-paul-aujourd-hui",
+      "french": "C’est la fête d’anniversaire de Paul aujourd’hui.",
+      "persian": "امروز جشن تولد پل است.",
+      "image": "learning-scenes/images/c-est-la-fete-d-anniversaire-de-paul-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "on-organise-un-diner-d-anniversaire-pour-sophie",
+      "french": "On organise un dîner d’anniversaire pour Sophie.",
+      "persian": "برای سوفی یک شام تولد ترتیب داده‌ایم.",
+      "image": "learning-scenes/images/on-organise-un-diner-d-anniversaire-pour-sophie.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "en-france-le-14-juillet-est-la-fete-nationale",
+      "french": "En France, le 14 Juillet est la fête nationale.",
+      "persian": "در فرانسه، چهاردهم ژوئیه روز ملی است.",
+      "image": "learning-scenes/images/en-france-le-14-juillet-est-la-fete-nationale.jpg",
+      "level": "A2",
+      "lesson": "06"
+    },
+    {
+      "id": "hier-j-ai-fait-une-rencontre-amicale-tres-sympa",
+      "french": "Hier, j’ai fait une rencontre amicale très sympa.",
+      "persian": "دیروز یک آشنایی دوستانه خیلی خوبی داشتم.",
+      "image": "learning-scenes/images/hier-j-ai-fait-une-rencontre-amicale-tres-sympa.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "je-veux-faire-la-connaissance-de-mes-voisins",
+      "french": "Je veux faire la connaissance de mes voisins.",
+      "persian": "می‌خواهم با همسایه‌هایم آشنا شوم.",
+      "image": "learning-scenes/images/je-veux-faire-la-connaissance-de-mes-voisins.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "a-l-universite-je-me-suis-fait-des-amis",
+      "french": "À l’université, je me suis fait des amis.",
+      "persian": "در دانشگاه با دوستانی آشنا شدم.",
+      "image": "learning-scenes/images/a-l-universite-je-me-suis-fait-des-amis.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "l-amitie-est-tres-importante-pour-moi",
+      "french": "L’amitié est très importante pour moi.",
+      "persian": "دوستی برای من خیلی مهم است.",
+      "image": "learning-scenes/images/l-amitie-est-tres-importante-pour-moi.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "on-sort-souvent-avec-notre-groupe-d-amis",
+      "french": "On sort souvent avec notre groupe d’amis.",
+      "persian": "ما اغلب با گروه دوستان‌مان بیرون می‌رویم.",
+      "image": "learning-scenes/images/on-sort-souvent-avec-notre-groupe-d-amis.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "mes-copains-et-moi-jouons-au-foot-le-week-end",
+      "french": "Mes copains et moi jouons au foot le week-end.",
+      "persian": "من و دوستانم آخر هفته فوتبال بازی می‌کنیم.",
+      "image": "learning-scenes/images/mes-copains-et-moi-jouons-au-foot-le-week-end.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "ce-site-est-parfait-pour-apprendre-le-francais",
+      "french": "Ce site est parfait pour apprendre le français.",
+      "persian": "این سایت برای یادگیری زبان فرانسه عالی است.",
+      "image": "learning-scenes/images/ce-site-est-parfait-pour-apprendre-le-francais.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "j-ai-cree-un-espace-personnel-sur-le-forum",
+      "french": "J’ai créé un espace personnel sur le forum.",
+      "persian": "من یک صفحه شخصی در انجمن ایجاد کردم.",
+      "image": "learning-scenes/images/j-ai-cree-un-espace-personnel-sur-le-forum.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "mon-pseudo-sur-instagram-est-lilicool",
+      "french": "Mon pseudo sur Instagram est “LiliCool”.",
+      "persian": "نام کاربری من در اینستاگرام 'LiliCool' است.",
+      "image": "learning-scenes/images/mon-pseudo-sur-instagram-est-lilicool.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "il-est-membre-d-un-groupe-facebook",
+      "french": "Il est membre d’un groupe Facebook.",
+      "persian": "او عضو یک گروه فیس‌بوکی است.",
+      "image": "learning-scenes/images/il-est-membre-d-un-groupe-facebook.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "chaque-participant-a-recu-un-cadeau",
+      "french": "Chaque participant a reçu un cadeau.",
+      "persian": "هر شرکت‌کننده یک هدیه دریافت کرد.",
+      "image": "learning-scenes/images/chaque-participant-a-recu-un-cadeau.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "je-pose-mes-questions-sur-un-forum-de-langues",
+      "french": "Je pose mes questions sur un forum de langues.",
+      "persian": "سوالاتم را در یک انجمن زبان می‌پرسم.",
+      "image": "learning-scenes/images/je-pose-mes-questions-sur-un-forum-de-langues.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "j-ai-complete-mon-profil-hier-soir",
+      "french": "J’ai complété mon profil hier soir.",
+      "persian": "دیشب پروفایلم را تکمیل کردم.",
+      "image": "learning-scenes/images/j-ai-complete-mon-profil-hier-soir.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "elle-envoie-toujours-des-emojis-rigolos",
+      "french": "Elle envoie toujours des émojis rigolos.",
+      "persian": "او همیشه ایموجی‌های بامزه می‌فرستد.",
+      "image": "learning-scenes/images/elle-envoie-toujours-des-emojis-rigolos.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "je-dois-activer-la-localisation-de-mon-telephone",
+      "french": "Je dois activer la localisation de mon téléphone.",
+      "persian": "باید مکان‌یابی گوشی‌ام را فعال کنم.",
+      "image": "learning-scenes/images/je-dois-activer-la-localisation-de-mon-telephone.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "je-me-connecte-a-mon-compte-chaque-matin",
+      "french": "Je me connecte à mon compte chaque matin.",
+      "persian": "من هر صبح وارد حسابم می‌شوم.",
+      "image": "learning-scenes/images/je-me-connecte-a-mon-compte-chaque-matin.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "la-connexion-internet-est-lente-aujourd-hui",
+      "french": "La connexion Internet est lente aujourd’hui.",
+      "persian": "اینترنت امروز کند است.",
+      "image": "learning-scenes/images/la-connexion-internet-est-lente-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "ouvre-un-nouvel-onglet-pour-rechercher-ca",
+      "french": "Ouvre un nouvel onglet pour rechercher ça.",
+      "persian": "یک زبانه‌ی جدید باز کن تا این را جست‌وجو کنی.",
+      "image": "learning-scenes/images/ouvre-un-nouvel-onglet-pour-rechercher-ca.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "je-vais-partager-cette-video-avec-toi",
+      "french": "Je vais partager cette vidéo avec toi.",
+      "persian": "این ویدیو را با تو به اشتراک می‌گذارم.",
+      "image": "learning-scenes/images/je-vais-partager-cette-video-avec-toi.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "mes-centres-d-interet-sont-la-musique-et-le-sport",
+      "french": "Mes centres d’intérêt sont la musique et le sport.",
+      "persian": "علاقه‌مندی‌های من موسیقی و ورزش هستند.",
+      "image": "learning-scenes/images/mes-centres-d-interet-sont-la-musique-et-le-sport.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "les-enfants-aiment-les-activites-creatives",
+      "french": "Les enfants aiment les activités créatives.",
+      "persian": "بچه‌ها فعالیت‌های خلاقانه را دوست دارند.",
+      "image": "learning-scenes/images/les-enfants-aiment-les-activites-creatives.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "il-y-a-une-seance-de-cinema-a-18h",
+      "french": "Il y a une séance de cinéma à 18h.",
+      "persian": "یک سانس سینما ساعت ۱۸ وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-une-seance-de-cinema-a-18h.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "j-ai-un-cours-de-francais-ce-soir",
+      "french": "J’ai un cours de français ce soir.",
+      "persian": "امشب کلاس زبان فرانسه دارم.",
+      "image": "learning-scenes/images/j-ai-un-cours-de-francais-ce-soir.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "elle-participe-a-une-conference-sur-l-environnement",
+      "french": "Elle participe à une conférence sur l’environnement.",
+      "persian": "او در یک کنفرانس درباره محیط‌ زیست شرکت می‌کند.",
+      "image": "learning-scenes/images/elle-participe-a-une-conference-sur-l-environnement.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "on-va-a-une-soiree-salsa-samedi",
+      "french": "On va à une soirée salsa samedi.",
+      "persian": "ما شنبه به یک مهمانی سالسا می‌رویم.",
+      "image": "learning-scenes/images/on-va-a-une-soiree-salsa-samedi.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "on-a-fait-une-excursion-en-montagne",
+      "french": "On a fait une excursion en montagne.",
+      "persian": "ما یک گردش به کوه رفتیم.",
+      "image": "learning-scenes/images/on-a-fait-une-excursion-en-montagne.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "dimanche-on-part-en-randonnee-dans-les-alpes",
+      "french": "Dimanche, on part en randonnée dans les Alpes.",
+      "persian": "یکشنبه برای پیاده‌روی در آلپ می‌رویم.",
+      "image": "learning-scenes/images/dimanche-on-part-en-randonnee-dans-les-alpes.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "on-fait-une-sortie-au-cinema-ce-soir",
+      "french": "On fait une sortie au cinéma ce soir.",
+      "persian": "امشب به سینما می‌رویم.",
+      "image": "learning-scenes/images/on-fait-une-sortie-au-cinema-ce-soir.jpg",
+      "level": "A2",
+      "lesson": "07"
+    },
+    {
+      "id": "le-mariage-aura-lieu-samedi",
+      "french": "Le mariage aura lieu samedi.",
+      "persian": "ازدواج روز شنبه برگزار خواهد شد.",
+      "image": "learning-scenes/images/le-mariage-aura-lieu-samedi.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "ils-vont-se-marier-cet-ete",
+      "french": "Ils vont se marier cet été.",
+      "persian": "آن‌ها این تابستان ازدواج می‌کنند.",
+      "image": "learning-scenes/images/ils-vont-se-marier-cet-ete.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "le-marie-est-tres-elegant",
+      "french": "Le marié est très élégant.",
+      "persian": "داماد خیلی شیک‌پوش است.",
+      "image": "learning-scenes/images/le-marie-est-tres-elegant.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "elle-a-achete-une-belle-robe-de-mariee",
+      "french": "Elle a acheté une belle robe de mariée.",
+      "persian": "او یک لباس عروس زیبا خرید.",
+      "image": "learning-scenes/images/elle-a-achete-une-belle-robe-de-mariee.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "les-invites-sont-arrives-a-l-heure",
+      "french": "Les invités sont arrivés à l’heure.",
+      "persian": "مهمان‌ها سر وقت رسیدند.",
+      "image": "learning-scenes/images/les-invites-sont-arrives-a-l-heure.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "nous-avons-reserve-une-chambre-a-l-hotel",
+      "french": "Nous avons réservé une chambre à l’hôtel.",
+      "persian": "ما یک اتاق در هتل رزرو کردیم.",
+      "image": "learning-scenes/images/nous-avons-reserve-une-chambre-a-l-hotel.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "on-fete-l-anniversaire-au-restaurant",
+      "french": "On fête l’anniversaire au restaurant.",
+      "persian": "ما جشن تولد را در رستوران برگزار می‌کنیم.",
+      "image": "learning-scenes/images/on-fete-l-anniversaire-au-restaurant.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "le-traiteur-prepare-le-diner",
+      "french": "Le traiteur prépare le dîner.",
+      "persian": "کترینگ شام را آماده می‌کند.",
+      "image": "learning-scenes/images/le-traiteur-prepare-le-diner.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "le-dj-met-de-la-bonne-musique",
+      "french": "Le DJ met de la bonne musique.",
+      "persian": "دی‌جی موسیقی خوبی پخش می‌کند.",
+      "image": "learning-scenes/images/le-dj-met-de-la-bonne-musique.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "le-diner-commence-a-20-heures",
+      "french": "Le dîner commence à 20 heures.",
+      "persian": "شام ساعت ۸ شب شروع می‌شود.",
+      "image": "learning-scenes/images/le-diner-commence-a-20-heures.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "il-y-a-un-grand-buffet-de-desserts",
+      "french": "Il y a un grand buffet de desserts.",
+      "persian": "یک بوفه بزرگ از دسرها وجود دارد.",
+      "image": "learning-scenes/images/il-y-a-un-grand-buffet-de-desserts.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "c-est-notre-anniversaire-de-mariage-aujourd-hui",
+      "french": "C’est notre anniversaire de mariage aujourd’hui.",
+      "persian": "امروز سالگرد ازدواج ماست.",
+      "image": "learning-scenes/images/c-est-notre-anniversaire-de-mariage-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "ils-partent-en-voyage-de-noces-en-italie",
+      "french": "Ils partent en voyage de noces en Italie.",
+      "persian": "آن‌ها به ماه عسل به ایتالیا می‌روند.",
+      "image": "learning-scenes/images/ils-partent-en-voyage-de-noces-en-italie.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "la-fete-est-dans-la-salle-municipale",
+      "french": "La fête est dans la salle municipale.",
+      "persian": "مهمانی در سالن شهرداری برگزار می‌شود.",
+      "image": "learning-scenes/images/la-fete-est-dans-la-salle-municipale.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "tu-dois-reserver-la-salle-a-l-avance",
+      "french": "Tu dois réserver la salle à l’avance.",
+      "persian": "باید سالن را از قبل رزرو کنی.",
+      "image": "learning-scenes/images/tu-dois-reserver-la-salle-a-l-avance.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "on-va-louer-une-voiture-pour-le-mariage",
+      "french": "On va louer une voiture pour le mariage.",
+      "persian": "ما برای عروسی یک ماشین اجاره می‌کنیم.",
+      "image": "learning-scenes/images/on-va-louer-une-voiture-pour-le-mariage.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "ils-vont-offrir-un-beau-cadeau",
+      "french": "Ils vont offrir un beau cadeau.",
+      "persian": "آن‌ها یک هدیه زیبا خواهند داد.",
+      "image": "learning-scenes/images/ils-vont-offrir-un-beau-cadeau.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "tout-le-monde-veut-participer-a-la-fete",
+      "french": "Tout le monde veut participer à la fête.",
+      "persian": "همه می‌خواهند در جشن شرکت کنند.",
+      "image": "learning-scenes/images/tout-le-monde-veut-participer-a-la-fete.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "ils-ont-fait-une-liste-de-mariage-en-ligne",
+      "french": "Ils ont fait une liste de mariage en ligne.",
+      "persian": "آن‌ها یک فهرست هدیه ازدواج آنلاین تهیه کرده‌اند.",
+      "image": "learning-scenes/images/ils-ont-fait-une-liste-de-mariage-en-ligne.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "ils-ont-choisi-leurs-alliances-hier",
+      "french": "Ils ont choisi leurs alliances hier.",
+      "persian": "آن‌ها دیروز حلقه‌هایشان را انتخاب کردند.",
+      "image": "learning-scenes/images/ils-ont-choisi-leurs-alliances-hier.jpg",
+      "level": "A2",
+      "lesson": "08"
+    },
+    {
+      "id": "j-ecris-dans-le-cahier-de-liaison",
+      "french": "J’écris dans le cahier de liaison.",
+      "persian": "من در دفتر ارتباط می‌نویسم.",
+      "image": "learning-scenes/images/j-ecris-dans-le-cahier-de-liaison.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "pierre-a-ecrit-un-mot-d-excuse",
+      "french": "Pierre a écrit un mot d’excuse.",
+      "persian": "پیر یک یادداشت عذرخواهی نوشت.",
+      "image": "learning-scenes/images/pierre-a-ecrit-un-mot-d-excuse.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-suis-absent-aujourd-hui",
+      "french": "Je suis absent aujourd’hui.",
+      "persian": "امروز غایب هستم.",
+      "image": "learning-scenes/images/je-suis-absent-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "il-est-en-retard",
+      "french": "Il est en retard.",
+      "persian": "او دیر آمد.",
+      "image": "learning-scenes/images/il-est-en-retard.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-remplis-un-document",
+      "french": "Je remplis un document.",
+      "persian": "یک فرم پر می‌کنم.",
+      "image": "learning-scenes/images/je-remplis-un-document.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-date-et-je-signe",
+      "french": "Je date et je signe.",
+      "persian": "امضا و تاریخ می‌زنم.",
+      "image": "learning-scenes/images/je-date-et-je-signe.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "j-ouvre-mon-carnet-de-notes",
+      "french": "J’ouvre mon carnet de notes.",
+      "persian": "دفتر نمراتم را باز می‌کنم.",
+      "image": "learning-scenes/images/j-ouvre-mon-carnet-de-notes.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-lis-mon-bulletin-scolaire",
+      "french": "Je lis mon bulletin scolaire.",
+      "persian": "من کارنامه‌ام را می‌خوانم.",
+      "image": "learning-scenes/images/je-lis-mon-bulletin-scolaire.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-regarde-les-resultats-du-trimestre",
+      "french": "Je regarde les résultats du trimestre.",
+      "persian": "نتایج را نگاه می‌کنم.",
+      "image": "learning-scenes/images/je-regarde-les-resultats-du-trimestre.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "nous-parlons-au-conseil-de-classe",
+      "french": "Nous parlons au conseil de classe.",
+      "persian": "ما در شورای کلاس صحبت می‌کنیم.",
+      "image": "learning-scenes/images/nous-parlons-au-conseil-de-classe.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-fais-le-bilan",
+      "french": "Je fais le bilan.",
+      "persian": "من جمع‌بندی می‌کنم.",
+      "image": "learning-scenes/images/je-fais-le-bilan.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "j-ai-recu-une-convocation",
+      "french": "J’ai reçu une convocation.",
+      "persian": "دعوت‌نامه دریافت کردم.",
+      "image": "learning-scenes/images/j-ai-recu-une-convocation.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-lis-le-reglement-interieur",
+      "french": "Je lis le règlement intérieur.",
+      "persian": "من قانون داخلی را می‌خوانم.",
+      "image": "learning-scenes/images/je-lis-le-reglement-interieur.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "il-est-delegue-de-la-classe",
+      "french": "Il est délégué de la classe.",
+      "persian": "او نماینده کلاس است.",
+      "image": "learning-scenes/images/il-est-delegue-de-la-classe.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-suis-en-scolarite",
+      "french": "Je suis en scolarité.",
+      "persian": "من در مدرسه درس می‌خوانم.",
+      "image": "learning-scenes/images/je-suis-en-scolarite.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "elle-est-a-l-ecole-maternelle",
+      "french": "Elle est à l’école maternelle.",
+      "persian": "او در مهد کودک است.",
+      "image": "learning-scenes/images/elle-est-a-l-ecole-maternelle.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-suis-a-l-ecole-primaire",
+      "french": "Je suis à l’école primaire.",
+      "persian": "من در دبستان هستم.",
+      "image": "learning-scenes/images/je-suis-a-l-ecole-primaire.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "il-est-au-college",
+      "french": "Il est au collège.",
+      "persian": "او در کالج درس می‌خواند.",
+      "image": "learning-scenes/images/il-est-au-college.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-suis-au-lycee",
+      "french": "Je suis au lycée.",
+      "persian": "من در دبیرستان هستم.",
+      "image": "learning-scenes/images/je-suis-au-lycee.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "nous-sommes-en-classe",
+      "french": "Nous sommes en classe.",
+      "persian": "ما در کلاس هستیم.",
+      "image": "learning-scenes/images/nous-sommes-en-classe.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "ils-jouent-dans-la-cour-de-recreation",
+      "french": "Ils jouent dans la cour de récréation.",
+      "persian": "آنها در حیاط بازی می‌کنند.",
+      "image": "learning-scenes/images/ils-jouent-dans-la-cour-de-recreation.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "mon-cartable-est-lourd",
+      "french": "Mon cartable est lourd.",
+      "persian": "کیفم سنگین است.",
+      "image": "learning-scenes/images/mon-cartable-est-lourd.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "j-accompagne-un-eleve",
+      "french": "J’accompagne un élève.",
+      "persian": "من یک دانش‌آموز را همراهی می‌کنم.",
+      "image": "learning-scenes/images/j-accompagne-un-eleve.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-vais-chercher-un-eleve",
+      "french": "Je vais chercher un élève.",
+      "persian": "من یک دانش‌آموز را برمی‌دارم.",
+      "image": "learning-scenes/images/je-vais-chercher-un-eleve.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "le-bus-scolaire-est-arrive",
+      "french": "Le bus scolaire est arrivé.",
+      "persian": "اتوبوس مدرسه رسید.",
+      "image": "learning-scenes/images/le-bus-scolaire-est-arrive.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "nous-allons-a-la-sortie-scolaire",
+      "french": "Nous allons à la sortie scolaire.",
+      "persian": "ما به گردش مدرسه می‌رویم.",
+      "image": "learning-scenes/images/nous-allons-a-la-sortie-scolaire.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "nous-avons-la-rencontre-parents-profs",
+      "french": "Nous avons la rencontre parents-profs.",
+      "persian": "جلسه اولیا و مربیان داریم.",
+      "image": "learning-scenes/images/nous-avons-la-rencontre-parents-profs.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "il-recoit-un-soutien-scolaire",
+      "french": "Il reçoit un soutien scolaire.",
+      "persian": "او کمک‌درس می‌گیرد.",
+      "image": "learning-scenes/images/il-recoit-un-soutien-scolaire.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "nous-participons-a-la-kermesse",
+      "french": "Nous participons à la kermesse.",
+      "persian": "ما در جشن مدرسه شرکت می‌کنیم.",
+      "image": "learning-scenes/images/nous-participons-a-la-kermesse.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-suis-au-stand",
+      "french": "Je suis au stand.",
+      "persian": "من کنار غرفه ایستاده‌ام.",
+      "image": "learning-scenes/images/je-suis-au-stand.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "il-a-gagne-a-la-tombola",
+      "french": "Il a gagné à la tombola.",
+      "persian": "او در قرعه‌کشی برنده شد.",
+      "image": "learning-scenes/images/il-a-gagne-a-la-tombola.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-vais-au-centre-de-loisirs",
+      "french": "Je vais au centre de loisirs.",
+      "persian": "من به مرکز تفریح می‌روم.",
+      "image": "learning-scenes/images/je-vais-au-centre-de-loisirs.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "l-animateur-a-un-ballon-de-foot",
+      "french": "L’animateur a un ballon de foot.",
+      "persian": "مربی فوتبال دارد.",
+      "image": "learning-scenes/images/l-animateur-a-un-ballon-de-foot.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-suis-a-l-as",
+      "french": "Je suis à l’AS.",
+      "persian": "من در ورزش مدرسه هستم.",
+      "image": "learning-scenes/images/je-suis-a-l-as.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "c-est-un-bon-eleve",
+      "french": "C’est un bon élève.",
+      "persian": "او یک دانش‌آموز خوب است.",
+      "image": "learning-scenes/images/c-est-un-bon-eleve.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "l-enseignant-est-gentil-aujourd-hui",
+      "french": "L’enseignant est gentil aujourd’hui.",
+      "persian": "معلم امروز مهربان است.",
+      "image": "learning-scenes/images/l-enseignant-est-gentil-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "le-professeur-principal-est-ici",
+      "french": "Le professeur principal est ici.",
+      "persian": "معلم اصلی کلاس اینجاست.",
+      "image": "learning-scenes/images/le-professeur-principal-est-ici.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "l-equipe-pedagogique-a-une-reunion",
+      "french": "L’équipe pédagogique a une réunion.",
+      "persian": "تیم آموزشی جلسه دارد.",
+      "image": "learning-scenes/images/l-equipe-pedagogique-a-une-reunion.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "l-association-des-parents-d-eleves-a-une-reunion",
+      "french": "L’association des parents d’élèves a une réunion.",
+      "persian": "انجمن اولیا جلسه دارد.",
+      "image": "learning-scenes/images/l-association-des-parents-d-eleves-a-une-reunion.jpg",
+      "level": "A2",
+      "lesson": "09"
+    },
+    {
+      "id": "je-suis-engage-comme-benevole-dans-une-ecole",
+      "french": "Je suis engagé comme bénévole dans une école.",
+      "persian": "من به عنوان داوطلب در یک مدرسه فعال هستم.",
+      "image": "learning-scenes/images/je-suis-engage-comme-benevole-dans-une-ecole.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "elle-est-benevole-a-la-bibliotheque",
+      "french": "Elle est bénévole à la bibliothèque.",
+      "persian": "او در کتابخانه داوطلب است.",
+      "image": "learning-scenes/images/elle-est-benevole-a-la-bibliotheque.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "nous-faisons-du-benevolat-le-week-end",
+      "french": "Nous faisons du bénévolat le week-end.",
+      "persian": "ما آخر هفته‌ها کار داوطلبانه می‌کنیم.",
+      "image": "learning-scenes/images/nous-faisons-du-benevolat-le-week-end.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "les-jeunes-se-mobilisent-pour-nettoyer-le-parc",
+      "french": "Les jeunes se mobilisent pour nettoyer le parc.",
+      "persian": "جوانان برای تمیز کردن پارک بسیج می‌شوند.",
+      "image": "learning-scenes/images/les-jeunes-se-mobilisent-pour-nettoyer-le-parc.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "il-s-investit-beaucoup-dans-ce-projet",
+      "french": "Il s’investit beaucoup dans ce projet.",
+      "persian": "او در این پروژه خیلی تلاش و انرژی می‌گذارد.",
+      "image": "learning-scenes/images/il-s-investit-beaucoup-dans-ce-projet.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "marie-adhere-a-une-association-sportive",
+      "french": "Marie adhère à une association sportive.",
+      "persian": "ماری به یک انجمن ورزشی می‌پیوندد.",
+      "image": "learning-scenes/images/marie-adhere-a-une-association-sportive.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "son-adhesion-est-valable-un-an",
+      "french": "Son adhésion est valable un an.",
+      "persian": "عضویت او یک سال معتبر است.",
+      "image": "learning-scenes/images/son-adhesion-est-valable-un-an.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "chaque-adherent-doit-payer-une-cotisation",
+      "french": "Chaque adhérent doit payer une cotisation.",
+      "persian": "هر عضو باید حق عضویت پرداخت کند.",
+      "image": "learning-scenes/images/chaque-adherent-doit-payer-une-cotisation.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "mon-frere-est-membre-d-un-club-de-musique",
+      "french": "Mon frère est membre d’un club de musique.",
+      "persian": "برادرم عضو یک باشگاه موسیقی است.",
+      "image": "learning-scenes/images/mon-frere-est-membre-d-un-club-de-musique.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "le-secteur-social-est-tres-important",
+      "french": "Le secteur social est très important.",
+      "persian": "بخش اجتماعی بسیار مهم است.",
+      "image": "learning-scenes/images/le-secteur-social-est-tres-important.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "sa-mission-est-d-aider-les-enfants-pauvres",
+      "french": "Sa mission est d’aider les enfants pauvres.",
+      "persian": "وظیفه‌اش کمک به کودکان فقیر است.",
+      "image": "learning-scenes/images/sa-mission-est-d-aider-les-enfants-pauvres.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "j-ai-fait-un-don-a-l-hopital",
+      "french": "J’ai fait un don à l’hôpital.",
+      "persian": "من به بیمارستان یک کمک مالی کردم.",
+      "image": "learning-scenes/images/j-ai-fait-un-don-a-l-hopital.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "ils-recoltent-des-dons-pour-les-refugies",
+      "french": "Ils récoltent des dons pour les réfugiés.",
+      "persian": "آنها برای پناهندگان کمک جمع‌آوری می‌کنند.",
+      "image": "learning-scenes/images/ils-recoltent-des-dons-pour-les-refugies.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "une-collecte-de-vetements-est-organisee-demain",
+      "french": "Une collecte de vêtements est organisée demain.",
+      "persian": "فردا یک جمع‌آوری لباس برگزار می‌شود.",
+      "image": "learning-scenes/images/une-collecte-de-vetements-est-organisee-demain.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "nous-distribuons-l-aide-alimentaire-chaque-semaine",
+      "french": "Nous distribuons l’aide alimentaire chaque semaine.",
+      "persian": "ما هر هفته کمک‌های غذایی را توزیع می‌کنیم.",
+      "image": "learning-scenes/images/nous-distribuons-l-aide-alimentaire-chaque-semaine.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "elle-fait-du-soutien-scolaire-en-mathematiques",
+      "french": "Elle fait du soutien scolaire en mathématiques.",
+      "persian": "او در ریاضی به دانش‌آموزان کمک درسی می‌کند.",
+      "image": "learning-scenes/images/elle-fait-du-soutien-scolaire-en-mathematiques.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "ils-defendent-une-cause-animale",
+      "french": "Ils défendent une cause animale.",
+      "persian": "آنها از یک موضوع مربوط به حیوانات دفاع می‌کنند.",
+      "image": "learning-scenes/images/ils-defendent-une-cause-animale.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "je-suis-motive-pour-aider-les-autres",
+      "french": "Je suis motivé pour aider les autres.",
+      "persian": "من انگیزه دارم که به دیگران کمک کنم.",
+      "image": "learning-scenes/images/je-suis-motive-pour-aider-les-autres.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "nous-sommes-solidaires-avec-nos-voisins",
+      "french": "Nous sommes solidaires avec nos voisins.",
+      "persian": "ما با همسایه‌هایمان همبستگی داریم.",
+      "image": "learning-scenes/images/nous-sommes-solidaires-avec-nos-voisins.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "la-solidarite-est-essentielle-dans-une-societe",
+      "french": "La solidarité est essentielle dans une société.",
+      "persian": "همبستگی در یک جامعه ضروری است.",
+      "image": "learning-scenes/images/la-solidarite-est-essentielle-dans-une-societe.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "elle-donne-de-son-temps-aux-personnes-agees",
+      "french": "Elle donne de son temps aux personnes âgées.",
+      "persian": "او وقتش را به سالمندان اختصاص می‌دهد.",
+      "image": "learning-scenes/images/elle-donne-de-son-temps-aux-personnes-agees.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "je-me-sens-utile-quand-j-aide-les-enfants",
+      "french": "Je me sens utile quand j’aide les enfants.",
+      "persian": "وقتی به بچه‌ها کمک می‌کنم احساس مفید بودن دارم.",
+      "image": "learning-scenes/images/je-me-sens-utile-quand-j-aide-les-enfants.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "j-appartiens-a-une-equipe-de-benevoles",
+      "french": "J’appartiens à une équipe de bénévoles.",
+      "persian": "من عضو یک گروه داوطلب هستم.",
+      "image": "learning-scenes/images/j-appartiens-a-une-equipe-de-benevoles.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "nous-agissons-de-facon-concrete-pour-l-environnement",
+      "french": "Nous agissons de façon concrète pour l’environnement.",
+      "persian": "ما به طور عملی برای محیط‌زیست اقدام می‌کنیم.",
+      "image": "learning-scenes/images/nous-agissons-de-facon-concrete-pour-l-environnement.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "pierre-aide-son-ami-a-demenager",
+      "french": "Pierre aide son ami à déménager.",
+      "persian": "پیر به دوستش در اسباب‌کشی کمک می‌کند.",
+      "image": "learning-scenes/images/pierre-aide-son-ami-a-demenager.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "l-aide-de-cette-association-est-precieuse",
+      "french": "L’aide de cette association est précieuse.",
+      "persian": "کمک این انجمن ارزشمند است.",
+      "image": "learning-scenes/images/l-aide-de-cette-association-est-precieuse.jpg",
+      "level": "A2",
+      "lesson": "10"
+    },
+    {
+      "id": "je-veux-reserver-une-table-pour-deux",
+      "french": "Je veux réserver une table pour deux.",
+      "persian": "می‌خواهم یک میز برای دو نفر رزرو کنم.",
+      "image": "learning-scenes/images/je-veux-reserver-une-table-pour-deux.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "je-passe-une-commande-en-ligne",
+      "french": "Je passe une commande en ligne.",
+      "persian": "من یک سفارش آنلاین می‌دهم.",
+      "image": "learning-scenes/images/je-passe-une-commande-en-ligne.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "le-menu-du-jour-est-delicieux",
+      "french": "Le menu du jour est délicieux.",
+      "persian": "منوی امروز خوشمزه است.",
+      "image": "learning-scenes/images/le-menu-du-jour-est-delicieux.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "la-carte-est-tres-variee",
+      "french": "La carte est très variée.",
+      "persian": "منو بسیار متنوع است.",
+      "image": "learning-scenes/images/la-carte-est-tres-variee.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "j-aime-la-livraison-a-domicile",
+      "french": "J’aime la livraison à domicile.",
+      "persian": "من تحویل درب منزل را دوست دارم.",
+      "image": "learning-scenes/images/j-aime-la-livraison-a-domicile.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "les-frais-de-livraison-sont-gratuits",
+      "french": "Les frais de livraison sont gratuits.",
+      "persian": "هزینه‌های ارسال رایگان است.",
+      "image": "learning-scenes/images/les-frais-de-livraison-sont-gratuits.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "nous-mangeons-sur-place",
+      "french": "Nous mangeons sur place.",
+      "persian": "ما همین‌جا غذا می‌خوریم.",
+      "image": "learning-scenes/images/nous-mangeons-sur-place.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "je-prends-une-pizza-a-emporter",
+      "french": "Je prends une pizza à emporter.",
+      "persian": "من یک پیتزا برای بیرون می‌گیرم.",
+      "image": "learning-scenes/images/je-prends-une-pizza-a-emporter.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "je-veux-un-supplement-de-fromage",
+      "french": "Je veux un supplément de fromage.",
+      "persian": "من یک مقدار پنیر اضافه می‌خواهم.",
+      "image": "learning-scenes/images/je-veux-un-supplement-de-fromage.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "le-restaurateur-est-tres-sympa",
+      "french": "Le restaurateur est très sympa.",
+      "persian": "رستوران‌دار خیلی خوش‌برخورد است.",
+      "image": "learning-scenes/images/le-restaurateur-est-tres-sympa.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "les-frais-de-service-sont-inclus",
+      "french": "Les frais de service sont inclus.",
+      "persian": "هزینه‌ی خدمات حساب شده است.",
+      "image": "learning-scenes/images/les-frais-de-service-sont-inclus.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "je-laisse-un-pourboire-de-cinq-euros",
+      "french": "Je laisse un pourboire de cinq euros.",
+      "persian": "من پنج یورو انعام می‌گذارم.",
+      "image": "learning-scenes/images/je-laisse-un-pourboire-de-cinq-euros.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "j-adore-le-type-de-cuisine-italienne",
+      "french": "J’adore le type de cuisine italienne.",
+      "persian": "من نوع غذای ایتالیایی را دوست دارم.",
+      "image": "learning-scenes/images/j-adore-le-type-de-cuisine-italienne.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "la-pizza-est-un-incontournable-en-italie",
+      "french": "La pizza est un incontournable en Italie.",
+      "persian": "پیتزا در ایتالیا یک غذای اجتناب‌ناپذیر است.",
+      "image": "learning-scenes/images/la-pizza-est-un-incontournable-en-italie.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "la-gastronomie-francaise-est-celebre",
+      "french": "La gastronomie française est célèbre.",
+      "persian": "هنر آشپزی فرانسوی مشهور است.",
+      "image": "learning-scenes/images/la-gastronomie-francaise-est-celebre.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "la-soupe-a-l-oignon-est-une-specialite-de-paris",
+      "french": "La soupe à l’oignon est une spécialité de Paris.",
+      "persian": "سوپ پیاز یک غذای ویژه پاریس است.",
+      "image": "learning-scenes/images/la-soupe-a-l-oignon-est-une-specialite-de-paris.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "nous-faisons-une-degustation-de-vin",
+      "french": "Nous faisons une dégustation de vin.",
+      "persian": "ما یک مزه‌چینی شراب انجام می‌دهیم.",
+      "image": "learning-scenes/images/nous-faisons-une-degustation-de-vin.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "ce-plat-est-typique-de-lyon",
+      "french": "Ce plat est typique de Lyon.",
+      "persian": "این غذا مخصوص لیون است.",
+      "image": "learning-scenes/images/ce-plat-est-typique-de-lyon.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "le-sel-est-un-ingredient-important",
+      "french": "Le sel est un ingrédient important.",
+      "persian": "نمک یک ماده‌ی مهم است.",
+      "image": "learning-scenes/images/le-sel-est-un-ingredient-important.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "j-ajoute-du-sucre-dans-le-cafe",
+      "french": "J’ajoute du sucre dans le café.",
+      "persian": "من شکر به قهوه اضافه می‌کنم.",
+      "image": "learning-scenes/images/j-ajoute-du-sucre-dans-le-cafe.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "je-casse-deux-ufs-pour-l-omelette",
+      "french": "Je casse deux œufs pour l’omelette.",
+      "persian": "من دو تخم‌مرغ برای املت می‌شکنم.",
+      "image": "learning-scenes/images/je-casse-deux-ufs-pour-l-omelette.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "melange-le-lait-avec-la-farine",
+      "french": "Mélange le lait avec la farine.",
+      "persian": "شیر را با آرد مخلوط کن.",
+      "image": "learning-scenes/images/melange-le-lait-avec-la-farine.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "dispose-les-fruits-dans-une-assiette",
+      "french": "Dispose les fruits dans une assiette.",
+      "persian": "میوه‌ها را در یک بشقاب بچین.",
+      "image": "learning-scenes/images/dispose-les-fruits-dans-une-assiette.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "verse-la-pate-dans-un-moule",
+      "french": "Verse la pâte dans un moule.",
+      "persian": "خمیر را داخل قالب بریز.",
+      "image": "learning-scenes/images/verse-la-pate-dans-un-moule.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "je-denoyaute-les-cerises",
+      "french": "Je dénoyaute les cerises.",
+      "persian": "من هسته‌ی گیلاس‌ها را درمی‌آورم.",
+      "image": "learning-scenes/images/je-denoyaute-les-cerises.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "ajoute-une-cuillere-a-cafe-de-sel",
+      "french": "Ajoute une cuillère à café de sel.",
+      "persian": "یک قاشق چای‌خوری نمک اضافه کن.",
+      "image": "learning-scenes/images/ajoute-une-cuillere-a-cafe-de-sel.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "la-preparation-est-facile",
+      "french": "La préparation est facile.",
+      "persian": "آماده‌سازی آسان است.",
+      "image": "learning-scenes/images/la-preparation-est-facile.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "mets-le-gateau-au-four",
+      "french": "Mets le gâteau au four.",
+      "persian": "کیک را داخل فر بگذار.",
+      "image": "learning-scenes/images/mets-le-gateau-au-four.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "j-achete-toujours-des-produits-de-qualite",
+      "french": "J’achète toujours des produits de qualité.",
+      "persian": "من همیشه محصولات باکیفیت می‌خرم.",
+      "image": "learning-scenes/images/j-achete-toujours-des-produits-de-qualite.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "les-fraises-sont-de-saison-en-ete",
+      "french": "Les fraises sont de saison en été.",
+      "persian": "توت‌فرنگی در تابستان فصلش است.",
+      "image": "learning-scenes/images/les-fraises-sont-de-saison-en-ete.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "j-achete-du-fromage-local",
+      "french": "J’achète du fromage local.",
+      "persian": "من پنیر محلی می‌خرم.",
+      "image": "learning-scenes/images/j-achete-du-fromage-local.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "le-poisson-est-tres-frais",
+      "french": "Le poisson est très frais.",
+      "persian": "ماهی خیلی تازه است.",
+      "image": "learning-scenes/images/le-poisson-est-tres-frais.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "ce-pain-est-bio",
+      "french": "Ce pain est bio.",
+      "persian": "این نان ارگانیک است.",
+      "image": "learning-scenes/images/ce-pain-est-bio.jpg",
+      "level": "A2",
+      "lesson": "11"
+    },
+    {
+      "id": "nous-jouons-a-un-jeu-de-societe-le-soir",
+      "french": "Nous jouons à un jeu de société le soir.",
+      "persian": "ما شب‌ها یک بازی رومیزی بازی می‌کنیم.",
+      "image": "learning-scenes/images/nous-jouons-a-un-jeu-de-societe-le-soir.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "j-aime-jouer-en-equipe-avec-mes-amis",
+      "french": "J’aime jouer en équipe avec mes amis.",
+      "persian": "من دوست دارم با دوستانم گروهی بازی کنم.",
+      "image": "learning-scenes/images/j-aime-jouer-en-equipe-avec-mes-amis.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "il-faut-respecter-la-regle-du-jeu",
+      "french": "Il faut respecter la règle du jeu.",
+      "persian": "باید قانون بازی را رعایت کرد.",
+      "image": "learning-scenes/images/il-faut-respecter-la-regle-du-jeu.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "mon-equipe-a-gagne-le-match",
+      "french": "Mon équipe a gagné le match.",
+      "persian": "تیم من بازی را بُرد.",
+      "image": "learning-scenes/images/mon-equipe-a-gagne-le-match.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "nous-avons-perdu-la-partie",
+      "french": "Nous avons perdu la partie.",
+      "persian": "ما بازی را باختیم.",
+      "image": "learning-scenes/images/nous-avons-perdu-la-partie.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "il-ne-faut-pas-tricher-pendant-le-jeu",
+      "french": "Il ne faut pas tricher pendant le jeu.",
+      "persian": "نباید در بازی تقلب کرد.",
+      "image": "learning-scenes/images/il-ne-faut-pas-tricher-pendant-le-jeu.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "je-suis-debutant-en-guitare",
+      "french": "Je suis débutant en guitare.",
+      "persian": "من در گیتار تازه‌کار هستم.",
+      "image": "learning-scenes/images/je-suis-debutant-en-guitare.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "elle-est-intermediaire-en-anglais",
+      "french": "Elle est intermédiaire en anglais.",
+      "persian": "او در زبان انگلیسی در سطح متوسط است.",
+      "image": "learning-scenes/images/elle-est-intermediaire-en-anglais.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "il-est-confirme-en-peinture",
+      "french": "Il est confirmé en peinture.",
+      "persian": "او در نقاشی حرفه‌ای است.",
+      "image": "learning-scenes/images/il-est-confirme-en-peinture.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "je-suis-bon-en-mathematiques",
+      "french": "Je suis bon en mathématiques.",
+      "persian": "من در ریاضی خوب هستم.",
+      "image": "learning-scenes/images/je-suis-bon-en-mathematiques.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "elle-est-creative-en-dessin",
+      "french": "Elle est créative en dessin.",
+      "persian": "او در نقاشی خلاق است.",
+      "image": "learning-scenes/images/elle-est-creative-en-dessin.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "j-ai-de-l-experience-en-informatique",
+      "french": "J’ai de l’expérience en informatique.",
+      "persian": "من در کامپیوتر تجربه دارم.",
+      "image": "learning-scenes/images/j-ai-de-l-experience-en-informatique.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "je-dois-me-concentrer-pour-finir-ce-travail",
+      "french": "Je dois me concentrer pour finir ce travail.",
+      "persian": "باید تمرکز کنم تا این کار را تمام کنم.",
+      "image": "learning-scenes/images/je-dois-me-concentrer-pour-finir-ce-travail.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "la-reparation-de-la-voiture-est-urgente",
+      "french": "La réparation de la voiture est urgente.",
+      "persian": "تعمیر ماشین فوری است.",
+      "image": "learning-scenes/images/la-reparation-de-la-voiture-est-urgente.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "mon-pere-sait-reparer-un-velo",
+      "french": "Mon père sait réparer un vélo.",
+      "persian": "پدرم بلد است دوچرخه تعمیر کند.",
+      "image": "learning-scenes/images/mon-pere-sait-reparer-un-velo.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "elle-aime-peindre-des-paysages",
+      "french": "Elle aime peindre des paysages.",
+      "persian": "او دوست دارد مناظر را نقاشی کند.",
+      "image": "learning-scenes/images/elle-aime-peindre-des-paysages.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "picasso-etait-un-grand-artiste",
+      "french": "Picasso était un grand artiste.",
+      "persian": "پیکاسو یک هنرمند بزرگ بود.",
+      "image": "learning-scenes/images/picasso-etait-un-grand-artiste.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "j-achete-un-pinceau-pour-peindre",
+      "french": "J’achète un pinceau pour peindre.",
+      "persian": "من یک قلم‌مو برای نقاشی می‌خرم.",
+      "image": "learning-scenes/images/j-achete-un-pinceau-pour-peindre.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "je-veux-m-inscrire-a-un-atelier-de-danse",
+      "french": "Je veux m’inscrire à un atelier de danse.",
+      "persian": "می‌خواهم در یک کارگاه رقص ثبت‌نام کنم.",
+      "image": "learning-scenes/images/je-veux-m-inscrire-a-un-atelier-de-danse.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "elle-participe-a-un-concours-de-chant",
+      "french": "Elle participe à un concours de chant.",
+      "persian": "او در یک مسابقه آواز شرکت می‌کند.",
+      "image": "learning-scenes/images/elle-participe-a-un-concours-de-chant.jpg",
+      "level": "A2",
+      "lesson": "12"
+    },
+    {
+      "id": "j-ai-beaucoup-de-loisirs-le-week-end",
+      "french": "J’ai beaucoup de loisirs le week-end.",
+      "persian": "من آخر هفته سرگرمی‌های زیادی دارم.",
+      "image": "learning-scenes/images/j-ai-beaucoup-de-loisirs-le-week-end.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "nous-partageons-la-meme-passion-pour-la-musique",
+      "french": "Nous partageons la même passion pour la musique.",
+      "persian": "ما علاقه‌ی مشترکی به موسیقی داریم.",
+      "image": "learning-scenes/images/nous-partageons-la-meme-passion-pour-la-musique.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "je-prends-un-cours-de-francais-le-mardi",
+      "french": "Je prends un cours de français le mardi.",
+      "persian": "من سه‌شنبه‌ها کلاس فرانسه می‌روم.",
+      "image": "learning-scenes/images/je-prends-un-cours-de-francais-le-mardi.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "il-joue-de-la-guitare-tous-les-soirs",
+      "french": "Il joue de la guitare tous les soirs.",
+      "persian": "او هر شب گیتار می‌زند.",
+      "image": "learning-scenes/images/il-joue-de-la-guitare-tous-les-soirs.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "mes-amis-jouent-au-football-dans-le-parc",
+      "french": "Mes amis jouent au football dans le parc.",
+      "persian": "دوستانم در پارک فوتبال بازی می‌کنند.",
+      "image": "learning-scenes/images/mes-amis-jouent-au-football-dans-le-parc.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "elle-fait-du-dessin-dans-son-carnet",
+      "french": "Elle fait du dessin dans son carnet.",
+      "persian": "او در دفترش نقاشی می‌کشد.",
+      "image": "learning-scenes/images/elle-fait-du-dessin-dans-son-carnet.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "je-lis-un-roman-avant-de-dormir",
+      "french": "Je lis un roman avant de dormir.",
+      "persian": "من قبل از خواب یک رمان می‌خوانم.",
+      "image": "learning-scenes/images/je-lis-un-roman-avant-de-dormir.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "cet-ecrivain-est-tres-connu-en-france",
+      "french": "Cet écrivain est très connu en France.",
+      "persian": "این نویسنده در فرانسه خیلی مشهور است.",
+      "image": "learning-scenes/images/cet-ecrivain-est-tres-connu-en-france.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "cette-serie-a-trois-saisons",
+      "french": "Cette série a trois saisons.",
+      "persian": "این سریال سه فصل دارد.",
+      "image": "learning-scenes/images/cette-serie-a-trois-saisons.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "tu-as-regarde-le-dernier-episode",
+      "french": "Tu as regardé le dernier épisode ?",
+      "persian": "آخرین قسمت را دیدی؟",
+      "image": "learning-scenes/images/tu-as-regarde-le-dernier-episode.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "ce-personnage-est-tres-interessant",
+      "french": "Ce personnage est très intéressant.",
+      "persian": "این شخصیت خیلی جالب است.",
+      "image": "learning-scenes/images/ce-personnage-est-tres-interessant.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "je-m-abonne-a-une-plateforme-de-videos",
+      "french": "Je m’abonne à une plateforme de vidéos.",
+      "persian": "من در یک پلتفرم ویدئو عضو می‌شوم.",
+      "image": "learning-scenes/images/je-m-abonne-a-une-plateforme-de-videos.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "je-regarde-toujours-les-films-avec-des-sous-titres",
+      "french": "Je regarde toujours les films avec des sous-titres.",
+      "persian": "من همیشه فیلم‌ها را با زیرنویس می‌بینم.",
+      "image": "learning-scenes/images/je-regarde-toujours-les-films-avec-des-sous-titres.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "ce-soir-il-y-a-un-bon-film-a-la-television",
+      "french": "Ce soir, il y a un bon film à la télévision.",
+      "persian": "امشب یک فیلم خوب از تلویزیون پخش می‌شود.",
+      "image": "learning-scenes/images/ce-soir-il-y-a-un-bon-film-a-la-television.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "je-te-conseille-ce-film-il-est-super",
+      "french": "Je te conseille ce film, il est super !",
+      "persian": "این فیلم را بهت توصیه می‌کنم، خیلی عالیه!",
+      "image": "learning-scenes/images/je-te-conseille-ce-film-il-est-super.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "j-adore-danser-avec-mes-amis",
+      "french": "J’adore danser avec mes amis.",
+      "persian": "من عاشق رقصیدن با دوستانم هستم.",
+      "image": "learning-scenes/images/j-adore-danser-avec-mes-amis.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "je-deteste-faire-la-vaisselle",
+      "french": "Je déteste faire la vaisselle.",
+      "persian": "من از ظرف شستن متنفرم.",
+      "image": "learning-scenes/images/je-deteste-faire-la-vaisselle.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "je-suis-ravi-de-te-voir-aujourd-hui",
+      "french": "Je suis ravi de te voir aujourd’hui.",
+      "persian": "خیلی خوشحالم که امروز تو را می‌بینم.",
+      "image": "learning-scenes/images/je-suis-ravi-de-te-voir-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "j-ai-hate-de-partir-en-vacances",
+      "french": "J’ai hâte de partir en vacances.",
+      "persian": "بی‌صبرم که به تعطیلات بروم.",
+      "image": "learning-scenes/images/j-ai-hate-de-partir-en-vacances.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "profitons-du-soleil-au-parc",
+      "french": "Profitons du soleil au parc !",
+      "persian": "بیایید از آفتاب در پارک لذت ببریم!",
+      "image": "learning-scenes/images/profitons-du-soleil-au-parc.jpg",
+      "level": "A2",
+      "lesson": "13"
+    },
+    {
+      "id": "je-voudrais-reserver-une-chambre-s-il-vous-plait",
+      "french": "Je voudrais réserver une chambre, s’il vous plaît.",
+      "persian": "می‌خواهم یک اتاق رزرو کنم، لطفاً.",
+      "image": "learning-scenes/images/je-voudrais-reserver-une-chambre-s-il-vous-plait.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "ou-se-trouve-l-office-de-tourisme",
+      "french": "Où se trouve l’office de tourisme ?",
+      "persian": "دفتر گردشگری کجاست؟",
+      "image": "learning-scenes/images/ou-se-trouve-l-office-de-tourisme.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "nous-passons-nos-vacances-au-bord-de-la-mer",
+      "french": "Nous passons nos vacances au bord de la mer.",
+      "persian": "ما تعطیلاتمان را کنار دریا می‌گذرانیم.",
+      "image": "learning-scenes/images/nous-passons-nos-vacances-au-bord-de-la-mer.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "tu-veux-aller-a-la-plage-cet-apres-midi",
+      "french": "Tu veux aller à la plage cet après-midi ?",
+      "persian": "می‌خواهی امروز عصر به ساحل بروی؟",
+      "image": "learning-scenes/images/tu-veux-aller-a-la-plage-cet-apres-midi.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "mets-de-la-creme-solaire-avant-de-nager",
+      "french": "Mets de la crème solaire avant de nager.",
+      "persian": "قبل از شنا ضدآفتاب بزن.",
+      "image": "learning-scenes/images/mets-de-la-creme-solaire-avant-de-nager.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "l-eau-est-chaude-aujourd-hui",
+      "french": "L’eau est chaude aujourd’hui.",
+      "persian": "امروز آب گرم است.",
+      "image": "learning-scenes/images/l-eau-est-chaude-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "attention-les-vagues-sont-fortes",
+      "french": "Attention, les vagues sont fortes !",
+      "persian": "مراقب باش، موج‌ها قوی هستند!",
+      "image": "learning-scenes/images/attention-les-vagues-sont-fortes.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "il-est-interdit-de-nager-ici",
+      "french": "Il est interdit de nager ici.",
+      "persian": "اینجا شنا کردن ممنوع است.",
+      "image": "learning-scenes/images/il-est-interdit-de-nager-ici.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "j-aime-bronzer-au-soleil",
+      "french": "J’aime bronzer au soleil.",
+      "persian": "دوست دارم زیر آفتاب برنزه کنم.",
+      "image": "learning-scenes/images/j-aime-bronzer-au-soleil.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "il-a-pris-un-coup-de-soleil-hier",
+      "french": "Il a pris un coup de soleil hier.",
+      "persian": "او دیروز آفتاب‌سوختگی گرفت.",
+      "image": "learning-scenes/images/il-a-pris-un-coup-de-soleil-hier.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "nous-allons-faire-une-balade-en-foret",
+      "french": "Nous allons faire une balade en forêt.",
+      "persian": "ما می‌خواهیم در جنگل قدم بزنیم.",
+      "image": "learning-scenes/images/nous-allons-faire-une-balade-en-foret.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "ce-soir-il-y-a-un-feu-d-artifice",
+      "french": "Ce soir, il y a un feu d’artifice.",
+      "persian": "امشب آتش‌بازی هست.",
+      "image": "learning-scenes/images/ce-soir-il-y-a-un-feu-d-artifice.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "j-adore-ecouter-un-concert-en-plein-air",
+      "french": "J’adore écouter un concert en plein air.",
+      "persian": "من عاشق شنیدن کنسرت در فضای باز هستم.",
+      "image": "learning-scenes/images/j-adore-ecouter-un-concert-en-plein-air.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "elle-veut-prendre-un-cours-de-surf",
+      "french": "Elle veut prendre un cours de surf.",
+      "persian": "او می‌خواهد در کلاس موج‌سواری شرکت کند.",
+      "image": "learning-scenes/images/elle-veut-prendre-un-cours-de-surf.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "nous-faisons-du-bateau-demain-matin",
+      "french": "Nous faisons du bateau demain matin.",
+      "persian": "فردا صبح قایق‌سواری می‌کنیم.",
+      "image": "learning-scenes/images/nous-faisons-du-bateau-demain-matin.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "la-securite-est-tres-importante-a-la-plage",
+      "french": "La sécurité est très importante à la plage.",
+      "persian": "امنیت در ساحل خیلی مهم است.",
+      "image": "learning-scenes/images/la-securite-est-tres-importante-a-la-plage.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "il-est-dangereux-de-nager-trop-loin",
+      "french": "Il est dangereux de nager trop loin.",
+      "persian": "خطرناک است که خیلی دور شنا کنی.",
+      "image": "learning-scenes/images/il-est-dangereux-de-nager-trop-loin.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "je-vais-faire-une-petite-sieste",
+      "french": "Je vais faire une petite sieste.",
+      "persian": "می‌خواهم یک چرت کوتاه بزنم.",
+      "image": "learning-scenes/images/je-vais-faire-une-petite-sieste.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "nous-visitons-une-belle-eglise-au-village",
+      "french": "Nous visitons une belle église au village.",
+      "persian": "ما در روستا یک کلیسای زیبا را بازدید می‌کنیم.",
+      "image": "learning-scenes/images/nous-visitons-une-belle-eglise-au-village.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "quelle-est-la-temperature-de-l-air-aujourd-hui",
+      "french": "Quelle est la température de l’air aujourd’hui ?",
+      "persian": "امروز دمای هوا چند درجه است؟",
+      "image": "learning-scenes/images/quelle-est-la-temperature-de-l-air-aujourd-hui.jpg",
+      "level": "A2",
+      "lesson": "14"
+    },
+    {
+      "id": "je-vais-chez-le-medecin-demain",
+      "french": "Je vais chez le médecin demain.",
+      "persian": "فردا می‌روم پیش دکتر.",
+      "image": "learning-scenes/images/je-vais-chez-le-medecin-demain.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "je-dois-voir-un-specialiste",
+      "french": "Je dois voir un spécialiste.",
+      "persian": "باید یک متخصص را ببینم.",
+      "image": "learning-scenes/images/je-dois-voir-un-specialiste.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "elle-est-a-l-hopital",
+      "french": "Elle est à l’hôpital.",
+      "persian": "او در بیمارستان است.",
+      "image": "learning-scenes/images/elle-est-a-l-hopital.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "j-appelle-les-urgences",
+      "french": "J’appelle les urgences.",
+      "persian": "دارم به اورژانس زنگ می‌زنم.",
+      "image": "learning-scenes/images/j-appelle-les-urgences.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "j-attends-au-cabinet-medical",
+      "french": "J’attends au cabinet médical.",
+      "persian": "در مطب منتظرم.",
+      "image": "learning-scenes/images/j-attends-au-cabinet-medical.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "aujourd-hui-je-vais-bien",
+      "french": "Aujourd’hui, je vais bien.",
+      "persian": "امروز حالم خوب است.",
+      "image": "learning-scenes/images/aujourd-hui-je-vais-bien.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "il-guerit-vite",
+      "french": "Il guérit vite.",
+      "persian": "او زود خوب می‌شود.",
+      "image": "learning-scenes/images/il-guerit-vite.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "je-consulte-mon-medecin",
+      "french": "Je consulte mon médecin.",
+      "persian": "با دکترم ویزیت دارم.",
+      "image": "learning-scenes/images/je-consulte-mon-medecin.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "elle-se-soigne-a-la-maison",
+      "french": "Elle se soigne à la maison.",
+      "persian": "او در خانه درمان می‌شود.",
+      "image": "learning-scenes/images/elle-se-soigne-a-la-maison.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "le-patient-est-fatigue",
+      "french": "Le patient est fatigué.",
+      "persian": "بیمار خسته است.",
+      "image": "learning-scenes/images/le-patient-est-fatigue.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "il-doit-etre-opere-demain",
+      "french": "Il doit être opéré demain.",
+      "persian": "او باید فردا عمل شود.",
+      "image": "learning-scenes/images/il-doit-etre-opere-demain.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "ce-traitement-est-efficace",
+      "french": "Ce traitement est efficace.",
+      "persian": "این درمان مؤثر است.",
+      "image": "learning-scenes/images/ce-traitement-est-efficace.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "l-infirmiere-fait-une-piqure",
+      "french": "L’infirmière fait une piqûre.",
+      "persian": "پرستار یک آمپول می‌زند.",
+      "image": "learning-scenes/images/l-infirmiere-fait-une-piqure.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "les-enfants-sont-vaccines",
+      "french": "Les enfants sont vaccinés.",
+      "persian": "بچه‌ها واکسن زده‌اند.",
+      "image": "learning-scenes/images/les-enfants-sont-vaccines.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "je-prends-un-medicament-contre-la-douleur",
+      "french": "Je prends un médicament contre la douleur.",
+      "persian": "دارویی برای درد می‌خورم.",
+      "image": "learning-scenes/images/je-prends-un-medicament-contre-la-douleur.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "le-medecin-ecrit-une-ordonnance",
+      "french": "Le médecin écrit une ordonnance.",
+      "persian": "دکتر یک نسخه می‌نویسد.",
+      "image": "learning-scenes/images/le-medecin-ecrit-une-ordonnance.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "j-ai-ma-carte-d-assurance",
+      "french": "J’ai ma carte d’assurance.",
+      "persian": "کارت بیمه‌ام را دارم.",
+      "image": "learning-scenes/images/j-ai-ma-carte-d-assurance.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "je-dois-faire-des-analyses",
+      "french": "Je dois faire des analyses.",
+      "persian": "باید آزمایش بدهم.",
+      "image": "learning-scenes/images/je-dois-faire-des-analyses.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "elle-fait-une-prise-de-sang",
+      "french": "Elle fait une prise de sang.",
+      "persian": "او آزمایش خون می‌دهد.",
+      "image": "learning-scenes/images/elle-fait-une-prise-de-sang.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "on-fait-une-radio-des-poumons",
+      "french": "On fait une radio des poumons.",
+      "persian": "از ریه‌ها عکس‌برداری می‌شود.",
+      "image": "learning-scenes/images/on-fait-une-radio-des-poumons.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "j-ai-la-grippe-2",
+      "french": "J’ai la grippe.",
+      "persian": "من آنفلوآنزا دارم.",
+      "image": "learning-scenes/images/j-ai-la-grippe-2.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "il-a-une-bronchite",
+      "french": "Il a une bronchite.",
+      "persian": "او برونشیت دارد.",
+      "image": "learning-scenes/images/il-a-une-bronchite.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "elle-a-une-pneumonie",
+      "french": "Elle a une pneumonie.",
+      "persian": "او ذات‌الریه دارد.",
+      "image": "learning-scenes/images/elle-a-une-pneumonie.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "je-suis-enrhume",
+      "french": "Je suis enrhumé.",
+      "persian": "من سرماخورده‌ام.",
+      "image": "learning-scenes/images/je-suis-enrhume.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "il-tousse-beaucoup",
+      "french": "Il tousse beaucoup.",
+      "persian": "او خیلی سرفه می‌کند.",
+      "image": "learning-scenes/images/il-tousse-beaucoup.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "l-enfant-vomit",
+      "french": "L’enfant vomit.",
+      "persian": "بچه استفراغ می‌کند.",
+      "image": "learning-scenes/images/l-enfant-vomit.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "elle-s-est-blessee-a-la-main",
+      "french": "Elle s’est blessée à la main.",
+      "persian": "او دستش را زخمی کرده است.",
+      "image": "learning-scenes/images/elle-s-est-blessee-a-la-main.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "j-ai-mal-a-la-tete",
+      "french": "J’ai mal à la tête.",
+      "persian": "سردرد دارم.",
+      "image": "learning-scenes/images/j-ai-mal-a-la-tete.jpg",
+      "level": "A2",
+      "lesson": "15"
+    },
+    {
+      "id": "je-fais-du-sport-tous-les-jours",
+      "french": "Je fais du sport tous les jours.",
+      "persian": "من هر روز ورزش می‌کنم.",
+      "image": "learning-scenes/images/je-fais-du-sport-tous-les-jours.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "il-s-entraine-deux-fois-par-semaine",
+      "french": "Il s’entraîne deux fois par semaine.",
+      "persian": "او هفته‌ای دو بار تمرین می‌کند.",
+      "image": "learning-scenes/images/il-s-entraine-deux-fois-par-semaine.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "nous-marchons-dans-le-parc",
+      "french": "Nous marchons dans le parc.",
+      "persian": "ما در پارک پیاده‌روی می‌کنیم.",
+      "image": "learning-scenes/images/nous-marchons-dans-le-parc.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "tu-cours-tres-vite",
+      "french": "Tu cours très vite !",
+      "persian": "تو خیلی سریع می‌دوی!",
+      "image": "learning-scenes/images/tu-cours-tres-vite.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "elle-nage-dans-la-piscine",
+      "french": "Elle nage dans la piscine.",
+      "persian": "او در استخر شنا می‌کند.",
+      "image": "learning-scenes/images/elle-nage-dans-la-piscine.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "ils-jouent-au-foot-apres-l-ecole",
+      "french": "Ils jouent au foot après l’école.",
+      "persian": "آن‌ها بعد از مدرسه فوتبال بازی می‌کنند.",
+      "image": "learning-scenes/images/ils-jouent-au-foot-apres-l-ecole.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "mon-frere-joue-au-tennis-le-samedi",
+      "french": "Mon frère joue au tennis le samedi.",
+      "persian": "برادرم شنبه‌ها تنیس بازی می‌کند.",
+      "image": "learning-scenes/images/mon-frere-joue-au-tennis-le-samedi.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "ma-s-ur-fait-de-la-natation",
+      "french": "Ma sœur fait de la natation.",
+      "persian": "خواهرم شنا می‌کند.",
+      "image": "learning-scenes/images/ma-s-ur-fait-de-la-natation.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "je-fais-de-la-gym-a-la-maison",
+      "french": "Je fais de la gym à la maison.",
+      "persian": "من در خانه ژیمناستیک می‌کنم.",
+      "image": "learning-scenes/images/je-fais-de-la-gym-a-la-maison.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "ma-mere-fait-du-yoga-le-matin",
+      "french": "Ma mère fait du yoga le matin.",
+      "persian": "مادرم صبح‌ها یوگا انجام می‌دهد.",
+      "image": "learning-scenes/images/ma-mere-fait-du-yoga-le-matin.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "nous-faisons-du-fitness-au-club",
+      "french": "Nous faisons du fitness au club.",
+      "persian": "ما در باشگاه فیتنس انجام می‌دهیم.",
+      "image": "learning-scenes/images/nous-faisons-du-fitness-au-club.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "il-fait-de-la-course-dans-le-stade",
+      "french": "Il fait de la course dans le stade.",
+      "persian": "او در ورزشگاه می‌دود.",
+      "image": "learning-scenes/images/il-fait-de-la-course-dans-le-stade.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "je-fais-du-cyclisme-le-dimanche",
+      "french": "Je fais du cyclisme le dimanche.",
+      "persian": "من یکشنبه‌ها دوچرخه‌سواری می‌کنم.",
+      "image": "learning-scenes/images/je-fais-du-cyclisme-le-dimanche.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "il-fait-de-la-musculation-a-la-salle",
+      "french": "Il fait de la musculation à la salle.",
+      "persian": "او در باشگاه بدنسازی می‌کند.",
+      "image": "learning-scenes/images/il-fait-de-la-musculation-a-la-salle.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "je-vais-a-la-salle-de-gym-ce-soir",
+      "french": "Je vais à la salle de gym ce soir.",
+      "persian": "من امشب به باشگاه می‌روم.",
+      "image": "learning-scenes/images/je-vais-a-la-salle-de-gym-ce-soir.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "notre-equipe-est-tres-forte",
+      "french": "Notre équipe est très forte.",
+      "persian": "تیم ما خیلی قوی است.",
+      "image": "learning-scenes/images/notre-equipe-est-tres-forte.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "il-regarde-un-match-de-foot-a-la-tele",
+      "french": "Il regarde un match de foot à la télé.",
+      "persian": "او یک مسابقه فوتبال را در تلویزیون تماشا می‌کند.",
+      "image": "learning-scenes/images/il-regarde-un-match-de-foot-a-la-tele.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "l-entraineur-parle-avec-les-joueurs",
+      "french": "L’entraîneur parle avec les joueurs.",
+      "persian": "مربی با بازیکنان صحبت می‌کند.",
+      "image": "learning-scenes/images/l-entraineur-parle-avec-les-joueurs.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "le-joueur-marque-un-but",
+      "french": "Le joueur marque un but.",
+      "persian": "بازیکن یک گل می‌زند.",
+      "image": "learning-scenes/images/le-joueur-marque-un-but.jpg",
+      "level": "A2",
+      "lesson": "16"
+    },
+    {
+      "id": "je-mange-equilibre-tous-les-jours",
+      "french": "Je mange équilibré tous les jours.",
+      "persian": "من هر روز غذای سالم می‌خورم.",
+      "image": "learning-scenes/images/je-mange-equilibre-tous-les-jours.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "elle-fait-un-regime-pour-l-ete",
+      "french": "Elle fait un régime pour l’été.",
+      "persian": "او برای تابستان رژیم می‌گیرد.",
+      "image": "learning-scenes/images/elle-fait-un-regime-pour-l-ete.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "il-a-pris-du-poids-cet-hiver",
+      "french": "Il a pris du poids cet hiver.",
+      "persian": "او این زمستان وزن اضافه کرده است.",
+      "image": "learning-scenes/images/il-a-pris-du-poids-cet-hiver.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "je-grossis-quand-je-mange-trop-de-gateaux",
+      "french": "Je grossis quand je mange trop de gâteaux.",
+      "persian": "من وقتی زیاد شیرینی می‌خورم چاق می‌شوم.",
+      "image": "learning-scenes/images/je-grossis-quand-je-mange-trop-de-gateaux.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "elle-maigrit-rapidement",
+      "french": "Elle maigrit rapidement.",
+      "persian": "او سریع لاغر می‌شود.",
+      "image": "learning-scenes/images/elle-maigrit-rapidement.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "je-veux-rester-en-bonne-sante",
+      "french": "Je veux rester en bonne santé.",
+      "persian": "من می‌خواهم سالم بمانم.",
+      "image": "learning-scenes/images/je-veux-rester-en-bonne-sante.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "cet-aliment-est-tres-bon",
+      "french": "Cet aliment est très bon.",
+      "persian": "این خوراکی خیلی خوب است.",
+      "image": "learning-scenes/images/cet-aliment-est-tres-bon.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "la-nourriture-ici-est-delicieuse",
+      "french": "La nourriture ici est délicieuse.",
+      "persian": "غذا اینجا خوشمزه است.",
+      "image": "learning-scenes/images/la-nourriture-ici-est-delicieuse.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "nous-mangeons-du-fast-food-le-samedi",
+      "french": "Nous mangeons du fast-food le samedi.",
+      "persian": "ما شنبه‌ها فست‌فود می‌خوریم.",
+      "image": "learning-scenes/images/nous-mangeons-du-fast-food-le-samedi.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "il-boit-trop-de-soda",
+      "french": "Il boit trop de soda.",
+      "persian": "او خیلی نوشابه می‌نوشد.",
+      "image": "learning-scenes/images/il-boit-trop-de-soda.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "j-aime-les-fruits-de-saison",
+      "french": "J’aime les fruits de saison.",
+      "persian": "من میوه‌های فصل را دوست دارم.",
+      "image": "learning-scenes/images/j-aime-les-fruits-de-saison.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "les-produits-laitiers-sont-importants",
+      "french": "Les produits laitiers sont importants.",
+      "persian": "لبنیات مهم هستند.",
+      "image": "learning-scenes/images/les-produits-laitiers-sont-importants.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "le-dejeuner-est-a-midi",
+      "french": "Le déjeuner est à midi.",
+      "persian": "ناهار ساعت دوازده است.",
+      "image": "learning-scenes/images/le-dejeuner-est-a-midi.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "nous-dinons-a-huit-heures",
+      "french": "Nous dînons à huit heures.",
+      "persian": "ما ساعت هشت شام می‌خوریم.",
+      "image": "learning-scenes/images/nous-dinons-a-huit-heures.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "les-enfants-prennent-un-gouter-a-quatre-heures",
+      "french": "Les enfants prennent un goûter à quatre heures.",
+      "persian": "بچه‌ها ساعت چهار میان‌وعده می‌خورند.",
+      "image": "learning-scenes/images/les-enfants-prennent-un-gouter-a-quatre-heures.jpg",
+      "level": "A2",
+      "lesson": "17"
+    },
+    {
+      "id": "les-transports-en-ville-sont-rapides",
+      "french": "Les transports en ville sont rapides.",
+      "persian": "حمل‌ونقل در شهر سریع است.",
+      "image": "learning-scenes/images/les-transports-en-ville-sont-rapides.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "les-services-publics-sont-importants",
+      "french": "Les services publics sont importants.",
+      "persian": "خدمات عمومی مهم هستند.",
+      "image": "learning-scenes/images/les-services-publics-sont-importants.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "il-y-a-une-piste-cyclable-dans-ma-rue",
+      "french": "Il y a une piste cyclable dans ma rue.",
+      "persian": "در خیابان من یک مسیر دوچرخه‌سواری هست.",
+      "image": "learning-scenes/images/il-y-a-une-piste-cyclable-dans-ma-rue.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "les-enfants-jouent-sur-le-trottoir",
+      "french": "Les enfants jouent sur le trottoir.",
+      "persian": "بچه‌ها روی پیاده‌رو بازی می‌کنند.",
+      "image": "learning-scenes/images/les-enfants-jouent-sur-le-trottoir.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "nous-traversons-au-passage-pieton",
+      "french": "Nous traversons au passage piéton.",
+      "persian": "ما از خط عابر پیاده عبور می‌کنیم.",
+      "image": "learning-scenes/images/nous-traversons-au-passage-pieton.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "je-t-attends-a-l-arret-de-bus",
+      "french": "Je t’attends à l’arrêt de bus.",
+      "persian": "من تو را در ایستگاه اتوبوس منتظر هستم.",
+      "image": "learning-scenes/images/je-t-attends-a-l-arret-de-bus.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "le-centre-commercial-est-tres-grand",
+      "french": "Le centre commercial est très grand.",
+      "persian": "مرکز خرید خیلی بزرگ است.",
+      "image": "learning-scenes/images/le-centre-commercial-est-tres-grand.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "il-y-a-un-bel-espace-vert-ici",
+      "french": "Il y a un bel espace vert ici.",
+      "persian": "اینجا یک فضای سبز زیبا هست.",
+      "image": "learning-scenes/images/il-y-a-un-bel-espace-vert-ici.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "la-pollution-est-un-probleme-serieux",
+      "french": "La pollution est un problème sérieux.",
+      "persian": "آلودگی یک مشکل جدی است.",
+      "image": "learning-scenes/images/la-pollution-est-un-probleme-serieux.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "le-bruit-est-insupportable",
+      "french": "Le bruit est insupportable.",
+      "persian": "سر و صدا غیرقابل تحمل است.",
+      "image": "learning-scenes/images/le-bruit-est-insupportable.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "cette-rue-est-calme",
+      "french": "Cette rue est calme.",
+      "persian": "این خیابان آرام است.",
+      "image": "learning-scenes/images/cette-rue-est-calme.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "j-aime-la-verdure-au-printemps",
+      "french": "J’aime la verdure au printemps.",
+      "persian": "من سبزی طبیعت در بهار را دوست دارم.",
+      "image": "learning-scenes/images/j-aime-la-verdure-au-printemps.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "cet-arbre-est-tres-vieux",
+      "french": "Cet arbre est très vieux.",
+      "persian": "این درخت خیلی قدیمی است.",
+      "image": "learning-scenes/images/cet-arbre-est-tres-vieux.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "le-centre-ville-est-toujours-anime",
+      "french": "Le centre-ville est toujours animé.",
+      "persian": "مرکز شهر همیشه شلوغ است.",
+      "image": "learning-scenes/images/le-centre-ville-est-toujours-anime.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "la-banlieue-est-plus-tranquille",
+      "french": "La banlieue est plus tranquille.",
+      "persian": "حومه شهر آرام‌تر است.",
+      "image": "learning-scenes/images/la-banlieue-est-plus-tranquille.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "mes-grands-parents-vivent-a-la-campagne",
+      "french": "Mes grands-parents vivent à la campagne.",
+      "persian": "پدربزرگ و مادربزرگم در روستا زندگی می‌کنند.",
+      "image": "learning-scenes/images/mes-grands-parents-vivent-a-la-campagne.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "le-village-est-petit-mais-charmant",
+      "french": "Le village est petit mais charmant.",
+      "persian": "دهکده کوچک اما دوست‌داشتنی است.",
+      "image": "learning-scenes/images/le-village-est-petit-mais-charmant.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "les-habitants-sont-tres-sympathiques",
+      "french": "Les habitants sont très sympathiques.",
+      "persian": "ساکنان خیلی صمیمی هستند.",
+      "image": "learning-scenes/images/les-habitants-sont-tres-sympathiques.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "nous-comparons-les-modes-de-vie",
+      "french": "Nous comparons les modes de vie.",
+      "persian": "ما سبک‌های زندگی را مقایسه می‌کنیم.",
+      "image": "learning-scenes/images/nous-comparons-les-modes-de-vie.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "je-prefere-la-nature-a-la-ville",
+      "french": "Je préfère la nature à la ville.",
+      "persian": "من طبیعت را به شهر ترجیح می‌دهم.",
+      "image": "learning-scenes/images/je-prefere-la-nature-a-la-ville.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "elle-deteste-la-pollution-de-l-air",
+      "french": "Elle déteste la pollution de l’air.",
+      "persian": "او از آلودگی هوا متنفر است.",
+      "image": "learning-scenes/images/elle-deteste-la-pollution-de-l-air.jpg",
+      "level": "A2",
+      "lesson": "18"
+    },
+    {
+      "id": "je-m-endors-vite",
+      "french": "Je m’endors vite.",
+      "persian": "من زود به خواب می‌روم.",
+      "image": "learning-scenes/images/je-m-endors-vite.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-reve-la-nuit",
+      "french": "Je rêve la nuit.",
+      "persian": "من شب خواب می‌بینم.",
+      "image": "learning-scenes/images/je-reve-la-nuit.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-fais-un-cauchemar",
+      "french": "Je fais un cauchemar.",
+      "persian": "من کابوس می‌بینم.",
+      "image": "learning-scenes/images/je-fais-un-cauchemar.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "j-ai-une-insomnie",
+      "french": "J’ai une insomnie.",
+      "persian": "من بی‌خوابی دارم.",
+      "image": "learning-scenes/images/j-ai-une-insomnie.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-fais-une-sieste",
+      "french": "Je fais une sieste.",
+      "persian": "من چرت می‌زنم.",
+      "image": "learning-scenes/images/je-fais-une-sieste.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-me-detends",
+      "french": "Je me détends.",
+      "persian": "من آرام می‌شوم.",
+      "image": "learning-scenes/images/je-me-detends.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-prends-une-pause",
+      "french": "Je prends une pause.",
+      "persian": "من استراحت می‌کنم.",
+      "image": "learning-scenes/images/je-prends-une-pause.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-prends-l-air",
+      "french": "Je prends l’air.",
+      "persian": "من هوای تازه می‌خورم.",
+      "image": "learning-scenes/images/je-prends-l-air.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-fais-un-massage",
+      "french": "Je fais un massage.",
+      "persian": "من ماساژ می‌گیرم.",
+      "image": "learning-scenes/images/je-fais-un-massage.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "j-ai-un-dentifrice",
+      "french": "J’ai un dentifrice.",
+      "persian": "من خمیردندان دارم.",
+      "image": "learning-scenes/images/j-ai-un-dentifrice.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "j-ai-un-savon",
+      "french": "J’ai un savon.",
+      "persian": "من صابون دارم.",
+      "image": "learning-scenes/images/j-ai-un-savon.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "j-utilise-un-shampoing",
+      "french": "J’utilise un shampoing.",
+      "persian": "من شامپو استفاده می‌کنم.",
+      "image": "learning-scenes/images/j-utilise-un-shampoing.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "j-ai-un-deodorant",
+      "french": "J’ai un déodorant.",
+      "persian": "من مام دارم.",
+      "image": "learning-scenes/images/j-ai-un-deodorant.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "j-utilise-un-gel-douche",
+      "french": "J’utilise un gel douche.",
+      "persian": "من شامپوی بدن استفاده می‌کنم.",
+      "image": "learning-scenes/images/j-utilise-un-gel-douche.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "j-ai-une-creme-pour-le-visage",
+      "french": "J’ai une crème pour le visage.",
+      "persian": "من کرم صورت دارم.",
+      "image": "learning-scenes/images/j-ai-une-creme-pour-le-visage.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-mets-du-parfum",
+      "french": "Je mets du parfum.",
+      "persian": "من عطر می‌زنم.",
+      "image": "learning-scenes/images/je-mets-du-parfum.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "j-utilise-du-maquillage",
+      "french": "J’utilise du maquillage.",
+      "persian": "من آرایش می‌کنم.",
+      "image": "learning-scenes/images/j-utilise-du-maquillage.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-mets-du-rouge-a-levres",
+      "french": "Je mets du rouge à lèvres.",
+      "persian": "من رژ لب می‌زنم.",
+      "image": "learning-scenes/images/je-mets-du-rouge-a-levres.jpg",
+      "level": "A2",
+      "lesson": "19"
+    },
+    {
+      "id": "je-vais-a-l-universite",
+      "french": "Je vais à l’université.",
+      "persian": "من به دانشگاه می‌روم.",
+      "image": "learning-scenes/images/je-vais-a-l-universite.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "l-ecole-est-grande",
+      "french": "L’école est grande.",
+      "persian": "مدرسه بزرگ است.",
+      "image": "learning-scenes/images/l-ecole-est-grande.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-suis-dans-un-centre-de-langues",
+      "french": "Je suis dans un centre de langues.",
+      "persian": "من در یک مرکز زبان هستم.",
+      "image": "learning-scenes/images/je-suis-dans-un-centre-de-langues.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "j-ai-une-licence",
+      "french": "J’ai une licence.",
+      "persian": "من لیسانس دارم.",
+      "image": "learning-scenes/images/j-ai-une-licence.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "il-a-un-master",
+      "french": "Il a un master.",
+      "persian": "او فوق‌لیسانس دارد.",
+      "image": "learning-scenes/images/il-a-un-master.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-prepare-le-delf",
+      "french": "Je prépare le DELF.",
+      "persian": "من برای آزمون دلف آماده می‌شوم.",
+      "image": "learning-scenes/images/je-prepare-le-delf.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "j-ai-un-diplome",
+      "french": "J’ai un diplôme.",
+      "persian": "من یک مدرک دارم.",
+      "image": "learning-scenes/images/j-ai-un-diplome.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-passe-un-examen",
+      "french": "Je passe un examen.",
+      "persian": "من امتحان می‌دهم.",
+      "image": "learning-scenes/images/je-passe-un-examen.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-suis-etudiant",
+      "french": "Je suis étudiant.",
+      "persian": "من دانشجو هستم.",
+      "image": "learning-scenes/images/je-suis-etudiant.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-suis-stagiaire",
+      "french": "Je suis stagiaire.",
+      "persian": "من کارآموز هستم.",
+      "image": "learning-scenes/images/je-suis-stagiaire.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-fais-une-formation-en-ligne",
+      "french": "Je fais une formation en ligne.",
+      "persian": "من یک دوره آنلاین می‌گذرانم.",
+      "image": "learning-scenes/images/je-fais-une-formation-en-ligne.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-fais-une-formation-a-distance",
+      "french": "Je fais une formation à distance.",
+      "persian": "من یک دوره غیرحضوری می‌گذرانم.",
+      "image": "learning-scenes/images/je-fais-une-formation-a-distance.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-fais-un-stage",
+      "french": "Je fais un stage.",
+      "persian": "من دوره کارآموزی می‌گذرانم.",
+      "image": "learning-scenes/images/je-fais-un-stage.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-participe-a-un-atelier",
+      "french": "Je participe à un atelier.",
+      "persian": "من در یک کارگاه شرکت می‌کنم.",
+      "image": "learning-scenes/images/je-participe-a-un-atelier.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "j-ai-un-metier",
+      "french": "J’ai un métier.",
+      "persian": "من یک شغل دارم.",
+      "image": "learning-scenes/images/j-ai-un-metier.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "j-ai-une-competence",
+      "french": "J’ai une compétence.",
+      "persian": "من یک مهارت دارم.",
+      "image": "learning-scenes/images/j-ai-une-competence.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "j-ai-un-projet-professionnel",
+      "french": "J’ai un projet professionnel.",
+      "persian": "من یک برنامه شغلی دارم.",
+      "image": "learning-scenes/images/j-ai-un-projet-professionnel.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-fais-une-formation",
+      "french": "Je fais une formation.",
+      "persian": "من در یک دوره شرکت می‌کنم.",
+      "image": "learning-scenes/images/je-fais-une-formation.jpg",
+      "level": "A2",
+      "lesson": "20"
+    },
+    {
+      "id": "je-cherche-un-emploi",
+      "french": "Je cherche un emploi.",
+      "persian": "من دنبال کار می‌گردم.",
+      "image": "learning-scenes/images/je-cherche-un-emploi.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "je-postule-pour-un-poste",
+      "french": "Je postule pour un poste.",
+      "persian": "من برای یک موقعیت شغلی درخواست می‌دهم.",
+      "image": "learning-scenes/images/je-postule-pour-un-poste.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "j-ai-un-entretien-demain",
+      "french": "J’ai un entretien demain.",
+      "persian": "من فردا مصاحبه دارم.",
+      "image": "learning-scenes/images/j-ai-un-entretien-demain.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "j-ai-vu-une-offre-d-emploi-interessante",
+      "french": "J’ai vu une offre d’emploi intéressante.",
+      "persian": "من یک آگهی شغلی جالب دیدم.",
+      "image": "learning-scenes/images/j-ai-vu-une-offre-d-emploi-interessante.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "j-aime-mon-travail",
+      "french": "J’aime mon travail.",
+      "persian": "من کارم را دوست دارم.",
+      "image": "learning-scenes/images/j-aime-mon-travail.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "mon-metier-est-professeur",
+      "french": "Mon métier est professeur.",
+      "persian": "شغل من معلمی است.",
+      "image": "learning-scenes/images/mon-metier-est-professeur.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "j-ai-un-bon-salaire",
+      "french": "J’ai un bon salaire.",
+      "persian": "من حقوق خوبی دارم.",
+      "image": "learning-scenes/images/j-ai-un-bon-salaire.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "j-ai-signe-un-contrat",
+      "french": "J’ai signé un contrat.",
+      "persian": "من قراردادی امضا کردم.",
+      "image": "learning-scenes/images/j-ai-signe-un-contrat.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "mon-employeur-est-gentil",
+      "french": "Mon employeur est gentil.",
+      "persian": "کارفرمای من مهربان است.",
+      "image": "learning-scenes/images/mon-employeur-est-gentil.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "je-fais-un-stage-en-entreprise",
+      "french": "Je fais un stage en entreprise.",
+      "persian": "من در یک شرکت کارآموزی می‌کنم.",
+      "image": "learning-scenes/images/je-fais-un-stage-en-entreprise.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "je-fais-une-alternance-a-paris",
+      "french": "Je fais une alternance à Paris.",
+      "persian": "من دوره کار و تحصیل هم‌زمانی در پاریس دارم.",
+      "image": "learning-scenes/images/je-fais-une-alternance-a-paris.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "je-suis-serveur-dans-un-cafe",
+      "french": "Je suis serveur dans un café.",
+      "persian": "من پیشخدمت یک کافه هستم.",
+      "image": "learning-scenes/images/je-suis-serveur-dans-un-cafe.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "je-suis-vendeur-dans-une-boutique",
+      "french": "Je suis vendeur dans une boutique.",
+      "persian": "من فروشنده در یک مغازه هستم.",
+      "image": "learning-scenes/images/je-suis-vendeur-dans-une-boutique.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "je-suis-hotesse-de-caisse",
+      "french": "Je suis hôtesse de caisse.",
+      "persian": "من صندوقدار هستم.",
+      "image": "learning-scenes/images/je-suis-hotesse-de-caisse.jpg",
+      "level": "A2",
+      "lesson": "21"
+    },
+    {
+      "id": "j-ai-un-bon-cv",
+      "french": "J’ai un bon CV.",
+      "persian": "من یک رزومه خوب دارم.",
+      "image": "learning-scenes/images/j-ai-un-bon-cv.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "j-ai-un-diplome-en-francais",
+      "french": "J’ai un diplôme en français.",
+      "persian": "من مدرک زبان فرانسه دارم.",
+      "image": "learning-scenes/images/j-ai-un-diplome-en-francais.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "j-ai-de-l-experience-professionnelle",
+      "french": "J’ai de l’expérience professionnelle.",
+      "persian": "من سابقه کاری دارم.",
+      "image": "learning-scenes/images/j-ai-de-l-experience-professionnelle.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "je-parle-trois-langues",
+      "french": "Je parle trois langues.",
+      "persian": "من به سه زبان صحبت می‌کنم.",
+      "image": "learning-scenes/images/je-parle-trois-langues.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "je-suis-motive-e",
+      "french": "Je suis motivé(e).",
+      "persian": "من باانگیزه هستم.",
+      "image": "learning-scenes/images/je-suis-motive-e.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "je-suis-responsable",
+      "french": "Je suis responsable.",
+      "persian": "من مسئولیت‌پذیر هستم.",
+      "image": "learning-scenes/images/je-suis-responsable.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "je-suis-organise-e",
+      "french": "Je suis organisé(e).",
+      "persian": "من منظم هستم.",
+      "image": "learning-scenes/images/je-suis-organise-e.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "j-ai-l-esprit-d-equipe",
+      "french": "J’ai l’esprit d’équipe.",
+      "persian": "من روحیه کار گروهی دارم.",
+      "image": "learning-scenes/images/j-ai-l-esprit-d-equipe.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "j-ai-vu-une-offre-d-emploi",
+      "french": "J’ai vu une offre d’emploi.",
+      "persian": "من یک آگهی شغلی دیدم.",
+      "image": "learning-scenes/images/j-ai-vu-une-offre-d-emploi.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "j-envoie-ma-candidature",
+      "french": "J’envoie ma candidature.",
+      "persian": "من درخواست شغلی خودم را می‌فرستم.",
+      "image": "learning-scenes/images/j-envoie-ma-candidature.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "je-postule-pour-ce-poste",
+      "french": "Je postule pour ce poste.",
+      "persian": "من برای این موقعیت شغلی درخواست می‌دهم.",
+      "image": "learning-scenes/images/je-postule-pour-ce-poste.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "le-recruteur-m-appelle",
+      "french": "Le recruteur m’appelle.",
+      "persian": "استخدام‌کننده با من تماس می‌گیرد.",
+      "image": "learning-scenes/images/le-recruteur-m-appelle.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "je-redige-une-lettre-de-motivation",
+      "french": "Je rédige une lettre de motivation.",
+      "persian": "من یک نامه انگیزشی می‌نویسم.",
+      "image": "learning-scenes/images/je-redige-une-lettre-de-motivation.jpg",
+      "level": "A2",
+      "lesson": "22"
+    },
+    {
+      "id": "j-ai-un-contrat-de-travail",
+      "french": "J’ai un contrat de travail.",
+      "persian": "من قرارداد کاری دارم.",
+      "image": "learning-scenes/images/j-ai-un-contrat-de-travail.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "j-ai-un-emploi-a-temps-plein",
+      "french": "J’ai un emploi à temps plein.",
+      "persian": "من شغل تمام‌وقت دارم.",
+      "image": "learning-scenes/images/j-ai-un-emploi-a-temps-plein.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "mon-salaire-net-est-bon",
+      "french": "Mon salaire net est bon.",
+      "persian": "حقوق خالص من خوب است.",
+      "image": "learning-scenes/images/mon-salaire-net-est-bon.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "j-ai-des-conges-payes",
+      "french": "J’ai des congés payés.",
+      "persian": "من مرخصی با حقوق دارم.",
+      "image": "learning-scenes/images/j-ai-des-conges-payes.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "je-fais-du-teletravail",
+      "french": "Je fais du télétravail.",
+      "persian": "من دورکاری می‌کنم.",
+      "image": "learning-scenes/images/je-fais-du-teletravail.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "je-postule-a-une-offre-d-emploi",
+      "french": "Je postule à une offre d’emploi.",
+      "persian": "من برای یک آگهی شغلی درخواست می‌دهم.",
+      "image": "learning-scenes/images/je-postule-a-une-offre-d-emploi.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "je-passe-un-entretien-d-embauche",
+      "french": "Je passe un entretien d’embauche.",
+      "persian": "من در یک مصاحبه کاری شرکت می‌کنم.",
+      "image": "learning-scenes/images/je-passe-un-entretien-d-embauche.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "je-suis-recrute-e",
+      "french": "Je suis recruté(e).",
+      "persian": "من استخدام شدم.",
+      "image": "learning-scenes/images/je-suis-recrute-e.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "le-recruteur-est-gentil",
+      "french": "Le recruteur est gentil.",
+      "persian": "مسئول استخدام مهربان است.",
+      "image": "learning-scenes/images/le-recruteur-est-gentil.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "le-candidat-est-motive",
+      "french": "Le candidat est motivé.",
+      "persian": "متقاضی باانگیزه است.",
+      "image": "learning-scenes/images/le-candidat-est-motive.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "je-suis-diplome-e",
+      "french": "Je suis diplômé(e).",
+      "persian": "من فارغ‌التحصیل هستم.",
+      "image": "learning-scenes/images/je-suis-diplome-e.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "j-ai-des-diplomes",
+      "french": "J’ai des diplômes.",
+      "persian": "من مدارک تحصیلی دارم.",
+      "image": "learning-scenes/images/j-ai-des-diplomes.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "j-ai-une-bonne-competence",
+      "french": "J’ai une bonne compétence.",
+      "persian": "من مهارت خوبی دارم.",
+      "image": "learning-scenes/images/j-ai-une-bonne-competence.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "j-ai-de-l-experience",
+      "french": "J’ai de l’expérience.",
+      "persian": "من تجربه دارم.",
+      "image": "learning-scenes/images/j-ai-de-l-experience.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "j-ai-une-qualite",
+      "french": "J’ai une qualité.",
+      "persian": "من یک ویژگی مثبت دارم.",
+      "image": "learning-scenes/images/j-ai-une-qualite.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "j-ai-un-defaut",
+      "french": "J’ai un défaut.",
+      "persian": "من یک ضعف دارم.",
+      "image": "learning-scenes/images/j-ai-un-defaut.jpg",
+      "level": "A2",
+      "lesson": "23"
+    },
+    {
+      "id": "je-suis-employe-e-dans-cette-entreprise",
+      "french": "Je suis employé(e) dans cette entreprise.",
+      "persian": "من کارمند این شرکت هستم.",
+      "image": "learning-scenes/images/je-suis-employe-e-dans-cette-entreprise.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "j-ai-un-bon-collegue",
+      "french": "J’ai un bon collègue.",
+      "persian": "من همکار خوبی دارم.",
+      "image": "learning-scenes/images/j-ai-un-bon-collegue.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "le-chef-d-equipe-parle-avec-tout-le-monde",
+      "french": "Le chef d’équipe parle avec tout le monde.",
+      "persian": "سرگروه با همه صحبت می‌کند.",
+      "image": "learning-scenes/images/le-chef-d-equipe-parle-avec-tout-le-monde.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "notre-equipe-travaille-bien-ensemble",
+      "french": "Notre équipe travaille bien ensemble.",
+      "persian": "تیم ما خوب با هم کار می‌کند.",
+      "image": "learning-scenes/images/notre-equipe-travaille-bien-ensemble.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "le-service-des-ressources-humaines-aide-les-employes",
+      "french": "Le service des ressources humaines aide les employés.",
+      "persian": "بخش منابع انسانی به کارمندان کمک می‌کند.",
+      "image": "learning-scenes/images/le-service-des-ressources-humaines-aide-les-employes.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "je-fais-une-pause-cafe",
+      "french": "Je fais une pause café.",
+      "persian": "من وقفه‌ی قهوه می‌گیرم.",
+      "image": "learning-scenes/images/je-fais-une-pause-cafe.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "la-machine-a-cafe-ne-marche-pas",
+      "french": "La machine à café ne marche pas.",
+      "persian": "دستگاه قهوه خراب است.",
+      "image": "learning-scenes/images/la-machine-a-cafe-ne-marche-pas.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "j-integre-une-nouvelle-entreprise",
+      "french": "J’intègre une nouvelle entreprise.",
+      "persian": "من وارد یک شرکت جدید می‌شوم.",
+      "image": "learning-scenes/images/j-integre-une-nouvelle-entreprise.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "je-participe-a-une-reunion-importante",
+      "french": "Je participe à une réunion importante.",
+      "persian": "من در یک جلسه مهم شرکت می‌کنم.",
+      "image": "learning-scenes/images/je-participe-a-une-reunion-importante.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "je-mets-a-jour-le-document",
+      "french": "Je mets à jour le document.",
+      "persian": "من سند را به‌روز می‌کنم.",
+      "image": "learning-scenes/images/je-mets-a-jour-le-document.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "j-ecris-un-compte-rendu",
+      "french": "J’écris un compte rendu.",
+      "persian": "من گزارش می‌نویسم.",
+      "image": "learning-scenes/images/j-ecris-un-compte-rendu.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "je-prends-un-rendez-vous-avec-un-client",
+      "french": "Je prends un rendez-vous avec un client.",
+      "persian": "من با یک مشتری قرار ملاقات می‌گذارم.",
+      "image": "learning-scenes/images/je-prends-un-rendez-vous-avec-un-client.jpg",
+      "level": "A2",
+      "lesson": "24"
+    },
+    {
+      "id": "je-travaille-en-collaboration-avec-mes-collegues",
+      "french": "Je travaille en collaboration avec mes collègues.",
+      "persian": "من با همکارانم به‌صورت گروهی کار می‌کنم.",
+      "image": "learning-scenes/images/je-travaille-en-collaboration-avec-mes-collegues.jpg",
+      "level": "A2",
+      "lesson": "24"
     }
   ]
 }
