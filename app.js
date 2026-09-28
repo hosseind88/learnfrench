@@ -1201,6 +1201,36 @@ function getAnkiLessonCards(lessonNum) {
   return [...sentences, ...vocab];
 }
 
+function sceneToFlashcard(scene) {
+  const lesson = getSceneLesson(scene) || '00';
+  const level = getSceneCourse(scene);
+  const title = sceneLessonTitle(level, lesson);
+  return {
+    id: `${level.toLowerCase()}-${scene.id}`,
+    word: scene.french,
+    translation: scene.persian,
+    kind: scene.kind === 'word' ? 'word' : 'sentence',
+    lesson,
+    level,
+    categoryNameFr: `Leçon ${lesson}`,
+    categoryNameFa: title || `درس ${lesson}`
+  };
+}
+
+function getCourseSceneCards(level, lesson) {
+  const items = (state.scenes.items || []).filter((scene) => getSceneCourse(scene) === level);
+  const filtered = lesson ? items.filter((scene) => getSceneLesson(scene) === lesson) : items;
+  return filtered.sort(compareScenes).map(sceneToFlashcard);
+}
+
+function getCourseLessonNumbers(level) {
+  const lessons = new Set();
+  getCourseSceneCards(level).forEach((card) => {
+    if (card.lesson && card.lesson !== '00') lessons.add(card.lesson);
+  });
+  return [...lessons].sort((a, b) => Number(a) - Number(b) || a.localeCompare(b, 'fa'));
+}
+
 function getAllAnkiCards() {
   return [
     ...getAllSentences().filter(s => s.lesson || s.custom).map(sentenceToFlashcard),
@@ -1211,6 +1241,10 @@ function getAllAnkiCards() {
 function getFlashcardDeck(deckId) {
   if (!deckId || deckId === 'all-lessons') return getAllAnkiCards();
   if (deckId.startsWith('lesson-')) return getAnkiLessonCards(deckId.slice('lesson-'.length));
+  const courseLesson = /^course-([AB][12])-lesson-(.+)$/.exec(deckId || '');
+  if (courseLesson) return getCourseSceneCards(courseLesson[1], courseLesson[2]);
+  const courseAll = /^course-([AB][12])$/.exec(deckId || '');
+  if (courseAll) return getCourseSceneCards(courseAll[1]);
   if (deckId === 'sentences-custom') {
     return getAllSentences().filter(s => s.custom).map(sentenceToFlashcard);
   }
@@ -1293,6 +1327,29 @@ function renderFlashcardDeckBrowser() {
     }));
   });
 
+  SCENE_COURSE_LEVELS.filter((level) => level !== 'A1').forEach((level) => {
+    const courseCards = getCourseSceneCards(level);
+    if (!courseCards.length) return;
+    parts.push(`<div class="anki-deck-section-label">${level} · Communication essentielle</div>`);
+    parts.push(deckRowHtml({
+      id: `course-${level}`,
+      title: `Communication essentielle ${level}`,
+      sub: 'همه درس‌های این دوره',
+      stats: countDeckStats(courseCards),
+      parent: true
+    }));
+    getCourseLessonNumbers(level).forEach((num) => {
+      const cards = getCourseSceneCards(level, num);
+      const title = sceneLessonTitle(level, num);
+      parts.push(deckRowHtml({
+        id: `course-${level}-lesson-${num}`,
+        title: `Leçon ${num}`,
+        sub: title || 'درس',
+        stats: countDeckStats(cards)
+      }));
+    });
+  });
+
   const vocabDecks = [
     { id: 'vocab-all', title: 'Vocabulaire', sub: 'همه واژگان' },
     { id: 'vocab-verbs', title: 'Verbes', sub: 'فعل‌ها' },
@@ -1358,6 +1415,18 @@ function updateStudyHeading(deckId) {
     desc.textContent = getLessonMeta(num).titleFa;
     return;
   }
+  const courseLesson = /^course-([AB][12])-lesson-(.+)$/.exec(deckId || '');
+  if (courseLesson) {
+    title.textContent = `${courseLesson[1]} · Leçon ${courseLesson[2]}`;
+    desc.textContent = sceneLessonTitle(courseLesson[1], courseLesson[2]) || 'درس';
+    return;
+  }
+  const courseAll = /^course-([AB][12])$/.exec(deckId || '');
+  if (courseAll) {
+    title.textContent = `همه درس‌های ${courseAll[1]}`;
+    desc.textContent = `Communication essentielle ${courseAll[1]}`;
+    return;
+  }
   if (deckId === 'sentences-custom') {
     title.textContent = 'جملات AI';
     desc.textContent = 'کارت‌های جمله افزوده‌شده با هوش مصنوعی';
@@ -1377,7 +1446,8 @@ function setFlashcardAnswerVisible(visible) {
   if (rateBar) rateBar.style.display = visible ? 'flex' : 'none';
 }
 
-function initFlashcardsView() {
+async function initFlashcardsView() {
+  await loadLearningScenes();
   if (state.flashcards.screen === 'study' && state.flashcards.deckId) {
     showFlashcardScreen('study');
     setupFlashcards({ reset: false });
