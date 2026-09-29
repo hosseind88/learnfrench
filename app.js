@@ -335,6 +335,7 @@ function triggerConfetti() {
 // View Routing & Navigation
 // ==========================================================================
 function switchView(viewName) {
+  hideSceneWordGloss();
   state.currentView = viewName;
   
   // Toggle body layout class for Book view (widescreen, compact margins)
@@ -2489,6 +2490,339 @@ function stepScene(delta) {
   renderScenesView();
 }
 
+let sceneGlossIndex = null;
+let sceneGlossLexicon = null;
+
+function glossTokenKey(text) {
+  return String(text || '')
+    .normalize('NFKC')
+    .replace(/[\u2019\u2018`]/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function getSceneGlossLexicon() {
+  if (sceneGlossLexicon) return sceneGlossLexicon;
+  const source = window.SCENE_GLOSS || { words: {}, phrases: {} };
+  const words = new Map();
+  const phrases = new Map();
+  Object.entries(source.words || {}).forEach(([key, value]) => {
+    if (key && value) words.set(glossTokenKey(key), value);
+  });
+  Object.entries(source.phrases || {}).forEach(([key, value]) => {
+    if (key && value) phrases.set(glossTokenKey(key), value);
+  });
+  sceneGlossLexicon = { words, phrases };
+  return sceneGlossLexicon;
+}
+
+function lookupSceneGlossWord(key) {
+  const { words } = getSceneGlossLexicon();
+  if (words.has(key)) return words.get(key);
+  const hour = key.match(/^(\d+)h$/i);
+  if (hour || /^\d+$/.test(key)) {
+    const digits = hour ? hour[1] : key;
+    const fa = digits.replace(/\d/g, (digit) => '۰۱۲۳۴۵۶۷۸۹'[digit]);
+    return hour ? `ساعت ${fa}` : fa;
+  }
+  if (key.length > 4 && key.endsWith('es') && words.has(key.slice(0, -2))) return words.get(key.slice(0, -2));
+  if (key.length > 3 && key.endsWith('s') && words.has(key.slice(0, -1))) return words.get(key.slice(0, -1));
+  return '';
+}
+
+function primaryGloss(text) {
+  return String(text || '').split('؛')[0].trim();
+}
+
+function joinFrenchGlossParts(parts) {
+  return parts.reduce((sentence, part) => {
+    if (!sentence) return part;
+    if (/['’]$/.test(sentence)) return sentence + part;
+    return `${sentence} ${part}`;
+  }, '');
+}
+
+const SCENE_GLOSS_SUBJECTS = {
+  je: 'من', "j'": 'من', tu: 'تو', il: 'او', elle: 'او', nous: 'ما',
+  vous: 'شما', ils: 'آن‌ها', elles: 'آن‌ها', on: 'آدم'
+};
+const SCENE_GLOSS_OWNERS = {
+  mon: 'm', ma: 'm', mes: 'm', ton: 't', ta: 't', tes: 't',
+  son: 'sh', sa: 'sh', ses: 'sh', notre: 'man', nos: 'man',
+  votre: 'tan', vos: 'tan', leur: 'shan', leurs: 'shan'
+};
+const SCENE_GLOSS_PREPS = {
+  dans: 'در', sur: 'روی', avec: 'با', pour: 'برای', par: 'از طریق',
+  en: 'در', chez: 'پیش', avant: 'قبل از', après: 'بعد از', devant: 'جلوی',
+  sous: 'زیر', sans: 'بدون', pendant: 'در طول', depuis: 'از', contre: 'مقابل', entre: 'بین'
+};
+
+function attachPersianOwner(noun, kind) {
+  const forms = {
+    m: ['م', '‌ام', 'یم'],
+    t: ['ت', '‌ات', 'یت'],
+    sh: ['ش', '‌اش', 'یش'],
+    man: ['مان', '‌مان', 'یمان'],
+    tan: ['تان', '‌تان', 'یتان'],
+    shan: ['شان', '‌شان', 'یشان']
+  };
+  const trio = forms[kind];
+  if (!trio || !noun) return noun;
+  if (/ه$/.test(noun)) return noun + trio[1];
+  if (/[اوی]$/.test(noun)) return noun + trio[2];
+  return noun + trio[0];
+}
+
+function withPersianEzafe(left, right) {
+  if (/ه$/.test(left)) return `${left}‌ی ${right}`;
+  if (/[اوی]$/.test(left)) return `${left}ی ${right}`;
+  return `${left}ِ ${right}`;
+}
+
+function glossLooksVerbal(text) {
+  return /می‌/.test(text) || /^(است|هست|دار|بود|باید)/.test(text);
+}
+
+function shiftPersianVerb(gloss, subject) {
+  const match = String(gloss || '').match(/^می‌(.+)د$/);
+  if (!match) return '';
+  const ending = {
+    je: 'م', "j'": 'م', tu: 'ی', il: 'د', elle: 'د', on: 'د',
+    nous: 'یم', vous: 'ید', ils: 'ند', elles: 'ند'
+  }[subject];
+  const person = SCENE_GLOSS_SUBJECTS[subject];
+  if (!ending || !person) return '';
+  return `${person} می‌${match[1]}${ending}`;
+}
+
+function negatePersianGloss(gloss) {
+  const direct = {
+    'است': 'نیست', 'هستم': 'نیستم', 'هستی': 'نیستی', 'هستیم': 'نیستیم',
+    'هستید': 'نیستید', 'هستند': 'نیستند', 'دارم': 'ندارم', 'داری': 'نداری',
+    'دارد': 'ندارد', 'داریم': 'نداریم', 'دارید': 'ندارید', 'دارند': 'ندارند', 'بود': 'نبود'
+  };
+  if (direct[gloss]) return direct[gloss];
+  if (gloss.startsWith('می‌')) return `ن${gloss}`;
+  return '';
+}
+
+function combineSceneGloss(keyA, keyB, fullA, fullB) {
+  const phrase = getSceneGlossLexicon().phrases.get(`${keyA} ${keyB}`);
+  if (phrase) return phrase;
+  const faA = primaryGloss(fullA);
+  const faB = primaryGloss(fullB);
+  if (!faA || !faB) return '';
+  if (keyA === 'ne' || keyA === "n'" || keyB === 'pas') {
+    const negated = negatePersianGloss(keyB === 'pas' ? faA : faB);
+    if (negated) return negated;
+  }
+  if (SCENE_GLOSS_SUBJECTS[keyA]) {
+    return shiftPersianVerb(faB, keyA) || `${SCENE_GLOSS_SUBJECTS[keyA]} ${faB}`;
+  }
+  if (keyA === 'le' || keyA === 'la' || keyA === 'les' || keyA === "l'" || keyA === 'des' || keyA === 'de' || keyA === "d'" || keyA === 'du') {
+    return faB;
+  }
+  if (keyA === 'un' || keyA === 'une') return `یک ${faB}`;
+  if (keyA === 'ce' || keyA === 'cet' || keyA === 'cette' || keyA === 'ces' || keyA === "c'") return `این ${faB}`;
+  if (SCENE_GLOSS_OWNERS[keyA]) return attachPersianOwner(faB, SCENE_GLOSS_OWNERS[keyA]);
+  if (keyA === 'à' || keyA === 'au' || keyA === 'aux') return `به ${faB}`;
+  if (SCENE_GLOSS_PREPS[keyA]) return `${SCENE_GLOSS_PREPS[keyA]} ${faB}`;
+  if (keyA === 'très' || keyA === 'trop') return `${faA} ${faB}`;
+  if (/^(است|هست|بود)/.test(faB)) return `${faA} ${faB}`;
+  if (!glossLooksVerbal(faA) && !glossLooksVerbal(faB)) return withPersianEzafe(faA, faB);
+  return `${faA} · ${faB}`;
+}
+
+function describeSceneGloss(parts) {
+  const keys = parts.map(glossTokenKey);
+  if (parts.length === 2) {
+    const fullA = lookupSceneGlossWord(keys[0]);
+    const fullB = lookupSceneGlossWord(keys[1]);
+    return {
+      fr: joinFrenchGlossParts(parts),
+      combined: combineSceneGloss(keys[0], keys[1], fullA, fullB),
+      rows: [
+        { fr: parts[0], fa: fullA },
+        { fr: parts[1], fa: fullB }
+      ]
+    };
+  }
+  return {
+    fr: parts[0] || '',
+    combined: lookupSceneGlossWord(keys[0] || ''),
+    rows: []
+  };
+}
+
+function splitSceneGlossToken(raw) {
+  const key = glossTokenKey(raw);
+  if (key === "aujourd'hui" || key === "quelqu'un" || key === "quelqu'une") return [raw];
+  const match = key.match(/^(qu|[ldjnmtsc])'(.+)$/);
+  if (match && match[2].length > 1) {
+    const cut = match[1].length + 1;
+    return [raw.slice(0, cut), raw.slice(cut)];
+  }
+  return [raw];
+}
+
+function renderSceneFrenchText(el, french) {
+  if (!el) return;
+  el.replaceChildren();
+  const text = String(french || '');
+  const tokenRe = /[A-Za-zÀ-ÖØ-öø-ÿŒœ0-9]+(?:['’.-][A-Za-zÀ-ÖØ-öø-ÿŒœ0-9]+)*|[^\s]|\s+/g;
+  let wordIndex = 0;
+  let match;
+  while ((match = tokenRe.exec(text))) {
+    const token = match[0];
+    if (/^\s+$/.test(token) || /^[^\sA-Za-zÀ-ÖØ-öø-ÿŒœ0-9]$/.test(token)) {
+      el.append(document.createTextNode(token));
+      continue;
+    }
+    splitSceneGlossToken(token).forEach((part) => {
+      const span = document.createElement('span');
+      span.className = 'scene-gloss-word';
+      span.dataset.glossIndex = String(wordIndex);
+      wordIndex += 1;
+      span.textContent = part;
+      el.append(span);
+    });
+  }
+}
+
+function ensureSceneGlossTip() {
+  let tip = document.getElementById('sceneGlossTip');
+  if (tip) return tip;
+  tip = document.createElement('div');
+  tip.id = 'sceneGlossTip';
+  tip.className = 'scene-gloss-tip';
+  tip.hidden = true;
+  tip.setAttribute('role', 'tooltip');
+  document.body.append(tip);
+  return tip;
+}
+
+function placeSceneGlossTip(tip, elements) {
+  const rects = elements.map((el) => el.getBoundingClientRect());
+  const left = Math.min(...rects.map((rect) => rect.left));
+  const right = Math.max(...rects.map((rect) => rect.right));
+  const top = Math.min(...rects.map((rect) => rect.top));
+  const bottom = Math.max(...rects.map((rect) => rect.bottom));
+  const width = tip.offsetWidth;
+  const height = tip.offsetHeight;
+  let x = (left + right) / 2 - width / 2;
+  x = Math.max(8, Math.min(x, window.innerWidth - width - 8));
+  let y = top - height - 8;
+  if (y < 8) y = bottom + 8;
+  tip.style.left = `${x}px`;
+  tip.style.top = `${y}px`;
+}
+
+function hideSceneWordGloss() {
+  sceneGlossIndex = null;
+  document.querySelectorAll('.scene-gloss-word.is-glossed').forEach((el) => {
+    el.classList.remove('is-glossed');
+  });
+  const tip = document.getElementById('sceneGlossTip');
+  if (tip) tip.hidden = true;
+}
+
+function showSceneWordGloss(sentence, wordEl) {
+  const words = [...sentence.querySelectorAll('.scene-gloss-word')];
+  const index = Number(wordEl.dataset.glossIndex);
+  let from = index;
+  let to = index;
+  if (sceneGlossIndex != null && Math.abs(sceneGlossIndex - index) === 1) {
+    from = Math.min(sceneGlossIndex, index);
+    to = Math.max(sceneGlossIndex, index);
+  }
+  sceneGlossIndex = index;
+  words.forEach((el) => {
+    const wordIndex = Number(el.dataset.glossIndex);
+    el.classList.toggle('is-glossed', wordIndex >= from && wordIndex <= to);
+  });
+  const selected = words.filter((el) => {
+    const wordIndex = Number(el.dataset.glossIndex);
+    return wordIndex >= from && wordIndex <= to;
+  });
+  const info = describeSceneGloss(selected.map((el) => el.textContent));
+  const tip = ensureSceneGlossTip();
+  tip.replaceChildren();
+
+  const french = document.createElement('div');
+  french.className = 'scene-gloss-tip-fr';
+  french.dir = 'ltr';
+  french.textContent = info.fr;
+  tip.append(french);
+
+  const meaning = document.createElement('div');
+  meaning.className = 'scene-gloss-tip-fa';
+  meaning.textContent = info.combined || 'معنی این واژه هنوز ثبت نشده';
+  tip.append(meaning);
+
+  if (info.rows.length === 2) {
+    const rows = document.createElement('div');
+    rows.className = 'scene-gloss-tip-rows';
+    info.rows.forEach((row) => {
+      const line = document.createElement('div');
+      line.className = 'scene-gloss-tip-row';
+      const label = document.createElement('span');
+      label.className = 'scene-gloss-tip-row-fr';
+      label.dir = 'ltr';
+      label.textContent = row.fr;
+      const value = document.createElement('span');
+      value.className = 'scene-gloss-tip-row-fa';
+      value.textContent = row.fa || '—';
+      line.append(label, value);
+      rows.append(line);
+    });
+    tip.append(rows);
+  }
+
+  tip.hidden = false;
+  placeSceneGlossTip(tip, selected);
+}
+
+function bindSceneGlossRoot(root) {
+  if (!root || root.dataset.glossBound) return;
+  root.dataset.glossBound = '1';
+  root.addEventListener('pointerover', (event) => {
+    const word = event.target.closest?.('.scene-gloss-word');
+    if (!word || !root.contains(word)) return;
+    const sentence = word.closest('.scene-french-text');
+    if (sentence) showSceneWordGloss(sentence, word);
+  });
+  root.addEventListener('pointerout', (event) => {
+    if (event.pointerType === 'touch') return;
+    const sentence = event.target.closest?.('.scene-french-text');
+    if (!sentence || !root.contains(sentence)) return;
+    const next = event.relatedTarget;
+    if (next && sentence.contains(next)) return;
+    hideSceneWordGloss();
+  });
+  root.addEventListener('click', (event) => {
+    const target = event.target && event.target.nodeType === 1 ? event.target : event.target?.parentElement;
+    const word = target?.closest?.('.scene-gloss-word');
+    if (!word || !root.contains(word)) return;
+    event.stopPropagation();
+    const sentence = word.closest('.scene-french-text');
+    if (sentence) showSceneWordGloss(sentence, word);
+  }, true);
+}
+
+function setupSceneWordGloss() {
+  bindSceneGlossRoot(document.getElementById('scenesStudyCard'));
+  bindSceneGlossRoot(document.getElementById('scenesGalleryGrid'));
+  if (document.body.dataset.sceneGlossDoc) return;
+  document.body.dataset.sceneGlossDoc = '1';
+  document.addEventListener('pointerdown', (event) => {
+    if (event.target.closest?.('.scene-gloss-word')) return;
+    hideSceneWordGloss();
+  });
+  window.addEventListener('scroll', hideSceneWordGloss, true);
+  window.addEventListener('resize', hideSceneWordGloss);
+}
+
 function renderSceneStudyCard() {
   const card = document.getElementById('scenesStudyCard');
   if (!card) return;
@@ -2530,6 +2864,7 @@ function renderSceneStudyCard() {
         <span class="pill-info">${kindLabel}</span>
       </div>
       <p class="scene-french-text" dir="ltr"></p>
+      <p class="scene-gloss-hint">روی یک کلمه بروید یا بزنید تا معنی‌اش بیاید. برای دو کلمه، نشانگر را به کلمهٔ کناری بکشید یا آن را هم بزنید.</p>
       <p class="scene-persian-text ${showFa ? '' : 'is-hidden'}"></p>
       <div class="scene-study-actions">
         <button class="btn btn-secondary btn-sm" data-scene-speak>تلفظ جمله</button>
@@ -2543,7 +2878,7 @@ function renderSceneStudyCard() {
   `;
   const frenchEl = card.querySelector('.scene-french-text');
   const persianEl = card.querySelector('.scene-persian-text');
-  if (frenchEl) frenchEl.textContent = french;
+  renderSceneFrenchText(frenchEl, french);
   if (persianEl) persianEl.textContent = showFa ? persian : 'برای دیدن ترجمه فارسی ضربه بزن';
   const studyImg = card.querySelector('.scene-study-image');
   attachResilientImage(studyImg, src);
@@ -2577,7 +2912,7 @@ function renderScenesGallery() {
     const frenchEl = document.createElement('p');
     frenchEl.className = 'scene-french-text';
     frenchEl.dir = 'ltr';
-    frenchEl.textContent = scene.french || '';
+    renderSceneFrenchText(frenchEl, scene.french || '');
 
     const persianEl = document.createElement('p');
     persianEl.className = `scene-persian-text${state.scenes.hideTranslations ? ' is-hidden' : ''}`;
@@ -2607,6 +2942,7 @@ function renderScenesGallery() {
 }
 
 function renderScenesView() {
+  hideSceneWordGloss();
   const studyWrap = document.getElementById('scenesStudyWrap');
   const gallery = document.getElementById('scenesGalleryGrid');
   const modeBtn = document.getElementById('sceneModeToggleText');
@@ -2637,6 +2973,7 @@ async function initScenesView() {
 }
 
 function setupScenesView() {
+  setupSceneWordGloss();
   const search = document.getElementById('sceneSearchInput');
   if (search) {
     search.value = state.scenes.searchQuery || '';

@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v25';
+const CACHE_NAME = 'francais-facile-v26';
 
 const LOCAL_ASSETS = [
   './',
@@ -15,7 +15,8 @@ const LOCAL_ASSETS = [
   './apple-touch-icon.png',
   './favicon-32x32.png',
   './favicon-16x16.png',
-  './learning-scenes/scenes.json'
+  './learning-scenes/scenes.json',
+  './learning-scenes/gloss.js'
 ];
 
 const OPTIONAL_ASSETS = [
