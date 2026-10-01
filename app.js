@@ -1257,6 +1257,10 @@ function getFlashcardDeck(deckId) {
     const cat = deckId.slice('vocab-'.length);
     return getAllVocabItems().filter(item => item.categoryKey === cat);
   }
+  if (deckId.startsWith('pack-')) {
+    const pack = (window.EXTRA_FLASH_DECKS || []).find((item) => item.id === deckId);
+    return pack ? pack.cards : [];
+  }
   return getAllAnkiCards();
 }
 
@@ -1363,6 +1367,19 @@ function renderFlashcardDeckBrowser() {
     { id: 'vocab-unmastered', title: 'À revoir', sub: 'فقط لغات یاد نگرفته' }
   ];
 
+  const extraPacks = window.EXTRA_FLASH_DECKS || [];
+  if (extraPacks.length) {
+    parts.push('<div class="anki-deck-section-label">بسته‌های اضافه</div>');
+    extraPacks.forEach((pack) => {
+      parts.push(deckRowHtml({
+        id: pack.id,
+        title: pack.title,
+        sub: pack.sub,
+        stats: countDeckStats(pack.cards || [])
+      }));
+    });
+  }
+
   const customSentenceCards = getFlashcardDeck('sentences-custom');
   if (customSentenceCards.length) {
     parts.push('<div class="anki-deck-section-label">جملات افزوده‌شده</div>');
@@ -1431,6 +1448,12 @@ function updateStudyHeading(deckId) {
   if (deckId === 'sentences-custom') {
     title.textContent = 'جملات AI';
     desc.textContent = 'کارت‌های جمله افزوده‌شده با هوش مصنوعی';
+    return;
+  }
+  const extraPack = (window.EXTRA_FLASH_DECKS || []).find((item) => item.id === deckId);
+  if (extraPack) {
+    title.textContent = extraPack.title;
+    desc.textContent = extraPack.sub;
     return;
   }
   title.textContent = 'واژگان';
@@ -1523,11 +1546,12 @@ function renderCurrentFlashcard() {
   // Always force Persian on FRONT, French on BACK
   state.flashcards.direction = 'fa-fr';
 
-  const frontHint = item.kind === 'sentence'
+  const frontHint = item.frontHint
+    || (item.kind === 'sentence'
     ? 'معادل فرانسوی این جمله چیست؟'
     : (item.gender
       ? `جنسیت: ${item.gender === 'masculine' ? 'مذکر (le / un)' : item.gender === 'feminine' ? 'مؤنث (la / une)' : item.gender}`
-      : (item.categoryNameFa ? `دسته: ${item.categoryNameFa}` : 'معادل فرانسوی این واژه چیست؟'));
+      : (item.categoryNameFa ? `دسته: ${item.categoryNameFa}` : 'معادل فرانسوی این واژه چیست؟')));
 
   const frontCategory = item.categoryNameFa || item.categoryNameFr || 'واژگان';
   const backCategory = item.categoryNameFr || 'Français';
@@ -1559,7 +1583,7 @@ function renderCurrentFlashcard() {
   if (item.example) {
     exampleBox.style.display = 'block';
     document.getElementById('fcBackExampleFr').textContent = item.example;
-    document.getElementById('fcBackExampleFa').textContent = getTranslationForExample(item.example) || '';
+    document.getElementById('fcBackExampleFa').textContent = item.exampleFa || getTranslationForExample(item.example) || '';
   } else {
     exampleBox.style.display = 'none';
   }
