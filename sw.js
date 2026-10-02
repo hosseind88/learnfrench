@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v27';
+const CACHE_NAME = 'francais-facile-v30';
 
 const LOCAL_ASSETS = [
   './',
@@ -33,6 +33,7 @@ function isBypassed(url, request) {
   if (url.hostname.includes('openrouter.ai')) return true;
   if (url.hostname.includes('pollinations.ai')) return true;
   if (url.hostname.includes('arvanstorage.ir')) return true;
+  if (url.hostname === 'translate.google.com' || url.hostname === 'translate.googleapis.com') return true;
   if (url.pathname.endsWith('.pdf') || url.pathname.includes('.pdf')) return true;
   return false;
 }

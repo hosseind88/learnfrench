@@ -216,29 +216,97 @@ class SoundFX {
 
 const sfx = new SoundFX();
 
-// Speak French text using Web Speech API
-function speakFrench(text, rate = state.audioSpeed) {
+// Google Translate French voice, with the browser voice as a fallback.
+let frenchVoiceAudio = null;
+let frenchVoiceToken = 0;
+
+function splitFrenchForSpeech(text, maxLen = 180) {
+  const clean = String(text || '').replace(/[\/]/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!clean) return [];
+  if (clean.length <= maxLen) return [clean];
+
+  const parts = [];
+  let rest = clean;
+  while (rest.length > maxLen) {
+    let cut = rest.lastIndexOf(' ', maxLen);
+    if (cut < 40) cut = maxLen;
+    parts.push(rest.slice(0, cut).trim());
+    rest = rest.slice(cut).trim();
+  }
+  if (rest) parts.push(rest);
+  return parts;
+}
+
+function googleTranslateTtsUrl(text) {
+  return `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=fr&q=${encodeURIComponent(text)}`;
+}
+
+function speakWithBrowserVoice(text, rate) {
   if (!('speechSynthesis' in window)) {
-    showToast('مرورگر شما از قابلیت تلفظ صوتی پشتیبانی نمی‌کند.');
+    showToast('تلفظ گوگل در دسترس نیست.');
     return;
   }
 
-  window.speechSynthesis.cancel(); // Cancel any ongoing speech
-
-  // Clean text from punctuation if needed
-  const cleanText = text.replace(/[\/]/g, ' ');
-  const utterance = new SpeechSynthesisUtterance(cleanText);
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'fr-FR';
   utterance.rate = rate;
-
-  // Try to find a high quality French voice
   const voices = window.speechSynthesis.getVoices();
-  const frVoice = voices.find(v => v.lang.startsWith('fr') && (v.name.includes('Google') || v.name.includes('Thomas') || v.name.includes('Amélie') || v.name.includes('Natural') || v.name.includes('Premium')));
-  if (frVoice) {
-    utterance.voice = frVoice;
-  }
-
+  const frVoice = voices.find(v => v.lang.startsWith('fr') && (v.name.includes('Google') || v.name.includes('Thomas') || v.name.includes('Amélie') || v.name.includes('Natural') || v.name.includes('Premium')))
+    || voices.find(v => v.lang.startsWith('fr'));
+  if (frVoice) utterance.voice = frVoice;
   window.speechSynthesis.speak(utterance);
+}
+
+function speakFrench(text, rate = state.audioSpeed) {
+  const chunks = splitFrenchForSpeech(text);
+  if (!chunks.length) return;
+
+  frenchVoiceToken += 1;
+  const token = frenchVoiceToken;
+
+  if (frenchVoiceAudio) {
+    frenchVoiceAudio.onended = null;
+    frenchVoiceAudio.onerror = null;
+    frenchVoiceAudio.pause();
+    frenchVoiceAudio.removeAttribute('src');
+    frenchVoiceAudio.load();
+    frenchVoiceAudio = null;
+  }
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
+  const audio = new Audio();
+  frenchVoiceAudio = audio;
+  audio.preload = 'auto';
+  // Google Translate rejects TTS requests that carry this site's address.
+  audio.referrerPolicy = 'no-referrer';
+  let index = 0;
+  let failed = false;
+
+  const fail = () => {
+    if (failed || token !== frenchVoiceToken) return;
+    failed = true;
+    speakWithBrowserVoice(chunks.join(' '), rate);
+  };
+
+  const playChunk = () => {
+    if (token !== frenchVoiceToken || failed || index >= chunks.length) return;
+    const chunk = chunks[index];
+    index += 1;
+    audio.src = googleTranslateTtsUrl(chunk);
+    const pending = audio.play();
+    if (pending && typeof pending.catch === 'function') pending.catch(() => fail());
+  };
+
+  audio.onloadedmetadata = () => {
+    if (token === frenchVoiceToken) audio.playbackRate = rate;
+  };
+  audio.onended = () => {
+    if (token !== frenchVoiceToken || failed) return;
+    if (index < chunks.length) playChunk();
+  };
+  audio.onerror = () => fail();
+  playChunk();
 }
 
 // Pre-load voices
