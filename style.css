@@ -4724,11 +4724,12 @@ body.view-is-book .sidebar-tip-card {
   gap: 8px;
 }
 
+.book-header-actions .btn {
+  text-decoration: none;
+}
+
 .book-workspace-layout {
-  display: grid;
-  grid-template-columns: 1fr 390px;
-  gap: 12px;
-  align-items: start;
+  display: block;
 }
 
 /* PDF Viewer Pane */
@@ -4915,6 +4916,8 @@ body.view-is-book .sidebar-tip-card {
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
+  width: min(920px, 100%);
+  margin-inline: auto;
   height: calc(100vh - 128px);
   max-height: calc(100vh - 128px);
   min-height: 520px;

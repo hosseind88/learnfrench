@@ -30,7 +30,6 @@
   
   <!-- Optional CDN libs: async so a dead network cannot block buttons -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" async></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" async></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async></script>
 </head>
 <body class="theme-light">
@@ -111,7 +110,7 @@
 
         <button class="nav-item" data-view="book">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-          <span>کتاب و صوت درس‌ها</span>
+          <span>صوت درس‌ها</span>
         </button>
 
         <button class="nav-item" data-view="vocab">
@@ -219,7 +218,7 @@
               </button>
               <button class="btn btn-outline" id="dashBookBtn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                <span>کتاب PDF و صوت‌ها</span>
+                <span>صوت درس‌ها</span>
               </button>
             </div>
           </div>
@@ -1046,123 +1045,20 @@
       <section id="view-book" class="app-view">
         <div class="view-header-row">
           <div>
-            <h1 class="view-main-title">کتاب اصلی و صوت درس‌ها · Livre & Audio</h1>
-            <p class="view-main-desc">مشاهده کتاب Communication essentielle du français A1، پخش صوت‌های هر تمرین و تدریس هوشمند با AI</p>
+            <h1 class="view-main-title">صوت درس‌ها</h1>
+            <p class="view-main-desc">فایل‌های صوتی سطح A1 و A2، با متن فرانسوی و ترجمه فارسی · <span id="dockAudioCount">233</span> فایل</p>
           </div>
           <div class="book-header-actions">
-            <button class="btn btn-outline btn-sm" id="toggleBookAudioPanelBtn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
-              <span id="bookAudioToggleLabel">لیست صوت‌ها (۲۳۳ قطعه)</span>
-            </button>
-            <button class="btn btn-primary btn-sm" id="bookAiAnalyzePageBtn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
-              <span>تدریس این صفحه با AI</span>
-            </button>
+            <a class="btn btn-outline btn-sm" id="openBookPdfLink" href="https://france.s3.ir-thr-at1.arvanstorage.ir/Communication%20essentielle%20du%20franc%CC%A7ais%20A1.pdf?versionId=" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              <span>باز کردن کتاب</span>
+            </a>
           </div>
         </div>
 
         <div class="book-workspace-layout" id="bookWorkspaceLayout">
-          <!-- PDF Viewer Column -->
-          <div class="book-pdf-pane">
-            <!-- PDF Toolbar -->
-            <div class="card book-pdf-toolbar">
-              <div class="pdf-nav-group">
-                <button class="icon-btn-sm" id="pdfPrevPageBtn" title="صفحه قبل (کلید ←)">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
-                <div class="pdf-page-indicator">
-                  <span>صفحه</span>
-                  <input type="number" id="pdfPageInput" min="1" max="153" value="1" class="pdf-page-input">
-                  <span>از <strong id="pdfTotalPages">...</strong></span>
-                </div>
-                <button class="icon-btn-sm" id="pdfNextPageBtn" title="صفحه بعد (کلید →)">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </button>
-              </div>
-
-              <div class="pdf-jump-group">
-                <select id="pdfLessonJumpSelect" class="custom-select pdf-lesson-select">
-                  <option value="">پرش به درس یا بخش...</option>
-                </select>
-              </div>
-
-              <div class="pdf-zoom-group">
-                <button class="icon-btn-sm" id="pdfZoomOutBtn" title="کوچک‌نمایی (-)">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
-                </button>
-                <span class="pdf-zoom-level" id="pdfZoomLevel">100%</span>
-                <button class="icon-btn-sm" id="pdfZoomInBtn" title="بزرگ‌نمایی (+)">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
-                </button>
-                <button class="btn btn-outline btn-sm" id="pdfFitWidthBtn" title="تنظیم به عرض صفحه">
-                  عرض صفحه
-                </button>
-                <button class="btn btn-outline btn-sm" id="pdfFullscreenBtn" title="حالت تمام‌صفحه کتاب (کلید F)">
-                  <svg class="fs-enter-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
-                  <svg class="fs-exit-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path></svg>
-                  <span id="pdfFullscreenLabel">تمام‌صفحه</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- PDF Canvas Viewport Area -->
-            <div class="book-pdf-viewport" id="bookPdfViewport">
-              <div class="pdf-loading-overlay" id="pdfLoadingOverlay">
-                <div class="fc-ai-spinner" style="width: 36px; height: 36px; border-width: 3px;"></div>
-                <div class="pdf-loading-text" id="pdfLoadingText">در حال بارگذاری کتاب فرانسوی...</div>
-              </div>
-              <div class="pdf-canvas-wrapper" id="pdfCanvasWrapper">
-                <canvas id="pdfRenderCanvas"></canvas>
-              </div>
-            </div>
-          </div>
-
-          <!-- Side Dock: AI Explanation & Audio Drawer -->
           <div class="book-side-dock" id="bookSideDock">
-            <!-- Tabs for Side Dock -->
-            <div class="book-dock-tabs">
-              <button class="dock-tab active" id="dockTabAi" data-dock="ai">
-                <span>✨ تدریس و گرامر (AI)</span>
-              </button>
-              <button class="dock-tab" id="dockTabAudio" data-dock="audio">
-                <span>🎧 صوت‌های کتاب (<span id="dockAudioCount">233</span>)</span>
-              </button>
-            </div>
-
-            <!-- Dock Pane 1: AI Explanation -->
-            <div class="dock-pane active" id="dockPaneAi">
-              <div class="dock-ai-header">
-                <div class="dock-ai-title-wrap">
-                  <div class="badge-tag">تدریس هوشمند صفحه</div>
-                  <h3 class="dock-ai-heading" id="dockAiHeading">تحلیل صفحه ۱</h3>
-                </div>
-                <div class="dock-ai-actions">
-                  <button class="btn btn-outline btn-sm" id="dockAiRefreshBtn" title="تحلیل مجدد صفحه با هوش مصنوعی">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                    <span>تحلیل مجدد</span>
-                  </button>
-                  <button class="btn btn-outline btn-sm" id="dockAiCopyBtn" title="کپی متن تحلیل">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  </button>
-                </div>
-              </div>
-
-              <div class="dock-ai-content" id="dockAiContent">
-                <div class="dock-ai-empty" id="dockAiEmpty">
-                  <div class="dock-ai-empty-icon">📖✨</div>
-                  <h4>آموزش داستان‌ها، مکالمه و گرامر صفحه</h4>
-                  <p>هوش مصنوعی تصویر این صفحه را بررسی کرده و داستان مکالمات، اصطلاحات کلیدی، قواعد گرامری و پاسخ تمرین‌ها را با ترجمه دقیق فارسی برای شما تشریح می‌کند.</p>
-                  <button class="btn btn-primary" id="dockAiAnalyzeBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
-                    <span>تحلیل و تدریس این صفحه با AI</span>
-                  </button>
-                </div>
-                <div class="dock-ai-body markdown-rendered" id="dockAiBody" style="display: none;"></div>
-              </div>
-            </div>
-
-            <!-- Dock Pane 2: Audio Tracks Playlist & Player -->
-            <div class="dock-pane" id="dockPaneAudio">
+            <div class="dock-pane active" id="dockPaneAudio">
               <!-- Level Filter Tabs (A1 / A2) -->
               <div class="dock-audio-level-tabs" id="audioLevelTabs">
                 <button class="tab-chip active" data-level="A1">سطح A1 (۲۳۳ فایل)</button>
@@ -1367,7 +1263,7 @@
     </button>
     <button class="mobile-nav-item" data-view="book">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-      <span>کتاب</span>
+      <span>صوت</span>
     </button>
     <button class="mobile-nav-item" data-view="vocab">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>

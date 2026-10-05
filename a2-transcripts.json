@@ -269,28 +269,28 @@
       "id": "piste_003",
       "track": 3,
       "filename": "piste_003.mp3",
-      "title": "صفحه ۱۵ - Exercice 2",
-      "category": "dialogue",
+      "title": "صفحه ۱۳ - Grammaire : La place de l'adjectif",
+      "category": "grammar",
       "lines": [
         {
-          "fr": "– Bonjour monsieur. Je viens rapporter ce manteau, il ne me va pas.",
-          "fa": "– سلام آقا. من آمده‌ام این پالتو را پس بدهم، اندازه‌ام نیست."
+          "fr": "Page 13, Grammaire : La place de l'adjectif",
+          "fa": "صفحه ۱۳، دستور زبان: جایگاه صفت"
         },
         {
-          "fr": "– D'accord madame. Nous avons d'autres tailles si vous souhaitez échanger.",
-          "fa": "– بسیار خب خانم. اگر مایل به تعویض هستید سایزهای دیگری هم داریم."
+          "fr": "Des commentaires positifs",
+          "fa": "نظرات مثبت"
         },
         {
-          "fr": "– Non, je voudrais un remboursement s'il vous plaît.",
-          "fa": "– نه، لطفاً بازپرداخت وجه (استرداد پول) می‌خواهم."
+          "fr": "Un lave-linge pas cher",
+          "fa": "یک ماشین لباس‌شویی ارزان"
         },
         {
-          "fr": "– Très bien. Vous avez le ticket de caisse ?",
-          "fa": "– بسیار خوب. رسید خرید را همراه دارید؟"
+          "fr": "Une nouvelle machine à laver",
+          "fa": "یک ماشین لباس‌شویی جدید"
         },
         {
-          "fr": "– Oui, tenez.",
-          "fa": "– بله، بفرمایید."
+          "fr": "En très bon état",
+          "fa": "در وضعیت بسیار خوب"
         }
       ]
     },

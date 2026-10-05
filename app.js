@@ -4766,7 +4766,6 @@ function initBookView() {
   renderAudioTranscript(getCurrentTrackForLevel(getActiveAudioLevel()), getActiveAudioLevel());
   setupBookAudio();
   setupBookSideDock();
-  loadBookPdf();
 
   loadA2Transcripts().then(data => {
     if (!data) return;
@@ -5679,6 +5678,7 @@ function setupBookEventListeners() {
   // Keyboard navigation for PDF reader (Left/Right arrow, F for fullscreen, Esc to exit)
   window.addEventListener('keydown', (e) => {
     if (state.currentView !== 'book') return;
+    if (!document.querySelector('.book-pdf-pane')) return;
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
 
     if (e.key === 'ArrowRight') {
