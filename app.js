@@ -4669,10 +4669,10 @@ function renderAudioTranscript(trackNum, level) {
         if (line.section) {
           return `<div class="transcript-section-badge"><span>${escapeHtml(line.section)}</span></div>`;
         }
-        if (line.fr && line.fa) {
+        if (line.fr || line.fa) {
           return `<div class="transcript-line">
-            <div class="transcript-fr" dir="ltr">${escapeHtml(line.fr)}</div>
-            <div class="transcript-fa" dir="rtl">${escapeHtml(line.fa)}</div>
+            ${line.fr ? `<div class="transcript-fr" dir="ltr">${escapeHtml(line.fr)}</div>` : ''}
+            ${line.fa ? `<div class="transcript-fa" dir="rtl">${escapeHtml(line.fa)}</div>` : ''}
           </div>`;
         }
         return '';
@@ -5212,6 +5212,11 @@ Rules:
 // ---------------------------------------------------------------------------
 // Book Audio Engine & Playlist
 // ---------------------------------------------------------------------------
+let currentAudioLoadToken = 0;
+let bookAudioActiveLoadToken = 0;
+let bookAudioAutoplayRequested = false;
+let bookAudioLoadFailed = false;
+
 function setupBookAudio() {
   if (!bookAudio) {
     bookAudio = new Audio();
@@ -5242,6 +5247,7 @@ function setupBookAudio() {
     });
 
     bookAudio.addEventListener('pause', () => {
+      bookAudioAutoplayRequested = false;
       state.book.isPlaying = false;
       updatePlayPauseButtonUi(false);
     });
@@ -5258,18 +5264,20 @@ function setupBookAudio() {
     });
 
     bookAudio.addEventListener('error', (e) => {
+      // Ignore stale error events from a previous (superseded) load
+      if (bookAudioActiveLoadToken !== currentAudioLoadToken || !bookAudio.error) return;
       console.warn('Audio playback error, trying local fallback...', e);
       const level = getActiveAudioLevel();
       const track = getCurrentTrackForLevel(level);
       const nextSrc = bookAudioSourceQueue.shift();
       if (nextSrc) {
         bookAudio.src = nextSrc;
-        if (state.book.isPlaying || bookAudio.autoplayRequested) {
+        if (state.book.isPlaying || bookAudioAutoplayRequested) {
           bookAudio.play().catch(() => {});
         }
       } else if (bookAudio.getAttribute('src')) {
-        bookAudio.audioLoadFailed = true;
-        if (bookAudio.autoplayRequested) {
+        bookAudioLoadFailed = true;
+        if (bookAudioAutoplayRequested) {
           showAudioLoadFailedToast(track, level);
         }
       }
@@ -5391,9 +5399,15 @@ function playAudioTrack(trackNum, autoPlay = true) {
 
   const [primarySrc, ...fallbackSrcs] = getAudioSources(trackNum, level);
   bookAudioSourceQueue = fallbackSrcs;
-  bookAudio.autoplayRequested = !!autoPlay;
-  bookAudio.audioLoadFailed = false;
+  const loadToken = ++currentAudioLoadToken;
+  bookAudioActiveLoadToken = loadToken;
+  bookAudioAutoplayRequested = !!autoPlay;
+  bookAudioLoadFailed = false;
   bookAudioDuration = 0;
+  const curTimeEl = document.getElementById('playerCurrentTime');
+  if (curTimeEl) curTimeEl.textContent = '00:00';
+  const seekEl = document.getElementById('playerSeekSlider');
+  if (seekEl) seekEl.value = 0;
   bookAudio.src = primarySrc;
   bookAudio.playbackRate = state.book.trackSpeed || 1.0;
 
@@ -5402,6 +5416,7 @@ function playAudioTrack(trackNum, autoPlay = true) {
 
   if (autoPlay) {
     bookAudio.play().then(() => {
+      if (loadToken !== currentAudioLoadToken) return;
       updatePlayPauseButtonUi(true);
     }).catch(err => {
       console.warn('AutoPlay blocked or failed, trying fallback...', err);
@@ -5433,10 +5448,10 @@ function toggleAudioPlayPause() {
   if (bookAudio.paused) {
     const level = getActiveAudioLevel();
     const track = getCurrentTrackForLevel(level);
-    bookAudio.autoplayRequested = true;
+    bookAudioAutoplayRequested = true;
     // Source already failed and all fallbacks are exhausted: give feedback instead of silent no-op
-    if (bookAudio.audioLoadFailed || (bookAudio.error && bookAudioSourceQueue.length === 0)) {
-      bookAudio.audioLoadFailed = true;
+    if (bookAudioLoadFailed || (bookAudio.error && bookAudioSourceQueue.length === 0)) {
+      bookAudioLoadFailed = true;
       showAudioLoadFailedToast(track, level);
       return;
     }
@@ -5444,7 +5459,7 @@ function toggleAudioPlayPause() {
       if (err && err.name === 'AbortError') return;
       // A fallback source is still pending; the error handler will deal with it
       if (bookAudioSourceQueue.length > 0) return;
-      bookAudio.audioLoadFailed = true;
+      bookAudioLoadFailed = true;
       showAudioLoadFailedToast(track, level);
     });
   } else {

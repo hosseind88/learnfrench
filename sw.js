@@ -100,6 +100,22 @@ self.addEventListener('activate', (event) => {
 async function handleFetch(request) {
   const url = new URL(request.url);
   const cache = await caches.open(CACHE_NAME);
+
+  // Network-first for transcript data so new batches show up without SW version bumps
+  if (url.pathname.endsWith('/a2-transcripts.json')) {
+    try {
+      const response = await fetchWithTimeout(request, 4000);
+      if (response && response.ok && response.type !== 'opaque') {
+        cache.put(request, response.clone());
+        return response;
+      }
+    } catch (err) {
+      /* fall back to cache */
+    }
+    const fallback = await cache.match(request, { ignoreSearch: true });
+    if (fallback) return fallback;
+    return new Response('', { status: 503, statusText: 'Offline' });
+  }
   const cached = await cache.match(request, { ignoreSearch: true });
 
   if (cached) return cached;
