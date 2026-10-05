@@ -4549,7 +4549,8 @@ function applyImportedSnapshot(parsed) {
 // ==========================================================================
 // 10. LIVRE & AUDIO ENGINE (PDF Book Viewer, AI Vision Teacher, Audio Player)
 // ==========================================================================
-const ARVAN_AUDIO_BASE = 'https://france.s3.ir-thr-at1.arvanstorage.ir/Communication_essentielle_du_franc%CC%A7ais_A1_Audio%2F';
+const GITHUB_AUDIO_BASE_JSDELIVR = 'https://cdn.jsdelivr.net/gh/hosseind88/learnfrench@main/';
+const GITHUB_AUDIO_BASE_RAW = 'https://raw.githubusercontent.com/hosseind88/learnfrench/main/';
 const TOTAL_AUDIO_TRACKS = 233;
 
 let bookPdfDoc = null;
@@ -4629,14 +4630,19 @@ function getAudioFileName(trackNum, level) {
 function getAudioSources(trackNum, level) {
   if (level === 'A2') {
     const pad3 = String(trackNum).padStart(3, '0');
+    const rel = `audio/a2/piste_${pad3}.mp3`;
     return [
+      `${GITHUB_AUDIO_BASE_JSDELIVR}${rel}`,
+      `${GITHUB_AUDIO_BASE_RAW}${rel}`,
       `./audio/a2/piste_${pad3}.mp3`,
       `./audio/piste_${pad3}.mp3`,
       `./a2-audio/piste_${pad3}.mp3`
     ];
   }
+  const relA1 = `audio/piste${trackNum}.mp3`;
   return [
-    `${ARVAN_AUDIO_BASE}piste${trackNum}.mp3`,
+    `${GITHUB_AUDIO_BASE_JSDELIVR}${relA1}`,
+    `${GITHUB_AUDIO_BASE_RAW}${relA1}`,
     `./audio/piste${trackNum}.mp3`
   ];
 }
@@ -5434,9 +5440,9 @@ function showAudioLoadFailedToast(track, level) {
   lastAudioFailToastAt = now;
   if (level === 'A2') {
     const pad = String(track).padStart(3, '0');
-    showToast(`فایل صوتی piste_${pad}.mp3 در پوشه محلی یافت نشد. لطفاً فایل را در پوشه audio/a2 قرار دهید.`);
+    showToast(`خطا در پخش piste_${pad}.mp3 از گیت‌هاب. اتصال اینترنت را بررسی کنید.`);
   } else {
-    showToast(`خطا در پخش فایل صوتی piste ${track}`);
+    showToast(`خطا در پخش فایل صوتی piste${track}.mp3 از گیت‌هاب. اتصال اینترنت را بررسی کنید.`);
   }
 }
 
