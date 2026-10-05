@@ -5205,6 +5205,215 @@ body.view-is-book .sidebar-tip-card {
   transform: scale(1.08);
 }
 
+/* Audio Level Tabs (A1 / A2) */
+.dock-audio-level-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  -webkit-overflow-scrolling: touch;
+}
+
+.dock-audio-level-tabs .tab-chip {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: center;
+}
+
+/* Synchronized Transcript Card */
+.book-audio-transcript-card {
+  background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(37, 99, 235, 0.04) 100%);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background var(--transition-fast);
+}
+
+.transcript-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.book-audio-transcript-card:not(.is-collapsed) .transcript-header {
+  border-bottom-color: var(--border-subtle);
+}
+
+.transcript-header:hover {
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.transcript-title-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.transcript-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--french-blue);
+  background: var(--french-blue-light);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+}
+
+.transcript-track-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transcript-toggle-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.transcript-toggle-btn:hover {
+  background: var(--bg-surface);
+  color: var(--french-blue);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.transcript-toggle-btn svg {
+  transition: transform var(--transition-fast);
+}
+
+.book-audio-transcript-card.is-collapsed .transcript-toggle-btn svg {
+  transform: rotate(-180deg);
+}
+
+.transcript-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 12px 14px 14px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-medium) transparent;
+  transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1), padding 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
+.transcript-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.transcript-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.transcript-body::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: var(--radius-full);
+}
+
+.transcript-body::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+.book-audio-transcript-card.is-collapsed .transcript-body {
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.transcript-line {
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border: 1px solid transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.transcript-line:hover {
+  background: var(--bg-surface);
+  border-color: var(--border-subtle);
+  transform: translateX(-2px);
+}
+
+.transcript-fr {
+  font-family: var(--font-fr);
+  direction: ltr;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.transcript-fa {
+  direction: rtl;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-align: right;
+  margin-top: 2px;
+  line-height: 1.5;
+}
+
+.transcript-section-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 4px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 4px 0;
+  background: linear-gradient(180deg, var(--bg-surface) 60%, transparent);
+}
+
+.transcript-section-badge span {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--french-blue);
+  background: var(--french-blue-light);
+  border: 1px dashed rgba(37, 99, 235, 0.35);
+  border-radius: var(--radius-full);
+  padding: 5px 14px;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.transcript-empty-state {
+  padding: 28px 16px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
 /* Audio Search & Tracks List */
 .dock-audio-search-wrap {
   padding: 10px 14px;
@@ -5328,6 +5537,31 @@ body.view-is-book .sidebar-tip-card {
   .pdf-lesson-select {
     max-width: 100%;
     width: 100%;
+  }
+
+  .dock-audio-level-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .dock-audio-level-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dock-audio-level-tabs .tab-chip {
+    flex: 0 0 auto;
+    font-size: 0.78rem;
+    padding: 7px 12px;
+  }
+
+  .transcript-track-title {
+    white-space: normal;
+    font-size: 0.8rem;
+  }
+
+  .transcript-body {
+    max-height: 220px;
   }
 }
 
