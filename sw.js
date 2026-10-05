@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v31';
+const CACHE_NAME = 'francais-facile-v32';
 
 const LOCAL_ASSETS = [
   './',
@@ -17,7 +17,8 @@ const LOCAL_ASSETS = [
   './favicon-32x32.png',
   './favicon-16x16.png',
   './learning-scenes/scenes.json',
-  './learning-scenes/gloss.js'
+  './learning-scenes/gloss.js',
+  './a2-transcripts.json'
 ];
 
 const OPTIONAL_ASSETS = [

@@ -4557,6 +4557,162 @@ let isPdfRendering = false;
 let pendingPdfPage = null;
 let bookAudio = null;
 let bookAudioDuration = 0;
+let bookAudioSourceQueue = [];
+let a2TranscriptsData = null;
+let a2TranscriptsPromise = null;
+const DEFAULT_A2_TRACK_COUNT = 12;
+
+async function loadA2Transcripts() {
+  if (a2TranscriptsData) return a2TranscriptsData;
+  if (a2TranscriptsPromise) return a2TranscriptsPromise;
+  a2TranscriptsPromise = fetch('a2-transcripts.json')
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      a2TranscriptsData = data;
+      return data;
+    })
+    .catch(err => {
+      console.warn('Failed to load A2 transcripts', err);
+      return null;
+    })
+    .finally(() => {
+      a2TranscriptsPromise = null;
+    });
+  return a2TranscriptsPromise;
+}
+
+function getA2TrackEntries() {
+  const raw = a2TranscriptsData?.tracks;
+  if (!raw) return [];
+  const list = Array.isArray(raw) ? raw : Object.values(raw);
+  return list
+    .filter(t => t && Number.isFinite(Number(t.track)))
+    .map(t => ({ ...t, track: Number(t.track) }))
+    .sort((a, b) => a.track - b.track);
+}
+
+function findA2Track(trackNum) {
+  const raw = a2TranscriptsData?.tracks;
+  if (!raw) return null;
+  const key = `piste_${String(trackNum).padStart(3, '0')}`;
+  if (!Array.isArray(raw) && raw[key]) return raw[key];
+  const list = Array.isArray(raw) ? raw : Object.values(raw);
+  return list.find(t => t && Number(t.track) === Number(trackNum)) || null;
+}
+
+function getAudioMaxTrack(level) {
+  if (level === 'A2') {
+    const entries = getA2TrackEntries();
+    return entries.length ? entries[entries.length - 1].track : DEFAULT_A2_TRACK_COUNT;
+  }
+  return TOTAL_AUDIO_TRACKS;
+}
+
+function getActiveAudioLevel() {
+  return state.book?.audioLevel === 'A2' ? 'A2' : 'A1';
+}
+
+function getCurrentTrackForLevel(level) {
+  if (level === 'A2') return state.book.currentTrackA2 || 1;
+  return state.book.currentTrackA1 || state.book.currentTrack || 1;
+}
+
+function getAudioFileName(trackNum, level) {
+  return level === 'A2'
+    ? `piste_${String(trackNum).padStart(3, '0')}.mp3`
+    : `piste${trackNum}.mp3`;
+}
+
+function getAudioSources(trackNum, level) {
+  if (level === 'A2') {
+    const pad3 = String(trackNum).padStart(3, '0');
+    return [
+      `./a2-audio/piste_${pad3}.mp3`,
+      `./audio/a2/piste_${pad3}.mp3`,
+      `./audio/piste_${pad3}.mp3`
+    ];
+  }
+  return [
+    `${ARVAN_AUDIO_BASE}piste${trackNum}.mp3`,
+    `./audio/piste${trackNum}.mp3`
+  ];
+}
+
+function updateAudioLevelTabsUi() {
+  const level = getActiveAudioLevel();
+  document.querySelectorAll('#audioLevelTabs .tab-chip').forEach(chip => {
+    chip.classList.toggle('active', chip.dataset.level === level);
+  });
+}
+
+function applyTranscriptCollapsedState() {
+  const section = document.getElementById('audioTranscriptSection');
+  if (section) section.classList.toggle('is-collapsed', !!state.book.isTranscriptCollapsed);
+}
+
+function renderAudioTranscript(trackNum, level) {
+  const titleEl = document.getElementById('transcriptTrackTitle');
+  const bodyEl = document.getElementById('audioTranscriptBody');
+  const fileName = getAudioFileName(trackNum, level);
+  if (titleEl) titleEl.textContent = fileName;
+  if (!bodyEl) return;
+
+  const emptyState = msg => `<div class="transcript-empty-state">${msg}</div>`;
+
+  if (level === 'A2') {
+    const track = a2TranscriptsData?.tracks ? findA2Track(trackNum) : null;
+    if (track && Array.isArray(track.lines) && track.lines.length) {
+      bodyEl.innerHTML = track.lines.map(line => {
+        if (line.section) {
+          return `<div class="transcript-section-badge"><span>${escapeHtml(line.section)}</span></div>`;
+        }
+        if (line.fr && line.fa) {
+          return `<div class="transcript-line">
+            <div class="transcript-fr" dir="ltr">${escapeHtml(line.fr)}</div>
+            <div class="transcript-fa" dir="rtl">${escapeHtml(line.fa)}</div>
+          </div>`;
+        }
+        return '';
+      }).join('');
+      if (titleEl) titleEl.textContent = track.title || fileName;
+    } else {
+      bodyEl.innerHTML = emptyState('متن و ترجمه برای این فایل صوتی هنوز اضافه نشده است.');
+    }
+  } else {
+    bodyEl.innerHTML = emptyState('متن و ترجمه برای فایل‌های صوتی سطح A1 ثبت نشده است.');
+  }
+  bodyEl.scrollTop = 0;
+}
+
+function switchAudioLevel(level) {
+  level = level === 'A2' ? 'A2' : 'A1';
+  state.book.audioLevel = level;
+  saveState();
+  if (bookAudio && !bookAudio.paused) bookAudio.pause();
+  updateAudioLevelTabsUi();
+
+  const searchEl = document.getElementById('audioTrackSearchInput');
+  if (searchEl) searchEl.value = '';
+  renderAudioTracksList();
+
+  const trackNum = getCurrentTrackForLevel(level);
+  state.book.currentTrack = trackNum;
+  playAudioTrack(trackNum, false);
+
+  if (level === 'A2' && !a2TranscriptsData) {
+    loadA2Transcripts().then(() => {
+      if (getActiveAudioLevel() !== 'A2') return;
+      renderAudioTracksList(searchEl ? searchEl.value : '');
+      renderAudioTranscript(getCurrentTrackForLevel('A2'), 'A2');
+      const nameEl = document.getElementById('currentTrackName');
+      const track = findA2Track(getCurrentTrackForLevel('A2'));
+      if (nameEl && track?.title) nameEl.textContent = track.title;
+    });
+  }
+}
 
 const BOOK_LESSON_PAGES = [
   { page: 1, label: 'جلد کتاب (Couverture)' },
@@ -4598,11 +4754,27 @@ function initBookView() {
     };
   }
 
+  if (!state.book.audioLevel) state.book.audioLevel = 'A1';
+  if (!state.book.currentTrackA1) state.book.currentTrackA1 = state.book.currentTrack || 1;
+  if (!state.book.currentTrackA2) state.book.currentTrackA2 = 1;
+  if (state.book.isTranscriptCollapsed === undefined) state.book.isTranscriptCollapsed = false;
+
   populateLessonJumpSelect();
+  updateAudioLevelTabsUi();
+  applyTranscriptCollapsedState();
   renderAudioTracksList();
+  renderAudioTranscript(getCurrentTrackForLevel(getActiveAudioLevel()), getActiveAudioLevel());
   setupBookAudio();
   setupBookSideDock();
   loadBookPdf();
+
+  loadA2Transcripts().then(data => {
+    if (!data) return;
+    const searchEl = document.getElementById('audioTrackSearchInput');
+    renderAudioTracksList(searchEl ? searchEl.value : '');
+    const level = getActiveAudioLevel();
+    renderAudioTranscript(getCurrentTrackForLevel(level), level);
+  });
 }
 
 function populateLessonJumpSelect() {
@@ -5066,7 +5238,7 @@ function setupBookAudio() {
     bookAudio.addEventListener('play', () => {
       state.book.isPlaying = true;
       updatePlayPauseButtonUi(true);
-      updateActiveTrackInList(state.book.currentTrack);
+      updateActiveTrackInList(getCurrentTrackForLevel(getActiveAudioLevel()));
     });
 
     bookAudio.addEventListener('pause', () => {
@@ -5078,19 +5250,25 @@ function setupBookAudio() {
       state.book.isPlaying = false;
       updatePlayPauseButtonUi(false);
       // Auto play next track
-      if (state.book.currentTrack < TOTAL_AUDIO_TRACKS) {
-        playAudioTrack(state.book.currentTrack + 1, true);
+      const endedLevel = getActiveAudioLevel();
+      const endedTrack = getCurrentTrackForLevel(endedLevel);
+      if (endedTrack < getAudioMaxTrack(endedLevel)) {
+        playAudioTrack(endedTrack + 1, true);
       }
     });
 
     bookAudio.addEventListener('error', (e) => {
       console.warn('Audio playback error, trying local fallback...', e);
-      const track = state.book.currentTrack;
-      if (!bookAudio.src.includes('/audio/')) {
-        bookAudio.src = `./audio/piste${track}.mp3`;
-        bookAudio.play().catch(() => {});
-      } else {
-        showToast(`خطا در پخش فایل صوتی piste ${track}`);
+      const level = getActiveAudioLevel();
+      const track = getCurrentTrackForLevel(level);
+      const nextSrc = bookAudioSourceQueue.shift();
+      if (nextSrc) {
+        bookAudio.src = nextSrc;
+        if (state.book.isPlaying || bookAudio.autoplayRequested) {
+          bookAudio.play().catch(() => {});
+        }
+      } else if (bookAudio.autoplayRequested && bookAudio.getAttribute('src')) {
+        showToast(`فایل صوتی ${getAudioFileName(track, level)} در این دستگاه یافت نشد`);
       }
     });
   }
@@ -5119,17 +5297,29 @@ function renderAudioTracksList(filterQuery = '') {
   const list = document.getElementById('audioTracksList');
   if (!list) return;
 
+  const level = getActiveAudioLevel();
   const q = (filterQuery || '').trim().toLowerCase();
-  const current = state.book.currentTrack || 1;
+  const current = getCurrentTrackForLevel(level);
 
-  let tracks = [];
-  for (let i = 1; i <= TOTAL_AUDIO_TRACKS; i++) {
-    const name = `piste ${i}`;
-    const file = `piste${i}.mp3`;
-    if (!q || name.includes(q) || String(i) === q || file.includes(q)) {
-      tracks.push(i);
+  let allTracks = [];
+  if (level === 'A2') {
+    const entries = getA2TrackEntries();
+    if (entries.length) {
+      allTracks = entries;
+    } else {
+      for (let i = 1; i <= DEFAULT_A2_TRACK_COUNT; i++) allTracks.push({ track: i });
     }
+  } else {
+    for (let i = 1; i <= TOTAL_AUDIO_TRACKS; i++) allTracks.push({ track: i });
   }
+
+  const tracks = allTracks.filter(t => {
+    if (!q) return true;
+    const num = t.track;
+    const file = getAudioFileName(num, level).toLowerCase();
+    const title = (t.title || '').toLowerCase();
+    return String(num) === q || `piste ${num}`.includes(q) || file.includes(q) || title.includes(q);
+  });
 
   const countEl = document.getElementById('dockAudioCount');
   if (countEl) countEl.textContent = tracks.length;
@@ -5139,15 +5329,19 @@ function renderAudioTracksList(filterQuery = '') {
     return;
   }
 
-  list.innerHTML = tracks.map(num => {
+  list.innerHTML = tracks.map(t => {
+    const num = t.track;
     const isActive = num === current;
     const isPlaying = isActive && state.book.isPlaying;
+    const desc = level === 'A2'
+      ? (t.title ? escapeHtml(t.title) : `فایل صوتی شماره ${num} کتاب A2`)
+      : `فایل صوتی شماره ${num} کتاب A1`;
     return `
       <div class="audio-track-item ${isActive ? 'is-active' : ''} ${isPlaying ? 'is-playing' : ''}" data-track="${num}">
         <div class="track-num-badge">#${num}</div>
         <div class="track-info-col">
-          <div class="track-title" dir="ltr">piste${num}.mp3</div>
-          <div class="track-desc">فایل صوتی شماره ${num} کتاب A1</div>
+          <div class="track-title" dir="ltr">${getAudioFileName(num, level)}</div>
+          <div class="track-desc">${desc}</div>
         </div>
         <button class="track-play-btn" data-track="${num}" title="پخش این فایل">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
@@ -5174,19 +5368,32 @@ function updateActiveTrackInList(trackNum) {
 }
 
 function playAudioTrack(trackNum, autoPlay = true) {
-  trackNum = Math.max(1, Math.min(trackNum, TOTAL_AUDIO_TRACKS));
+  const level = getActiveAudioLevel();
+  trackNum = Math.max(1, Math.min(trackNum, getAudioMaxTrack(level)));
   state.book.currentTrack = trackNum;
+  if (level === 'A2') {
+    state.book.currentTrackA2 = trackNum;
+  } else {
+    state.book.currentTrackA1 = trackNum;
+  }
   saveState();
 
   setupBookAudio();
 
   const titleEl = document.getElementById('currentTrackName');
-  if (titleEl) titleEl.textContent = `piste${trackNum}.mp3`;
+  if (titleEl) {
+    const a2Track = level === 'A2' ? findA2Track(trackNum) : null;
+    titleEl.textContent = a2Track?.title || getAudioFileName(trackNum, level);
+  }
 
-  const audioUrl = `${ARVAN_AUDIO_BASE}piste${trackNum}.mp3`;
-  bookAudio.src = audioUrl;
+  const [primarySrc, ...fallbackSrcs] = getAudioSources(trackNum, level);
+  bookAudioSourceQueue = fallbackSrcs;
+  bookAudio.autoplayRequested = !!autoPlay;
+  bookAudioDuration = 0;
+  bookAudio.src = primarySrc;
   bookAudio.playbackRate = state.book.trackSpeed || 1.0;
 
+  renderAudioTranscript(trackNum, level);
   updateActiveTrackInList(trackNum);
 
   if (autoPlay) {
@@ -5201,7 +5408,7 @@ function playAudioTrack(trackNum, autoPlay = true) {
 function toggleAudioPlayPause() {
   setupBookAudio();
   if (!bookAudio.src || bookAudio.src.endsWith('/')) {
-    playAudioTrack(state.book.currentTrack || 1, true);
+    playAudioTrack(getCurrentTrackForLevel(getActiveAudioLevel()), true);
     return;
   }
 
@@ -5363,8 +5570,8 @@ function setupBookEventListeners() {
   const audioSearch = document.getElementById('audioTrackSearchInput');
 
   if (playPauseBtn) playPauseBtn.onclick = toggleAudioPlayPause;
-  if (prevTrackBtn) prevTrackBtn.onclick = () => playAudioTrack((state.book.currentTrack || 1) - 1, true);
-  if (nextTrackBtn) nextTrackBtn.onclick = () => playAudioTrack((state.book.currentTrack || 1) + 1, true);
+  if (prevTrackBtn) prevTrackBtn.onclick = () => playAudioTrack(getCurrentTrackForLevel(getActiveAudioLevel()) - 1, true);
+  if (nextTrackBtn) nextTrackBtn.onclick = () => playAudioTrack(getCurrentTrackForLevel(getActiveAudioLevel()) + 1, true);
   if (rewind5Btn) rewind5Btn.onclick = () => skipAudioSeconds(-5);
   if (forward5Btn) forward5Btn.onclick = () => skipAudioSeconds(5);
   if (speedBtn) speedBtn.onclick = cycleAudioSpeed;
@@ -5373,6 +5580,35 @@ function setupBookEventListeners() {
   }
   if (audioSearch) {
     audioSearch.oninput = () => renderAudioTracksList(audioSearch.value);
+  }
+
+  // Audio level tabs (A1 / A2)
+  const levelTabs = document.getElementById('audioLevelTabs');
+  if (levelTabs) {
+    levelTabs.onclick = (e) => {
+      const chip = e.target.closest('.tab-chip');
+      if (!chip || !chip.dataset.level) return;
+      if (chip.dataset.level === getActiveAudioLevel()) return;
+      switchAudioLevel(chip.dataset.level);
+    };
+  }
+
+  // Transcript collapse / expand
+  const transcriptHeader = document.getElementById('audioTranscriptHeader');
+  const transcriptToggleBtn = document.getElementById('audioTranscriptToggleBtn');
+  const toggleTranscript = () => {
+    const section = document.getElementById('audioTranscriptSection');
+    if (!section) return;
+    const collapsed = section.classList.toggle('is-collapsed');
+    state.book.isTranscriptCollapsed = collapsed;
+    saveState();
+  };
+  if (transcriptHeader) transcriptHeader.onclick = toggleTranscript;
+  if (transcriptToggleBtn) {
+    transcriptToggleBtn.onclick = (e) => {
+      e.stopPropagation();
+      toggleTranscript();
+    };
   }
 
   // Window resize handler for PDF fit width
