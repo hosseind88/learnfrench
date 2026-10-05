@@ -4551,6 +4551,7 @@ function applyImportedSnapshot(parsed) {
 // ==========================================================================
 const GITHUB_RELEASE_AUDIO_BASE = 'https://github.com/hosseind88/learnfrench/releases/download/audio-v1/';
 const TOTAL_AUDIO_TRACKS = 233;
+const TOTAL_A2_TRACKS = 199;
 
 let bookPdfDoc = null;
 let isPdfRendering = false;
@@ -4605,8 +4606,7 @@ function findA2Track(trackNum) {
 
 function getAudioMaxTrack(level) {
   if (level === 'A2') {
-    const entries = getA2TrackEntries();
-    return entries.length ? entries[entries.length - 1].track : DEFAULT_A2_TRACK_COUNT;
+    return TOTAL_A2_TRACKS;
   }
   return TOTAL_AUDIO_TRACKS;
 }
@@ -5320,10 +5320,9 @@ function renderAudioTracksList(filterQuery = '') {
   let allTracks = [];
   if (level === 'A2') {
     const entries = getA2TrackEntries();
-    if (entries.length) {
-      allTracks = entries;
-    } else {
-      for (let i = 1; i <= DEFAULT_A2_TRACK_COUNT; i++) allTracks.push({ track: i });
+    const byTrack = new Map(entries.map(e => [e.track, e]));
+    for (let i = 1; i <= TOTAL_A2_TRACKS; i++) {
+      allTracks.push(byTrack.get(i) || { track: i });
     }
   } else {
     for (let i = 1; i <= TOTAL_AUDIO_TRACKS; i++) allTracks.push({ track: i });
