@@ -5246,7 +5246,7 @@ function setupBookAudio() {
     });
 
     bookAudio.addEventListener('pause', () => {
-      bookAudioAutoplayRequested = false;
+      if (!bookAudio.error) bookAudioAutoplayRequested = false;
       state.book.isPlaying = false;
       updatePlayPauseButtonUi(false);
     });
@@ -5263,16 +5263,19 @@ function setupBookAudio() {
     });
 
     bookAudio.addEventListener('error', (e) => {
-      // Ignore stale error events from a previous (superseded) load
+      // Ignore stale error events from a previous (superseded) load.
+      // Code 1 is an abort caused by switching src, not a missing file.
       if (bookAudioActiveLoadToken !== currentAudioLoadToken || !bookAudio.error) return;
+      if (bookAudio.error.code === 1) return;
       console.warn('Audio playback error, trying local fallback...', e);
       const level = getActiveAudioLevel();
       const track = getCurrentTrackForLevel(level);
       const nextSrc = bookAudioSourceQueue.shift();
       if (nextSrc) {
-        bookAudio.src = nextSrc;
-        if (state.book.isPlaying || bookAudioAutoplayRequested) {
-          bookAudio.play().catch(() => {});
+        bookAudio.src = new URL(nextSrc, document.baseURI).href;
+        if (bookAudioAutoplayRequested) {
+          const playAttempt = bookAudio.play();
+          if (playAttempt) playAttempt.catch(() => {});
         }
       } else if (bookAudio.getAttribute('src')) {
         bookAudioLoadFailed = true;
@@ -5407,7 +5410,7 @@ function playAudioTrack(trackNum, autoPlay = true) {
   if (curTimeEl) curTimeEl.textContent = '00:00';
   const seekEl = document.getElementById('playerSeekSlider');
   if (seekEl) seekEl.value = 0;
-  bookAudio.src = primarySrc;
+  bookAudio.src = new URL(primarySrc, document.baseURI).href;
   bookAudio.playbackRate = state.book.trackSpeed || 1.0;
 
   renderAudioTranscript(trackNum, level);
@@ -5447,13 +5450,12 @@ function toggleAudioPlayPause() {
   if (bookAudio.paused) {
     const level = getActiveAudioLevel();
     const track = getCurrentTrackForLevel(level);
-    bookAudioAutoplayRequested = true;
-    // Source already failed and all fallbacks are exhausted: give feedback instead of silent no-op
-    if (bookAudioLoadFailed || (bookAudio.error && bookAudioSourceQueue.length === 0)) {
-      bookAudioLoadFailed = true;
-      showAudioLoadFailedToast(track, level);
+    // A previous attempt failed. Load the file again instead of repeating the toast.
+    if (bookAudioLoadFailed || bookAudio.error) {
+      playAudioTrack(track, true);
       return;
     }
+    bookAudioAutoplayRequested = true;
     bookAudio.play().catch(err => {
       if (err && err.name === 'AbortError') return;
       // A fallback source is still pending; the error handler will deal with it
