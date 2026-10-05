@@ -4549,8 +4549,7 @@ function applyImportedSnapshot(parsed) {
 // ==========================================================================
 // 10. LIVRE & AUDIO ENGINE (PDF Book Viewer, AI Vision Teacher, Audio Player)
 // ==========================================================================
-const GITHUB_AUDIO_BASE_JSDELIVR = 'https://cdn.jsdelivr.net/gh/hosseind88/learnfrench@main/';
-const GITHUB_AUDIO_BASE_RAW = 'https://raw.githubusercontent.com/hosseind88/learnfrench/main/';
+const GITHUB_RELEASE_AUDIO_BASE = 'https://github.com/hosseind88/learnfrench/releases/download/audio-v1/';
 const TOTAL_AUDIO_TRACKS = 233;
 
 let bookPdfDoc = null;
@@ -4630,20 +4629,18 @@ function getAudioFileName(trackNum, level) {
 function getAudioSources(trackNum, level) {
   if (level === 'A2') {
     const pad3 = String(trackNum).padStart(3, '0');
-    const rel = `audio/a2/piste_${pad3}.mp3`;
+    const file = `piste_${pad3}.mp3`;
     return [
-      `${GITHUB_AUDIO_BASE_JSDELIVR}${rel}`,
-      `${GITHUB_AUDIO_BASE_RAW}${rel}`,
-      `./audio/a2/piste_${pad3}.mp3`,
-      `./audio/piste_${pad3}.mp3`,
-      `./a2-audio/piste_${pad3}.mp3`
+      `${GITHUB_RELEASE_AUDIO_BASE}${file}`,
+      `./audio/a2/${file}`,
+      `./audio/${file}`,
+      `./a2-audio/${file}`
     ];
   }
-  const relA1 = `audio/piste${trackNum}.mp3`;
+  const fileA1 = `piste${trackNum}.mp3`;
   return [
-    `${GITHUB_AUDIO_BASE_JSDELIVR}${relA1}`,
-    `${GITHUB_AUDIO_BASE_RAW}${relA1}`,
-    `./audio/piste${trackNum}.mp3`
+    `${GITHUB_RELEASE_AUDIO_BASE}${fileA1}`,
+    `./audio/${fileA1}`
   ];
 }
 
