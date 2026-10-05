@@ -4630,9 +4630,9 @@ function getAudioSources(trackNum, level) {
   if (level === 'A2') {
     const pad3 = String(trackNum).padStart(3, '0');
     return [
-      `./a2-audio/piste_${pad3}.mp3`,
       `./audio/a2/piste_${pad3}.mp3`,
-      `./audio/piste_${pad3}.mp3`
+      `./audio/piste_${pad3}.mp3`,
+      `./a2-audio/piste_${pad3}.mp3`
     ];
   }
   return [
@@ -5267,8 +5267,11 @@ function setupBookAudio() {
         if (state.book.isPlaying || bookAudio.autoplayRequested) {
           bookAudio.play().catch(() => {});
         }
-      } else if (bookAudio.autoplayRequested && bookAudio.getAttribute('src')) {
-        showToast(`فایل صوتی ${getAudioFileName(track, level)} در این دستگاه یافت نشد`);
+      } else if (bookAudio.getAttribute('src')) {
+        bookAudio.audioLoadFailed = true;
+        if (bookAudio.autoplayRequested) {
+          showAudioLoadFailedToast(track, level);
+        }
       }
     });
   }
@@ -5389,6 +5392,7 @@ function playAudioTrack(trackNum, autoPlay = true) {
   const [primarySrc, ...fallbackSrcs] = getAudioSources(trackNum, level);
   bookAudioSourceQueue = fallbackSrcs;
   bookAudio.autoplayRequested = !!autoPlay;
+  bookAudio.audioLoadFailed = false;
   bookAudioDuration = 0;
   bookAudio.src = primarySrc;
   bookAudio.playbackRate = state.book.trackSpeed || 1.0;
@@ -5405,6 +5409,20 @@ function playAudioTrack(trackNum, autoPlay = true) {
   }
 }
 
+let lastAudioFailToastAt = 0;
+function showAudioLoadFailedToast(track, level) {
+  // Dedupe: error event and play() rejection can both fire for the same failure
+  const now = Date.now();
+  if (now - lastAudioFailToastAt < 800) return;
+  lastAudioFailToastAt = now;
+  if (level === 'A2') {
+    const pad = String(track).padStart(3, '0');
+    showToast(`فایل صوتی piste_${pad}.mp3 در پوشه محلی یافت نشد. لطفاً فایل را در پوشه audio/a2 قرار دهید.`);
+  } else {
+    showToast(`خطا در پخش فایل صوتی piste ${track}`);
+  }
+}
+
 function toggleAudioPlayPause() {
   setupBookAudio();
   if (!bookAudio.src || bookAudio.src.endsWith('/')) {
@@ -5413,7 +5431,22 @@ function toggleAudioPlayPause() {
   }
 
   if (bookAudio.paused) {
-    bookAudio.play().catch(() => {});
+    const level = getActiveAudioLevel();
+    const track = getCurrentTrackForLevel(level);
+    bookAudio.autoplayRequested = true;
+    // Source already failed and all fallbacks are exhausted: give feedback instead of silent no-op
+    if (bookAudio.audioLoadFailed || (bookAudio.error && bookAudioSourceQueue.length === 0)) {
+      bookAudio.audioLoadFailed = true;
+      showAudioLoadFailedToast(track, level);
+      return;
+    }
+    bookAudio.play().catch(err => {
+      if (err && err.name === 'AbortError') return;
+      // A fallback source is still pending; the error handler will deal with it
+      if (bookAudioSourceQueue.length > 0) return;
+      bookAudio.audioLoadFailed = true;
+      showAudioLoadFailedToast(track, level);
+    });
   } else {
     bookAudio.pause();
   }
