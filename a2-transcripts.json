@@ -4,7 +4,7 @@
       "id": "piste_001",
       "track": 1,
       "filename": "piste_001.mp3",
-      "title": "درس ۱ - Document A",
+      "title": "درس ۱، صفحه ۱۱: خرید کردن. سند A.",
       "category": "dialogue",
       "lines": [
         {
@@ -12,44 +12,44 @@
           "fa": "– الو؟"
         },
         {
-          "fr": "– Allô, Raphaël ? C'est Jules. Comment ça va ?",
-          "fa": "– الو، رافائل؟ ژول هستم. چطوری؟"
+          "fr": "– Allô Raphaël ? C'est Jules. Comment ça va ?",
+          "fa": "– الو رافائل؟ ژول هستم. چطوری؟"
         },
         {
-          "fr": "– Très bien ! Et toi ?",
-          "fa": "– خیلی خوب! تو چطوری؟"
+          "fr": "– Très bien, et toi ?",
+          "fa": "– خیلی خوبم، تو چطوری؟"
         },
         {
           "fr": "– Bien, mais mon lave-linge est tombé en panne.",
-          "fa": "– خوبم، اما ماشین لباس‌شویی‌ام خراب شده."
+          "fa": "– خوبم، اما ماشین لباسشویی‌ام خراب شده."
         },
         {
           "fr": "– Ah ! Tu vas le faire réparer ?",
-          "fa": "– آخ! می‌خوای بدم تعمیرش کنند؟"
+          "fa": "– آها! می‌خواهی ببری تعمیرش کنند؟"
         },
         {
-          "fr": "– Non, il est vieux et il n'est plus sous garantie. Alors, je vais acheter une nouvelle machine.",
-          "fa": "– نه، قدیمی است و دیگر گارانتی ندارد. بنابراین می‌خواهم یک ماشین جدید بخرم."
+          "fr": "– Non, il est vieux et il n'est plus sous garantie. Alors je vais acheter une nouvelle machine.",
+          "fa": "– نه، قدیمی شده و دیگر تحت گارانتی نیست. بنابراین می‌خواهم یک ماشین جدید بخرم."
         },
         {
           "fr": "– Oui, je comprends. « Bien chez soi » fait des promotions en ce moment sur le rayon électroménager. Il y a des offres en magasin et sur leur site.",
-          "fa": "– بله، می‌فهمم. فروشگاه «Bien chez soi» این روزها روی بخش لوازم خانگی تخفیف گذاشته. هم در فروشگاه و هم در وب‌سایت‌شان پیشنهادهای ویژه‌ای هست."
+          "fa": "– بله، می‌فهمم. فروشگاه «بیَن شِ سوآ» این روزها روی بخش لوازم خانگی تخفیف گذاشته. هم در فروشگاه و هم در سایتشان پیشنهادهای ویژه‌ای هست."
         },
         {
-          "fr": "– Ah, je ne savais pas ! Mais le centre commercial est loin de chez moi. Et si je commande sur le site Internet, il faut attendre quelques semaines. Alors, je préfère acheter un lave-linge d'occasion.",
-          "fa": "– آه، نمی‌دانستم! اما مرکز خرید از خانه من دور است. و اگر از سایت اینترنتی سفارش بدهم، باید چند هفته منتظر بمانم. بنابراین ترجیح می‌دهم یک ماشین لباس‌شویی دست‌دوم بخرم."
+          "fr": "– Ah, je ne savais pas ! Mais le centre commercial est loin de chez moi. Et si je commande sur le site Internet, il faut attendre quelques semaines. Alors je préfère acheter un lave-linge d'occasion.",
+          "fa": "– آها، نمی‌دانستم! اما مرکز خرید از خانه من دور است. اگر هم از سایت اینترنتی سفارش بدهم، باید چند هفته منتظر بمانم. برای همین ترجیح می‌دهم یک ماشین لباسشویی دست دوم بخرم."
         },
         {
           "fr": "– Oui, c'est vrai que c'est plus rapide et souvent moins cher. Tu as regardé sur Leboncoin ?",
-          "fa": "– بله، درست است که سریع‌تر و معمولاً ارزان‌تر است. سایت Leboncoin را چک کردی؟"
+          "fa": "– بله، درست است که این‌طوری سریع‌تر و معمولاً ارزان‌تر است. سایت Leboncoin را دیده‌ای؟"
         },
         {
-          "fr": "– Oui ! Et justement, je t'appelle pour ça. À côté de chez moi, j'ai trouvé un lave-linge pas cher et en très bon état. Et le vendeur a des commentaires positifs. Mais il n'y a pas de service de livraison. Tu pourrais m'aider à le porter ?",
-          "fa": "– بله! و دقیقاً برای همین بهت زنگ زدم. نزدیک خانه‌ام یک ماشین لباس‌شویی ارزان و با وضعیتی بسیار خوب پیدا کرده‌ام. فروشنده هم نظرات مثبت دارد. اما خدمت تحویل/حمل‌ونقل ندارد. می‌توانی کمکم کنی حملش کنم؟"
+          "fr": "– Oui, et justement je t'appelle pour ça. À côté de chez moi, j'ai trouvé un lave-linge pas cher et en très bon état. Et le vendeur a des commentaires positifs. Mais il n'y a pas de service de livraison. Tu pourrais m'aider à le porter ?",
+          "fa": "– بله، و اتفاقاً برای همین بهت زنگ زدم. نزدیک خانه‌ام، یک ماشین لباسشویی ارزان و در حد نو پیدا کرده‌ام. فروشنده هم نظرات مثبتی دارد. اما خدمات حمل و نقل ندارد. می‌توانی کمکم کنی جابه‌جایش کنیم؟"
         },
         {
-          "fr": "– Bien sûr !",
-          "fa": "– البته!"
+          "fr": "– Bien sûr.",
+          "fa": "– البته."
         }
       ]
     },
@@ -57,27 +57,27 @@
       "id": "piste_002",
       "track": 2,
       "filename": "piste_002.mp3",
-      "title": "صفحه ۱۲ - Vocabulaire : Faire des achats",
+      "title": "صفحه ۱۲، واژگان: خرید کردن",
       "category": "vocab",
       "lines": [
         {
           "section": "Comparer / مقایسه کردن"
         },
         {
-          "fr": "Neuf / Neuve",
-          "fa": "نو / جدید (مردانه / زنانه)"
+          "fr": "Neuf, neuve",
+          "fa": "نو، جدید (مذکر / مؤنث)"
         },
         {
           "fr": "D'occasion",
-          "fa": "دست‌‌دوم"
+          "fa": "دست دوم"
         },
         {
-          "fr": "Cher / Chère",
-          "fa": "گران (مردانه / زنانه)"
+          "fr": "Cher, chère",
+          "fa": "گران (مذکر / مؤنث)"
         },
         {
-          "fr": "En bon état / En mauvais état",
-          "fa": "در وضعیت خوب / در وضعیت بد"
+          "fr": "En bon état, en mauvais état",
+          "fa": "در وضعیت خوب (سالم)، در وضعیت بد (خراب)"
         },
         {
           "fr": "Une dimension",
@@ -97,30 +97,26 @@
         },
         {
           "fr": "Une réduction",
-          "fa": "تخفیف / کاهش قیمت"
+          "fa": "تخفیف"
         },
         {
           "fr": "Une promotion",
-          "fa": "پروموشن / پیشنهاد ویژه"
+          "fa": "پروموشن / فروش ویژه"
         },
         {
           "fr": "À petit prix",
-          "fa": "با قیمت کم / ارزان‌قیمت"
+          "fa": "با قیمت مناسب / ارزان"
         },
         {
-          "section": "Acheter / خریدن"
+          "section": "Acheter / خرید کردن"
         },
         {
-          "fr": "Une commande",
-          "fa": "سفارش"
-        },
-        {
-          "fr": "Commander",
-          "fa": "سفارش دادن"
+          "fr": "Une commande, commander",
+          "fa": "یک سفارش، سفارش دادن"
         },
         {
           "fr": "Une petite annonce",
-          "fa": "آگهی کوچک"
+          "fa": "نیازمندی‌ها / آگهی کوچک"
         },
         {
           "fr": "Faire une offre",
@@ -128,19 +124,19 @@
         },
         {
           "fr": "Négocier",
-          "fa": "چانه زدن / مذاکره کردن"
+          "fa": "چانه‌زدن / مذاکره کردن"
         },
         {
           "fr": "Un rayon",
-          "fa": "قفسه / بخش فروشگاه"
+          "fa": "قفسه / بخش (در فروشگاه)"
         },
         {
           "fr": "Sur le site Internet",
-          "fa": "در وب‌سایت اینترنتی"
+          "fa": "در سایت اینترنتی"
         },
         {
           "fr": "En magasin",
-          "fa": "در مغازه / حضوراً"
+          "fa": "در فروشگاه / حضوری"
         },
         {
           "fr": "Un centre commercial",
@@ -148,23 +144,23 @@
         },
         {
           "fr": "Dans le commerce",
-          "fa": "در بازار / در مغازه‌ها"
+          "fa": "در بازار / تجارت"
         },
         {
           "fr": "Un vide-grenier",
-          "fa": "بازارچه وسایل دست‌دوم خانگی"
+          "fa": "سمساری خانگی / بازارچه کارهای دست دوم"
         },
         {
           "fr": "Une brocante",
-          "fa": "سمساری / بازارچه عتیقه و دست‌دوم"
+          "fa": "عتیقه‌فروشی / بازارچه کهنه‌فروشی"
         },
         {
           "fr": "Un site de vente de particuliers",
-          "fa": "سایت فروش بی‌واسطه (فرد به فرد)"
+          "fa": "سایت فروش بی‌واسطه (از شخص به شخص)"
         },
         {
           "fr": "Le rapport qualité-prix",
-          "fa": "تناسب کیفیت به قیمت"
+          "fa": "نسبت کیفیت به قیمت"
         },
         {
           "section": "Payer / پرداخت کردن"
@@ -175,11 +171,11 @@
         },
         {
           "fr": "Un ticket de caisse",
-          "fa": "فاکتور / رسید صندوق"
+          "fa": "فیش رسید / فاکتور خرید"
         },
         {
           "fr": "Une facture",
-          "fa": "صورت‌حساب / فاکتور رسمی"
+          "fa": "فاکتور رسمی"
         },
         {
           "fr": "Payer par carte bancaire",
@@ -187,11 +183,11 @@
         },
         {
           "fr": "Rapporter un article",
-          "fa": "پس آوردن یک کالا"
+          "fa": "مرجوع کردن یک کالا"
         },
         {
           "fr": "Un remboursement",
-          "fa": "بازپرداخت / استرداد وجه"
+          "fa": "استرداد وجه / بازپرداخت"
         },
         {
           "fr": "Échanger un article",
@@ -202,15 +198,15 @@
           "fa": "تعویض"
         },
         {
-          "section": "Recevoir / تحویل گرفتن / دریافت کردن"
+          "section": "Recevoir / تحویل گرفتن"
         },
         {
           "fr": "Le service de livraison à domicile",
-          "fa": "خدمت تحویل در منزل"
+          "fa": "خدمات تحویل درب منزل"
         },
         {
           "fr": "Un envoi",
-          "fa": "مرسوله / ارسال"
+          "fa": "ارسال / مرسوله"
         },
         {
           "fr": "Un mode de livraison",
@@ -218,7 +214,7 @@
         },
         {
           "fr": "Un retrait de commande",
-          "fa": "تحویل حضوری سفارش"
+          "fa": "تحویل گرفتن سفارش (حضوری)"
         },
         {
           "fr": "Un livreur",
@@ -226,7 +222,7 @@
         },
         {
           "fr": "Un colis",
-          "fa": "بسته پستی"
+          "fa": "بسته / مرسوله پستی"
         },
         {
           "section": "Réparer / تعمیر کردن"
@@ -237,15 +233,15 @@
         },
         {
           "fr": "Tomber en panne",
-          "fa": "خراب شدن"
+          "fa": "خراب شدن / از کار افتادن"
         },
         {
           "fr": "Le dépannage",
-          "fa": "عیب‌یابی و تعمیر"
+          "fa": "رفع نقص / عیب‌یابی و تعمیر"
         },
         {
           "fr": "Faire réparer quelque chose",
-          "fa": "دادن چیزی برای تعمیر"
+          "fa": "دادن چیزی را تعمیر کنند"
         },
         {
           "fr": "Être sous garantie",
@@ -253,15 +249,15 @@
         },
         {
           "fr": "Une réparation",
-          "fa": "تعمیر"
+          "fa": "تعمیر / بازسازی"
         },
         {
           "fr": "La notice d'utilisation",
           "fa": "دفترچه راهنما"
         },
         {
-          "fr": "Bien fonctionner / Mal fonctionner",
-          "fa": "درست کار کردن / بد کار کردن"
+          "fr": "Bien fonctionner, mal fonctionner",
+          "fa": "خوب کار کردن، بد کار کردن"
         }
       ]
     },
@@ -269,12 +265,12 @@
       "id": "piste_003",
       "track": 3,
       "filename": "piste_003.mp3",
-      "title": "صفحه ۱۳ - Grammaire : La place de l'adjectif",
+      "title": "صفحه ۱۳، گرامر: جایگاه صفت",
       "category": "grammar",
       "lines": [
         {
-          "fr": "Page 13, Grammaire : La place de l'adjectif",
-          "fa": "صفحه ۱۳، دستور زبان: جایگاه صفت"
+          "fr": "Page 13, Grammaire — La place de l'adjectif",
+          "fa": "صفحه ۱۳، گرامر — جایگاه صفت"
         },
         {
           "fr": "Des commentaires positifs",
@@ -282,15 +278,15 @@
         },
         {
           "fr": "Un lave-linge pas cher",
-          "fa": "یک ماشین لباس‌شویی ارزان"
+          "fa": "یک ماشین لباسشویی ارزان"
         },
         {
           "fr": "Une nouvelle machine à laver",
-          "fa": "یک ماشین لباس‌شویی جدید"
+          "fa": "یک ماشین لباسشویی جدید"
         },
         {
           "fr": "En très bon état",
-          "fa": "در وضعیت بسیار خوب"
+          "fa": "در وضعیت بسیار خوب (سالم)"
         }
       ]
     },
@@ -298,359 +294,12 @@
       "id": "piste_004",
       "track": 4,
       "filename": "piste_004.mp3",
-      "title": "صفحه ۱۳ - Grammaire : La place de l'adjectif",
-      "category": "grammar",
-      "lines": [
-        {
-          "fr": "Des commentaires positifs",
-          "fa": "نظرات مثبت"
-        },
-        {
-          "fr": "Un lave-linge pas cher",
-          "fa": "یک ماشین لباس‌شویی ارزان"
-        },
-        {
-          "fr": "Une nouvelle machine à laver",
-          "fa": "یک ماشین لباس‌شویی جدید"
-        },
-        {
-          "fr": "En très bon état",
-          "fa": "در وضعیت بسیار خوب"
-        }
-      ]
-    },
-    "piste_005": {
-      "id": "piste_005",
-      "track": 5,
-      "filename": "piste_005.mp3",
-      "title": "مرور درس: تکرار piste_001",
-      "category": "dialogue",
-      "lines": [
-        {
-          "fr": "– Allô ?",
-          "fa": "– الو؟"
-        },
-        {
-          "fr": "– Allô, Raphaël ? C'est Jules. Comment ça va ?",
-          "fa": "– الو، رافائل؟ ژول هستم. چطوری؟"
-        },
-        {
-          "fr": "– Très bien ! Et toi ?",
-          "fa": "– خیلی خوب! تو چطوری؟"
-        },
-        {
-          "fr": "– Bien, mais mon lave-linge est tombé en panne.",
-          "fa": "– خوبم، اما ماشین لباس‌شویی‌ام خراب شده."
-        },
-        {
-          "fr": "– Ah ! Tu vas le faire réparer ?",
-          "fa": "– آخ! می‌خوای بدم تعمیرش کنند؟"
-        },
-        {
-          "fr": "– Non, il est vieux et il n'est plus sous garantie. Alors, je vais acheter une nouvelle machine.",
-          "fa": "– نه، قدیمی است و دیگر گارانتی ندارد. بنابراین می‌خواهم یک ماشین جدید بخرم."
-        },
-        {
-          "fr": "– Oui, je comprends. « Bien chez soi » fait des promotions en ce moment sur le rayon électroménager. Il y a des offres en magasin et sur leur site.",
-          "fa": "– بله، می‌فهمم. فروشگاه «Bien chez soi» این روزها روی بخش لوازم خانگی تخفیف گذاشته. هم در فروشگاه و هم در وب‌سایت‌شان پیشنهادهای ویژه‌ای هست."
-        },
-        {
-          "fr": "– Ah, je ne savais pas ! Mais le centre commercial est loin de chez moi. Et si je commande sur le site Internet, il faut attendre quelques semaines. Alors, je préfère acheter un lave-linge d'occasion.",
-          "fa": "– آه، نمی‌دانستم! اما مرکز خرید از خانه من دور است. و اگر از سایت اینترنتی سفارش بدهم، باید چند هفته منتظر بمانم. بنابراین ترجیح می‌دهم یک ماشین لباس‌شویی دست‌دوم بخرم."
-        },
-        {
-          "fr": "– Oui, c'est vrai que c'est plus rapide et souvent moins cher. Tu as regardé sur Leboncoin ?",
-          "fa": "– بله، درست است که سریع‌تر و معمولاً ارزان‌تر است. سایت Leboncoin را چک کردی؟"
-        },
-        {
-          "fr": "– Oui ! Et justement, je t'appelle pour ça. À côté de chez moi, j'ai trouvé un lave-linge pas cher et en très bon état. Et le vendeur a des commentaires positifs. Mais il n'y a pas de service de livraison. Tu pourrais m'aider à le porter ?",
-          "fa": "– بله! و دقیقاً برای همین بهت زنگ زدم. نزدیک خانه‌ام یک ماشین لباس‌شویی ارزان و با وضعیتی بسیار خوب پیدا کرده‌ام. فروشنده هم نظرات مثبت دارد. اما خدمت تحویل/حمل‌ونقل ندارد. می‌توانی کمکم کنی حملش کنم؟"
-        },
-        {
-          "fr": "– Bien sûr !",
-          "fa": "– البته!"
-        }
-      ]
-    },
-    "piste_006": {
-      "id": "piste_006",
-      "track": 6,
-      "filename": "piste_006.mp3",
-      "title": "مرور درس: تکرار piste_002",
-      "category": "vocab",
-      "lines": [
-        {
-          "section": "Comparer / مقایسه کردن"
-        },
-        {
-          "fr": "Neuf / Neuve",
-          "fa": "نو / جدید (مردانه / زنانه)"
-        },
-        {
-          "fr": "D'occasion",
-          "fa": "دست‌‌دوم"
-        },
-        {
-          "fr": "Cher / Chère",
-          "fa": "گران (مردانه / زنانه)"
-        },
-        {
-          "fr": "En bon état / En mauvais état",
-          "fa": "در وضعیت خوب / در وضعیت بد"
-        },
-        {
-          "fr": "Une dimension",
-          "fa": "ابعاد / اندازه"
-        },
-        {
-          "fr": "Une taille",
-          "fa": "سایز / اندازه"
-        },
-        {
-          "fr": "Une option",
-          "fa": "آپشن / امکانات اضافه"
-        },
-        {
-          "fr": "Les soldes",
-          "fa": "حراجی‌ها / تخفیف‌های فصلی"
-        },
-        {
-          "fr": "Une réduction",
-          "fa": "تخفیف / کاهش قیمت"
-        },
-        {
-          "fr": "Une promotion",
-          "fa": "پروموشن / پیشنهاد ویژه"
-        },
-        {
-          "fr": "À petit prix",
-          "fa": "با قیمت کم / ارزان‌قیمت"
-        },
-        {
-          "section": "Acheter / خریدن"
-        },
-        {
-          "fr": "Une commande",
-          "fa": "سفارش"
-        },
-        {
-          "fr": "Commander",
-          "fa": "سفارش دادن"
-        },
-        {
-          "fr": "Une petite annonce",
-          "fa": "آگهی کوچک"
-        },
-        {
-          "fr": "Faire une offre",
-          "fa": "پیشنهاد قیمت دادن"
-        },
-        {
-          "fr": "Négocier",
-          "fa": "چانه زدن / مذاکره کردن"
-        },
-        {
-          "fr": "Un rayon",
-          "fa": "قفسه / بخش فروشگاه"
-        },
-        {
-          "fr": "Sur le site Internet",
-          "fa": "در وب‌سایت اینترنتی"
-        },
-        {
-          "fr": "En magasin",
-          "fa": "در مغازه / حضوراً"
-        },
-        {
-          "fr": "Un centre commercial",
-          "fa": "مرکز خرید / پاساژ"
-        },
-        {
-          "fr": "Dans le commerce",
-          "fa": "در بازار / در مغازه‌ها"
-        },
-        {
-          "fr": "Un vide-grenier",
-          "fa": "بازارچه وسایل دست‌دوم خانگی"
-        },
-        {
-          "fr": "Une brocante",
-          "fa": "سمساری / بازارچه عتیقه و دست‌دوم"
-        },
-        {
-          "fr": "Un site de vente de particuliers",
-          "fa": "سایت فروش بی‌واسطه (فرد به فرد)"
-        },
-        {
-          "fr": "Le rapport qualité-prix",
-          "fa": "تناسب کیفیت به قیمت"
-        },
-        {
-          "section": "Payer / پرداخت کردن"
-        },
-        {
-          "fr": "Un paiement",
-          "fa": "پرداخت"
-        },
-        {
-          "fr": "Un ticket de caisse",
-          "fa": "فاکتور / رسید صندوق"
-        },
-        {
-          "fr": "Une facture",
-          "fa": "صورت‌حساب / فاکتور رسمی"
-        },
-        {
-          "fr": "Payer par carte bancaire",
-          "fa": "پرداخت با کارت بانکی"
-        },
-        {
-          "fr": "Rapporter un article",
-          "fa": "پس آوردن یک کالا"
-        },
-        {
-          "fr": "Un remboursement",
-          "fa": "بازپرداخت / استرداد وجه"
-        },
-        {
-          "fr": "Échanger un article",
-          "fa": "تعویض کردن یک کالا"
-        },
-        {
-          "fr": "Un échange",
-          "fa": "تعویض"
-        },
-        {
-          "section": "Recevoir / تحویل گرفتن / دریافت کردن"
-        },
-        {
-          "fr": "Le service de livraison à domicile",
-          "fa": "خدمت تحویل در منزل"
-        },
-        {
-          "fr": "Un envoi",
-          "fa": "مرسوله / ارسال"
-        },
-        {
-          "fr": "Un mode de livraison",
-          "fa": "روش تحویل"
-        },
-        {
-          "fr": "Un retrait de commande",
-          "fa": "تحویل حضوری سفارش"
-        },
-        {
-          "fr": "Un livreur",
-          "fa": "مامور تحویل / پیک"
-        },
-        {
-          "fr": "Un colis",
-          "fa": "بسته پستی"
-        },
-        {
-          "section": "Réparer / تعمیر کردن"
-        },
-        {
-          "fr": "Le service après-vente",
-          "fa": "خدمات پس از فروش"
-        },
-        {
-          "fr": "Tomber en panne",
-          "fa": "خراب شدن"
-        },
-        {
-          "fr": "Le dépannage",
-          "fa": "عیب‌یابی و تعمیر"
-        },
-        {
-          "fr": "Faire réparer quelque chose",
-          "fa": "دادن چیزی برای تعمیر"
-        },
-        {
-          "fr": "Être sous garantie",
-          "fa": "تحت گارانتی بودن"
-        },
-        {
-          "fr": "Une réparation",
-          "fa": "تعمیر"
-        },
-        {
-          "fr": "La notice d'utilisation",
-          "fa": "دفترچه راهنما"
-        },
-        {
-          "fr": "Bien fonctionner / Mal fonctionner",
-          "fa": "درست کار کردن / بد کار کردن"
-        }
-      ]
-    },
-    "piste_007": {
-      "id": "piste_007",
-      "track": 7,
-      "filename": "piste_007.mp3",
-      "title": "درس ۲ - Se déplacer / Document A",
-      "category": "dialogue",
-      "lines": [
-        {
-          "fr": "– Salut Vincent, tu sais comment aller au mariage de Thomas le week-end prochain ?",
-          "fa": "– سلام ونسان، می‌دونی آخر هفته آینده چطور باید بریم عروسی توما؟"
-        },
-        {
-          "fr": "– Oui, je viens de louer une voiture. Je pensais prendre le train, mais c'est plus long et plus cher.",
-          "fa": "– بله، تازه یک ماشین کرایه کرده‌ام. فکر می‌کردم با قطار بروم، اما طولانی‌تر و گران‌تر است."
-        },
-        {
-          "fr": "– Et en covoiturage ?",
-          "fa": "– و هم‌مسیری (کارداری) چطور؟"
-        },
-        {
-          "fr": "– Les trajets proposés ne sont pas pratiques.",
-          "fa": "– مسیرهای پیشنهادی کاربردی/مناسب نیستند."
-        },
-        {
-          "fr": "– Dommage. Tu es passé par une agence pour la location ?",
-          "fa": "– حیف شد. برای کرایه از طریق یک آژانس اقدام کردی؟"
-        },
-        {
-          "fr": "– Non, un service de location de voiture entre particuliers. Ça s'appelle « Loue ma voiture ». Tu connais ?",
-          "fa": "– نه، یک سرویس کرایه ماشین بین افراد حقیقی (بی‌واسطه). اسمش «Loue ma voiture» است. می‌شناسی؟"
-        },
-        {
-          "fr": "– Pas du tout. Mais c'est sûr comme service ?",
-          "fa": "– اصلا. اما خدماتش مطمئن است؟"
-        },
-        {
-          "fr": "– Oui, c'est sûr et simple. Tu t'inscris, tu enregistres une pièce d'identité et ton permis de conduire, et tu loues une voiture.",
-          "fa": "– بله، مطمئن و ساده است. ثبت‌نام می‌کنی، مدرک شناسایی و گواهینامه رانندگی‌ات را ثبت می‌کنی و ماشین کرایه می‌کنی."
-        },
-        {
-          "fr": "– Il y a une assurance ?",
-          "fa": "– بیمه هم دارد؟"
-        },
-        {
-          "fr": "– Oui, c'est compris. Et pour cette voiture, le propriétaire vient de faire le contrôle technique.",
-          "fa": "– بله، شاملش می‌شود. و برای این ماشین، صاحبش تازه معاینه فنی گرفته است."
-        },
-        {
-          "fr": "– Et pour l'essence ?",
-          "fa": "– و بنزین چطور؟"
-        },
-        {
-          "fr": "– À la fin du week-end, je dois juste faire le plein dans une station-service avant de rendre la voiture.",
-          "fa": "– در پایان آخر هفته، فقط باید قبل از تحویل دادن ماشین، توی یک پمپ بنزین باک را پر کنم."
-        }
-      ]
-    },
-    "piste_008": {
-      "id": "piste_008",
-      "track": 8,
-      "filename": "piste_008.mp3",
-      "title": "صفحه ۱۳ - Pour communiquer",
+      "title": "صفحه ۱۳، برای ارتباط برقرار کردن",
       "category": "communication",
       "lines": [
         {
           "fr": "Mon lave-linge est tombé en panne.",
-          "fa": "ماشین لباس‌شویی‌ام خراب شده."
+          "fa": "ماشین لباسشویی‌ام خراب شده است."
         },
         {
           "fr": "Tu vas le faire réparer ?",
@@ -662,47 +311,179 @@
         },
         {
           "fr": "Je préfère acheter un lave-linge d'occasion.",
-          "fa": "ترجیح می‌دهم یک ماشین لباس‌شویی دست‌دوم بخرم."
+          "fa": "ترجیح می‌دهم یک ماشین لباسشویی دست دوم بخرم."
         },
         {
           "fr": "Tu as regardé sur Leboncoin ?",
-          "fa": "در سایت Leboncoin را نگاه کردی؟"
+          "fa": "سایت Leboncoin را دیده‌ای؟"
         },
         {
           "fr": "Oui, j'ai trouvé un lave-linge pas cher et en très bon état.",
-          "fa": "بله، یک ماشین لباس‌شویی ارزان و در وضعیت بسیار خوب پیدا کردم."
+          "fa": "بله، یک ماشین لباسشویی ارزان و در وضعیت بسیار خوب (سالم) پیدا کرده‌ام."
         },
         {
           "fr": "J'ai vu votre annonce pour la vente d'un réfrigérateur et je voudrais vous poser quelques questions.",
-          "fa": "من آگهی شما را برای فروش یک یخچال دیدم و می‌خواستم چند سوال از شما بپرسم."
+          "fa": "آگهی شما را برای فروش یک یخچال دیدم و می‌خواستم چند سؤال از شما بپرسم."
         },
         {
           "fr": "Je vous appelle parce que j'ai acheté un téléphone portable sur votre site, mais il est en panne.",
-          "fa": "با شما تماس می‌گیرم چون یک گوشی همراه از سایت‌تان خریده‌ام، اما خراب است."
+          "fa": "تماس می‌گیرم چون یک گوشی تلفن همراه از سایت شما خریده‌ام، اما خراب است."
         },
         {
           "fr": "D'accord. Pourriez-vous me donner la référence de la commande ?",
-          "fa": "بسیار خب. می‌توانید کد/شماره پیگیری سفارش را به من بدهید؟"
+          "fa": "باشه. می‌توانید کد مرجع سفارش را به من بدهید؟"
         },
         {
           "fr": "Vous proposez un service de livraison à domicile ?",
-          "fa": "آیا خدمات تحویل در منزل ارائه می‌دهید؟"
+          "fa": "آیا خدمات تحویل در منزل هم ارائه می‌دهید؟"
         },
         {
           "fr": "Je viens rapporter ce manteau, il ne me va pas.",
-          "fa": "من آمده‌ام این پالتو را پس بدهم، اندازه‌ام نیست."
+          "fa": "آمده‌ام این پالتو را پس بدهم، اندازه‌ام نیست."
         },
         {
           "fr": "Nous avons d'autres tailles si vous souhaitez échanger.",
-          "fa": "اگر مایل به تعویض باشید سایزهای دیگری هم داریم."
+          "fa": "اگر مایل به تعویض باشید، سایزهای دیگری هم داریم."
         },
         {
-          "fr": "Non, je voudrais un remboursement s'il vous plaît.",
-          "fa": "نه، لطفاً بازپرداخت وجه می‌خواهم."
+          "fr": "Non, je voudrais un remboursement, s'il vous plaît.",
+          "fa": "نه، لطفاً می‌خواهم پولش را پس بگیرم (استرداد وجه)."
         },
         {
           "fr": "Très bien. Vous avez le ticket de caisse ?",
-          "fa": "بسیار خوب. رسید صندوق را دارید؟"
+          "fa": "بسیار خب. فیش خرید (رسید) را همراه دارید؟"
+        }
+      ]
+    },
+    "piste_005": {
+      "id": "piste_005",
+      "track": 5,
+      "filename": "piste_005.mp3",
+      "title": "صفحه ۱۵، تمرین ۱",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "C'est les soldes chez Vous l'artix !",
+          "fa": "حراجی در فروشگاه «وولارکیس» شروع شد!"
+        },
+        {
+          "fr": "Jusqu'au 19 juillet, profitez de réductions exceptionnelles sur tout le rayon multimédia.",
+          "fa": "تا ۱۹ ژوئیه، از تخفیف‌های فوق‌العاده روی تمامی محصولات بخش مالتی‌مدیا بهره‌مند شوید."
+        },
+        {
+          "fr": "Ordinateurs, tablettes et smartphones à petit prix.",
+          "fa": "کامپیوترها، تبلت‌ها و گوشی‌های هوشمند با قیمت‌های بسیار مناسب."
+        },
+        {
+          "fr": "Les offres sont disponibles sur le site Internet et en magasin.",
+          "fa": "این پیشنهادها هم در سایت اینترنتی و هم در فروشگاه حضوری در دسترس هستند."
+        },
+        {
+          "fr": "Alors, n'attendez plus !",
+          "fa": "پس دیگر منتظر نمانید!"
+        }
+      ]
+    },
+    "piste_006": {
+      "id": "piste_006",
+      "track": 6,
+      "filename": "piste_006.mp3",
+      "title": "صفحه ۱۵، تمرین ۲",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Bonjour monsieur. Je viens rapporter ce manteau, il ne me va pas.",
+          "fa": "– روز بخیر آقا. آمده‌ام این پالتو را پس بدهم، اندازه‌ام نیست."
+        },
+        {
+          "fr": "– D'accord madame. Nous avons d'autres tailles si vous souhaitez échanger.",
+          "fa": "– بسیار خب خانم. اگر مایل به تعویض باشید، سایزهای دیگری هم داریم."
+        },
+        {
+          "fr": "– Non, je voudrais un remboursement, s'il vous plaît.",
+          "fa": "– نه، لطفاً می‌خواهم پولش را پس بگیرم (استرداد وجه)."
+        },
+        {
+          "fr": "– Très bien. Vous avez le ticket de caisse ?",
+          "fa": "– خیلی هم عالی. فیش خرید (رسید) را همراه دارید؟"
+        },
+        {
+          "fr": "– Oui, tenez.",
+          "fa": "– بله، بفرمایید."
+        }
+      ]
+    },
+    "piste_007": {
+      "id": "piste_007",
+      "track": 7,
+      "filename": "piste_007.mp3",
+      "title": "صفحه ۱۵، تمرین ۳",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Service après-vente, Mathieu à votre écoute.",
+          "fa": "– خدمات پس از فروش، متیو هستم، بفرمایید."
+        },
+        {
+          "fr": "– Bonjour monsieur. Je vous appelle parce que j'ai acheté un téléphone portable sur votre site, mais depuis hier, il ne s'allume plus.",
+          "fa": "– روز بخیر آقا. تماس می‌گیرم چون یک گوشی تلفن همراه از سایت شما خریدم، اما از دیروز دیگر روشن نمی‌شود."
+        },
+        {
+          "fr": "– D'accord. Pourriez-vous me donner la référence de la commande ?",
+          "fa": "– بسیار خب. می‌توانید کد مرجع سفارش را به من بدهید؟"
+        },
+        {
+          "fr": "– Oui. C'est la commande VF 3 3 6 7 Y.",
+          "fa": "– بله. کد سفارش VF 3 3 6 7 Y است."
+        },
+        {
+          "fr": "– J'y suis. Il s'agit d'un smartphone commandé le 20 août 2020 qui est encore sous garantie. Donc, je vous envoie un bon de retour par email et vous pouvez retourner le smartphone au service réparation.",
+          "fa": "– پیدایش کردم. مربوط به یک گوشی هوشمند سفارش داده شده در ۲۰ اوت ۲۰۲۰ است که هنوز تحت گارانتی است. بنابراین، یک برگه مرجوعی برایتان ایمیل می‌کنم و می‌توانید گوشی را به بخش تعمیرات بفرستید."
+        },
+        {
+          "fr": "– Très bien. Merci monsieur.",
+          "fa": "– بسیار عالی. ممنون آقا."
+        }
+      ]
+    },
+    "piste_008": {
+      "id": "piste_008",
+      "track": 8,
+      "filename": "piste_008.mp3",
+      "title": "صفحه ۱۵، تمرین ۴",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "Bonjour madame.",
+          "fa": "سلام خانم."
+        },
+        {
+          "fr": "Je vous appelle parce que j'ai vu votre annonce pour la vente d'un réfrigérateur et je voudrais vous poser quelques questions.",
+          "fa": "تماس می‌گیرم چون آگهی شما را برای فروش یک یخچال دیدم و می‌خواستم چند سؤال از شما بپرسم."
+        },
+        {
+          "fr": "Quelles sont les dimensions du frigo ?",
+          "fa": "ابعاد (اندازه‌های) یخچال چقدر است؟"
+        },
+        {
+          "fr": "Est-ce qu'il est encore sous garantie ?",
+          "fa": "آیا هنوز تحت گارانتی است؟"
+        },
+        {
+          "fr": "Quelle est la taille de la partie congélateur ?",
+          "fa": "اندازه بخش فریزر آن چقدر است؟"
+        },
+        {
+          "fr": "Par ailleurs, je voudrais aussi savoir si vous proposez un service de livraison à domicile ou s'il faut venir le chercher.",
+          "fa": "علاوه بر این، می‌خواستم بدانم آیا خدمات تحویل در منزل هم دارید یا باید خودم بیایم و آن را ببرم؟"
+        },
+        {
+          "fr": "Vous pouvez me joindre au 06 14 53 76 84.",
+          "fa": "می‌توانید با شماره 06 14 53 76 84 با من تماس بگیرید."
+        },
+        {
+          "fr": "À bientôt !",
+          "fa": "به امید دیدار!"
         }
       ]
     },
@@ -710,24 +491,56 @@
       "id": "piste_009",
       "track": 9,
       "filename": "piste_009.mp3",
-      "title": "صفحه ۱۵ - Exercice 1",
-      "category": "exercise",
+      "title": "درس ۲، صفحه ۱۷: جابه‌جا شدن / رفت‌وآمد. سند A.",
+      "category": "dialogue",
       "lines": [
         {
-          "fr": "– C'est les soldes chez Boularty !",
-          "fa": "– حراجی در فروشگاه Boularty شروع شد!"
+          "fr": "– Salut Vincent ! Tu sais comment aller au mariage de Thomas le week-end prochain ?",
+          "fa": "– سلام ونسان! می‌دانی چطور برای آخر هفته آینده به عروسی توما برویم؟"
         },
         {
-          "fr": "– Jusqu'au 19 juillet, profitez de réductions exceptionnelles sur tout le rayon multimédia !",
-          "fa": "– تا ۱۹ ژوئیه، از تخفیف‌های استثنایی روی تمام بخش چندرسانه‌ای بهره‌مند شوید!"
+          "fr": "– Oui, je viens de louer une voiture. Je pensais prendre le train, mais c'est plus long et plus cher.",
+          "fa": "– بله، تازه یک ماشین کرایه کرده‌ام. فکر می‌کردم با قطار بروم، اما طولانی‌تر و گران‌تر است."
         },
         {
-          "fr": "– Ordinateurs, tablettes et smartphones à petit prix.",
-          "fa": "– کامپیوترها، تبلت‌ها و گوشی‌های هوشمند با قیمت کم."
+          "fr": "– Et en covoiturage ?",
+          "fa": "– و با هم‌مسیر شدن (کارپولینگ) چطور؟"
         },
         {
-          "fr": "– Les offres sont disponibles sur le site Internet et en magasin. Alors, n'attendez plus !",
-          "fa": "– پیشنهادها روی وب‌سایت اینترنتی و در فروشگاه موجود است. پس دیگر منتظر نمانید!"
+          "fr": "– Les trajets proposés ne sont pas pratiques.",
+          "fa": "– مسیرهای پیشنهادی کاربردی و راحت نیستند."
+        },
+        {
+          "fr": "– Dommage. Tu es passé par une agence pour la location ?",
+          "fa": "– حیف شد. برای اجاره از طریق یک آژانس اقدام کردی؟"
+        },
+        {
+          "fr": "– Non, un service de location de voiture entre particuliers. Ça s'appelle « Loue ma voiture ». Tu connais ?",
+          "fa": "– نه، یک سرویس اجاره خودرو بین افراد حقیقی (شخص به شخص). اسمش «Loue ma voiture» (ماشین مرا اجاره کن) است. می‌شناسی؟"
+        },
+        {
+          "fr": "– Pas du tout. Mais c'est sûr comme service ?",
+          "fa": "– اصلا. اما آیا سرویس مطمئنی است؟"
+        },
+        {
+          "fr": "– Oui, c'est sûr et simple. Tu t'inscris, tu enregistres une pièce d'identité et ton permis de conduire, et tu loues une voiture.",
+          "fa": "– بله، مطمئن و ساده است. ثبت‌نام می‌کنی، یک مدرک شناسایی و گواهینامه رانندگی‌ات را ثبت می‌کنی و ماشین کرایه می‌کنی."
+        },
+        {
+          "fr": "– Il y a une assurance ?",
+          "fa": "– بیمه هم دارد؟"
+        },
+        {
+          "fr": "– Oui, c'est compris. Et pour cette voiture, le propriétaire vient de faire le contrôle technique.",
+          "fa": "– بله، شاملش می‌شود. و برای این ماشین، مالک تازه معاینه فنی را انجام داده است."
+        },
+        {
+          "fr": "– Et pour l'essence ?",
+          "fa": "– و برای بنزین چطور؟"
+        },
+        {
+          "fr": "– À la fin du week-end, je dois juste faire le plein dans une station-service avant de rendre la voiture.",
+          "fa": "– در پایان آخر هفته، فقط باید قبل از تحویل دادن ماشین، باک را در یک پمپ بنزین پر کنم."
         }
       ]
     },
@@ -735,31 +548,31 @@
       "id": "piste_010",
       "track": 10,
       "filename": "piste_010.mp3",
-      "title": "صفحه ۱۸ - Vocabulaire : Se déplacer",
+      "title": "صفحه ۱۸، واژگان: جابه‌جا شدن / رفت‌وآمد",
       "category": "vocab",
       "lines": [
         {
-          "section": "Louer une voiture / کرایه کردن ماشین"
+          "section": "Louer une voiture / اجاره کردن ماشین"
         },
         {
           "fr": "Une agence pour la location",
-          "fa": "آژانس کرایه خودرو"
+          "fa": "آژانس اجاره خودرو"
         },
         {
           "fr": "Un service de location de voiture entre particuliers",
-          "fa": "سرویس کرایه خودرو بین افراد حقیقی"
+          "fa": "سرویس اجاره خودرو بین افراد حقیقی (شخص به شخص)"
         },
         {
           "fr": "Une assistance",
-          "fa": "پشتیبانی / امداد"
+          "fa": "پشتیبانی / امداد جاده‌ای"
         },
         {
-          "fr": "Le propriétaire / La propriétaire",
-          "fa": "مالِک (مرد / زن)"
+          "fr": "Le propriétaire, la propriétaire",
+          "fa": "مالک (مذکر / مؤنث)"
         },
         {
           "fr": "Vérifier l'état du véhicule",
-          "fa": "بررسی وضعیت خودرو"
+          "fa": "بررسی وضعیت (سلامت) خودرو"
         },
         {
           "fr": "Récupérer les clés",
@@ -767,14 +580,14 @@
         },
         {
           "fr": "Rendre le véhicule",
-          "fa": "تحویل دادن خودرو"
+          "fa": "پس دادن / تحویل دادن خودرو"
         },
         {
           "section": "En voiture / با ماشین"
         },
         {
           "fr": "Faire du covoiturage",
-          "fa": "هم‌مسیری کردن"
+          "fa": "هم‌مسیر شدن (کارپولینگ / اشتراک‌گذاری خودرو)"
         },
         {
           "fr": "Le permis de conduire",
@@ -790,23 +603,23 @@
         },
         {
           "fr": "Faire le plein d'essence",
-          "fa": "باک بنزین را پر کردن"
+          "fa": "پر کردن باک بنزین"
         },
         {
           "fr": "Une station-service",
-          "fa": "پمپ بنزین"
+          "fa": "پمپ بنزین / ایستگاه خدمات"
         },
         {
           "fr": "Avoir un accident",
           "fa": "تصادف کردن"
         },
         {
-          "fr": "Aller chez le garagiste / la garagiste",
-          "fa": "رفتن پیش مکانیک (مرد / زن)"
+          "fr": "Aller chez le garagiste, aller chez la garagiste",
+          "fa": "رفتن پیش تعمیرکار (مذکر / مؤنث)"
         },
         {
           "fr": "Le garage",
-          "fa": "تعمیرگاه"
+          "fa": "تعمیرگاه / مکانیکی"
         },
         {
           "fr": "Le clignotant",
@@ -826,19 +639,23 @@
         },
         {
           "fr": "Un parc relais",
-          "fa": "پارکینگ‌‌های متصل به وسایل نقلیه عمومی"
+          "fa": "پارکینگ ترکیبی (پارک خودرو و استفاده از حمل‌ونقل عمومی)"
         },
         {
-          "fr": "Stationner / Se garer",
+          "fr": "Stationner",
           "fa": "پارک کردن"
+        },
+        {
+          "fr": "Se garer",
+          "fa": "پارک کردن خودرو"
         },
         {
           "fr": "Le parking",
           "fa": "پارکینگ"
         },
         {
-          "fr": "Le conducteur / La conductrice",
-          "fa": "راننده (مرد / زن)"
+          "fr": "Le conducteur, la conductrice",
+          "fa": "راننده (مذکر / مؤنث)"
         },
         {
           "fr": "Être en route",
@@ -846,11 +663,11 @@
         },
         {
           "fr": "Un itinéraire",
-          "fa": "مسیر / نقشه راه"
+          "fa": "مسیر / برنامه سفر"
         },
         {
           "fr": "Une plaque d'immatriculation",
-          "fa": "پلاک خودرو"
+          "fa": "پلاک ماشین"
         },
         {
           "fr": "Circuler",
@@ -860,8 +677,8 @@
           "section": "En transports en commun / با حمل‌ونقل عمومی"
         },
         {
-          "fr": "Prendre le train / le bus / le métro",
-          "fa": "گرفتن/سوار شدن قطار، اتوبوس، مترو"
+          "fr": "Prendre le train, prendre le bus, prendre le métro",
+          "fa": "سوار قطار شدن، سوار اتوبوس شدن، سوار مترو شدن"
         },
         {
           "fr": "Accessible en transports en commun",
@@ -869,23 +686,23 @@
         },
         {
           "fr": "Un trajet",
-          "fa": "یک مسیر / طی مسافت"
+          "fa": "مسیر / طی مسافت"
         },
         {
           "fr": "Des travaux sur la ligne",
-          "fa": "عملیات عمرانی/تعمیرات روی خط"
+          "fa": "تعمیرات در خط"
         },
         {
           "fr": "Une panne sur la ligne",
-          "fa": "نقص فنی روی خط"
+          "fa": "خرابی / نقص فنی در خط"
         },
         {
           "fr": "Un arrêt de bus",
           "fa": "ایستگاه اتوبوس"
         },
         {
-          "fr": "Une station de métro / de tram",
-          "fa": "ایستگاه مترو / تراموا"
+          "fr": "Une station de métro, une station de tram",
+          "fa": "ایستگاه مترو، ایستگاه تراموا"
         },
         {
           "fr": "Un train de banlieue",
@@ -901,7 +718,7 @@
         },
         {
           "fr": "Une navette",
-          "fa": "شاتل / سرویس رفت‌وبرگشت"
+          "fa": "سرویس رفت‌وبرگشت (شاتل)"
         },
         {
           "fr": "Une correspondance",
@@ -909,23 +726,23 @@
         },
         {
           "fr": "Un arrêt desservi",
-          "fa": "ایستگاه فعال / ایستگاهی که توقف دارد"
+          "fa": "ایستگاه تحت پوشش (ایستگاهی که وسیله نقلیه در آن توقف دارد)"
         },
         {
           "fr": "Un titre de transport",
-          "fa": "بلیط / کارت سفر"
+          "fa": "بلیت / مدرک سفر"
         },
         {
           "fr": "Valable",
-          "fa": "معتبر / دارای اعتبار"
+          "fa": "معتبر"
         },
         {
           "fr": "Trafic interrompu",
-          "fa": "متوقف شدن حرکت/ترافیک خط"
+          "fa": "متوقف شدن حرکت (ترافیک)"
         },
         {
-          "fr": "Un piéton / Une piétonne",
-          "fa": "عابر پیاده (مرد / زن)"
+          "fr": "Un piéton, une piétonne",
+          "fa": "عابر پیاده (مذکر / مؤنث)"
         }
       ]
     },
@@ -933,32 +750,60 @@
       "id": "piste_011",
       "track": 11,
       "filename": "piste_011.mp3",
-      "title": "صفحه ۱۵ - Exercice 3",
-      "category": "dialogue",
+      "title": "صفحه ۱۹، گرامر: گذشته نزدیک (Le passé récent)",
+      "category": "grammar",
       "lines": [
         {
-          "fr": "– Service après-vente, Mathieu à votre écoute.",
-          "fa": "– خدمات پس از فروش، متیو هستم، بفرمایید."
+          "fr": "Page 19, Grammaire — Le passé récent",
+          "fa": "صفحه ۱۹، گرامر — گذشته نزدیک (Le passé récent)"
         },
         {
-          "fr": "– Bonjour monsieur. Je vous appelle parce que j'ai acheté un téléphone portable sur votre site, mais depuis hier, il ne s'allume plus.",
-          "fa": "– سلام آقا. من با شما تماس می‌گیرم چون یک گوشی همراه از سایت‌تان خریداری کرده‌ام، اما از دیروز دیگر روشن نمی‌شود."
+          "fr": "Je viens de faire",
+          "fa": "من تازه انجام داده‌ام"
         },
         {
-          "fr": "– D'accord. Pourriez-vous me donner la référence de la commande ?",
-          "fa": "– بسیار خب. می‌توانید کد پیگیری سفارش را به من بدهید؟"
+          "fr": "Tu viens de faire",
+          "fa": "تو تازه انجام داده‌ای"
         },
         {
-          "fr": "– Oui, c'est la commande VF 3 3 6 7 Y.",
-          "fa": "– بله، شماره سفارش VF 3 3 6 7 Y است."
+          "fr": "Il vient de faire",
+          "fa": "او (مذکر) تازه انجام داده است"
         },
         {
-          "fr": "– J'y suis. Il s'agit d'un smartphone commandé le 20 août 2020 qui est encore sous garantie. Donc, je vous envoie un bon de retour par e-mail et vous pouvez retourner le smartphone au service réparation.",
-          "fa": "– پیدایش کردم. مربوط به یک گوشی هوشمند سفارش داده شده در ۲۰ اوت ۲۰۲۰ است که هنوز تحت گارانتی است. بنابراین، من یک برگه مرجوعی برای شما ایمیل می‌کنم و می‌توانید گوشی را به بخش تعمیرات بفرستید."
+          "fr": "Elle vient de faire",
+          "fa": "او (مؤنث) تازه انجام داده است"
         },
         {
-          "fr": "– Très bien. Merci monsieur.",
-          "fa": "– بسیار عالی. ممنون آقا."
+          "fr": "On vient de faire",
+          "fa": "ما تازه انجام داده‌ایم"
+        },
+        {
+          "fr": "Nous venons de louer",
+          "fa": "ما تازه اجاره کرده‌ایم"
+        },
+        {
+          "fr": "Vous venez de louer",
+          "fa": "شما تازه اجاره کرده‌اید"
+        },
+        {
+          "fr": "Ils viennent de louer",
+          "fa": "آن‌ها (مذکر) تازه اجاره کرده‌اند"
+        },
+        {
+          "fr": "Elles viennent de louer",
+          "fa": "آن‌ها (مؤنث) تازه اجاره کرده‌اند"
+        },
+        {
+          "fr": "Vous venez de vous installer",
+          "fa": "شما تازه مستقر شده‌اید / ساکن شده‌اید"
+        },
+        {
+          "fr": "Ils ne viennent pas de se garer",
+          "fa": "آن‌ها تازه پارک نکرده‌اند"
+        },
+        {
+          "fr": "Vous ne venez pas de vous installer",
+          "fa": "شما تازه مستقر نشده‌اید"
         }
       ]
     },
@@ -966,32 +811,635 @@
       "id": "piste_012",
       "track": 12,
       "filename": "piste_012.mp3",
-      "title": "صفحه ۱۵ - Exercice 4",
+      "title": "صفحه ۱۹، برای ارتباط برقرار کردن",
+      "category": "communication",
+      "lines": [
+        {
+          "fr": "Alors, tu sais comment aller au mariage ?",
+          "fa": "خب، می‌دانی چطور به عروسی برویم؟"
+        },
+        {
+          "fr": "Oui, je viens de louer une voiture. Je pensais prendre le train, mais c'est plus long et plus cher.",
+          "fa": "بله، تازه یک ماشین کرایه کرده‌ام. فکر می‌کردم با قطار بروم، اما طولانی‌تر و گران‌تر است."
+        },
+        {
+          "fr": "Et en covoiturage ?",
+          "fa": "و با هم‌مسیر شدن (کارپولینگ) چطور؟"
+        },
+        {
+          "fr": "Les trajets proposés ne sont pas pratiques.",
+          "fa": "مسیرهای پیشنهادی کاربردی و راحت نیستند."
+        },
+        {
+          "fr": "Tu es passé par une agence pour la location ?",
+          "fa": "برای اجاره از طریق یک آژانس اقدام کردی؟"
+        },
+        {
+          "fr": "Non, par un service de location de voiture entre particuliers.",
+          "fa": "نه، از طریق یک سرویس اجاره خودرو بین افراد حقیقی (شخص به شخص)."
+        },
+        {
+          "fr": "Il y a une assurance ?",
+          "fa": "بیمه هم دارد؟"
+        },
+        {
+          "fr": "Oui, c'est compris. Et le propriétaire vient de faire le contrôle technique.",
+          "fa": "بله، شاملش می‌شود. و مالک تازه معاینه فنی را انجام داده است."
+        },
+        {
+          "fr": "Et pour l'essence ?",
+          "fa": "و برای بنزین چطور؟"
+        },
+        {
+          "fr": "Je dois juste faire le plein dans une station-service avant de rendre la voiture.",
+          "fa": "فقط باید قبل از تحویل دادن ماشین، باک را در یک پمپ بنزین پر کنم."
+        },
+        {
+          "fr": "Je viens d'avoir un petit accident et le clignotant ne marche plus.",
+          "fa": "من تازه یک تصادف کوچک داشته‌ام و چراغ راهنما دیگر کار نمی‌کند."
+        },
+        {
+          "fr": "D'accord, madame. Je vais regarder et vérifier l'état général du véhicule.",
+          "fa": "بسیار خب خانم. بررسی می‌کنم و وضعیت کلی خودرو را چک خواهم کرد."
+        },
+        {
+          "fr": "Donc, il y a une panne sur la ligne 8 ?",
+          "fa": "پس در خط ۸ خرابی/نقص فنی پیش آمده؟"
+        },
+        {
+          "fr": "Oui, et le trafic est interrompu.",
+          "fa": "بله، و تردد متوقف شده است."
+        },
+        {
+          "fr": "Est-ce que je peux prendre le bus 14 ?",
+          "fa": "آیا می‌توانم اتوبوس خط ۱۴ را سوار شوم؟"
+        },
+        {
+          "fr": "Tu devrais peut-être laisser ta voiture au parc relais et prendre le tram ?",
+          "fa": "شاید بهتر باشد ماشینت را در پارکینگ ترکیبی (Park and Ride) بگذاری و تراموا سوار شوی؟"
+        },
+        {
+          "fr": "C'est un ticket commun pour le parking et le tram ?",
+          "fa": "آیا یک بلیت مشترک برای پارکینگ و تراموا است؟"
+        },
+        {
+          "fr": "Oui, avec transport illimité pour la journée.",
+          "fa": "بله، همراه با تردد نامحدود برای کل روز."
+        }
+      ]
+    },
+    "piste_013": {
+      "id": "piste_013",
+      "track": 13,
+      "filename": "piste_013.mp3",
+      "title": "صفحه ۲۱، تمرین ۱",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Bonjour monsieur. Je viens d'avoir un petit accident et le clignotant ne marche plus.",
+          "fa": "– روز بخیر آقا. من تازه یک تصادف کوچک داشته‌ام و چراغ راهنما دیگر کار نمی‌کند."
+        },
+        {
+          "fr": "– D'accord, madame. Je vais regarder et vérifier l'état général du véhicule. Je vous appelle dans la journée pour la réparation.",
+          "fa": "– بسیار خب خانم. بررسی می‌کنم و وضعیت کلی خودرو را چک خواهم کرد. در طول روز برای تعمیر با شما تماس می‌گیرم."
+        }
+      ]
+    },
+    "piste_014": {
+      "id": "piste_014",
+      "track": 14,
+      "filename": "piste_014.mp3",
+      "title": "صفحه ۲۱، تمرین ۲",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "Chers voyageurs.",
+          "fa": "مسافران گرامی."
+        },
+        {
+          "fr": "Pour améliorer notre réseau de transport, des travaux sur la ligne 5 viennent de débuter.",
+          "fa": "برای بهبود شبکه حمل‌ونقل ما، عملیات عمرانی در خط ۵ تازه آغاز شده است."
+        },
+        {
+          "fr": "La station Victor Hugo n'est plus desservie, mais des bus de remplacement sont à votre disposition.",
+          "fa": "ایستگاه ویکتور هوگو دیگر تحت پوشش نیست (قطار در آن توقف ندارد)، اما اتوبوس‌های جایگزین در دسترس شما هستند."
+        },
+        {
+          "fr": "Votre ticket de transport reste valable.",
+          "fa": "بلیت حمل‌ونقل شما همچنان معتبر است."
+        }
+      ]
+    },
+    "piste_015": {
+      "id": "piste_015",
+      "track": 15,
+      "filename": "piste_015.mp3",
+      "title": "صفحه ۲۱، تمرین ۳",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Bonsoir monsieur. Je viens d'entendre l'annonce. Donc, il y a une panne sur la ligne 8 ?",
+          "fa": "– عصر بخیر آقا. من تازه اعلان را شنیدم. یعنی در خط ۸ خرابی/نقص فنی پیش آمده؟"
+        },
+        {
+          "fr": "– Oui, et malheureusement le trafic est interrompu.",
+          "fa": "– بله، و متأسفانه تردد متوقف شده است."
+        },
+        {
+          "fr": "– Je dois aller place de la République. Est-ce que je peux prendre le bus 14 ?",
+          "fa": "– من باید به میدان جمهوری بروم. آیا می‌توانم اتوبوس خط ۱۴ را سوار شوم؟"
+        },
+        {
+          "fr": "– Non, le service des bus termine à 23 heures. Mais vous pouvez prendre le bus de nuit N5 qui vous laisse rue Voltaire, donc pas loin. Sinon, on vient de m'informer qu'une navette va être proposée dans une petite heure.",
+          "fa": "– خیر، خدمات اتوبوس‌رانی ساعت ۲۳ به پایان می‌رسد. اما می‌توانید اتوبوس شبانه N5 را سوار شوید که شما را در خیابان ولتر پیاده می‌کند، یعنی همین نزدیک‌ها. در غیر این صورت، تازه به من اطلاع دادند که تا کمتر از یک ساعت دیگر یک سرویس رفت‌وبرگشت (شاتل) ارائه خواهد شد."
+        }
+      ]
+    },
+    "piste_016": {
+      "id": "piste_016",
+      "track": 16,
+      "filename": "piste_016.mp3",
+      "title": "صفحه ۲۱، تمرین ۴",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Salut Laure ! Je viens de partir du bureau, donc je vais chercher ma voiture et j'arrive.",
+          "fa": "– سلام لور! من تازه از اداره راه افتاده‌ام، پس می‌روم ماشینم را بردارم و می‌آیم."
+        },
+        {
+          "fr": "– Très bien. Mais ils viennent d'annoncer un véhicule en panne sur la D5 et il y a des embouteillages.",
+          "fa": "– بسیار خب. اما آن‌ها تازه اعلام کردند یک خودرو در جاده D5 خراب شده و ترافیک ایجاد شده است."
+        },
+        {
+          "fr": "Tu devrais peut-être laisser ta voiture au parc relais et prendre le tram ?",
+          "fa": "شاید بهتر باشد ماشینت را در پارکینگ ترکیبی بگذاری و تراموا سوار شوی؟"
+        },
+        {
+          "fr": "En plus, c'est difficile de stationner dans mon quartier.",
+          "fa": "علاوه بر این، پارک کردن در محله ما سخت است."
+        },
+        {
+          "fr": "– Oui, tu as raison.",
+          "fa": "– بله، حق با توست."
+        },
+        {
+          "fr": "C'est un ticket commun pour le parking et le tram ?",
+          "fa": "آیا یک بلیت مشترک برای پارکینگ و تراموا است؟"
+        },
+        {
+          "fr": "– Oui, avec transport illimité pour la journée.",
+          "fa": "– بله، همراه با تردد نامحدود برای کل روز."
+        },
+        {
+          "fr": "– D'accord. À tout à l'heure !",
+          "fa": "– باشد. تا بعد!"
+        }
+      ]
+    },
+    "piste_017": {
+      "id": "piste_017",
+      "track": 17,
+      "filename": "piste_017.mp3",
+      "title": "درس ۳، صفحه ۲۳: دنبال مسکن گشتن و اسباب‌کشی کردن. سند A.",
       "category": "dialogue",
       "lines": [
         {
-          "fr": "– Bonjour madame. Je vous appelle parce que j'ai vu votre annonce pour la vente d'un réfrigérateur et je voudrais vous poser quelques questions.",
-          "fa": "– سلام خانم. تماس می‌گیرم چون آگهی شما را برای فروش یک یخچال دیدم و می‌خواستم چند سوال از شما بپرسم."
+          "fr": "– Agence du Rhône, bonjour !",
+          "fa": "– آژانس املاک رون، روز بخیر!"
         },
         {
-          "fr": "– Quelles sont les dimensions du frigo ?",
-          "fa": "– ابعاد یخچال چقدر است؟"
+          "fr": "– Bonjour monsieur. Je cherche un appartement à louer. Sur votre site, il y a deux annonces intéressantes. Je voudrais vous poser quelques questions.",
+          "fa": "– روز بخیر آقا. من دنبال یک آپارتمان اجاره‌ای می‌گردم. در سایت شما دو آگهی جالب وجود دارد. می‌خواستم چند سؤال از شما بپرسم."
         },
         {
-          "fr": "– Est-ce qu'il est encore sous garantie ?",
-          "fa": "– آیا هنوز گارانتی دارد؟"
+          "fr": "– Bien sûr. Quels appartements vous intéressent ?",
+          "fa": "– البته. کدام آپارتمان‌ها توجه شما را جلب کرده است؟"
         },
         {
-          "fr": "– Quelle est la taille de la partie congélateur ?",
-          "fa": "– اندازه بخش فریزر چقدر است؟"
+          "fr": "– Le T3 dans le quartier de la Banque et le T2, rue Ancienne.",
+          "fa": "– آپارتمان سه خوابه/سه اتاقه (T3) در محله بانک و آپارتمان دو خوابه/دو اتاقه (T2) در خیابان آنسین."
         },
         {
-          "fr": "– Par ailleurs, je voudrais aussi savoir si vous proposez un service de livraison à domicile ou s'il faut venir le chercher.",
-          "fa": "– علاوه بر این، می‌‌خواستم بدانم آیا شما خدمات تحویل در منزل ارائه می‌دهید یا اینکه باید خودم بیایم تحویلش بگیرم؟"
+          "fr": "– Ah, désolé. Le T2 n'est plus disponible. Les nouveaux locataires vont emménager demain.",
+          "fa": "– آه، متأسفم. آپارتمان T2 دیگر موجود نیست. مستأجران جدید فردا اسباب‌کشی می‌کنند."
         },
         {
-          "fr": "– Vous pouvez me joindre au 06 14 53 76 84. À bientôt !",
-          "fa": "– می‌توانید با شماره 06 14 53 76 84 با من تماس بگیرید. به امید دیدار!"
+          "fr": "– Déjà ? Bon... Et le T3, il est libre ?",
+          "fa": "– به این زودی؟ خب... و آپارتمان T3 چطور، خالی است؟"
+        },
+        {
+          "fr": "– Oui, il est disponible. Nous allons organiser les visites la semaine prochaine.",
+          "fa": "– بله، موجود است. ما قصد داریم هفته آینده بازدیدها را تنظیم کنیم."
+        },
+        {
+          "fr": "– Très bien. Cet appartement est à quel étage ?",
+          "fa": "– بسیار عالی. این آپارتمان در کدام طبقه است؟"
+        },
+        {
+          "fr": "– Au 5e. C'est le dernier étage de l'immeuble. Vous avez une jolie vue sur les montagnes.",
+          "fa": "– طبقه پنجم. آخرین طبقه ساختمان است. چشم‌انداز زیبایی رو به کوه‌ها دارید."
+        },
+        {
+          "fr": "– Il y a bien un ascenseur ?",
+          "fa": "– آسانسور هم دارد، درست است؟"
+        },
+        {
+          "fr": "– Bien sûr. L'immeuble est moderne et l'appartement est rénové.",
+          "fa": "– البته. ساختمان مدرن است و آپارتمان بازسازی شده است."
+        },
+        {
+          "fr": "– Parfait ! Les visites, c'est quel jour ? Est-ce que je dois m'inscrire ?",
+          "fa": "– فوق‌العاده است! بازدیدها چه روزی است؟ آیا باید ثبت‌نام کنم؟"
+        },
+        {
+          "fr": "– Mardi prochain de 17 h à 19 h. Pas besoin de vous inscrire. Je vais vous donner l'adresse exacte.",
+          "fa": "– سه‌شنبه آینده از ساعت ۱۷ تا ۱۹. نیازی به ثبت‌نام نیست. آدرس دقیق را به شما خواهم داد."
+        }
+      ]
+    },
+    "piste_018": {
+      "id": "piste_018",
+      "track": 18,
+      "filename": "piste_018.mp3",
+      "title": "صفحه ۲۴، واژه‌نامه: دنبال مسکن گشتن و اسباب‌کشی کردن",
+      "category": "vocab",
+      "lines": [
+        {
+          "section": "La location / اجاره / اجاره‌نشینی"
+        },
+        {
+          "fr": "Une agence immobilière",
+          "fa": "آژانس املاک"
+        },
+        {
+          "fr": "Une annonce immobilière",
+          "fa": "آگهی املاک"
+        },
+        {
+          "fr": "Le propriétaire, la propriétaire",
+          "fa": "صاحب‌خانه (مرد / زن)"
+        },
+        {
+          "fr": "Un locataire, une locataire",
+          "fa": "مستأجر (مرد / زن)"
+        },
+        {
+          "fr": "Signer le bail",
+          "fa": "امضا کردن اجاره‌نامه"
+        },
+        {
+          "fr": "Louer",
+          "fa": "اجاره کردن / اجاره دادن"
+        },
+        {
+          "fr": "Le loyer",
+          "fa": "مبلغ اجاره‌بها"
+        },
+        {
+          "fr": "Charges comprises (C.C.)",
+          "fa": "با احتساب شارژ و هزینه‌ها (شارژ شامل آن است)"
+        },
+        {
+          "fr": "Un immeuble",
+          "fa": "ساختمان / آپارتمان"
+        },
+        {
+          "fr": "Proche des commerces",
+          "fa": "نزدیک به مراکز خرید و مغازه‌ها"
+        },
+        {
+          "fr": "Un étage",
+          "fa": "طبقه"
+        },
+        {
+          "fr": "Un ascenseur",
+          "fa": "آسانسور"
+        },
+        {
+          "fr": "Un gardien, une gardienne",
+          "fa": "سرایدار / نگهبان (مرد / زن)"
+        },
+        {
+          "fr": "Visiter, une visite",
+          "fa": "بازدید کردن، یک بازدید"
+        },
+        {
+          "fr": "L'état des lieux",
+          "fa": "صورتمجلس تحویل ملک (بررسی وضعیت تحویل تحول تحویل خانه)"
+        },
+        {
+          "fr": "L'état général",
+          "fa": "وضعیت کلی"
+        },
+        {
+          "section": "L'appartement / آپارتمان"
+        },
+        {
+          "fr": "Un studio",
+          "fa": "سوئیت / استودیو (یک‌اتاقه بدون اتاق خواب مجزا)"
+        },
+        {
+          "fr": "Un deux-pièces, un trois-pièces, un quatre-pièces",
+          "fa": "آپارتمان دو اتاقه، سه اتاقه، چهار اتاقه"
+        },
+        {
+          "fr": "Un T2, un T3",
+          "fa": "آپارتمان یک‌خوابه (T2)، دوخوابه (T3)"
+        },
+        {
+          "fr": "Un balcon",
+          "fa": "بالکن"
+        },
+        {
+          "fr": "Une terrasse",
+          "fa": "تراس / حیاط خلوت"
+        },
+        {
+          "fr": "Une cuisine équipée",
+          "fa": "آشپزخانه مجهز"
+        },
+        {
+          "fr": "Des WC séparés",
+          "fa": "سرویس بهداشتی مجزا"
+        },
+        {
+          "fr": "Disponible",
+          "fa": "موجود / آماده اجاره"
+        },
+        {
+          "fr": "Meublé",
+          "fa": "مبله"
+        },
+        {
+          "fr": "Moderne",
+          "fa": "مدرن / نوساز"
+        },
+        {
+          "fr": "Ancien, ancienne",
+          "fa": "قدیمی / ساخت قدیم"
+        },
+        {
+          "fr": "Rénové",
+          "fa": "بازسازی‌شده"
+        },
+        {
+          "fr": "Exposé sud, exposé nord, exposé est, exposé ouest",
+          "fa": "رو به جنوب (جنوبی)، رو به شمال (شمالی)، رو به شرق (شرقی)، رو به غرب (غربی)"
+        },
+        {
+          "fr": "Lumineux, lumineuse",
+          "fa": "پرنور / روشن (مذکر / مؤنث)"
+        },
+        {
+          "fr": "La vue",
+          "fa": "چشم‌انداز / نما"
+        },
+        {
+          "section": "Le déménagement / اسباب‌کشی / جابه‌جایی"
+        },
+        {
+          "fr": "Emménager",
+          "fa": "اسباب‌کشی کردن به خانه جدید (وارد شدن)"
+        },
+        {
+          "fr": "Déménager",
+          "fa": "اسباب‌کشی کردن از خانه قدیم (خارج شدن)"
+        },
+        {
+          "fr": "Le carton",
+          "fa": "جعبه / کارتون اسباب‌کشی"
+        },
+        {
+          "fr": "Les meubles",
+          "fa": "اثاثیه / مبلمان"
+        },
+        {
+          "fr": "Le camion",
+          "fa": "کامیون / خاور اسباب‌کشی"
+        },
+        {
+          "fr": "Signaler le changement d'adresse",
+          "fa": "اعلام تغییر آدرس"
+        },
+        {
+          "fr": "Résilier",
+          "fa": "فسخ کردن / لغو قرارداد"
+        },
+        {
+          "fr": "Transférer l'abonnement (Internet, gaz, électricité)",
+          "fa": "انتقال دادن اشتراک (اینترنت، گاز، برق)"
+        }
+      ]
+    },
+    "piste_019": {
+      "id": "piste_019",
+      "track": 19,
+      "filename": "piste_019.mp3",
+      "title": "صفحه ۲۵، گرامر: آینده نزدیک (Le futur proche)",
+      "category": "grammar",
+      "lines": [
+        {
+          "fr": "Page 25, Grammaire — Le futur proche",
+          "fa": "صفحه ۲۵، گرامر — آینده نزدیک (Le futur proche)"
+        },
+        {
+          "fr": "Je vais organiser",
+          "fa": "من قصد دارم برنامه ریزی/تنظیم کنم"
+        },
+        {
+          "fr": "Tu vas organiser",
+          "fa": "تو قصد داری برنامه ریزی/تنظیم کنی"
+        },
+        {
+          "fr": "Il va organiser",
+          "fa": "او (مرد) قصد دارد برنامه ریزی/تنظیم کند"
+        },
+        {
+          "fr": "Elle va organiser",
+          "fa": "او (زن) قصد دارد برنامه ریزی/تنظیم کند"
+        },
+        {
+          "fr": "On va organiser",
+          "fa": "ما / کسی قصد دارد برنامه ریزی/تنظیم کند"
+        },
+        {
+          "fr": "Nous allons emménager",
+          "fa": "ما قصد داریم اسباب‌کشی کنیم (وارد خانه جدید شویم)"
+        },
+        {
+          "fr": "Vous allez emménager",
+          "fa": "شما قصد دارید اسباب‌کشی کنید"
+        },
+        {
+          "fr": "Ils vont emménager",
+          "fa": "آن‌ها (مرد/مختلط) قصد دارند اسباب‌کشی کنند"
+        },
+        {
+          "fr": "Elles vont emménager",
+          "fa": "آن‌ها (زن) قصد دارند اسباب‌کشی کنند"
+        },
+        {
+          "fr": "Je vais m'inscrire",
+          "fa": "من قصد دارم ثبت‌نام کنم"
+        },
+        {
+          "fr": "Je ne vais pas visiter",
+          "fa": "من قصد ندارم بازدید کنم"
+        },
+        {
+          "fr": "Je ne vais pas m'inscrire",
+          "fa": "من قصد ندارم ثبت‌نام کنم"
+        }
+      ]
+    },
+    "piste_020": {
+      "id": "piste_020",
+      "track": 20,
+      "filename": "piste_020.mp3",
+      "title": "صفحه ۲۵، برای ارتباط برقرار کردن (اصطلاحات کاربردی)",
+      "category": "communication",
+      "lines": [
+        {
+          "fr": "Je cherche un appartement à louer.",
+          "fa": "من دنبال یک آپارتمان اجاره‌ای می‌گردم."
+        },
+        {
+          "fr": "Quel type d'appartement vous intéresse ? Un studio, un T2 ?",
+          "fa": "چه نوع آپارتمانی مد نظرتان است؟ یک سوئیت/استودیو، یا دو خوابه (T2)؟"
+        },
+        {
+          "fr": "Est-ce que c'est proche de la gare ?",
+          "fa": "آیا به ایستگاه راه آهن نزدیک است؟"
+        },
+        {
+          "fr": "Oui, c'est à 5 minutes à pied.",
+          "fa": "بله، ۵ دقیقه پیاده فاصله دارد."
+        },
+        {
+          "fr": "Est-ce que le studio est toujours disponible ?",
+          "fa": "آیا سوئیت هنوز موجود/خالی است؟"
+        },
+        {
+          "fr": "Oui, il est libre à partir de mars.",
+          "fa": "بله، از ماه مارس خالی است."
+        },
+        {
+          "fr": "Non, il n'est plus disponible.",
+          "fa": "خیر، دیگر موجود نیست."
+        },
+        {
+          "fr": "L'appartement se trouve dans le quartier de la Banque.",
+          "fa": "آپارتمان در محله بانک واقع شده است."
+        },
+        {
+          "fr": "Pouvez-vous me donner l'adresse exacte ?",
+          "fa": "می‌توانید آدرس دقیق را به من بدهید؟"
+        },
+        {
+          "fr": "Est-ce que c'est lumineux ?",
+          "fa": "آیا پرنور/روشن است؟"
+        },
+        {
+          "fr": "Oui, l'appartement est exposé sud.",
+          "fa": "بله، رو به جنوب (جنوبی) است."
+        },
+        {
+          "fr": "L'appartement est rénové ?",
+          "fa": "آیا آپارتمان بازسازی شده است؟"
+        },
+        {
+          "fr": "Non, mais l'état général est excellent.",
+          "fa": "خیر، اما وضعیت کلی آن عالی است."
+        },
+        {
+          "fr": "Alors, cette visite ? Tu penses quoi du studio ?",
+          "fa": "خب، این بازدید چطور بود؟ نظرت درباره سوئیت چیست؟"
+        },
+        {
+          "fr": "Un coup de cœur ! J'adore.",
+          "fa": "یک نگاه عاشقانه‌اش شدم / در یک نگاه به دلم نشست! شیفته‌اش شدم."
+        },
+        {
+          "fr": "Les visites sont organisées la semaine prochaine.",
+          "fa": "بازدیدها هفته آینده تنظیم شده‌اند."
+        },
+        {
+          "fr": "Est-ce que je dois m'inscrire ?",
+          "fa": "آیا باید ثبت‌نام کنم؟"
+        },
+        {
+          "fr": "Non, pas besoin.",
+          "fa": "نه، نیازی نیست."
+        },
+        {
+          "fr": "Tu signes le bail quand ?",
+          "fa": "کی اجاره‌نامه را امضا می‌کنی؟"
+        },
+        {
+          "fr": "J'attends la réponse de l'agence.",
+          "fa": "منتظر پاسخ آژانس املاک هستم."
+        }
+      ]
+    },
+    "piste_021": {
+      "id": "piste_021",
+      "track": 21,
+      "filename": "piste_021.mp3",
+      "title": "صفحه ۲۷، تمرین ۱",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "Vous allez voir, c'est un bel appartement.",
+          "fa": "خواهید دید، آپارتمان زیبایی است."
+        },
+        {
+          "fr": "Ici, un grand salon de 19 mètres carrés.",
+          "fa": "اینجا، یک پذیرایی بزرگ ۱۹ متر مربعی."
+        },
+        {
+          "fr": "Là, vous avez deux chambres et deux salles de bains.",
+          "fa": "آنجا، دو اتاق خواب و دو حمام/سرویس بهداشتی دارید."
+        },
+        {
+          "fr": "La cuisine est équipée.",
+          "fa": "آشپزخانه مجهز است."
+        },
+        {
+          "fr": "Et regardez cette belle terrasse exposée sud.",
+          "fa": "و این تراس زیبای رو به جنوب را ببینید."
+        },
+        {
+          "fr": "Vous avez une magnifique vue sur le parc.",
+          "fa": "شما چشم‌انداز فوق‌العاده‌ای رو به پارک دارید."
+        }
+      ]
+    },
+    "piste_022": {
+      "id": "piste_022",
+      "track": 22,
+      "filename": "piste_022.mp3",
+      "title": "صفحه ۲۷، تمرین ۲",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Bonjour. Vous êtes Madame Noring, la gardienne ?",
+          "fa": "– روز بخیر. شما خانم نورنگ، سرایدار/نگهبان هستید؟"
+        },
+        {
+          "fr": "– Oui, c'est moi.",
+          "fa": "– بله، خودم هستم."
+        },
+        {
+          "fr": "– Je viens d'avoir votre numéro par l'agence immobilière. Je voudrais visiter le studio au rez-de-chaussée.",
+          "fa": "– من تازه شماره شما را از آژانس املاک گرفته‌ام. می‌خواستم از سوئیت طبقه همکف بازدید کنم."
+        },
+        {
+          "fr": "– Il y a une visite groupée demain à 16 heures. Venez avec votre dossier complet.",
+          "fa": "– فردا ساعت ۱۶ یک بازدید گروهی وجود دارد. با پرونده/مدارک کامل خود بیایید."
+        },
+        {
+          "fr": "– D'accord. Merci madame.",
+          "fa": "– بسیار خب. متشکرم خانم."
         }
       ]
     }
