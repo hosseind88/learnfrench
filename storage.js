@@ -151,7 +151,7 @@ function readLegacyLocalStorage() {
     currentView: 'dashboard',
     flashcards: { category: 'all', direction: 'fa-fr', currentIndex: 0, deckId: null, screen: 'browser', reviews: {} },
     vocab: { category: 'all', gender: 'all', viewMode: 'grid' },
-    sentences: { topic: 'all', hideTranslations: false },
+    sentences: { level: 'A1', topic: 'all', hideTranslations: false },
     gameCategory: 'all',
     lastQuizType: 'mcq',
     openRouterKey: localStorage.getItem('ff_openrouter_key') || '',
@@ -265,6 +265,7 @@ function applySnapshotToState(snapshot, state) {
   }
   state.vocab.searchQuery = '';
   state.vocab.viewMode = snapshot.vocab?.viewMode || 'grid';
+  state.sentences.level = snapshot.sentences?.level === 'A2' ? 'A2' : 'A1';
   state.sentences.topic = snapshot.sentences?.topic || 'all';
   state.sentences.lesson = 'all';
   state.sentences.searchQuery = '';
@@ -380,6 +381,7 @@ window.FFStorage.buildSnapshot = function buildSnapshot(state) {
       viewMode: state.vocab.viewMode
     },
     sentences: {
+      level: state.sentences.level === 'A2' ? 'A2' : 'A1',
       topic: state.sentences.topic,
       hideTranslations: state.sentences.hideTranslations
     },

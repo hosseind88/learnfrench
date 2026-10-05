@@ -2369,10 +2369,55 @@ body.theme-dark .nav-item.active {
   font-size: 0.92rem;
 }
 
+.sentence-level-tabs {
+  margin-bottom: 10px;
+}
+
+.sentence-topic-tabs.is-collapsed {
+  display: none;
+}
+
 .sentences-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sentence-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sentence-section-title {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.sentence-section-count {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-full);
+  padding: 4px 10px;
+}
+
+.sentence-section-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 16px;
+}
+
+.sentence-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-secondary);
 }
 
 .sentence-card {
@@ -3332,7 +3377,7 @@ body.theme-dark .nav-item.active {
   .vocab-cards-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
-  .sentences-list-container {
+  .sentence-section-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
@@ -3736,9 +3781,12 @@ body.theme-dark .nav-item.active {
     justify-content: center;
   }
   .sentences-list-container {
+    gap: 22px;
+    width: 100%;
+  }
+  .sentence-section-grid {
     grid-template-columns: 1fr;
     gap: 10px;
-    width: 100%;
   }
   .sentence-card {
     padding: 14px 14px;

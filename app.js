@@ -75,6 +75,7 @@ const state = {
   },
 
   sentences: {
+    level: 'A1',
     topic: 'all',
     lesson: 'all',
     searchQuery: '',
@@ -2116,9 +2117,107 @@ function getSentenceLesson(sentence) {
   return normalizeSceneLesson(sentence && sentence.lesson);
 }
 
+const SENTENCE_A1_SECTIONS = [
+  ['identity', 'هویت و شغل'],
+  ['family', 'خانواده'],
+  ['time', 'زمان و روزها'],
+  ['housing', 'خانه و شهر'],
+  ['university', 'دانشگاه'],
+  ['routine', 'روزمره'],
+  ['work', 'محیط کار'],
+  ['clothing', 'لباس و رنگ'],
+  ['food', 'غذا و آشپزی'],
+  ['health', 'سلامت'],
+  ['transport', 'حمل‌ونقل'],
+  ['travel', 'سفر و هتل'],
+  ['leisure', 'ورزش و هوا'],
+  ['culture', 'فرهنگ و هنر'],
+  ['society', 'استایل و جامعه'],
+  ['phrases', 'عبارات من']
+];
+
+function getSentenceLevel(sentence) {
+  return String(sentence && sentence.level || '').toUpperCase() === 'A2' ? 'A2' : 'A1';
+}
+
+function getA2SceneSentences() {
+  return (state.scenes.items || [])
+    .filter((scene) => getSceneCourse(scene) === 'A2' && scene.kind !== 'word' && scene.french)
+    .map((scene) => {
+      const lesson = normalizeSceneLesson(scene.lesson);
+      return {
+        id: `a2-${scene.id}`,
+        fr: scene.french,
+        fa: scene.persian || '',
+        lesson,
+        level: 'A2',
+        topic: lesson
+      };
+    });
+}
+
+function getSentencesForLevel(level) {
+  const wanted = level === 'A2' ? 'A2' : 'A1';
+  const library = getAllSentences()
+    .filter((sentence) => getSentenceLevel(sentence) === wanted)
+    .map((sentence) => ({ ...sentence, level: wanted }));
+  if (wanted !== 'A2') return library;
+  const seen = new Set(library.map((sentence) => normalizeFrenchText(sentence.fr)));
+  return library.concat(
+    getA2SceneSentences().filter((sentence) => !seen.has(normalizeFrenchText(sentence.fr)))
+  );
+}
+
+function getCurrentLevelSentences() {
+  return getSentencesForLevel(state.sentences.level || 'A1');
+}
+
+function sentenceSectionsForLevel(level) {
+  if (level === 'A2') {
+    return Object.keys(SCENE_LESSON_TITLES.A2 || {})
+      .sort((a, b) => Number(a) - Number(b))
+      .map((lesson) => [lesson, SCENE_LESSON_TITLES.A2[lesson]]);
+  }
+  return SENTENCE_A1_SECTIONS;
+}
+
+function sentenceSectionKey(sentence, level) {
+  if (level === 'A2') return getSentenceLesson(sentence) || sentence.topic || 'other';
+  return sentence.topic || 'other';
+}
+
+function groupSentences(items, level) {
+  const sections = sentenceSectionsForLevel(level);
+  const buckets = new Map(sections.map(([id]) => [id, []]));
+  const extras = [];
+  items.forEach((item) => {
+    const key = sentenceSectionKey(item, level);
+    if (buckets.has(key)) buckets.get(key).push(item);
+    else extras.push(item);
+  });
+  const groups = sections
+    .map(([id, label]) => ({
+      id,
+      label: level === 'A2' ? `درس ${id} · ${label}` : label,
+      items: buckets.get(id) || []
+    }))
+    .filter((group) => group.items.length);
+  if (extras.length) groups.push({ id: 'other', label: 'سایر', items: extras });
+  return groups;
+}
+
+function sentenceLessonLabel(level, lesson) {
+  if (level === 'A2') {
+    const title = SCENE_LESSON_TITLES.A2 && SCENE_LESSON_TITLES.A2[lesson];
+    return title ? `درس ${lesson} · ${title}` : `درس ${lesson}`;
+  }
+  const meta = getLessonMeta(lesson);
+  return `درس ${lesson} · ${meta.titleFa}`;
+}
+
 function getAvailableSentenceLessons() {
   const lessons = new Set();
-  getAllSentences().forEach((sentence) => {
+  getCurrentLevelSentences().forEach((sentence) => {
     const lesson = getSentenceLesson(sentence);
     if (lesson) lessons.add(lesson);
   });
@@ -2128,6 +2227,8 @@ function getAvailableSentenceLessons() {
 function populateSentenceLessonFilter() {
   const select = document.getElementById('sentenceLessonFilter');
   if (!select) return;
+  const level = state.sentences.level || 'A1';
+  const items = getCurrentLevelSentences();
   const current = state.sentences.lesson || 'all';
   const lessons = getAvailableSentenceLessons();
   if (current !== 'all' && !lessons.includes(current)) {
@@ -2135,97 +2236,148 @@ function populateSentenceLessonFilter() {
   }
   const selected = state.sentences.lesson || 'all';
   const counts = {};
-  getAllSentences().forEach((sentence) => {
+  items.forEach((sentence) => {
     const lesson = getSentenceLesson(sentence);
     if (lesson) counts[lesson] = (counts[lesson] || 0) + 1;
   });
   select.replaceChildren();
   const allOption = document.createElement('option');
   allOption.value = 'all';
-  allOption.textContent = `همه درس‌ها (${getAllSentences().length})`;
+  allOption.textContent = `همه درس‌ها (${items.length})`;
   select.append(allOption);
   lessons.forEach((lesson) => {
     const option = document.createElement('option');
     option.value = lesson;
-    const meta = getLessonMeta(lesson);
-    option.textContent = `درس ${lesson} · ${meta.titleFa} (${counts[lesson] || 0})`;
+    option.textContent = `${sentenceLessonLabel(level, lesson)} (${counts[lesson] || 0})`;
     select.append(option);
   });
   select.value = selected;
 }
 
+function syncSentenceLevelTabs() {
+  const level = state.sentences.level || 'A1';
+  document.querySelectorAll('#sentenceLevelTabs .tab-chip').forEach((tab) => {
+    const tabLevel = tab.dataset.level || 'A1';
+    tab.classList.toggle('active', tabLevel === level);
+    const label = tab.dataset.label || tabLevel;
+    tab.textContent = `${label} (${getSentencesForLevel(tabLevel).length})`;
+  });
+  const a1Tabs = document.getElementById('sentenceTopicTabs');
+  const a2Tabs = document.getElementById('sentenceA2SectionTabs');
+  if (a1Tabs) a1Tabs.classList.toggle('is-collapsed', level !== 'A1');
+  if (a2Tabs) a2Tabs.classList.toggle('is-collapsed', level !== 'A2');
+}
+
 function syncSentenceTopicTabs() {
-  const counts = { all: getAllSentences().length };
-  getAllSentences().forEach((sentence) => {
-    const topic = sentence.topic || 'other';
+  const level = state.sentences.level || 'A1';
+  const root = document.getElementById(level === 'A2' ? 'sentenceA2SectionTabs' : 'sentenceTopicTabs');
+  if (!root) return;
+  const items = getCurrentLevelSentences();
+  const counts = { all: items.length };
+  items.forEach((sentence) => {
+    const topic = sentenceSectionKey(sentence, level);
     counts[topic] = (counts[topic] || 0) + 1;
   });
-  document.querySelectorAll('#sentenceTopicTabs .tab-chip').forEach((tab) => {
+  root.querySelectorAll('.tab-chip').forEach((tab) => {
     const topic = tab.dataset.topic || 'all';
     tab.classList.toggle('active', topic === (state.sentences.topic || 'all'));
     const label = tab.dataset.label || tab.textContent.replace(/\s*\(\d+\)\s*$/, '');
     tab.dataset.label = label;
-    const count = counts[topic] ?? 0;
-    tab.textContent = topic === 'all' ? `${label} (${count})` : `${label} (${count})`;
+    tab.textContent = `${label} (${counts[topic] ?? 0})`;
   });
+}
+
+function escapeSentenceHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function renderSentenceCard(sentence) {
+  const wordsHtml = sentence.fr.split(' ').map((word) => {
+    const cleanWord = word.replace(/['’\.,!]/g, '');
+    return `<span class="sentence-interactive-word" data-word="${escapeSentenceHtml(cleanWord)}">${escapeSentenceHtml(word)}</span>`;
+  }).join(' ');
+
+  return `
+    <div class="sentence-card">
+      <div class="sentence-card-top">
+        <div class="sentence-fr-box" dir="ltr">
+          ${wordsHtml}
+        </div>
+        <button class="icon-btn-sm sentence-speak-btn" data-sentence="${escapeSentenceHtml(sentence.fr)}" title="پخش تلفظ جمله">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        </button>
+      </div>
+      <div class="sentence-fa-box ${state.sentences.hideTranslations ? 'blurred' : ''}">
+        ${escapeSentenceHtml(sentence.fa)}
+      </div>
+    </div>
+  `;
 }
 
 function renderSentences() {
   const container = document.getElementById('sentencesListContainer');
-  let items = [...getAllSentences()];
+  if (!container) return;
+  const level = state.sentences.level || 'A1';
+  syncSentenceLevelTabs();
 
+  if (level === 'A2' && !state.scenes.loaded) {
+    container.innerHTML = '<div class="sentence-empty">در حال بارگذاری جملات A2…</div>';
+    loadLearningScenes().then(() => {
+      if ((state.sentences.level || 'A1') === 'A2') renderSentences();
+    });
+    return;
+  }
+
+  let items = getCurrentLevelSentences();
   populateSentenceLessonFilter();
+  syncSentenceLevelTabs();
   syncSentenceTopicTabs();
 
   if ((state.sentences.lesson || 'all') !== 'all') {
-    items = items.filter(s => getSentenceLesson(s) === state.sentences.lesson);
+    items = items.filter((sentence) => getSentenceLesson(sentence) === state.sentences.lesson);
   }
 
   if (state.sentences.topic !== 'all') {
-    items = items.filter(s => s.topic === state.sentences.topic);
+    items = items.filter((sentence) => sentenceSectionKey(sentence, level) === state.sentences.topic);
   }
 
   if (state.sentences.searchQuery.trim()) {
     const q = state.sentences.searchQuery.trim().toLowerCase();
-    items = items.filter(s => s.fr.toLowerCase().includes(q) || s.fa.toLowerCase().includes(q));
+    items = items.filter((sentence) => sentence.fr.toLowerCase().includes(q) || sentence.fa.toLowerCase().includes(q));
   }
 
-  container.innerHTML = items.map(s => {
-    // Format interactive words in French sentence
-    const wordsHtml = s.fr.split(' ').map(word => {
-      const cleanWord = word.replace(/['’\.,!]/g, '');
-      return `<span class="sentence-interactive-word" data-word="${cleanWord}">${word}</span>`;
-    }).join(' ');
+  const groups = groupSentences(items, level);
+  if (!groups.length) {
+    const waiting = level === 'A2' && state.scenes.loadError;
+    container.innerHTML = `<div class="sentence-empty">${waiting ? 'جملات A2 بارگذاری نشد.' : 'جمله‌ای با این فیلتر پیدا نشد.'}</div>`;
+    return;
+  }
 
-    return `
-      <div class="sentence-card">
-        <div class="sentence-card-top">
-          <div class="sentence-fr-box" dir="ltr">
-            ${wordsHtml}
-          </div>
-          <button class="icon-btn-sm sentence-speak-btn" data-sentence="${s.fr}" title="پخش تلفظ جمله">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-          </button>
-        </div>
-
-        <div class="sentence-fa-box ${state.sentences.hideTranslations ? 'blurred' : ''}">
-          ${s.fa}
-        </div>
+  container.innerHTML = groups.map((group) => `
+    <section class="sentence-section" id="sentence-section-${group.id}">
+      <div class="sentence-section-head">
+        <h2 class="sentence-section-title">${group.label}</h2>
+        <span class="sentence-section-count">${group.items.length} جمله</span>
       </div>
-    `;
-  }).join('');
+      <div class="sentence-section-grid">
+        ${group.items.map(renderSentenceCard).join('')}
+      </div>
+    </section>
+  `).join('');
 
-  // Audio Buttons
-  container.querySelectorAll('.sentence-speak-btn').forEach(btn => {
+  container.querySelectorAll('.sentence-speak-btn').forEach((btn) => {
     btn.onclick = () => speakFrench(btn.dataset.sentence);
   });
 
-  // Clickable interactive words
-  container.querySelectorAll('.sentence-interactive-word').forEach(el => {
+  container.querySelectorAll('.sentence-interactive-word').forEach((el) => {
     el.onclick = () => {
       const word = el.dataset.word.toLowerCase();
       const allVocab = getAllVocabItems();
-      const match = allVocab.find(v => v.word.toLowerCase() === word || word.startsWith(v.word.toLowerCase()));
+      const match = allVocab.find((item) => item.word.toLowerCase() === word || word.startsWith(item.word.toLowerCase()));
       if (match) {
         openWordModal(match);
       } else {
@@ -2235,8 +2387,7 @@ function renderSentences() {
     };
   });
 
-  // Unblur on click when hidden
-  container.querySelectorAll('.sentence-fa-box.blurred').forEach(box => {
+  container.querySelectorAll('.sentence-fa-box.blurred').forEach((box) => {
     box.onclick = () => box.classList.toggle('blurred');
   });
 }
@@ -3686,7 +3837,7 @@ function updateHeaderStats() {
 
 function updateContentCounts() {
   const vocab = getAllVocabItems();
-  const sents = getAllSentences();
+  const sents = getSentencesForLevel('A1').concat(getSentencesForLevel('A2'));
   const setText = (id, value) => {
     const el = document.getElementById(id);
     if (el) el.textContent = value;
@@ -5409,6 +5560,7 @@ function initApp() {
   loadLearningScenes().then(() => {
     updateContentCounts();
     if (state.currentView === 'scenes') renderScenesView();
+    if (state.currentView === 'sentences') renderSentences();
   });
   setupScenesView();
   window.addEventListener('keydown', (e) => {
@@ -5654,9 +5806,22 @@ function initApp() {
   };
 
   // Sentence Topic Tabs
-  document.querySelectorAll('#sentenceTopicTabs .tab-chip').forEach(tab => {
+  document.querySelectorAll('#sentenceLevelTabs .tab-chip').forEach((tab) => {
+    tab.onclick = () => {
+      const next = tab.dataset.level === 'A2' ? 'A2' : 'A1';
+      if ((state.sentences.level || 'A1') === next) return;
+      state.sentences.level = next;
+      state.sentences.topic = 'all';
+      state.sentences.lesson = 'all';
+      saveState();
+      renderSentences();
+    };
+  });
+
+  document.querySelectorAll('#sentenceTopicTabs .tab-chip, #sentenceA2SectionTabs .tab-chip').forEach(tab => {
     tab.onclick = () => {
       state.sentences.topic = tab.dataset.topic;
+      state.sentences.lesson = 'all';
       saveState();
       renderSentences();
     };
@@ -5666,6 +5831,7 @@ function initApp() {
   if (sentenceLessonFilter) {
     sentenceLessonFilter.onchange = () => {
       state.sentences.lesson = sentenceLessonFilter.value || 'all';
+      if ((state.sentences.level || 'A1') === 'A2') state.sentences.topic = 'all';
       saveState();
       renderSentences();
     };

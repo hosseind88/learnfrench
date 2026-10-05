@@ -132,7 +132,7 @@
 
         <button class="nav-item" data-view="sentences">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-          <span>جملات کاربردی A1</span>
+          <span>جملات کاربردی</span>
           <span class="nav-badge" id="sidebarSentencesCount">97</span>
         </button>
 
@@ -772,8 +772,8 @@
       <section id="view-sentences" class="app-view">
         <div class="view-header-row">
           <div>
-            <h1 class="view-main-title">جملات کاربردی فرانسوی در بستر واقعیت</h1>
-            <p class="view-main-desc">جملات واقعی کتاب Communication essentielle A1 به‌همراه ترجمه‌های استاد؛ روی هر جمله برای شنیدن صوت کلیک کنید</p>
+            <h1 class="view-main-title">جملات کاربردی</h1>
+            <p class="view-main-desc">جملات سطح A1 و A2 با ترجمه فارسی. سطح را انتخاب کنید؛ هر سطح بخش‌بندی شده و با کلیک روی جمله، تلفظ پخش می‌شود.</p>
           </div>
           <div class="sentence-controls-row">
             <button class="btn btn-outline btn-sm" id="toggleHideTranslationsBtn">
@@ -781,6 +781,11 @@
               <span id="hideTransText">مخفی‌سازی ترجمه برای تست</span>
             </button>
           </div>
+        </div>
+
+        <div class="sentence-topic-tabs sentence-level-tabs" id="sentenceLevelTabs">
+          <button class="tab-chip active" data-level="A1" data-label="A1">A1</button>
+          <button class="tab-chip" data-level="A2" data-label="A2">A2</button>
         </div>
 
         <!-- Sentence Topic Tabs -->
@@ -802,6 +807,34 @@
           <button class="tab-chip" data-topic="culture">فرهنگ و هنر</button>
           <button class="tab-chip" data-topic="society">استایل و جامعه</button>
           <button class="tab-chip" data-topic="phrases">عبارات من</button>
+        </div>
+
+        <div class="sentence-topic-tabs is-collapsed" id="sentenceA2SectionTabs">
+          <button class="tab-chip active" data-topic="all">همه جملات</button>
+          <button class="tab-chip" data-topic="01">مقایسه و وضعیت</button>
+          <button class="tab-chip" data-topic="02">کرایه خودرو</button>
+          <button class="tab-chip" data-topic="03">مسکن و آگهی املاک</button>
+          <button class="tab-chip" data-topic="04">مدارک هویتی</button>
+          <button class="tab-chip" data-topic="05">تلویزیون و اخبار</button>
+          <button class="tab-chip" data-topic="06">دعوت‌نامه و مراسم</button>
+          <button class="tab-chip" data-topic="07">آشنایی و دوستی</button>
+          <button class="tab-chip" data-topic="08">ازدواج</button>
+          <button class="tab-chip" data-topic="09">مدرسه و غیبت</button>
+          <button class="tab-chip" data-topic="10">کار داوطلبانه</button>
+          <button class="tab-chip" data-topic="11">رستوران و سفارش</button>
+          <button class="tab-chip" data-topic="12">بازی‌های گروهی</button>
+          <button class="tab-chip" data-topic="13">سرگرمی و کلاس</button>
+          <button class="tab-chip" data-topic="14">سفر، هتل و گردشگری</button>
+          <button class="tab-chip" data-topic="15">پزشک و بیمارستان</button>
+          <button class="tab-chip" data-topic="16">ورزش و تمرین</button>
+          <button class="tab-chip" data-topic="17">تغذیه و رژیم</button>
+          <button class="tab-chip" data-topic="18">شهر و خدمات عمومی</button>
+          <button class="tab-chip" data-topic="19">خواب و رؤیا</button>
+          <button class="tab-chip" data-topic="20">مدرسه و دانشگاه</button>
+          <button class="tab-chip" data-topic="21">جستجوی کار</button>
+          <button class="tab-chip" data-topic="22">رزومه و تجربه</button>
+          <button class="tab-chip" data-topic="23">قرارداد و حقوق</button>
+          <button class="tab-chip" data-topic="24">همکاران و محیط کار</button>
         </div>
 
         <div class="vocab-search-filter-bar scene-search-filter-bar sentence-search-filter-bar">
