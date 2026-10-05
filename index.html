@@ -1163,6 +1163,11 @@
 
             <!-- Dock Pane 2: Audio Tracks Playlist & Player -->
             <div class="dock-pane" id="dockPaneAudio">
+              <!-- Level Filter Tabs (A1 / A2) -->
+              <div class="dock-audio-level-tabs" id="audioLevelTabs">
+                <button class="tab-chip active" data-level="A1">سطح A1 (۲۳۳ فایل)</button>
+                <button class="tab-chip" data-level="A2">سطح A2 (با ترجمه فارسی)</button>
+              </div>
               <!-- Integrated Player Card -->
               <div class="book-audio-player-card">
                 <div class="player-top-row">
@@ -1199,6 +1204,22 @@
                   <button class="player-ctrl-btn" id="playerSpeedCycleBtn" title="تغییر سرعت پخش">
                     <span id="playerSpeedLabel">1x</span>
                   </button>
+                </div>
+              </div>
+
+              <!-- Synchronized Audio Transcript Card -->
+              <div class="book-audio-transcript-card" id="audioTranscriptSection">
+                <div class="transcript-header" id="audioTranscriptHeader">
+                  <div class="transcript-title-wrap">
+                    <span class="transcript-badge">متن و ترجمه</span>
+                    <span class="transcript-track-title" id="transcriptTrackTitle">آماده نمایش</span>
+                  </div>
+                  <button class="transcript-toggle-btn" id="transcriptToggleBtn" title="بستن / باز کردن متن">
+                    <svg class="toggle-icon-down" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </button>
+                </div>
+                <div class="transcript-body" id="audioTranscriptBody">
+                  <div class="transcript-empty-state">فایل صوتی را برای مشاهده متن و ترجمه انتخاب کنید.</div>
                 </div>
               </div>
 
