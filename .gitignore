@@ -2,6 +2,7 @@ secrets.js
 anki_parsed.json
 tools/existing.json
 .DS_Store
+audio/a2/*.mp3
 .vercel
 .env
 anki_data/*.apkg
