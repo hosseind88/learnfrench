@@ -1442,6 +1442,133 @@
           "fa": "– بسیار خب. متشکرم خانم."
         }
       ]
+    },
+    "piste_023": {
+      "id": "piste_023",
+      "track": 23,
+      "filename": "piste_023.mp3",
+      "title": "صفحه ۲۷، تمرین ۳",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Une visite d'appartement, c'est rapide. Soyez préparés. Écoutez les conseils de notre spécialiste.",
+          "fa": "– بازدید از یک آپارتمان سریع انجام می‌شود. آماده باشید. به توصیه‌های متخصص ما گوش دهید."
+        },
+        {
+          "fr": "– Avant de visiter, étudiez le quartier. Regardez la rue, y a-t-il des commerces, une poste ? Observez aussi l'immeuble. Est-il moderne, rénové, calme ? Vous allez être content d'avoir un ascenseur si votre futur appartement est au dernier étage. Parlez avec le gardien.",
+          "fa": "– قبل از بازدید، درباره محله تحقیق کنید. به خیابان نگاه کنید، آیا مغازه و مرکز خریدی هست؟ اداره پست چطور؟ همچنین به خود ساختمان دقت کنید. آیا مدرن است، بازسازی شده است، آرام است؟ اگر آپارتمان آینده شما در آخرین طبقه باشد، از داشتن آسانسور خوشحال خواهید شد. با سرایدار/نگهبان صحبت کنید."
+        },
+        {
+          "fr": "– Et pendant la visite ?",
+          "fa": "– و در طول بازدید چطور؟"
+        },
+        {
+          "fr": "– Regardez tout. Un salon lumineux, une jolie vue sont bien sûr importants, mais vérifiez surtout l'état de l'appartement.",
+          "fa": "– به همه چیز نگاه کنید. یک پذیرایی پرنور و یک چشم‌انداز زیبا البته مهم هستند، اما قبل از هر چیز، وضعیت کلی آپارتمان را بررسی کنید."
+        }
+      ]
+    },
+    "piste_024": {
+      "id": "piste_024",
+      "track": 24,
+      "filename": "piste_024.mp3",
+      "title": "صفحه ۲۷، تمرین ۴",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Salut Flo ! Alors, cette visite ? Tu penses quoi du studio ?",
+          "fa": "– سلام فلو! خب، این بازدید چطور بود؟ نظرت درباره سوئیت چیست؟"
+        },
+        {
+          "fr": "– Salut Alan. C'est un coup de cœur ! Il est grand, 35 mètres carrés, et exposé est-ouest.",
+          "fa": "– سلام آلان. در یک نگاه به دلم نشست (شیفته‌اش شدم)! بزرگ است، ۳۵ متر مربع است و رو به شرق و غرب (شرقی-غربی) است."
+        },
+        {
+          "fr": "– Et le quartier ?",
+          "fa": "– و محله چطور؟"
+        },
+        {
+          "fr": "– C'est à 5 minutes d'une station de métro. Je vais aussi discuter avec le gardien pour savoir si c'est calme.",
+          "fa": "– ۵ دقیقه تا یک ایستگاه مترو فاصله دارد. همچنین قرار است با سرایدار/نگهبان صحبت کنم تا بفهمم آیا محله آرام است یا نه."
+        },
+        {
+          "fr": "Bon, 490 euros de loyer, c'est un peu cher, mais les charges sont comprises. Alors je pense que ça va aller.",
+          "fa": "خب، کرایه ۴۹۰ یورویی کمی گران است، اما شارژ و هزینه‌ها شامل آن می‌شود. بنابراین فکر می‌کنم همه‌چیز خوب پیش برود."
+        },
+        {
+          "fr": "– Tu signes le bail quand ?",
+          "fa": "– کی اجاره‌نامه را امضا می‌کنی؟"
+        },
+        {
+          "fr": "– Attends, attends ! L'agence va me donner une réponse demain.",
+          "fa": "– صبر کن، صبر کن! آژانس قرار است فردا به من پاسخ بدهد."
+        }
+      ]
+    },
+    "piste_025": {
+      "id": "piste_025",
+      "track": 25,
+      "filename": "piste_025.mp3",
+      "title": "صفحه ۲۹، سند A",
+      "category": "dialogue",
+      "lines": [
+        {
+          "fr": "– Personne suivante !",
+          "fa": "– نفر بعدی!"
+        },
+        {
+          "fr": "J'ai dit personne suivante !",
+          "fa": "گفتم نفر بعدی!"
+        },
+        {
+          "fr": "Bonjour !",
+          "fa": "روز بخیر!"
+        },
+        {
+          "fr": "– Bonjour. Je voudrais des informations pour renouveler mon titre de séjour qui expire dans 5 mois.",
+          "fa": "– روز بخیر. اطلاعاتی می‌خواستم برای تمدید کارت اقامتم (مجوز اقامت) که ۵ ماه دیگر منقضی می‌شود."
+        },
+        {
+          "fr": "– Pour faire une demande de renouvellement, vous devez envoyer votre carte de séjour qui arrive à expiration.",
+          "fa": "– برای ارائه درخواست تمدید، باید کارت اقامتی را که در حال انقضا است ارسال کنید."
+        },
+        {
+          "fr": "– Pouvez-vous me donner l'adresse postale ?",
+          "fa": "– می‌توانید آدرس پستی را به من بدهید؟"
+        },
+        {
+          "fr": "– C'est écrit sur ce papier.",
+          "fa": "– روی این برگه نوشته شده است."
+        },
+        {
+          "fr": "– Je dois envoyer une lettre recommandée ?",
+          "fa": "– آیا باید یک نامه سفارشی (پیشتاز) بفرستم؟"
+        },
+        {
+          "fr": "– Non, utilisez une lettre simple, au tarif normal.",
+          "fa": "– خیر، از یک نامه معمولی با تعرفه عادی استفاده کنید."
+        },
+        {
+          "fr": "Avec la carte, vous envoyez ce formulaire avec votre nom, celui de votre conjoint et de vos enfants à charge, un justificatif de domicile et 3 photos d'identité.",
+          "fa": "همراه با کارت، این فرم را با نام خود، نام همسر و فرزندان تحت تکفلتان، یک مدرک اثبات محل سکونت (قبض/اجاره‌نامه) و ۳ قطعه عکس پرسنلی ارسال کنید."
+        },
+        {
+          "fr": "N'oubliez pas d'ajouter un timbre fiscal.",
+          "fa": "فراموش نکنید که یک تمبر مالیاتی هم ضمیمه کنید."
+        },
+        {
+          "fr": "– Quand est-ce que je dois faire ma demande ?",
+          "fa": "– چه زمانی باید درخواستم را ارائه دهم؟"
+        },
+        {
+          "fr": "– N'attendez pas trop. Envoyez votre demande au moins 60 jours avant la date d'expiration de votre carte.",
+          "fa": "– خیلی معطل نکنید. درخواستتان را حداقل ۶۰ روز قبل از تاریخ انقضای کارتتان ارسال کنید."
+        },
+        {
+          "fr": "– Merci pour ces informations, j'ai tout noté.",
+          "fa": "– ممنون بابت این اطلاعات، همه را یادداشت کردم."
+        }
+      ]
     }
   }
 }
