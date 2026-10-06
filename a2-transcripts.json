@@ -1819,6 +1819,199 @@
           "fa": "من تمام نکرده‌ام (هنوز تمام نکرده‌ام)."
         }
       ]
+    },
+    "piste_028": {
+      "id": "piste_028",
+      "track": 28,
+      "filename": "piste_028.mp3",
+      "title": "صفحه ۳۱، برای ارتباط برقرار کردن (اصطلاحات کاربردی)",
+      "category": "communication",
+      "lines": [
+        {
+          "fr": "Bonjour madame. Où se trouve le service des titres de séjour ?",
+          "fa": "روز بخیر خانم. بخش مجوزهای اقامت کجا قرار دارد؟"
+        },
+        {
+          "fr": "Le service est au bureau 8, guichet numéro 9.",
+          "fa": "این بخش در دفتر شماره ۸، باجه شماره ۹ است."
+        },
+        {
+          "fr": "Il faut renouveler votre carte, monsieur. Elle a expiré.",
+          "fa": "آقا، شما باید کارتتان را تمدید کنید. اعتبار آن منقضی شده است."
+        },
+        {
+          "fr": "Voici un récépissé de votre demande de titre de séjour.",
+          "fa": "این هم رسیدِ ثبتِ درخواستِ مجوز اقامت شما."
+        },
+        {
+          "fr": "Je voudrais envoyer une lettre recommandée.",
+          "fa": "می‌خواستم یک نامه سفارشی (پیشتاز) بفرستم."
+        },
+        {
+          "fr": "Avec ou sans accusé de réception ?",
+          "fa": "با تأییدیه دریافت (رسید تحویل) یا بدون آن؟"
+        },
+        {
+          "fr": "Est-ce que tu as un accès à Internet avec ton forfait ?",
+          "fa": "آیا با بسته/اشتراکت دسترسی به اینترنت داری؟"
+        },
+        {
+          "fr": "Oui, j'ai 100 gigaoctets par mois.",
+          "fa": "بله، ماهی ۱۰۰ گیگابایت دارم."
+        },
+        {
+          "fr": "Combien est-ce que tu paies ton forfait mobile ? / C'est combien ton forfait mobile ?",
+          "fa": "چقدر بابت بسته همراهت پرداخت می‌کنی؟ / هزینه بسته همراهت چقدر است؟"
+        },
+        {
+          "fr": "22,99 euros par mois, et c'est sans engagement.",
+          "fa": "۲۲.۹۹ یورو در ماه، و بدون تعهد (بدون قرارداد زمان‌دار) است."
+        },
+        {
+          "fr": "Je voudrais résilier mon abonnement téléphonique.",
+          "fa": "می‌خواستم اشتراک تلفنم را فسخ/لغو کنم."
+        },
+        {
+          "fr": "Pour cela, vous devez envoyer une lettre recommandée avec accusé de réception.",
+          "fa": "برای این کار، باید یک نامه سفارشی (پیشتاز) همراه با تأییدیه دریافت ارسال کنید."
+        },
+        {
+          "fr": "J'ai ouvert un compte courant à la banque.",
+          "fa": "من یک حساب جاری در بانک باز کرده‌ام."
+        },
+        {
+          "fr": "Et un livret A aussi ?",
+          "fa": "و یک حساب پس‌انداز (Livret A) هم همین‌طور؟"
+        },
+        {
+          "fr": "Oui, je vais mettre de l'argent de côté.",
+          "fa": "بله، قصد دارم کمی پول کنار بگذارم (پس‌انداز کنم)."
+        }
+      ]
+    },
+    "piste_029": {
+      "id": "piste_029",
+      "track": 29,
+      "filename": "piste_029.mp3",
+      "title": "صفحه ۳۳، تمرین ۱",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Pour ouvrir un compte, il faut un justificatif de domicile et une pièce d'identité. Comptez une semaine pour avoir votre carte bancaire et deux semaines pour votre chéquier.",
+          "fa": "– برای افتتاح حساب، به یک مدرک اثبات محل سکونت (قبض/اجاره‌نامه) و یک مدرک شناسایی نیاز است. برای تحویل گرفتن کارت بانکی‌تان یک هفته و برای دسته چکتان دو هفته زمان در نظر بگیرید."
+        },
+        {
+          "fr": "– Comme justificatif, j'ai pris une facture de téléphone portable.",
+          "fa": "– به عنوان مدرک سکونت، من یک فاکتور/صورت‌حساب تلفن همراه آورده‌ام."
+        },
+        {
+          "fr": "– Non, il faut plutôt une facture d'électricité.",
+          "fa": "– خیر، بیشتر به یک قبض برق نیاز است."
+        }
+      ]
+    },
+    "piste_030": {
+      "id": "piste_030",
+      "track": 30,
+      "filename": "piste_030.mp3",
+      "title": "صفحه ۳۳، تمرین ۲",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Je voudrais envoyer une lettre recommandée. Comment ça fonctionne ?",
+          "fa": "– می‌خواستم یک نامه سفارشی (پیشتاز) بفرستم. چطور کار می‌کند؟"
+        },
+        {
+          "fr": "– Avec une lettre recommandée, vous recevez chez vous un accusé de réception. C'est la preuve que le destinataire a bien reçu votre lettre.",
+          "fa": "– با یک نامه سفارشی، شما در منزل خود یک تأییدیه دریافت (رسید تحویل) دریافت می‌کنید. این مدرکی است که نشان می‌دهد گیرنده نامه شما را تحویل گرفته است."
+        },
+        {
+          "fr": "– Et c'est combien ?",
+          "fa": "– و هزینه‌اش چقدر است؟"
+        },
+        {
+          "fr": "– C'est 4,55 €.",
+          "fa": "– ۴.۵۵ یورو است."
+        }
+      ]
+    },
+    "piste_031": {
+      "id": "piste_031",
+      "track": 31,
+      "filename": "piste_031.mp3",
+      "title": "صفحه ۳۳، تمرین ۳",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– Tu as pris ton forfait chez quel opérateur ?",
+          "fa": "– تو از کدام اپراتور بسته/اشتراک گرفتی؟"
+        },
+        {
+          "fr": "– Green mobile, mais c'est un peu cher.",
+          "fa": "– گرین موبایل (Green mobile)، اما کمی گران است."
+        },
+        {
+          "fr": "– Ah bon ? Tu pays combien par mois ?",
+          "fa": "– آها واقعاً؟ ماهی چقدر می‌پردازی؟"
+        },
+        {
+          "fr": "– J'ai choisi un forfait à 25 euros pour 6 heures avec SMS illimités.",
+          "fa": "– یک بسته ۲۵ یورویی برای ۶ ساعت مکالمه همراه با پیامک نامحدود انتخاب کردم."
+        },
+        {
+          "fr": "– Oui, c'est cher. Tu es client chez eux depuis combien de temps ?",
+          "fa": "– بله، گران است. چند وقت است که مشتری آن‌ها هستی؟"
+        },
+        {
+          "fr": "– Ça doit faire 5 ans.",
+          "fa": "– باید حدود ۵ سال شده باشد."
+        },
+        {
+          "fr": "– Tu es un client fidèle, alors demande-leur une réduction sur ton forfait.",
+          "fa": "– تو یک مشتری وفادار هستی، پس از آن‌ها بخواه روی بسته‌ات تخفیف بدهند."
+        },
+        {
+          "fr": "– Tu as raison, je vais faire ça.",
+          "fa": "– حق با توست، همین کار را می‌کنم."
+        }
+      ]
+    },
+    "piste_032": {
+      "id": "piste_032",
+      "track": 32,
+      "filename": "piste_032.mp3",
+      "title": "صفحه ۳۳، تمرین ۴",
+      "category": "exercise",
+      "lines": [
+        {
+          "fr": "– En plus de votre compte courant, vous pouvez ouvrir un Livret A.",
+          "fa": "– علاوه بر حساب جاری خود، می‌توانید یک حساب پس‌انداز (Livret A) هم باز کنید."
+        },
+        {
+          "fr": "– Qu'est-ce que c'est ?",
+          "fa": "– این چیست؟"
+        },
+        {
+          "fr": "– C'est un compte qui permet d'épargner, d'économiser. Vous choisissez le montant que vous souhaitez mettre de côté tous les mois. C'est automatique.",
+          "fa": "– حسابی است که امکان پس‌انداز و صرفه‌جویی را به شما می‌دهد. شما مبلغی را که می‌خواهید هر ماه کنار بگذارید انتخاب می‌کنید. این کار به صورت خودکار انجام می‌شود."
+        },
+        {
+          "fr": "– Et si j'ai besoin d'utiliser cet argent ?",
+          "fa": "– و اگر نیاز داشته باشم از این پول استفاده کنم چطور؟"
+        },
+        {
+          "fr": "– Aucun problème ! Vous pouvez à tout moment retirer l'argent du Livret.",
+          "fa": "– هیچ مشکلی نیست! شما می‌توانید در هر زمانی پول را از حساب پس‌انداز برداشت کنید."
+        },
+        {
+          "fr": "– Et je peux y mettre la somme que je veux ?",
+          "fa": "– و آیا می‌توانم هر مبلغی که بخواهم در آن بگذارم؟"
+        },
+        {
+          "fr": "– Oui, mais n'oubliez pas, le montant maximum est de 23 000 euros.",
+          "fa": "– بله، اما فراموش نکنید که سقف (حداکثر) مبلغ ۲۳,۰۰۰ یورو است."
+        }
+      ]
     }
   }
 }
