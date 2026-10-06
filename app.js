@@ -5257,8 +5257,9 @@ function setupBookAudio() {
     bookAudio.addEventListener('ended', () => {
       state.book.isPlaying = false;
       updatePlayPauseButtonUi(false);
-      // Auto play next track
+      // A2: manual next only (no auto-advance). A1 keeps auto-play next.
       const endedLevel = getActiveAudioLevel();
+      if (endedLevel === 'A2') return;
       const endedTrack = getCurrentTrackForLevel(endedLevel);
       if (endedTrack < getAudioMaxTrack(endedLevel)) {
         playAudioTrack(endedTrack + 1, true);

@@ -1569,6 +1569,256 @@
           "fa": "– ممنون بابت این اطلاعات، همه را یادداشت کردم."
         }
       ]
+    },
+    "piste_026": {
+      "id": "piste_026",
+      "track": 26,
+      "filename": "piste_026.mp3",
+      "title": "صفحه ۳۰، واژه‌نامه: انجام امور اداری",
+      "category": "vocab",
+      "lines": [
+        {
+          "section": "La mairie / شهرداری"
+        },
+        {
+          "fr": "La mairie",
+          "fa": "شهرداری"
+        },
+        {
+          "fr": "Un acte d'état civil",
+          "fa": "گواهی/سند احوال شخصیه (شناسنامه، گواهی ولادت/ازدواج و...)"
+        },
+        {
+          "fr": "Une carte d'identité",
+          "fa": "کارت شناسایی"
+        },
+        {
+          "fr": "Un passeport",
+          "fa": "گذرنامه / پاسپورت"
+        },
+        {
+          "fr": "La validité, valide",
+          "fa": "اعتبار، معتبر"
+        },
+        {
+          "fr": "La date de validité",
+          "fa": "تاریخ اعتبار"
+        },
+        {
+          "fr": "Expirer",
+          "fa": "منقضی شدن / تمام شدن اعتبار"
+        },
+        {
+          "fr": "Renouveler le passeport",
+          "fa": "تمدید کردن پاسپورت"
+        },
+        {
+          "fr": "Faire une demande de carte d'identité",
+          "fa": "درخواست کارت شناسایی دادن"
+        },
+        {
+          "fr": "Déposer une demande de carte d'identité",
+          "fa": "تحویل/ارائه درخواست کارت شناسایی"
+        },
+        {
+          "section": "La préfecture / فرمانداری / استانداری (پرفکتور)"
+        },
+        {
+          "fr": "La préfecture",
+          "fa": "فرمانداری / استانداری (پرفکتور)"
+        },
+        {
+          "fr": "Un titre de séjour",
+          "fa": "مجوز/کارت اقامت"
+        },
+        {
+          "fr": "Une carte de séjour",
+          "fa": "کارت اقامت"
+        },
+        {
+          "fr": "Une autorisation de séjour",
+          "fa": "اجازه اقامت"
+        },
+        {
+          "fr": "Être en situation régulière",
+          "fa": "دارای وضعیت قانونی/مجاز بودن"
+        },
+        {
+          "fr": "Être en situation irrégulière",
+          "fa": "دارای وضعیت غیرقانونی/غیرمجاز بودن"
+        },
+        {
+          "fr": "La photo d'identité",
+          "fa": "عکس پرسنلی"
+        },
+        {
+          "fr": "Un permis de conduire",
+          "fa": "گواهی‌نامه رانندگی"
+        },
+        {
+          "fr": "Un timbre fiscal",
+          "fa": "تمبر مالیاتی"
+        },
+        {
+          "fr": "Un récépissé",
+          "fa": "رسید تحویل مدارک"
+        },
+        {
+          "fr": "Un accusé de réception",
+          "fa": "تأییدیه دریافت (رسید پست پیشتاز/سفارشی)"
+        },
+        {
+          "fr": "Envoyer une lettre simple",
+          "fa": "ارسال نامه معمولی"
+        },
+        {
+          "fr": "Envoyer une lettre recommandée",
+          "fa": "ارسال نامه سفارشی (پیشتاز)"
+        },
+        {
+          "fr": "Envoyer une lettre verte",
+          "fa": "ارسال نامه سبز (پست کم‌مصرف/محیط‌زیستی)"
+        },
+        {
+          "fr": "Une convocation",
+          "fa": "احضارنامه / برگه دعوت"
+        },
+        {
+          "fr": "Se présenter",
+          "fa": "حضور یافتن / مراجعه کردن"
+        },
+        {
+          "fr": "Présenter un document, retirer un document",
+          "fa": "ارائه دادن یک مدرک، تحویل گرفتن/برداشتن یک مدرک"
+        },
+        {
+          "section": "La banque / بانک"
+        },
+        {
+          "fr": "La banque",
+          "fa": "بانک"
+        },
+        {
+          "fr": "Un compte courant",
+          "fa": "حساب جاری"
+        },
+        {
+          "fr": "Retirer de l'argent",
+          "fa": "برداشت کردن پول"
+        },
+        {
+          "fr": "Un livret A",
+          "fa": "حساب پس‌انداز (نوع A)"
+        },
+        {
+          "fr": "Ouvrir un compte",
+          "fa": "افتتاح حساب"
+        },
+        {
+          "fr": "Une pièce d'identité",
+          "fa": "مدرک شناسایی"
+        },
+        {
+          "fr": "Un justificatif de domicile",
+          "fa": "مدرک اثبات محل سکونت (قبض/اجاره‌نامه)"
+        },
+        {
+          "fr": "Une carte bancaire",
+          "fa": "کارت بانکی"
+        },
+        {
+          "fr": "Un chéquier",
+          "fa": "دسته چک"
+        },
+        {
+          "fr": "Économiser",
+          "fa": "صرفه‌جویی کردن"
+        },
+        {
+          "fr": "Épargner",
+          "fa": "پس‌انداز کردن"
+        },
+        {
+          "fr": "Mettre de l'argent de côté",
+          "fa": "پول کنار گذاشتن"
+        },
+        {
+          "section": "L'abonnement téléphonique / اشتراک تلفن"
+        },
+        {
+          "fr": "L'abonnement téléphonique",
+          "fa": "اشتراک تلفن"
+        },
+        {
+          "fr": "Un téléphone portable",
+          "fa": "تلفن همراه"
+        },
+        {
+          "fr": "Un opérateur mobile",
+          "fa": "اپراتور تلفن همراه"
+        },
+        {
+          "fr": "Un abonnement avec ou sans engagement",
+          "fa": "اشتراک با یا بدون تعهد (قرارداد زمان‌دار)"
+        },
+        {
+          "fr": "Prendre un forfait, choisir un forfait",
+          "fa": "خرید/انتخاب یک بسته (پلان شارژ/اشتراک)"
+        },
+        {
+          "fr": "Une facture",
+          "fa": "صورت‌حساب / فاکتور"
+        },
+        {
+          "fr": "Un accès à Internet",
+          "fa": "دسترسی به اینترنت"
+        },
+        {
+          "fr": "SMS illimités",
+          "fa": "پیامک نامحدود"
+        }
+      ]
+    },
+    "piste_027": {
+      "id": "piste_027",
+      "track": 27,
+      "filename": "piste_027.mp3",
+      "title": "صفحه ۳۱، گرامر: زمان گذشته مرکب با فعل کمک‌کننده Avoir (Le passé composé avec avoir)",
+      "category": "grammar",
+      "lines": [
+        {
+          "fr": "Page 31, Grammaire — Le passé composé avec avoir",
+          "fa": "صفحه ۳۱، گرامر — زمان گذشته مرکب با فعل کمک‌کننده Avoir (Le passé composé avec avoir)"
+        },
+        {
+          "fr": "J'ai noté les informations.",
+          "fa": "من اطلاعات را یادداشت کرده‌ام (یادداشت کردم)."
+        },
+        {
+          "fr": "Elles ont envoyé une lettre recommandée.",
+          "fa": "آن‌ها (زن) یک نامه سفارشی (پیشتاز) فرستاده‌اند (فرستادند)."
+        },
+        {
+          "fr": "Noter → J'ai noté",
+          "fa": "یادداشت کردن → یادداشت کرده‌ام (Noter → J'ai noté)"
+        },
+        {
+          "fr": "Finir → J'ai fini",
+          "fa": "تمام کردن / به پایان رساندن → تمام کرده‌ام (Finir → J'ai fini)"
+        },
+        {
+          "fr": "Ouvrir → J'ai ouvert",
+          "fa": "باز کردن → باز کرده‌ام (Ouvrir → J'ai ouvert)"
+        },
+        {
+          "fr": "Faire → J'ai fait",
+          "fa": "انجام دادن → انجام داده‌ام (Faire → J'ai fait)"
+        },
+        {
+          "fr": "Je n'ai pas fini.",
+          "fa": "من تمام نکرده‌ام (هنوز تمام نکرده‌ام)."
+        }
+      ]
     }
   }
 }
