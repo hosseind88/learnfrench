@@ -6063,3 +6063,370 @@ body.theme-dark .scene-gloss-word {
   }
 }
 
+/* ==========================================================================
+   Night Conversation (مکالمه شبانه A2)
+   ========================================================================== */
+
+.nightconv-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.nightconv-lesson-sidebar {
+  position: sticky;
+  top: 88px;
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.nightconv-sidebar-head {
+  margin-bottom: 14px;
+}
+
+.nightconv-sidebar-hint {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 8px 0 0;
+}
+
+.nightconv-lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nightconv-lesson-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  text-align: right;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.nightconv-lesson-card:hover {
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+.nightconv-lesson-card.is-active {
+  border-color: var(--french-blue);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(16, 185, 129, 0.06));
+}
+
+.nightconv-card-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--french-blue);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nightconv-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nightconv-card-fr {
+  font-family: var(--font-fr);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+}
+
+.nightconv-card-fa {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.nightconv-card-grammar {
+  font-size: 0.72rem;
+  color: var(--french-blue);
+  margin-top: 4px;
+}
+
+.nightconv-detail-panel {
+  min-width: 0;
+}
+
+.nightconv-empty-state {
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-xl);
+  line-height: 1.7;
+}
+
+.nightconv-lesson-article {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.nightconv-lesson-header {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.nightconv-lesson-badge {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--french-blue);
+  background: rgba(37, 99, 235, 0.1);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.nightconv-lesson-title-fr {
+  font-family: var(--font-fr);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.nightconv-lesson-title-fa {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.nightconv-theme {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.nightconv-block {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.nightconv-block-title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: var(--text-primary);
+}
+
+.nightconv-topic {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 16px;
+}
+
+.nightconv-questions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nightconv-question-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.nightconv-q-num {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  font-weight: 800;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nightconv-q-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.nightconv-fr {
+  font-family: var(--font-fr);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.nightconv-fa {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 4px 0 0;
+}
+
+.nightconv-q-actions {
+  display: inline-flex;
+  margin: 2px 0;
+}
+
+.nightconv-vocab-table-wrap {
+  overflow-x: auto;
+}
+
+.nightconv-vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.nightconv-vocab-table th,
+.nightconv-vocab-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: right;
+  vertical-align: middle;
+}
+
+.nightconv-vocab-table th:first-child,
+.nightconv-vocab-fr {
+  text-align: left;
+  font-family: var(--font-fr);
+  font-weight: 600;
+}
+
+.nightconv-vocab-action {
+  width: 44px;
+  text-align: center;
+}
+
+.nightconv-structure {
+  font-family: var(--font-fr);
+  font-size: 0.9rem;
+  color: var(--french-blue);
+  margin: 8px 0 12px;
+}
+
+.nightconv-points {
+  margin: 0 0 12px;
+  padding-right: 1.2rem;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.nightconv-example-row,
+.nightconv-phrase-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 8px;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.nightconv-example-row .nightconv-fa,
+.nightconv-phrase-row .nightconv-fa {
+  grid-column: 1 / -1;
+}
+
+.nightconv-conj-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.nightconv-conj-item {
+  font-family: var(--font-fr);
+  font-size: 0.82rem;
+  background: var(--bg-secondary);
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+}
+
+.nightconv-negative {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.nightconv-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.nightconv-culture-note {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 16px;
+}
+
+.nightconv-phrases {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nightconv-lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+@media (max-width: 900px) {
+  .nightconv-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .nightconv-lesson-sidebar {
+    position: static;
+    max-height: none;
+  }
+
+  .nightconv-lesson-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .nightconv-lesson-list {
+    grid-template-columns: 1fr;
+  }
+}
+

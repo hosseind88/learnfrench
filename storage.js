@@ -15,7 +15,7 @@ const IDB_STORE_NAME = 'snapshots';
 const IDB_SNAPSHOT_KEY = 'latest';
 
 const VALID_VIEWS = new Set([
-  'dashboard', 'book', 'vocab', 'flashcards', 'quiz', 'sentences',
+  'dashboard', 'book', 'nightconv', 'vocab', 'flashcards', 'quiz', 'sentences',
   'scenes', 'grammar', 'matchgame', 'progress', 'importer', 'donate'
 ]);
 
@@ -289,6 +289,9 @@ function applySnapshotToState(snapshot, state) {
     : {};
   state.activityDates = Array.isArray(snapshot.activityDates) ? snapshot.activityDates : [];
   state.quizLog = Array.isArray(snapshot.quizLog) ? snapshot.quizLog.slice(-50) : [];
+  if (snapshot.nightConv?.selectedLessonId) {
+    state.nightConv.selectedLessonId = snapshot.nightConv.selectedLessonId;
+  }
 }
 
 function engineLabel(engine) {
@@ -394,7 +397,10 @@ window.FFStorage.buildSnapshot = function buildSnapshot(state) {
     book: state.book || { currentPage: 1, currentTrack: 1, zoom: 1.0, sideDockTab: 'ai' },
     aiPageExplanations: state.aiPageExplanations || {},
     activityDates: state.activityDates || [],
-    quizLog: state.quizLog || []
+    quizLog: state.quizLog || [],
+    nightConv: {
+      selectedLessonId: state.nightConv?.selectedLessonId || null
+    }
   };
 };
 

@@ -113,6 +113,12 @@
           <span>صوت درس‌ها</span>
         </button>
 
+        <button class="nav-item" data-view="nightconv">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><path d="M8 10h.01M12 10h.01M16 10h.01"></path></svg>
+          <span>مکالمه شبانه A2</span>
+          <span class="nav-badge" id="sidebarNightConvCount">۱۰</span>
+        </button>
+
         <button class="nav-item" data-view="vocab">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
           <span>واژه‌نامه و لغات</span>
@@ -1128,6 +1134,35 @@
                 <!-- 233 tracks rendered dynamically -->
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- VIEW: NIGHT CONVERSATION (مکالمه شبانه A2) -->
+      <!-- ============================================================== -->
+      <section id="view-nightconv" class="app-view">
+        <div class="view-header-row">
+          <div>
+            <h1 class="view-main-title" id="nightConvMainTitle">مکالمه شبانه A2</h1>
+            <p class="view-main-desc" id="nightConvMainDesc">راهنمای جلسات گفت‌وگو · Communication Essentielle du Français A2</p>
+          </div>
+        </div>
+
+        <div class="nightconv-layout">
+          <aside class="nightconv-lesson-sidebar" id="nightConvLessonSidebar">
+            <div class="nightconv-sidebar-head">
+              <span class="tool-badge">🌙 جلسه شبانه</span>
+              <p class="nightconv-sidebar-hint" id="nightConvSessionHint">جلسات ۳۰ تا ۶۰ دقیقه‌ای در گوگل میت</p>
+            </div>
+            <div class="nightconv-lesson-list" id="nightConvLessonList"></div>
+          </aside>
+
+          <div class="nightconv-detail-panel" id="nightConvDetailPanel">
+            <div class="nightconv-empty-state" id="nightConvEmptyState">
+              یک درس از فهرست کنار را انتخاب کنید تا موضوع مباحثه، پرسش‌ها، واژگان و گرامر همان شب را ببینید.
+            </div>
+            <article class="nightconv-lesson-article" id="nightConvLessonArticle" hidden></article>
           </div>
         </div>
       </section>

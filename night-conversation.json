@@ -1,0 +1,1083 @@
+{
+  "meta": {
+    "title": "مکالمه شبانه A2",
+    "subtitle": "راهنمای مباحثه و تمرین مکالمه — دروس ۱ تا ۱۰",
+    "book": "Communication Essentielle du Français A2",
+    "sessionHintFa": "جلسات ۳۰ تا ۶۰ دقیقه‌ای در گوگل میت",
+    "version": 1
+  },
+  "lessons": [
+    {
+      "id": "a2_lesson_01",
+      "number": 1,
+      "titleFr": "Faire des achats",
+      "titleFa": "خرید و ارزیابی کالا",
+      "themeFa": "خرید، ارزیابی کیفیت و ویژگی‌های کالا، خریدهای دست دوم (Produits d'occasion) و تعامل با خدمات پس از فروش.",
+      "discussion": {
+        "topicFa": "ترجیحات شخصی در خرید کالای نو یا دست دوم، نحوه بررسی آگهی‌های فروش و چالش‌های پیگیری سفارش‌های خراب یا مرجوعی.",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "Pourquoi préfères-tu acheter des produits d'occasion ou des produits neufs ?",
+            "fa": "چرا خرید اجناس دست دوم یا نو را ترجیح می‌دهید؟"
+          },
+          {
+            "fr": "Quels sont les avantages et les inconvénients d'acheter sur des sites comme Leboncoin ou Vinted ?",
+            "fa": "مزایا و معایب خرید از سایت‌های دست دوم چیست؟"
+          },
+          {
+            "fr": "Comment réagis-tu si un appareil tombe en panne après l'achat ?",
+            "fa": "اگر وسایل خریده‌شده خراب شود، چه واکنشی نشان می‌دهید؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "Un produit d'occasion",
+          "fa": "کالای دست دوم"
+        },
+        {
+          "fr": "Lave-linge / Machine à laver",
+          "fa": "ماشین لباسشویی"
+        },
+        {
+          "fr": "Tomber en panne",
+          "fa": "خراب شدن / از کار افتادن"
+        },
+        {
+          "fr": "Sous garantie",
+          "fa": "دارای گارانتی / ضمانت"
+        },
+        {
+          "fr": "Service après-vente",
+          "fa": "خدمات پس از فروش"
+        },
+        {
+          "fr": "Remboursement",
+          "fa": "استرداد وجه / بازپرداخت"
+        },
+        {
+          "fr": "Ticket de caisse",
+          "fa": "رسید خرید / فاکتور"
+        },
+        {
+          "fr": "Notice d'utilisation",
+          "fa": "دفترچه راهنمای استفاده"
+        },
+        {
+          "fr": "Livraison à domicile",
+          "fa": "تحویل در منزل"
+        },
+        {
+          "fr": "Négocier le prix",
+          "fa": "چانه‌زدن سر قیمت"
+        }
+      ],
+      "grammar": {
+        "titleFr": "La place de l'adjectif",
+        "titleFa": "جایگاه صفت",
+        "pointsFa": [
+          "قاعده کلی: اکثر صفت‌ها در زبان فرانسوی بعد از اسم قرار می‌گیرند.",
+          "استثنا: صفت‌های کوتاه و پرکاربرد مانند petit, grand, gros, beau, joli, bon, meilleur, jeune, vieux, nouveau قبل از اسم می‌آیند."
+        ],
+        "examples": [
+          {
+            "fr": "Un lave-linge pas cher",
+            "fa": "یک ماشین لباسشویی ارزان"
+          },
+          {
+            "fr": "Des commentaires positifs",
+            "fa": "نظرات مثبت"
+          },
+          {
+            "fr": "Une nouvelle machine à laver",
+            "fa": "یک ماشین لباسشویی جدید"
+          },
+          {
+            "fr": "En très bon état",
+            "fa": "در وضعیت بسیار خوب"
+          }
+        ]
+      },
+      "culture": {
+        "noteFa": "خرید و فروش اجناس دست دوم در فرانسه بسیار رایج است. مردم از سایت‌های اینترنتی (Leboncoin, Vinted, Vide-dressing)، مغازه‌ها (Friperies, Emmaüs) یا بازارهای محلی (Vide-grenier, Brocante) استفاده می‌کنند.",
+        "phrases": [
+          {
+            "fr": "Je vous appelle parce que j'ai acheté un téléphone sur votre site, mais il est en panne.",
+            "fa": "تماس می‌گیرم چون تلفنی خریدم که خراب است."
+          },
+          {
+            "fr": "Est-ce que le produit est encore sous garantie ?",
+            "fa": "آیا کالا هنوز گارانتی دارد؟"
+          },
+          {
+            "fr": "Je voudrais un remboursement, s'il vous plaît.",
+            "fa": "لطفاً وجه مرا استرداد کنید."
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2_lesson_02",
+      "number": 2,
+      "titleFr": "Se déplacer",
+      "titleFa": "جابه‌جایی و حمل‌ونقل",
+      "themeFa": "حمل‌ونقل شهری، اجاره خودرو بین افراد، هم‌پیمایی (Covoiturage)، و مدیریت مشکلات مسیر.",
+      "discussion": {
+        "topicFa": "بهترین روش‌های رفت‌وآمد در شهر و سفر، مقایسه حمل‌ونقل عمومی با اجاره ماشین شخص یا استفاده از خودروی شخصی.",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "Quel moyen de transport utilises-tu pour tes déplacements quotidiens et pourquoi ?",
+            "fa": "از چه وسیله نقلیه‌ای برای رفت‌وآمد روزانه استفاده می‌کنید و چرا؟"
+          },
+          {
+            "fr": "Quelles sont les conditions pour louer une voiture entre particuliers ?",
+            "fa": "شرایط اجاره خودرو بین افراد چیست؟"
+          },
+          {
+            "fr": "Que fais-tu en cas d'embouteillage ou de panne sur une ligne de métro ?",
+            "fa": "در صورت ترافیک یا خرابی مترو چه می‌کنید؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "Louer une voiture",
+          "fa": "اجاره کردن ماشین"
+        },
+        {
+          "fr": "Permis de conduire",
+          "fa": "گواهینامه رانندگی"
+        },
+        {
+          "fr": "Contrôle technique",
+          "fa": "معاینه فنی خودرو"
+        },
+        {
+          "fr": "Faire le plein d'essence",
+          "fa": "پر کردن باک بنزین"
+        },
+        {
+          "fr": "Embouteillage",
+          "fa": "راهبندان / ترافیک سنگین"
+        },
+        {
+          "fr": "Parc relais (P+R)",
+          "fa": "پارکینگ حومه شهر متصل به حمل‌ونقل عمومی"
+        },
+        {
+          "fr": "Station-service",
+          "fa": "پمپ بنزین"
+        },
+        {
+          "fr": "Correspondance",
+          "fa": "تعویض خط (در مترو یا اتوبوس)"
+        },
+        {
+          "fr": "Titre de transport valable",
+          "fa": "بلیت معتبر حمل‌ونقل"
+        },
+        {
+          "fr": "Clignotant / Rétroviseur",
+          "fa": "چراغ راهنما / آینه عقب"
+        }
+      ],
+      "grammar": {
+        "titleFr": "Le passé récent",
+        "titleFa": "گذشته نزدیک",
+        "structureFr": "Sujet + venir (au présent) + de / d' + Verbe à l'infinitif",
+        "pointsFa": [
+          "کاربرد: بیان رویدادی که همین چند لحظه پیش رخ داده است."
+        ],
+        "examples": [
+          {
+            "fr": "Je viens de louer une voiture.",
+            "fa": "من همین الان یک ماشین اجاره کردم."
+          },
+          {
+            "fr": "Le propriétaire vient de faire le contrôle technique.",
+            "fa": "مالک همین چند لحظه پیش معاینه فنی را انجام داده است."
+          }
+        ],
+        "negativeExample": {
+          "fr": "Ils ne viennent pas de se garer.",
+          "fa": "آن‌ها تازه پارک نکرده‌اند."
+        }
+      },
+      "culture": {
+        "noteFa": "سیستم Parc relais (P+R) پارکینگ‌هایی در حومه شهر هستند که رانندگان خودروی خود را آنجا پارک کرده و با یک بلیت مشترک و کم‌هزینه‌تر، با وسایل عمومی (مترو، تراموا) به مرکز شهر می‌روند.",
+        "phrases": [
+          {
+            "fr": "Je viens d'avoir un petit accident et le clignotant ne marche plus.",
+            "fa": "تازه تصادف کوچکی کردم و راهنما کار نمی‌کند."
+          },
+          {
+            "fr": "Le trafic est interrompu sur la ligne 8.",
+            "fa": "ترافیک/حرکت در خط ۸ مترو متوقف شده است."
+          },
+          {
+            "fr": "C'est un ticket commun pour le parking et le tram ?",
+            "fa": "آیا این بلیت مشترک پارکینگ و تراموا است؟"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2_lesson_03",
+      "number": 3,
+      "titleFr": "Chercher un logement et déménager",
+      "titleFa": "جستجوی مسکن و اسباب‌کشی",
+      "themeFa": "جستجوی ملک، بررسی آگهی‌های اجاره، قرارداد اجاره (Bail)، تحویل خانه و مراحل اسباب‌کشی.",
+      "discussion": {
+        "topicFa": "معیارهای انتخاب یک مسکن مناسب، مراحل قانونی اجاره مسکن و چگونگی سازماندهی اسباب‌کشی.",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "Quels sont tes critères principaux pour choisir un appartement (quartier, prix, nombre de pièces) ?",
+            "fa": "معیارهای اصلی شما برای انتخاب آپارتمان چیست؟"
+          },
+          {
+            "fr": "Pourquoi l'état des lieux est-il une étape importante avant d'emménager ?",
+            "fa": "چرا صورت‌جلسه تحویل خانه قبل از اسباب‌کشی مهم است؟"
+          },
+          {
+            "fr": "Comment organises-tu ton déménagement (cartons, camion, aide des amis) ?",
+            "fa": "اسباب‌کشی خود را چگونه سازماندهی می‌کنید؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "Agence immobilière",
+          "fa": "آژانس املاک"
+        },
+        {
+          "fr": "Signer le bail",
+          "fa": "امضای اجاره‌نامه"
+        },
+        {
+          "fr": "Loyer / Charges comprises (cc)",
+          "fa": "اجاره‌بها / با احتساب شارژ و هزینه‌ها"
+        },
+        {
+          "fr": "État des lieux",
+          "fa": "صورت‌جلسه وضعیت ملک (هنگام تحویل و تخلیه)"
+        },
+        {
+          "fr": "Studio / T2 / T3",
+          "fa": "سوئیت / آپارتمان دو اتاقه / سه اتاقه"
+        },
+        {
+          "fr": "Emménager / Déménager",
+          "fa": "اسباب‌کشی به خانه جدید / تخلیه خانه قبلی"
+        },
+        {
+          "fr": "Résilier l'abonnement",
+          "fa": "لغو کردن اشتراک (آب، برق، اینترنت)"
+        },
+        {
+          "fr": "Lumineux / Lumineuse",
+          "fa": "روشن و نورگیر"
+        },
+        {
+          "fr": "Coup de cœur",
+          "fa": "پسندیدن فوری و شدید یک ملک"
+        },
+        {
+          "fr": "Carton de déménagement",
+          "fa": "کارتن اسباب‌کشی"
+        }
+      ],
+      "grammar": {
+        "titleFr": "Le futur proche",
+        "titleFa": "آینده نزدیک",
+        "structureFr": "Sujet + verbe aller (au présent) + Verbe à l'infinitif",
+        "pointsFa": [
+          "کاربرد: بیان برنامه‌ها، تصمیمات و رویدادهای آینده نزدیک."
+        ],
+        "examples": [
+          {
+            "fr": "Les nouveaux locataires vont emménager demain.",
+            "fa": "مستاجران جدید فردا اسباب‌کشی می‌کنند."
+          },
+          {
+            "fr": "Je vais m'inscrire pour la visite.",
+            "fa": "برای بازدید ثبت‌نام خواهم کرد."
+          }
+        ],
+        "negativeExample": {
+          "fr": "Je ne vais pas visiter cet appartement.",
+          "fa": "من از این آپارتمان بازدید نخواهم کرد."
+        }
+      },
+      "culture": {
+        "noteFa": "در فرانسه، پیش از ورود به خانه اجاره‌ای، قرارداد اجاره (Bail) امضا می‌شود. ثبت دقیق وضعیت خانه (État des lieux) در دو مرحله (شروع و پایان اجاره) برای بازپس‌گیری مبلغ ودیعه الزامی است.",
+        "phrases": [
+          {
+            "fr": "Est-ce que le studio est toujours disponible ?",
+            "fa": "آیا سوئیت هنوز خالی/موجود است؟"
+          },
+          {
+            "fr": "L'appartement se trouve dans un quartier calme et proche des commerces.",
+            "fa": "آپارتمان در محله‌ای آرام و نزدیک به مراکز خرید قرار دارد."
+          },
+          {
+            "fr": "Vous signez le bail quand ?",
+            "fa": "چه زمانی اجاره‌نامه را امضا می‌کنید؟"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2_lesson_04",
+      "number": 4,
+      "titleFr": "Faire des démarches administratives",
+      "titleFa": "امور اداری و بانکی",
+      "themeFa": "امور اداری، فرمانداری، شهرداری، امور بانکی، خدمات تلفن همراه و بیمه‌های درمانی.",
+      "discussion": {
+        "topicFa": "پیگیری امور اداری و اقامتی، حساب‌های بانکی، خریدهای مالیاتی و لغو یا تغییر بسته‌های تلفن.",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "Quelles sont les démarches nécessaires pour renouveler un titre de séjour en France ?",
+            "fa": "اقدامات لازم برای تمدید کارت اقامت در فرانسه چیست؟"
+          },
+          {
+            "fr": "Quelle est la différence entre un compte courant et un livret A ?",
+            "fa": "تفاوت حساب جاری و حساب پس‌انداز چیست؟"
+          },
+          {
+            "fr": "Pourquoi utilise-t-on une lettre recommandée avec accusé de réception ?",
+            "fa": "چرا از نامه سفارشی با رسید دریافت استفاده می‌شود؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "La préfecture / La mairie",
+          "fa": "فرمانداری / شهرداری"
+        },
+        {
+          "fr": "Titre de séjour / Carte de séjour",
+          "fa": "مجوز اقامت / کارت اقامت"
+        },
+        {
+          "fr": "Justificatif de domicile",
+          "fa": "مدرک اثبات آدرس سکونت (قبض، فاکتور)"
+        },
+        {
+          "fr": "Timbre fiscal",
+          "fa": "تمبر مالیاتی اداری"
+        },
+        {
+          "fr": "Récépissé",
+          "fa": "برگه رسید تحویل مدارک / تمدید موقت"
+        },
+        {
+          "fr": "Lettre recommandée avec accusé de réception",
+          "fa": "نامه سفارشی با رسید دریافت اداری"
+        },
+        {
+          "fr": "Compte courant / Livret A",
+          "fa": "حساب جاری / حساب پس‌انداز با بهره"
+        },
+        {
+          "fr": "Forfait mobile sans engagement",
+          "fa": "بسته تلفن همراه بدون تعهد زمانی"
+        },
+        {
+          "fr": "Résilier un abonnement",
+          "fa": "لغو کردن یک اشتراک"
+        },
+        {
+          "fr": "Être en situation régulière",
+          "fa": "داشتن وضعیت اقامتی قانونی"
+        }
+      ],
+      "grammar": {
+        "titleFr": "Le passé composé avec avoir",
+        "titleFa": "گذشته مرکب با avoir",
+        "structureFr": "Sujet + avoir (au présent) + Participe passé",
+        "pointsFa": [
+          "افعال با پسوند -er → participe en -é (noter → noté)",
+          "افعال با پسوند -ir → participe en -i (finir → fini)",
+          "افعال بی‌قاعده: ouvrir → ouvert, faire → fait"
+        ],
+        "examples": [
+          {
+            "fr": "J'ai noté les informations.",
+            "fa": "اطلاعات را یادداشت کردم."
+          },
+          {
+            "fr": "Elles ont envoyé une lettre recommandée.",
+            "fa": "آن‌ها یک نامه سفارشی فرستادند."
+          }
+        ],
+        "negativeExample": {
+          "fr": "Je n'ai pas fini mes démarches.",
+          "fa": "امور اداری‌ام را تمام نکرده‌ام."
+        }
+      },
+      "culture": {
+        "noteFa": "نهادهای اداری اصلی: Mairie (ازدواج، تولد، ثبت هویت)، Préfecture (مجوز اقامت، گواهینامه) و Sécurité sociale (پوشش درمانی). پوشش درمانی عمومی PUMA و AME حمایت مالی درمان را برای ساکنان فراهم می‌کند.",
+        "phrases": [
+          {
+            "fr": "Je voudrais renouveler mon titre de séjour.",
+            "fa": "می‌خواهم کارت اقامتم را تمدید کنم."
+          },
+          {
+            "fr": "Voici un récépissé de votre demande.",
+            "fa": "این رسید درخواست شماست."
+          },
+          {
+            "fr": "Pour résilier, vous devez envoyer une lettre recommandée avec accusé de réception.",
+            "fa": "برای لغو، باید یک نامه سفارشی با رسید دریافت ارسال کنید."
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2_lesson_05",
+      "number": 5,
+      "titleFr": "S'informer sur l'actualité",
+      "titleFa": "پیگیری اخبار و رسانه‌ها",
+      "themeFa": "اخبار، رسانه‌های گروهی (تلویزیون، رادیو، مطبوعات، اینترنت)، نقل حوادث شهری (Faits divers) و ابراز نظر.",
+      "discussion": {
+        "topicFa": "منابع خبری مورد علاقه، نحوه تشخیص اخبار دروغین (Fausses informations) و ابراز موافقت یا مخالفت با گزارش‌های خبری.",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "Par quel moyen préfères-tu t'informer (journal télévisé, radio, presse en ligne, réseaux sociaux) ?",
+            "fa": "از چه طریقی اخبار را دنبال می‌کنید؟"
+          },
+          {
+            "fr": "Comment peut-on vérifier si une information sur Internet est vraie ou fausse ?",
+            "fa": "چگونه صحت اخبار اینترنتی را بررسی می‌کنید؟"
+          },
+          {
+            "fr": "Peux-tu raconter un fait divers récent que tu as lu ou entendu ?",
+            "fa": "آیا می‌توانید یک خبر حادثه‌ای تازه را تعریف کنید؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "Journal télévisé (JT)",
+          "fa": "اخبار مشروح تلویزیونی"
+        },
+        {
+          "fr": "Présentateur / Présentatrice",
+          "fa": "گوینده / مجری خبر"
+        },
+        {
+          "fr": "Presse quotidienne / régionale",
+          "fa": "مطبوعات روزانه / استانی"
+        },
+        {
+          "fr": "Un fait divers",
+          "fa": "خبر حوادث و رویدادهای کوتاه شهری"
+        },
+        {
+          "fr": "Émission en replay",
+          "fa": "بازپخش برنامه"
+        },
+        {
+          "fr": "S'abonner à un journal",
+          "fa": "اشتراک روزنامه گرفتن"
+        },
+        {
+          "fr": "Une fausse information",
+          "fa": "خبر دروغین / شایعه"
+        },
+        {
+          "fr": "Gros titre / La une",
+          "fa": "تیتر اصلی / صفحه اول روزنامه"
+        },
+        {
+          "fr": "Télépectateur / Auditeur",
+          "fa": "بیننده تلویزیون / شنونده رادیو"
+        },
+        {
+          "fr": "Se connecter à un site d'information",
+          "fa": "وصل شدن به سایت خبری"
+        }
+      ],
+      "grammar": {
+        "titleFr": "Le passé composé avec être",
+        "titleFa": "گذشته مرکب با être",
+        "pointsFa": [
+          "افعال حرکتی و جابه‌جایی (aller, arriver, entrer, monter, passer, partir, sortir, rentrer...) با être صرف می‌شوند.",
+          "اسم مفعول با فاعل از نظر جنسیت (e برای مؤنث) و تعداد (s برای جمع) مطابقت می‌کند."
+        ],
+        "conjugationTable": [
+          "Je suis rentré(e)",
+          "Tu es allé(e)",
+          "Il est rentré / Elle est allée",
+          "Nous sommes arrivés(es)",
+          "Ils sont arrivés / Elles sont parties"
+        ],
+        "examples": [
+          {
+            "fr": "Un camion est rentré dans des voitures.",
+            "fa": "یک کامیون با چند خودرو تصادف کرد/وارد شد."
+          }
+        ]
+      },
+      "culture": {
+        "noteFa": "شبکه‌های عمومی مانند France Télévision و Radio France و شبکه‌های خصوصی مثل TF1, M6, BFM TV رسانه‌های اصلی فرانسه هستند. روزانه ۵ تا ۷ میلیون فرانسوی بخش خبری ساعت ۲۰ (JT) را تماشا می‌کنند.",
+        "phrases": [
+          {
+            "fr": "Tu as regardé les infos hier soir ? Ils ont parlé de la crise économique.",
+            "fa": "دیشب اخبار دیدی؟ درباره بحران اقتصادی صحبت کردند."
+          },
+          {
+            "fr": "Qu'est-ce qui s'est passé ?",
+            "fa": "چه اتفاقی افتاده است؟"
+          },
+          {
+            "fr": "C'est incroyable, ça ! Tu crois que c'est vrai ?",
+            "fa": "باورنکردنی است! فکر می‌کنی واقعیت دارد؟"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2_lesson_06",
+      "number": 6,
+      "titleFr": "Inviter et être invité(e)",
+      "titleFa": "دعوت کردن و پذیرش/رد دعوت",
+      "themeFa": "دعوت کردن، قبول یا رد دعوت، ادای احترام اجتماعی و آداب مهمانی رفتن.",
+      "discussion": {
+        "topicFa": "برنامه‌ریزی برای جشن و مهمانی، ساختار دعوت‌های رسمی و غیررسمی، و آداب هدیه دادن به میزبان در فرانسه.",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "Qu'est-ce qu'on apporte en général quand on est invité à dîner chez des amis en France ?",
+            "fa": "وقتی در فرانسه به شام دعوت می‌شوید چه می‌برید؟"
+          },
+          {
+            "fr": "Comment refuser une invitation poliment sans blesser la personne ?",
+            "fa": "چگونه دعوت را مؤدبانه رد می‌کنید؟"
+          },
+          {
+            "fr": "Quelle est la différence entre une invitation formelle et une invitation informelle ?",
+            "fa": "تفاوت دعوت رسمی و غیررسمی چیست؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "Pot de l'amitié",
+          "fa": "دورهمی دوستانه همراه با نوشیدنی"
+        },
+        {
+          "fr": "Pique-niquer",
+          "fa": "پیک‌نیک رفتن"
+        },
+        {
+          "fr": "Fête nationale / Défilé / Bal",
+          "fa": "جشن ملی (۱۴ ژوئیه) / رژه / مراسم رقص"
+        },
+        {
+          "fr": "Apporter un cadeau / des fleurs",
+          "fa": "هدیه / گل آوردن"
+        },
+        {
+          "fr": "S'excuser / Refuser",
+          "fa": "عذرخواهی کردن / رد کردن"
+        },
+        {
+          "fr": "Être pris(e) / Être disponible",
+          "fa": "مشغول بودن / وقت داشتن"
+        },
+        {
+          "fr": "Passer à table",
+          "fa": "نشستن سر میز غذا"
+        },
+        {
+          "fr": "Feu d'artifice",
+          "fa": "آتش‌بازی"
+        },
+        {
+          "fr": "Remercier",
+          "fa": "تشکر کردن"
+        },
+        {
+          "fr": "Avoir quelque chose de prévu",
+          "fa": "داشتن برنامه از قبل"
+        }
+      ],
+      "grammar": {
+        "titleFr": "Les questions formelles et informelles",
+        "titleFa": "سوالات رسمی و غیررسمی",
+        "pointsFa": [
+          "غیررسمی: لحن صعودی یا جابه‌جایی کلمه سوالی (Vous venez prendre l'apéritif à la maison ? / Il est où le ciné ?)",
+          "رسمی: Est-ce que یا inversion (Où est le cinéma ? / À quelle heure allez-vous au restaurant ?)"
+        ],
+        "examples": [
+          {
+            "fr": "Est-ce que vous venez prendre l'apéritif à la maison ?",
+            "fa": "رسمی: آیا برای نوشیدنی پیش‌غذا به خانه ما می‌آیید؟"
+          },
+          {
+            "fr": "Où est le cinéma ?",
+            "fa": "رسمی: سینما کجاست؟"
+          }
+        ]
+      },
+      "culture": {
+        "noteFa": "هنگام ورود به مهمانی شام، هدیه‌ای کوچک مانند گل، شکلات یا نوشیدنی به میزبان داده می‌شود. دیر رسیدن بیش از ۱۵ دقیقه (تأخیر مؤدبانه) توصیه نمی‌شود.",
+        "phrases": [
+          {
+            "fr": "Ça te dit de venir pique-niquer ?",
+            "fa": "پیک‌نیک می‌آیی؟ / پایه‌ای بریم پیک‌نیک؟"
+          },
+          {
+            "fr": "Je suis désolé(e), j'ai déjà quelque chose de prévu.",
+            "fa": "متأسفم، از قبل برنامه‌ای دارم."
+          },
+          {
+            "fr": "Quel dommage ! Une autre fois, j'espère.",
+            "fa": "چه حیف! امیدوارم یک وقت دیگر."
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2_lesson_07",
+      "number": 7,
+      "titleFr": "Faire de nouvelles rencontres",
+      "titleFa": "آشنایی و شبکه‌های اجتماعی",
+      "themeFa": "آشنایی با افراد جدید، ثبت‌نام در سایت‌های دوستیابی و تفریحی، صحبت از خود و خطوط قرمز گفتگو.",
+      "discussion": {
+        "topicFa": "شیوه‌های گسترش دایره دوستان در شهر جدید، تعاملات در شبکه‌های اجتماعی و موضوعاتی که نباید در اولین برخوردها مطرح شوند.",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "Quelles activités facilitent la rencontre de nouveaux amis (sports, cours de danse, randonnées) ?",
+            "fa": "چه فعالیت‌هایی آشنایی با دوستان جدید را آسان می‌کند؟"
+          },
+          {
+            "fr": "Quelles sont les questions à éviter absolument lors d'une première rencontre ?",
+            "fa": "چه پرسش‌هایی را در اولین دیدار باید کاملاً نادیده گرفت؟"
+          },
+          {
+            "fr": "Utilises-tu des applications ou des sites pour faire des sorties en groupe ?",
+            "fa": "آیا از برنامه‌های آنلاین برای تفریحات گروهی استفاده می‌کنید؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "Réseaux sociaux",
+          "fa": "شبکه‌های اجتماعی"
+        },
+        {
+          "fr": "Pseudo / Mot de passe",
+          "fa": "نام کاربری / رمز عبور"
+        },
+        {
+          "fr": "Espace personnel / Profil",
+          "fa": "فضای شخصی / پروفایل"
+        },
+        {
+          "fr": "Faire la connaissance de quelqu'un",
+          "fa": "با کسی آشنا شدن"
+        },
+        {
+          "fr": "Partager des centres d'intérêt",
+          "fa": "به اشتراک گذاشتن علاقه‌مندی‌ها"
+        },
+        {
+          "fr": "Randonnée",
+          "fa": "پیاده‌روی در طبیعت / کوهنوردی"
+        },
+        {
+          "fr": "S'inscrire sur un site",
+          "fa": "ثبت‌نام در یک سایت"
+        },
+        {
+          "fr": "Faire partie de mes amis",
+          "fa": "جزو دوستان من بودن"
+        },
+        {
+          "fr": "Un forum",
+          "fa": "تالار گفتگو / انجمن آنلاین"
+        },
+        {
+          "fr": "Participer à une sortie",
+          "fa": "شرکت در یک برنامه بیرون رفتن"
+        }
+      ],
+      "grammar": {
+        "titleFr": "Le pronom y",
+        "titleFa": "ضمیر مکان و جانشین y",
+        "pointsFa": [
+          "جانشین مکان بعد از à, en, dans... (Vous allez au cinéma samedi ? → Oui, nous y allons à 16 heures.)",
+          "جانشین مفعول غیرمستقیم بعد از à با افعالی مثل penser à, jouer à (Il pense à son cours ? → Oui, il y pense !)"
+        ],
+        "examples": [
+          {
+            "fr": "Non, elle n'y va pas.",
+            "fa": "نه، او به آنجا نمی‌رود."
+          },
+          {
+            "fr": "Non, je n'y joue pas.",
+            "fa": "نه، من آن را بازی نمی‌کنم (تennis)."
+          }
+        ]
+      },
+      "culture": {
+        "noteFa": "خطوط قرمز گفتگو در فرانسه: هنگام آشنایی نباید درباره درآمد (Combien vous gagnez ?)، گرایش سیاسی (Pour qui vous allez voter ?) و اعتقادات دینی سوال کرد.",
+        "phrases": [
+          {
+            "fr": "Je suis très content(e) de faire votre connaissance.",
+            "fa": "از آشنایی با شما بسیار خرسندم."
+          },
+          {
+            "fr": "Inscris-toi sur le site de la ville pour faire des rencontres amicales.",
+            "fa": "در سایت شهر برای آشنایی‌های دوستانه ثبت‌نام کن."
+          },
+          {
+            "fr": "On y va ensemble ?",
+            "fa": "با هم به آنجا می‌رویم؟"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2_lesson_08",
+      "number": 8,
+      "titleFr": "Organiser un événement",
+      "titleFa": "برنامه‌ریزی رویدادها و جشن‌ها",
+      "themeFa": "برنامه‌ریزی مراسم‌ها (عروسی، تولد، خانه نویی)، رزرو مکان، جمع‌آوری هدیه مالی و استفاده از زمان آینده.",
+      "discussion": {
+        "topicFa": "مراحل سازماندهی یک جشن بزرگ، هماهنگی‌های لازم برای پذیرایی و موسیقی، و نحوه استفاده از صندوق جمع‌آوری آنلاین پول (Cagnotte).",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "Comment organises-tu une fête de pendaison de crémaillère ou un anniversaire ?",
+            "fa": "جشن خانه نویی یا تولد را چگونه سازماندهی می‌کنید؟"
+          },
+          {
+            "fr": "Quels sont les avantages d'une cagnotte en ligne pour un mariage ?",
+            "fa": "مزایای صندوق پول آنلاین برای عروسی چیست؟"
+          },
+          {
+            "fr": "Quels sont tes projets pour les prochaines vacances ou événements ?",
+            "fa": "برنامه‌های شما برای رویدادها یا تعطیلات بعدی چیست؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "Pendaison de crémaillère",
+          "fa": "جشن خانه نویی"
+        },
+        {
+          "fr": "Enterrement de vie de jeune fille / garçon (EVJF/EVG)",
+          "fa": "جشن مجردی دخترانه / پسرانه"
+        },
+        {
+          "fr": "Anniversaire de mariage (noces d'argent / d'or)",
+          "fa": "سالگرد ازدواج (۲۵ / ۵۰ سالگی)"
+        },
+        {
+          "fr": "Une cagnotte / Liste de mariage",
+          "fa": "صندوق هدیه نقدی آنلاین / لیست هدایا"
+        },
+        {
+          "fr": "Traiteur",
+          "fa": "کترینگ"
+        },
+        {
+          "fr": "Orchestre / DJ",
+          "fa": "گروه موسیقی / دی‌جی"
+        },
+        {
+          "fr": "Plan de table",
+          "fa": "چیدمان نشستن مهمانان"
+        },
+        {
+          "fr": "Un grand buffet / Apéritif dînatoire",
+          "fa": "بوفه بزرگ / عصرانه شام‌گونه"
+        },
+        {
+          "fr": "Alliances",
+          "fa": "حلقه‌های ازدواج"
+        },
+        {
+          "fr": "Souhaiter beaucoup de bonheur",
+          "fa": "آرزوی خوشبختی فراوان"
+        }
+      ],
+      "grammar": {
+        "titleFr": "Le futur simple",
+        "titleFa": "آینده ساده",
+        "structureFr": "Radicaux + endings (-ai, -as, -a, -ons, -ez, -ont)",
+        "pointsFa": [
+          "ریشه‌های بی‌قاعده: être → ser-, avoir → aur-, aller → ir-, venir → viendr-, faire → fer-"
+        ],
+        "examples": [
+          {
+            "fr": "On mangera et on dansera dehors !",
+            "fa": "بیرون غذا خواهیم خورد و خواهیم رقصید!"
+          },
+          {
+            "fr": "Je serai / j'aurai / j'irai / je viendrai / je ferai",
+            "fa": "نمونه صرف: je serai, j'aurai, j'irai, je viendrai, je ferai"
+          }
+        ]
+      },
+      "culture": {
+        "noteFa": "رویدادهای سنتی: EVJF/EVG قبل از ازدواج، Crémaillère برای معرفی منزل جدید، و Noces d'argent (۲۵ سال) و Noces d'or (۵۰ سال).",
+        "phrases": [
+          {
+            "fr": "Félicitations, je vous souhaite beaucoup de bonheur !",
+            "fa": "تبریک می‌گویم، برایتان آرزوی خوشبختی فراوان دارم!"
+          },
+          {
+            "fr": "Tu pourras réserver le restaurant pour fêter le diplôme ?",
+            "fa": "می‌توانی برای جشن مدرک تحصیلی رستوران رزرو کنی؟"
+          },
+          {
+            "fr": "Merci d'être venu, cela nous fait très plaisir de partager ce moment.",
+            "fa": "ممنون که آمدید، باعث خوشحالی ماست که این لحظه را با شما شریک شویم."
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2_lesson_09",
+      "number": 9,
+      "titleFr": "Participer à la vie scolaire",
+      "titleFa": "مشارکت در امور مدرسه",
+      "themeFa": "امور مدرسه، نقش والدین در نظام آموزشی، دفترچه رابط، و فعالیت‌های جانبی و پایان سال تحصیلی.",
+      "discussion": {
+        "topicFa": "سیستم آموزشی در فرانسه، نحوه تعامل والدین با معلمان و کادر مدرسه، و اهمیت فعالیت‌های فوق‌برنامه.",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "À quoi sert le cahier de liaison à l'école primaire ?",
+            "fa": "دفترچه رابط در دبستان چه کاربردی دارد؟"
+          },
+          {
+            "fr": "Comment les parents peuvent-ils s'impliquer dans la vie scolaire de leurs enfants ?",
+            "fa": "والدین چگونه می‌توانند در امور مدرسه فرزندان مشارکت کنند؟"
+          },
+          {
+            "fr": "Quelles sont les différentes étapes de la scolarité en France (maternelle, élémentaire, collège, lycée) ?",
+            "fa": "مقاطع مختلف تحصیلی در فرانسه کدامند؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "Cahier de liaison / de correspondance",
+          "fa": "دفترچه رابط میان مدرسه و والدین"
+        },
+        {
+          "fr": "Mot d'excuse",
+          "fa": "عذرنامه غیبت دانش‌آموز"
+        },
+        {
+          "fr": "Carnet de notes / Bulletin scolaire",
+          "fa": "کارنامه تحصیلی"
+        },
+        {
+          "fr": "Conseil de classe",
+          "fa": "شورای کلاس"
+        },
+        {
+          "fr": "Kermesse / Tombola",
+          "fa": "بازارچه پایان سال / قرعه‌کشی خیریه"
+        },
+        {
+          "fr": "École maternelle / primaire",
+          "fa": "مهدکودک (۳–۵) / دبستان (۶–۱۰)"
+        },
+        {
+          "fr": "Collège / Lycée",
+          "fa": "راهنمایی (۱۱–۱۵) / دبیرستان (۱۶–۱۸)"
+        },
+        {
+          "fr": "Délégué(e) des parents",
+          "fa": "نماینده والدین"
+        },
+        {
+          "fr": "Soutien scolaire",
+          "fa": "کلاس‌های تقویتی"
+        },
+        {
+          "fr": "Règlement intérieur",
+          "fa": "آیین‌نامه داخلی مدرسه"
+        }
+      ],
+      "grammar": {
+        "titleFr": "Les pronoms relatifs qui et que",
+        "titleFa": "ضمایر موصولی qui و que",
+        "pointsFa": [
+          "qui: جانشین فاعل، همیشه قبل از فعل (Voici le cahier de liaison qui sert à rester en contact.)",
+          "que / qu': جانشین مفعول مستقیم، قبل از فاعل + فعل (C'est une fête que nous organisons en fin d'année.)"
+        ],
+        "examples": [
+          {
+            "fr": "Voici le cahier de liaison qui sert à rester en contact.",
+            "fa": "این دفترچه رابطی است که برای ارتباط استفاده می‌شود."
+          },
+          {
+            "fr": "C'est une fête que nous organisons en fin d'année.",
+            "fa": "این جشنی است که ما در پایان سال برگزار می‌کنیم."
+          }
+        ]
+      },
+      "culture": {
+        "noteFa": "La rentrée scolaire (بازگشایی مدارس در سپتامبر) یکی از مقاطع کلیدی سال است. دفترچه رابط وسیله اصلی ارتباط روزانه والدین و معلم است و باید همواره در کیف دانش‌آموز باشد.",
+        "phrases": [
+          {
+            "fr": "Vous devez lire et signer le mot dans le cahier de liaison.",
+            "fa": "باید متن داخل دفترچه رابط را بخوانید و امضا کنید."
+          },
+          {
+            "fr": "Écrire un mot d'excuse en cas d'absence.",
+            "fa": "نوشتن عذرنامه در صورت غیبت."
+          },
+          {
+            "fr": "Intervenir comme parent d'élève au conseil de classe.",
+            "fa": "مشارکت به عنوان نماینده والدین در شورای کلاس."
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2_lesson_10",
+      "number": 10,
+      "titleFr": "Participer à la vie associative",
+      "titleFa": "فعالیت‌های داوطلبانه و انجمن‌ها",
+      "themeFa": "فعالیت‌های داوطلبانه، انجمن‌ها (Associations)، انگیزه و تعهد اجتماعی، و صرف افعال دوضمیره در گذشته.",
+      "discussion": {
+        "topicFa": "نقش انجمن‌های خیریه و فرهنگی در فرانسه، انگیزه‌های شخصی برای کار داوطلبانه (Bénévolat)، و نحوه معرفی تجربیات گذشته.",
+        "durationMinutes": [
+          30,
+          60
+        ],
+        "questions": [
+          {
+            "fr": "Pourquoi est-il important de participer à la vie associative ou de faire du bénévolat ?",
+            "fa": "چرا مشارکت در انجمن‌ها یا کار داوطلبانه مهم است؟"
+          },
+          {
+            "fr": "Dans quel type d'association aimerais-tu t'engager (culturelle, sportive, humanitaire, environnementale) ?",
+            "fa": "در چه نوع انجمنی تمایل به فعالیت دارید؟"
+          },
+          {
+            "fr": "Quelle expérience marquante as-tu vécue dans une association ou un projet collectif ?",
+            "fa": "چه تجربه برجسته‌ای در یک انجمن یا پروژه جمعی داشته‌اید؟"
+          }
+        ]
+      },
+      "vocabulary": [
+        {
+          "fr": "S'engager / Le bénévolat",
+          "fa": "متعهد شدن / کار داوطلبانه"
+        },
+        {
+          "fr": "Une association",
+          "fa": "انجمن / سازمان مردم‌نهاد"
+        },
+        {
+          "fr": "Une cause / Une mission",
+          "fa": "آرمان / مأموریت"
+        },
+        {
+          "fr": "Se rendre utile",
+          "fa": "مفید واقع شدن برای جامعه"
+        },
+        {
+          "fr": "La motivation",
+          "fa": "انگیزه"
+        },
+        {
+          "fr": "Proposer sa candidature",
+          "fa": "ارائه درخواست همکاری"
+        },
+        {
+          "fr": "Projet associatif",
+          "fa": "پروژه انجمنی"
+        },
+        {
+          "fr": "Participer à la vie associative",
+          "fa": "مشارکت در فعالیت‌های انجمنی"
+        },
+        {
+          "fr": "Créer une association",
+          "fa": "تأسیس یک انجمن"
+        },
+        {
+          "fr": "Offrir de son temps",
+          "fa": "وقت خود را در اختیار کاری قرار دادن"
+        }
+      ],
+      "grammar": {
+        "titleFr": "Le passé composé avec les verbes pronominaux",
+        "titleFa": "گذشته مرکب افعال دوضمیره",
+        "structureFr": "Sujet + Pronom réfléchi (me, te, se, nous, vous, se) + être (au présent) + Participe passé",
+        "pointsFa": [
+          "اسم مفعول حتماً با فاعل از نظر جنسیت و تعداد مطابقت می‌کند.",
+          "Je me suis inscrit(e) / Elle s'est inscrite / Ils se sont inscrits"
+        ],
+        "examples": [
+          {
+            "fr": "Elle s'est inscrite dans une association pour aider les enfants.",
+            "fa": "او در انجمنی برای کمک به کودکان ثبت‌نام کرد."
+          }
+        ]
+      },
+      "culture": {
+        "noteFa": "جامعه فرانسه شبکه گسترده‌ای از انجمن‌ها (قانون ۱۹۰۱) دارد. درصد بالایی از مردم در حداقل یک انجمن ورزشی، فرهنگی یا خیریه عضو هستند یا کار داوطلبانه انجام می‌دهند.",
+        "phrases": [
+          {
+            "fr": "On voudrait se rendre utiles dans une association.",
+            "fa": "ما می‌خواهیم در یک انجمن مفید واقع شویم."
+          },
+          {
+            "fr": "Je souhaite exprimer mon intérêt pour ce projet.",
+            "fa": "می‌خواهم علاقه‌مندی خود را برای این پروژه ابراز کنم."
+          },
+          {
+            "fr": "J'ai déjà une expérience dans le domaine du bénévolat.",
+            "fa": "من از قبل تجربه‌ای در زمینه کار داوطلبانه دارم."
+          }
+        ]
+      }
+    }
+  ]
+}
