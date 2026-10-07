@@ -2012,6 +2012,55 @@
           "fa": "– بله، اما فراموش نکنید که سقف (حداکثر) مبلغ ۲۳,۰۰۰ یورو است."
         }
       ]
+    },
+    "piste_033": {
+      "id": "piste_033",
+      "track": 33,
+      "filename": "piste_033.mp3",
+      "title": "درس ۵، صفحه ۳۵، سند A",
+      "category": "dialogue",
+      "lines": [
+        {
+          "fr": "– Tu as regardé les infos hier soir ? Ils ont parlé de la crise économique.",
+          "fa": "– دیشب اخبار را تماشا کردی؟ درباره بحران اقتصادی صحبت کردند."
+        },
+        {
+          "fr": "– Non, hier je suis partie tard du bureau.",
+          "fa": "– نه، دیشب دیر از دفتر (محل کار) بیرون آمدم."
+        },
+        {
+          "fr": "Tu sais, je ne regarde pas beaucoup la télé, je lis la presse en ligne.",
+          "fa": "می‌دانی، من خیلی تلویزیون تماشا نمی‌کنم، مطبوعات و اخبار آنلاین را می‌خوانم."
+        },
+        {
+          "fr": "– Tu es abonnée à un journal ?",
+          "fa": "– آیا اشتراک یک روزنامه را داری؟"
+        },
+        {
+          "fr": "– Je reçois la newsletter d'Ouest-France et je lis aussi les articles des journaux et des magazines gratuits.",
+          "fa": "– من خبرنامه روزنامه «Ouest-France» را دریافت می‌کنم و همچنین مقالات روزنامه‌ها و مجلات رایگان را می‌خوانم."
+        },
+        {
+          "fr": "– Moi, je n'aime pas lire. Je préfère regarder le journal télévisé.",
+          "fa": "– من خواندن را دوست ندارم. ترجیح می‌دهم اخبار تلویزیونی (JT) را تماشا کنم."
+        },
+        {
+          "fr": "– Tu regardes le JT sur quelle chaîne ?",
+          "fa": "– اخبار تلویزیون را از کدام شبکه تماشا می‌کنی؟"
+        },
+        {
+          "fr": "– Sur Arte à 19 h 45. Je m'intéresse à l'actualité en France, bien sûr, mais aussi en Europe. Hier, je suis rentré tard et j'ai regardé le journal de 20 heures sur France 2.",
+          "fa": "– از شبکه «Arte» ساعت ۱۹:۴۵. من به اخبار و رویدادهای روزِ فرانسه و البته اروپا علاقه دارم. دیشب دیر برگشتم خانه و اخبار ساعت ۲۰ شبکه «France 2» را دیدم."
+        },
+        {
+          "fr": "– Tu écoutes la radio aussi ?",
+          "fa": "– به رادیو هم گوش می‌دهی؟"
+        },
+        {
+          "fr": "– Oui, ce matin, j'ai écouté l'interview du ministre de l'Économie au journal de 8 heures sur France Inter.",
+          "fa": "– بله، امروز صبح مصاحبه وزیر اقتصاد را در اخبار ساعت ۸ از شبکه «France Inter» گوش دادم."
+        }
+      ]
     }
   }
 }
