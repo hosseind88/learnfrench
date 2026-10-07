@@ -1,5 +1,5 @@
 // FrançaisFacile • Service Worker (PWA Offline & Cache Engine)
-const CACHE_NAME = 'francais-facile-v36';
+const CACHE_NAME = 'francais-facile-v38';
 
 const LOCAL_ASSETS = [
   './',
@@ -19,7 +19,8 @@ const LOCAL_ASSETS = [
   './learning-scenes/scenes.json',
   './learning-scenes/gloss.js',
   './a2-transcripts.json',
-  './night-conversation.json'
+  './night-conversation.json',
+  './french_a2_lessons_1_10_vocab.csv'
 ];
 
 const OPTIONAL_ASSETS = [
@@ -104,7 +105,9 @@ async function handleFetch(request) {
   const cache = await caches.open(CACHE_NAME);
 
   // Network-first for transcript data so new batches show up without SW version bumps
-  if (url.pathname.endsWith('/a2-transcripts.json') || url.pathname.endsWith('/night-conversation.json')) {
+  if (url.pathname.endsWith('/a2-transcripts.json')
+    || url.pathname.endsWith('/night-conversation.json')
+    || url.pathname.endsWith('/french_a2_lessons_1_10_vocab.csv')) {
     try {
       const response = await fetchWithTimeout(request, 4000);
       if (response && response.ok && response.type !== 'opaque') {

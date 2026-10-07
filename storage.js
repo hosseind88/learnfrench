@@ -292,6 +292,9 @@ function applySnapshotToState(snapshot, state) {
   if (snapshot.nightConv?.selectedLessonId) {
     state.nightConv.selectedLessonId = snapshot.nightConv.selectedLessonId;
   }
+  if (snapshot.nightConv?.activeTab === 'flashcards' || snapshot.nightConv?.activeTab === 'guide') {
+    state.nightConv.activeTab = snapshot.nightConv.activeTab;
+  }
 }
 
 function engineLabel(engine) {
@@ -399,7 +402,8 @@ window.FFStorage.buildSnapshot = function buildSnapshot(state) {
     activityDates: state.activityDates || [],
     quizLog: state.quizLog || [],
     nightConv: {
-      selectedLessonId: state.nightConv?.selectedLessonId || null
+      selectedLessonId: state.nightConv?.selectedLessonId || null,
+      activeTab: state.nightConv?.activeTab || 'guide'
     }
   };
 };

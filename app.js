@@ -97,7 +97,16 @@ const state = {
 
   nightConv: {
     selectedLessonId: null,
-    loadError: ''
+    loadError: '',
+    activeTab: 'guide',
+    vocabCards: [],
+    vocabLoadError: '',
+    fc: {
+      deck: [],
+      index: 0,
+      flipped: false,
+      direction: 'fa-fr'
+    }
   }
 };
 
@@ -3348,6 +3357,19 @@ function renderGrammarLab() {
 let nightConversationData = null;
 let nightConversationPromise = null;
 
+const NIGHT_CONV_ACCENTS = [
+  '#2563eb', '#7c3aed', '#db2777', '#0891b2', '#059669',
+  '#d97706', '#e11d48', '#4f46e5', '#0d9488', '#9333ea'
+];
+
+function applyNightConvAccent(lessonNumber) {
+  const root = document.getElementById('view-nightconv');
+  if (!root) return;
+  const accent = NIGHT_CONV_ACCENTS[(Math.max(1, lessonNumber) - 1) % NIGHT_CONV_ACCENTS.length];
+  root.style.setProperty('--nc-accent', accent);
+  root.style.setProperty('--nc-accent-soft', `color-mix(in srgb, ${accent} 14%, var(--bg-surface))`);
+}
+
 async function loadNightConversationData() {
   if (nightConversationData) return nightConversationData;
   if (nightConversationPromise) return nightConversationPromise;
@@ -3396,35 +3418,44 @@ function bindNightConvSpeakButtons(root) {
   });
 }
 
+function renderNightConvBilingualExample(fr, fa) {
+  return `
+    <div class="nightconv-bilingual-stack">
+      <div class="nightconv-fr-bubble">
+        <p>${escapeHtml(fr)}</p>
+        ${nightConvSpeakBtn(fr)}
+      </div>
+      <div class="nightconv-fa-bubble">${escapeHtml(fa)}</div>
+    </div>
+  `;
+}
+
 function renderNightConvGrammarBlock(grammar) {
   if (!grammar) return '';
   const points = (grammar.pointsFa || []).map(p => `<li>${escapeHtml(p)}</li>`).join('');
   const examples = (grammar.examples || []).map(ex => `
-    <div class="nightconv-example-row">
-      <span class="nightconv-fr" dir="ltr">${escapeHtml(ex.fr)}</span>
-      ${nightConvSpeakBtn(ex.fr)}
-      <span class="nightconv-fa">${escapeHtml(ex.fa)}</span>
-    </div>
+    <div class="nightconv-example-row">${renderNightConvBilingualExample(ex.fr, ex.fa)}</div>
   `).join('');
   const conj = grammar.conjugationTable?.length
-    ? `<div class="nightconv-conj-list">${grammar.conjugationTable.map(c => `<div class="nightconv-conj-item" dir="ltr">${escapeHtml(c)}</div>`).join('')}</div>`
+    ? `<div class="nightconv-conj-list">${grammar.conjugationTable.map(c => `<div class="nightconv-conj-item">${escapeHtml(c)}</div>`).join('')}</div>`
     : '';
   const neg = grammar.negativeExample
     ? `<div class="nightconv-negative">
         <span class="nightconv-label">حالت منفی</span>
-        <div class="nightconv-example-row">
-          <span class="nightconv-fr" dir="ltr">${escapeHtml(grammar.negativeExample.fr)}</span>
-          ${nightConvSpeakBtn(grammar.negativeExample.fr)}
-          <span class="nightconv-fa">${escapeHtml(grammar.negativeExample.fa)}</span>
-        </div>
+        ${renderNightConvBilingualExample(grammar.negativeExample.fr, grammar.negativeExample.fa)}
       </div>`
     : '';
 
   return `
-    <section class="nightconv-block grammar-rule-card">
-      <h3 class="nightconv-block-title">گرامر · ${escapeHtml(grammar.titleFa || '')}</h3>
-      <div class="rule-pattern">${escapeHtml(grammar.titleFr || '')}</div>
-      ${grammar.structureFr ? `<p class="nightconv-structure" dir="ltr">${escapeHtml(grammar.structureFr)}</p>` : ''}
+    <section class="nightconv-section nightconv-section--grammar">
+      <header class="nightconv-section-head">
+        <span class="nightconv-section-icon">📐</span>
+        <div>
+          <h3 class="nightconv-section-title">گرامر · ${escapeHtml(grammar.titleFa || '')}</h3>
+          <span class="nightconv-section-sub" dir="ltr">${escapeHtml(grammar.titleFr || '')}</span>
+        </div>
+      </header>
+      ${grammar.structureFr ? `<p class="nightconv-structure">${escapeHtml(grammar.structureFr)}</p>` : ''}
       ${points ? `<ul class="nightconv-points">${points}</ul>` : ''}
       ${conj}
       ${examples ? `<div class="rule-examples-box">${examples}</div>` : ''}
@@ -3438,68 +3469,78 @@ function renderNightConvLessonDetail(lesson) {
   const empty = document.getElementById('nightConvEmptyState');
   if (!article || !lesson) return;
 
+  applyNightConvAccent(lesson.number);
+
+  const duration = lesson.discussion?.durationMinutes?.join('–') || '30–60';
   const questions = (lesson.discussion?.questions || []).map((q, idx) => `
-    <li class="nightconv-question-item">
-      <span class="nightconv-q-num">${idx + 1}</span>
-      <div class="nightconv-q-body">
-        <p class="nightconv-fr" dir="ltr">${escapeHtml(q.fr)}</p>
-        <div class="nightconv-q-actions">${nightConvSpeakBtn(q.fr)}</div>
-        <p class="nightconv-fa">${escapeHtml(q.fa)}</p>
-      </div>
+    <li class="nightconv-question-card">
+      <span class="nightconv-q-index">${idx + 1}</span>
+      ${renderNightConvBilingualExample(q.fr, q.fa)}
     </li>
   `).join('');
 
-  const vocabRows = (lesson.vocabulary || []).map(v => `
-    <tr>
-      <td class="nightconv-vocab-fr" dir="ltr">${escapeHtml(v.fr)}</td>
-      <td class="nightconv-vocab-fa">${escapeHtml(v.fa)}</td>
-      <td class="nightconv-vocab-action">${nightConvSpeakBtn(v.fr)}</td>
-    </tr>
+  const vocabChips = (lesson.vocabulary || []).map(v => `
+    <div class="nightconv-vocab-chip">
+      <div class="nightconv-vocab-chip-top">
+        <span class="nightconv-vocab-chip-fr">${escapeHtml(v.fr)}</span>
+        ${nightConvSpeakBtn(v.fr)}
+      </div>
+      <span class="nightconv-vocab-chip-fa">${escapeHtml(v.fa)}</span>
+    </div>
   `).join('');
 
   const phrases = (lesson.culture?.phrases || []).map(p => `
-    <div class="nightconv-phrase-row">
-      <p class="nightconv-fr" dir="ltr">${escapeHtml(p.fr)}</p>
-      <div class="nightconv-q-actions">${nightConvSpeakBtn(p.fr)}</div>
-      <p class="nightconv-fa">${escapeHtml(p.fa)}</p>
-    </div>
+    <div class="nightconv-phrase-card">${renderNightConvBilingualExample(p.fr, p.fa)}</div>
   `).join('');
 
   article.innerHTML = `
     <header class="nightconv-lesson-header">
-      <div class="nightconv-lesson-badge">درس ${lesson.number}</div>
-      <h2 class="nightconv-lesson-title-fr" dir="ltr">${escapeHtml(lesson.titleFr)}</h2>
+      <div class="nightconv-lesson-badge">Leçon ${lesson.number} · جلسه شبانه</div>
+      <h2 class="nightconv-lesson-title-fr">${escapeHtml(lesson.titleFr)}</h2>
       <h3 class="nightconv-lesson-title-fa">${escapeHtml(lesson.titleFa)}</h3>
       <p class="nightconv-theme">${escapeHtml(lesson.themeFa || '')}</p>
     </header>
 
-    <section class="nightconv-block">
-      <h3 class="nightconv-block-title">موضوع مباحثه (${lesson.discussion?.durationMinutes?.join('–') || '30–60'} دقیقه)</h3>
+    <section class="nightconv-section">
+      <header class="nightconv-section-head">
+        <span class="nightconv-section-icon">🗣️</span>
+        <div>
+          <h3 class="nightconv-section-title">موضوع مباحثه</h3>
+          <span class="nightconv-section-sub">${duration} دقیقه · Google Meet</span>
+        </div>
+      </header>
       <p class="nightconv-topic">${escapeHtml(lesson.discussion?.topicFa || '')}</p>
       <ol class="nightconv-questions">${questions}</ol>
     </section>
 
-    <section class="nightconv-block">
-      <h3 class="nightconv-block-title">واژگان و عبارات کلیدی</h3>
-      <div class="nightconv-vocab-table-wrap">
-        <table class="nightconv-vocab-table">
-          <thead><tr><th dir="ltr">Français</th><th>فارسی</th><th></th></tr></thead>
-          <tbody>${vocabRows}</tbody>
-        </table>
-      </div>
+    <section class="nightconv-section">
+      <header class="nightconv-section-head">
+        <span class="nightconv-section-icon">📚</span>
+        <div>
+          <h3 class="nightconv-section-title">واژگان و عبارات کلیدی</h3>
+          <span class="nightconv-section-sub">${(lesson.vocabulary || []).length} عبارت</span>
+        </div>
+      </header>
+      <div class="nightconv-vocab-grid">${vocabChips}</div>
     </section>
 
     ${renderNightConvGrammarBlock(lesson.grammar)}
 
-    <section class="nightconv-block">
-      <h3 class="nightconv-block-title">ارتباط و فرهنگ</h3>
+    <section class="nightconv-section">
+      <header class="nightconv-section-head">
+        <span class="nightconv-section-icon">🇫🇷</span>
+        <div>
+          <h3 class="nightconv-section-title">ارتباط و فرهنگ</h3>
+          <span class="nightconv-section-sub">Pour communiquer</span>
+        </div>
+      </header>
       <p class="nightconv-culture-note">${escapeHtml(lesson.culture?.noteFa || '')}</p>
       <div class="nightconv-phrases">${phrases}</div>
     </section>
 
     <div class="nightconv-lesson-nav">
-      <button type="button" class="btn btn-outline btn-sm" id="nightConvPrevLessonBtn">درس قبلی</button>
-      <button type="button" class="btn btn-primary btn-sm" id="nightConvNextLessonBtn">درس بعدی</button>
+      <button type="button" class="btn btn-outline btn-sm" id="nightConvPrevLessonBtn">← درس قبلی</button>
+      <button type="button" class="btn btn-primary btn-sm" id="nightConvNextLessonBtn">درس بعدی →</button>
     </div>
   `;
 
@@ -3524,6 +3565,30 @@ function renderNightConvLessonDetail(lesson) {
 
   if (empty) empty.hidden = true;
   article.hidden = false;
+
+  const tabs = document.getElementById('nightConvStudyTabs');
+  if (tabs) tabs.hidden = false;
+  rebuildNightConvFlashDeck(lesson.number);
+  updateNightConvFlashMeta(lesson);
+  if (state.nightConv.activeTab === 'flashcards') renderNightConvFlashcard();
+}
+
+function renderNightConvLessonRail() {
+  const rail = document.getElementById('nightConvLessonRail');
+  if (!rail) return;
+  const lessons = getNightConvLessons();
+  const selected = state.nightConv.selectedLessonId;
+  if (!lessons.length) {
+    rail.innerHTML = '';
+    return;
+  }
+  rail.innerHTML = lessons.map(les => {
+    const active = les.id === selected ? ' is-active' : '';
+    return `<button type="button" class="nightconv-rail-btn${active}" data-lesson-id="${escapeHtml(les.id)}" title="${escapeHtml(les.titleFa)}">${les.number}</button>`;
+  }).join('');
+  rail.querySelectorAll('[data-lesson-id]').forEach(btn => {
+    btn.onclick = () => selectNightConvLesson(btn.dataset.lessonId);
+  });
 }
 
 function renderNightConvLessonList() {
@@ -3534,6 +3599,7 @@ function renderNightConvLessonList() {
 
   if (!lessons.length) {
     list.innerHTML = `<div class="nightconv-empty-state">${escapeHtml(state.nightConv.loadError || 'درسی یافت نشد.')}</div>`;
+    renderNightConvLessonRail();
     return;
   }
 
@@ -3544,7 +3610,7 @@ function renderNightConvLessonList() {
       <button type="button" class="nightconv-lesson-card${active}" data-lesson-id="${escapeHtml(les.id)}">
         <span class="nightconv-card-num">${les.number}</span>
         <span class="nightconv-card-text">
-          <span class="nightconv-card-fr" dir="ltr">${escapeHtml(les.titleFr)}</span>
+          <span class="nightconv-card-fr">${escapeHtml(les.titleFr)}</span>
           <span class="nightconv-card-fa">${escapeHtml(les.titleFa)}</span>
           ${grammarHint ? `<span class="nightconv-card-grammar">${grammarHint}</span>` : ''}
         </span>
@@ -3555,6 +3621,7 @@ function renderNightConvLessonList() {
   list.querySelectorAll('[data-lesson-id]').forEach(btn => {
     btn.onclick = () => selectNightConvLesson(btn.dataset.lessonId);
   });
+  renderNightConvLessonRail();
 }
 
 function selectNightConvLesson(lessonId) {
@@ -3563,10 +3630,306 @@ function selectNightConvLesson(lessonId) {
   const lesson = findNightConvLesson(lessonId);
   renderNightConvLessonDetail(lesson);
   saveState();
-  const article = document.getElementById('nightConvLessonArticle');
-  if (article && !article.hidden) {
-    article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (state.nightConv.activeTab === 'guide') {
+    const article = document.getElementById('nightConvLessonArticle');
+    if (article && !article.hidden) {
+      article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
+}
+
+let nightConvVocabPromise = null;
+
+function parseCsvRecords(text) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i += 1) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') {
+          field += '"';
+          i += 1;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        field += c;
+      }
+    } else if (c === '"') {
+      inQuotes = true;
+    } else if (c === ',') {
+      row.push(field);
+      field = '';
+    } else if (c === '\n' || c === '\r') {
+      if (c === '\r' && text[i + 1] === '\n') i += 1;
+      row.push(field);
+      if (row.some(cell => cell.trim())) rows.push(row);
+      row = [];
+      field = '';
+    } else {
+      field += c;
+    }
+  }
+  if (field || row.length) {
+    row.push(field);
+    if (row.some(cell => cell.trim())) rows.push(row);
+  }
+  return rows;
+}
+
+function parseLessonNumberFromLecon(label) {
+  const m = /Leçon\s+(\d+)/i.exec(label || '');
+  return m ? Number(m[1]) : null;
+}
+
+function parseNightConvVocabCsv(text) {
+  const rows = parseCsvRecords(text.replace(/^\uFEFF/, ''));
+  if (rows.length < 2) return [];
+  return rows.slice(1).map((cells, idx) => {
+    const [lecon, fr, fa, example] = cells;
+    const lesson = parseLessonNumberFromLecon(lecon);
+    if (!lesson || !fr?.trim()) return null;
+    return {
+      id: `ncv-${lesson}-${idx}`,
+      lesson,
+      lessonLabel: (lecon || '').trim(),
+      fr: fr.trim(),
+      fa: (fa || '').trim(),
+      example: (example || '').trim()
+    };
+  }).filter(Boolean);
+}
+
+async function loadNightConvVocab() {
+  if (state.nightConv.vocabCards?.length) return state.nightConv.vocabCards;
+  if (nightConvVocabPromise) return nightConvVocabPromise;
+  nightConvVocabPromise = fetch('french_a2_lessons_1_10_vocab.csv')
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.text();
+    })
+    .then(text => {
+      state.nightConv.vocabCards = parseNightConvVocabCsv(text);
+      state.nightConv.vocabLoadError = '';
+      return state.nightConv.vocabCards;
+    })
+    .catch(err => {
+      console.warn('Failed to load night conv vocab CSV', err);
+      state.nightConv.vocabLoadError = 'بارگذاری فلش‌کارت‌های واژگان ممکن نشد.';
+      state.nightConv.vocabCards = [];
+      return [];
+    })
+    .finally(() => {
+      nightConvVocabPromise = null;
+    });
+  return nightConvVocabPromise;
+}
+
+function shuffleNightConvDeck(deck) {
+  const copy = [...deck];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function rebuildNightConvFlashDeck(lessonNumber) {
+  const all = state.nightConv.vocabCards || [];
+  state.nightConv.fc.deck = all.filter(c => c.lesson === lessonNumber);
+  state.nightConv.fc.index = 0;
+  state.nightConv.fc.flipped = false;
+}
+
+function getNightConvFlashCard() {
+  const { deck, index } = state.nightConv.fc;
+  return deck[index] || null;
+}
+
+function setNightConvTab(tab) {
+  state.nightConv.activeTab = tab;
+  document.querySelectorAll('[data-nightconv-tab]').forEach(btn => {
+    btn.classList.toggle('is-active', btn.dataset.nightconvTab === tab);
+  });
+  const guide = document.getElementById('nightConvGuidePanel');
+  const flash = document.getElementById('nightConvFlashPanel');
+  if (guide) guide.hidden = tab !== 'guide';
+  if (flash) flash.hidden = tab !== 'flashcards';
+  if (tab === 'flashcards') renderNightConvFlashcard();
+  saveState();
+}
+
+function updateNightConvFlashMeta(lesson) {
+  const title = document.getElementById('nightConvFcMetaTitle');
+  const sub = document.getElementById('nightConvFcMetaSub');
+  const count = state.nightConv.fc.deck.length;
+  if (title && lesson) {
+    title.textContent = `فلش‌کارت · درس ${lesson.number}`;
+  }
+  if (sub) {
+    sub.textContent = count
+      ? `${count} کارت واژه برای همین جلسه`
+      : (state.nightConv.vocabLoadError || 'کارتی برای این درس یافت نشد.');
+  }
+}
+
+function nightConvFlashSetFlipped(flipped) {
+  state.nightConv.fc.flipped = flipped;
+  const card = document.getElementById('nightConvFcCard');
+  const flipBtn = document.getElementById('nightConvFcFlipBtn');
+  if (card) card.classList.toggle('is-flipped', flipped);
+  if (flipBtn) flipBtn.textContent = flipped ? 'پنهان کردن پاسخ' : 'نمایش پاسخ';
+}
+
+function nightConvFlashFlip() {
+  nightConvFlashSetFlipped(!state.nightConv.fc.flipped);
+}
+
+function nightConvFlashStep(delta) {
+  const { deck } = state.nightConv.fc;
+  if (!deck.length) return;
+  let next = state.nightConv.fc.index + delta;
+  if (next < 0) next = deck.length - 1;
+  if (next >= deck.length) next = 0;
+  state.nightConv.fc.index = next;
+  nightConvFlashSetFlipped(false);
+  renderNightConvFlashcard();
+}
+
+function renderNightConvFlashcard() {
+  const card = getNightConvFlashCard();
+  const deck = state.nightConv.fc.deck;
+  const dir = state.nightConv.fc.direction;
+  const idx = state.nightConv.fc.index;
+
+  const frontText = document.getElementById('nightConvFcFrontText');
+  const backText = document.getElementById('nightConvFcBackText');
+  const exampleFr = document.getElementById('nightConvFcExampleFr');
+  const exampleBox = document.getElementById('nightConvFcExampleBox');
+  const counter = document.getElementById('nightConvFcCounter');
+  const fill = document.getElementById('nightConvFcProgressFill');
+  const dirBtn = document.getElementById('nightConvFcDirBtn');
+
+  if (dirBtn) {
+    dirBtn.textContent = dir === 'fa-fr' ? 'فارسی → فرانسوی' : 'فرانسوی → فارسی';
+  }
+
+  if (!deck.length || !card) {
+    if (frontText) frontText.textContent = state.nightConv.vocabLoadError || 'ابتدا درس را انتخاب کنید یا CSV را بررسی کنید.';
+    if (backText) backText.textContent = '—';
+    if (exampleBox) exampleBox.hidden = true;
+    if (counter) counter.textContent = '۰ / ۰';
+    if (fill) fill.style.width = '0%';
+    nightConvFlashSetFlipped(false);
+    return;
+  }
+
+  const isFaFront = dir === 'fa-fr';
+  if (frontText) {
+    frontText.textContent = isFaFront ? card.fa : card.fr;
+    frontText.dir = isFaFront ? 'rtl' : 'ltr';
+  }
+  if (backText) {
+    backText.textContent = isFaFront ? card.fr : card.fa;
+    backText.dir = isFaFront ? 'ltr' : 'rtl';
+  }
+  if (exampleFr) exampleFr.textContent = card.example || '';
+  if (exampleBox) exampleBox.hidden = !card.example;
+
+  if (counter) counter.textContent = `${idx + 1} / ${deck.length}`;
+  if (fill) fill.style.width = `${Math.round(((idx + 1) / deck.length) * 100)}%`;
+
+  nightConvFlashSetFlipped(state.nightConv.fc.flipped);
+
+  const frontAudio = document.getElementById('nightConvFcFrontAudio');
+  const backAudio = document.getElementById('nightConvFcBackAudio');
+  const frontSpeak = isFaFront ? null : card.fr;
+  const backSpeak = isFaFront ? card.fr : null;
+  if (frontAudio) {
+    frontAudio.onclick = (e) => {
+      e.stopPropagation();
+      if (frontSpeak) speakFrench(frontSpeak);
+    };
+    frontAudio.hidden = !frontSpeak;
+  }
+  if (backAudio) {
+    backAudio.onclick = (e) => {
+      e.stopPropagation();
+      if (backSpeak) speakFrench(backSpeak);
+      else if (card.example) speakFrench(card.example);
+    };
+    backAudio.hidden = !(backSpeak || card.example);
+  }
+}
+
+let nightConvFlashUiBound = false;
+
+function setupNightConvFlashEvents() {
+  if (nightConvFlashUiBound) return;
+  nightConvFlashUiBound = true;
+
+  document.querySelectorAll('[data-nightconv-tab]').forEach(btn => {
+    btn.onclick = () => setNightConvTab(btn.dataset.nightconvTab);
+  });
+
+  const fcCard = document.getElementById('nightConvFcCard');
+  if (fcCard) fcCard.onclick = () => nightConvFlashFlip();
+
+  document.getElementById('nightConvFcFlipBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nightConvFlashFlip();
+  });
+  document.getElementById('nightConvFcPrevBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nightConvFlashStep(-1);
+  });
+  document.getElementById('nightConvFcNextBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nightConvFlashStep(1);
+  });
+  document.getElementById('nightConvFcGotItBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nightConvFlashStep(1);
+    sfx.playCorrect();
+  });
+  document.getElementById('nightConvFcAgainBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nightConvFlashSetFlipped(false);
+    sfx.playWrong();
+  });
+  document.getElementById('nightConvFcDirBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    state.nightConv.fc.direction = state.nightConv.fc.direction === 'fa-fr' ? 'fr-fa' : 'fa-fr';
+    nightConvFlashSetFlipped(false);
+    renderNightConvFlashcard();
+  });
+  document.getElementById('nightConvFcShuffleBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const lesson = findNightConvLesson(state.nightConv.selectedLessonId);
+    if (!lesson) return;
+    state.nightConv.fc.deck = shuffleNightConvDeck(state.nightConv.fc.deck);
+    state.nightConv.fc.index = 0;
+    nightConvFlashSetFlipped(false);
+    renderNightConvFlashcard();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (state.currentView !== 'nightconv' || state.nightConv.activeTab !== 'flashcards') return;
+    if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
+    if (e.code === 'Space') {
+      e.preventDefault();
+      nightConvFlashFlip();
+    } else if (e.code === 'ArrowLeft') {
+      e.preventDefault();
+      nightConvFlashStep(1);
+    } else if (e.code === 'ArrowRight') {
+      e.preventDefault();
+      nightConvFlashStep(-1);
+    }
+  });
 }
 
 async function initNightConvView() {
@@ -3575,7 +3938,8 @@ async function initNightConvView() {
   const hint = document.getElementById('nightConvSessionHint');
   const badge = document.getElementById('sidebarNightConvCount');
 
-  await loadNightConversationData();
+  setupNightConvFlashEvents();
+  await Promise.all([loadNightConversationData(), loadNightConvVocab()]);
   const meta = nightConversationData?.meta;
   if (metaTitle && meta?.title) metaTitle.textContent = meta.title;
   if (metaDesc && meta?.subtitle) metaDesc.textContent = `${meta.subtitle} · ${meta.book || ''}`.trim();
@@ -3583,6 +3947,8 @@ async function initNightConvView() {
 
   const lessons = getNightConvLessons();
   if (badge) badge.textContent = String(lessons.length);
+  const countEl = document.getElementById('nightConvLessonCount');
+  if (countEl) countEl.textContent = String(lessons.length);
 
   if (!state.nightConv.selectedLessonId && lessons[0]) {
     state.nightConv.selectedLessonId = lessons[0].id;
@@ -3594,11 +3960,14 @@ async function initNightConvView() {
   const lesson = findNightConvLesson(state.nightConv.selectedLessonId);
   if (lesson) {
     renderNightConvLessonDetail(lesson);
+    setNightConvTab(state.nightConv.activeTab || 'guide');
   } else {
     const article = document.getElementById('nightConvLessonArticle');
     const empty = document.getElementById('nightConvEmptyState');
+    const tabs = document.getElementById('nightConvStudyTabs');
     if (article) article.hidden = true;
     if (empty) empty.hidden = false;
+    if (tabs) tabs.hidden = true;
   }
 }
 

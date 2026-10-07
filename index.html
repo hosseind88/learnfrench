@@ -1142,28 +1142,110 @@
       <!-- VIEW: NIGHT CONVERSATION (مکالمه شبانه A2) -->
       <!-- ============================================================== -->
       <section id="view-nightconv" class="app-view">
-        <div class="view-header-row">
-          <div>
-            <h1 class="view-main-title" id="nightConvMainTitle">مکالمه شبانه A2</h1>
-            <p class="view-main-desc" id="nightConvMainDesc">راهنمای جلسات گفت‌وگو · Communication Essentielle du Français A2</p>
+        <div class="nightconv-hero">
+          <div class="nightconv-hero-copy">
+            <span class="nightconv-hero-tag">🌙 Google Meet · گروه مطالعه</span>
+            <h1 class="nightconv-hero-title" id="nightConvMainTitle">مکالمه شبانه A2</h1>
+            <p class="nightconv-hero-desc" id="nightConvMainDesc">راهنمای جلسات گفت‌وگو · Communication Essentielle du Français A2</p>
+            <p class="nightconv-hero-hint" id="nightConvSessionHint">جلسات ۳۰ تا ۶۰ دقیقه‌ای در گوگل میت</p>
+          </div>
+          <div class="nightconv-hero-stats">
+            <div class="nightconv-stat-pill">
+              <span class="nightconv-stat-num" id="nightConvLessonCount">۱۰</span>
+              <span class="nightconv-stat-label">درس آماده</span>
+            </div>
+            <div class="nightconv-stat-pill accent">
+              <span class="nightconv-stat-num">۳۰–۶۰</span>
+              <span class="nightconv-stat-label">دقیقه هر شب</span>
+            </div>
           </div>
         </div>
 
+        <nav class="nightconv-lesson-rail" id="nightConvLessonRail" aria-label="انتخاب سریع درس"></nav>
+
         <div class="nightconv-layout">
+          <div class="nightconv-detail-panel" id="nightConvDetailPanel">
+            <div class="nightconv-study-tabs" id="nightConvStudyTabs" hidden>
+              <button type="button" class="nightconv-tab is-active" data-nightconv-tab="guide">📋 راهنمای جلسه</button>
+              <button type="button" class="nightconv-tab" data-nightconv-tab="flashcards">🃏 فلش‌کارت واژگان</button>
+            </div>
+
+            <div class="nightconv-tab-panel" id="nightConvGuidePanel">
+              <div class="nightconv-empty-state" id="nightConvEmptyState">
+                <span class="nightconv-empty-icon">💬</span>
+                <p>یک درس از فهرست یا نوار بالا انتخاب کنید.</p>
+              </div>
+              <article class="nightconv-lesson-article" id="nightConvLessonArticle" hidden></article>
+            </div>
+
+            <div class="nightconv-tab-panel" id="nightConvFlashPanel" hidden>
+              <div class="nightconv-fc-wrap">
+                <div class="nightconv-fc-toolbar">
+                  <div class="nightconv-fc-meta">
+                    <span class="nightconv-fc-meta-title" id="nightConvFcMetaTitle">فلش‌کارت درس</span>
+                    <span class="nightconv-fc-meta-sub" id="nightConvFcMetaSub">۰ کارت</span>
+                  </div>
+                  <div class="nightconv-fc-tools">
+                    <button type="button" class="btn btn-outline btn-sm" id="nightConvFcDirBtn">فارسی → فرانسوی</button>
+                    <button type="button" class="icon-btn-sm" id="nightConvFcShuffleBtn" title="بر زدن کارت‌ها">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="nightconv-fc-progress">
+                  <span id="nightConvFcCounter">۱ / ۱۰</span>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="nightConvFcProgressFill" style="width: 0%"></div>
+                  </div>
+                </div>
+
+                <div class="nightconv-fc-stage">
+                  <div class="nightconv-fc-card" id="nightConvFcCard">
+                    <div class="nightconv-fc-inner" id="nightConvFcInner">
+                      <div class="nightconv-fc-face nightconv-fc-front">
+                        <span class="nightconv-fc-tag" id="nightConvFcFrontTag">سؤال</span>
+                        <button type="button" class="nightconv-fc-audio" id="nightConvFcFrontAudio" title="پخش">
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon></svg>
+                        </button>
+                        <p class="nightconv-fc-front-text" id="nightConvFcFrontText"></p>
+                        <span class="nightconv-fc-flip-hint">کلیک یا Space برای دیدن پاسخ</span>
+                      </div>
+                      <div class="nightconv-fc-face nightconv-fc-back">
+                        <span class="nightconv-fc-tag" id="nightConvFcBackTag">پاسخ</span>
+                        <button type="button" class="nightconv-fc-audio" id="nightConvFcBackAudio" title="پخش">
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon></svg>
+                        </button>
+                        <p class="nightconv-fc-back-text" id="nightConvFcBackText"></p>
+                        <div class="nightconv-fc-example" id="nightConvFcExampleBox">
+                          <span class="nightconv-fc-example-label">مثال</span>
+                          <p class="nightconv-fc-example-fr" id="nightConvFcExampleFr" dir="ltr"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="nightconv-fc-actions">
+                  <button type="button" class="btn btn-outline btn-sm" id="nightConvFcPrevBtn">قبلی</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="nightConvFcFlipBtn">نمایش پاسخ</button>
+                  <button type="button" class="btn btn-outline btn-sm" id="nightConvFcNextBtn">بعدی</button>
+                </div>
+                <div class="nightconv-fc-rate">
+                  <button type="button" class="btn btn-outline btn-sm nightconv-fc-again" id="nightConvFcAgainBtn">دوباره</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="nightConvFcGotItBtn">بلدم — بعدی</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <aside class="nightconv-lesson-sidebar" id="nightConvLessonSidebar">
             <div class="nightconv-sidebar-head">
-              <span class="tool-badge">🌙 جلسه شبانه</span>
-              <p class="nightconv-sidebar-hint" id="nightConvSessionHint">جلسات ۳۰ تا ۶۰ دقیقه‌ای در گوگل میت</p>
+              <h2 class="nightconv-sidebar-title">فهرست جلسات</h2>
+              <p class="nightconv-sidebar-hint">هر شب یک درس · Leçons 1–10</p>
             </div>
             <div class="nightconv-lesson-list" id="nightConvLessonList"></div>
           </aside>
-
-          <div class="nightconv-detail-panel" id="nightConvDetailPanel">
-            <div class="nightconv-empty-state" id="nightConvEmptyState">
-              یک درس از فهرست کنار را انتخاب کنید تا موضوع مباحثه، پرسش‌ها، واژگان و گرامر همان شب را ببینید.
-            </div>
-            <article class="nightconv-lesson-article" id="nightConvLessonArticle" hidden></article>
-          </div>
         </div>
       </section>
 
